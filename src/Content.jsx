@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import LinePlot from "./d3/LinePlot";
 
@@ -37,10 +37,24 @@ function MobileChartPlaceholder({ isDark, onOpen }) {
 }
 
 function FullscreenChartModal({ isOpen, onClose, data, isDark }) {
+    useEffect(() => {
+        if (isOpen) {
+            document.documentElement.style.overflow = 'hidden';
+            return () => {
+                document.documentElement.style.overflow = '';
+            };
+        }
+    }, [isOpen]);
+
     if (!isOpen) return null;
 
+    const handleModalClick = (e) => {
+        // Prevent scroll propagation
+        e.stopPropagation();
+    };
+
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4" onClick={handleModalClick} onWheel={handleModalClick} onTouchMove={handleModalClick}>
             <div className={`relative w-full h-full max-w-6xl max-h-screen rounded-lg ${isDark ? 'bg-gray-900' : 'bg-white'} flex flex-col`}>
                 {/* Header */}
                 <div className={`p-4 border-b ${isDark ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'} flex justify-between items-center flex-shrink-0`}>
