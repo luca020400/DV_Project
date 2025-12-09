@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useDarkMode } from './useDarkMode';
+
+import { useDarkMode } from './util/DarkMode.js';
 
 import Navbar from './Navbar.jsx';
 import Footer from './Footer.jsx';
