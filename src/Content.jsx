@@ -164,7 +164,7 @@ function DataSources({ isDark, dataSources }) {
 
 function Content({ isDark, sections, dataSources }) {
     return (
-        <div>
+        <>
             {/* Hero Section */}
             <div className={`mb-16 py-16 sm:py-24 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -207,7 +207,7 @@ function Content({ isDark, sections, dataSources }) {
 
             {/* Data Sources Section */}
             <DataSources isDark={isDark} dataSources={dataSources} />
-        </div>
+        </>
     );
 }
 
