@@ -138,7 +138,7 @@ function Content({ isDark, sections }) {
                         </div>
                     </div>
 
-                    {/* Conditional Rendering Based on Section Props */}
+                    {/* Conditional Rendering */}
                     {section.visualization && <VisualizationSection isDark={isDark} section={section} idx={idx} />}
                     {section.introduction && <IntroductionSection isDark={isDark} section={section} />}
                     {section.sourceData && <SourceDataSection isDark={isDark} section={section} />}
