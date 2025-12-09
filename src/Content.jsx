@@ -1,3 +1,9 @@
+import * as d3 from "d3";
+
+import { useState } from "react";
+
+import LinePlot from "./d3/LinePlot";
+
 function IntroductionSection({ isDark, section }) {
     return (
         <div className={`py-8 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
@@ -13,14 +19,14 @@ function IntroductionSection({ isDark, section }) {
 }
 
 function VisualizationSection({ isDark, section, idx }) {
+    const [data, setData] = useState(() => d3.ticks(-2, 2, 200).map(Math.sin));
+
     return (
         <div className={`py-8 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
             <div className="w-full h-96 sm:h-[500px] lg:h-[600px] flex items-center justify-center">
                 <div className={`w-full mx-4 sm:mx-auto sm:max-w-7xl h-full rounded-lg border-2 border-dashed ${isDark ? 'border-gray-600 bg-gray-700' : 'border-gray-300 bg-gray-100'}`}>
                     <div className="h-full flex items-center justify-center">
-                        <p className={`text-center text-lg font-semibold ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                            {section.visualization.title || `D3 Visualization ${idx + 1}`}
-                        </p>
+                        <LinePlot data={data} />
                     </div>
                 </div>
             </div>

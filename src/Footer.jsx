@@ -19,7 +19,7 @@ function Footer({ isDark }) {
                             Luca Stefani
                         </p>
                         <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                            Student ID: s5163797
+                            Student ID: S5163797
                         </p>
                     </div>
                 </div>
