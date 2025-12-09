@@ -104,7 +104,7 @@ function DataSources({ isDark }) {
 
 function Content({ isDark, sections }) {
     return (
-        <div className="py-12 sm:py-16">
+        <div>
             {/* Hero Section */}
             <div className={`mb-16 py-16 sm:py-24 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -120,7 +120,7 @@ function Content({ isDark, sections }) {
                 <section
                     key={section.id}
                     id={section.id}
-                    className="mb-20 scroll-mt-20"
+                    className="scroll-mt-20"
                 >
                     {/* Title */}
                     <div className={`py-8 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
