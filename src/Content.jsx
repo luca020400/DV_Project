@@ -133,30 +133,7 @@ function SourceDataSection({ isDark, section }) {
     );
 }
 
-function DataSources({ isDark }) {
-    const dataSourcesList = [
-        {
-            title: 'UN Office for the Coordination of Humanitarian Affairs (OCHA)',
-            description: 'Primary source for displacement and humanitarian crisis data'
-        },
-        {
-            title: 'Airwars',
-            description: 'Comprehensive database of airstrikes and conflict incidents'
-        },
-        {
-            title: 'Syrian Center for Policy Research',
-            description: 'Economic impact assessments and socioeconomic data'
-        },
-        {
-            title: 'World Bank',
-            description: 'Regional economic and development indicators'
-        },
-        {
-            title: 'Human Rights Watch',
-            description: 'Casualty figures and conflict-related human rights data'
-        }
-    ];
-
+function DataSources({ isDark, dataSources }) {
     return (
         <section className="scroll-mt-20" id="data-sources">
             <div className={`py-12 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
@@ -167,7 +144,7 @@ function DataSources({ isDark }) {
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {dataSourcesList.map((source, idx) => (
+                        {dataSources.map((source, idx) => (
                             <div
                                 key={idx}
                                 className={`p-6 rounded-lg border ${isDark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-200'}`}
@@ -185,7 +162,7 @@ function DataSources({ isDark }) {
     );
 }
 
-function Content({ isDark, sections }) {
+function Content({ isDark, sections, dataSources }) {
     return (
         <div>
             {/* Hero Section */}
@@ -229,7 +206,7 @@ function Content({ isDark, sections }) {
             ))}
 
             {/* Data Sources Section */}
-            <DataSources isDark={isDark} />
+            <DataSources isDark={isDark} dataSources={dataSources} />
         </div>
     );
 }

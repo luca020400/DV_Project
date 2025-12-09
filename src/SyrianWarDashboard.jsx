@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 
-import { useDarkMode } from './util/DarkMode.js';
-import { sections as defaultSections } from './data/sectionsData.js';
+import { useDarkMode } from './util/DarkMode';
+
+import { sections } from './data/sectionsData';
+import { dataSources } from "./data/dataSources";
 
 import Navbar from './Navbar.jsx';
 import Footer from './Footer.jsx';
@@ -13,8 +15,6 @@ export default function SyrianWarDashboard() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [showBackToTop, setShowBackToTop] = useState(false);
     const [activeSection, setActiveSection] = useState('');
-
-    const sections = defaultSections;
 
     useEffect(() => {
         const handleScroll = () => {
@@ -77,7 +77,7 @@ export default function SyrianWarDashboard() {
                     setIsMenuOpen={setIsMenuOpen}
                 />
 
-                <Content isDark={isDark} sections={sections} />
+                <Content isDark={isDark} sections={sections} dataSources={dataSources} />
 
                 <BackToTopButton isDark={isDark} isVisible={showBackToTop} />
 
