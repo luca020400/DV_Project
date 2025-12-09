@@ -5,7 +5,7 @@ function Navbar({ isDark, setIsDark, sections, onSectionClick, isMenuOpen, setIs
         <nav className={`sticky top-0 z-50 ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border-b shadow-lg`}>
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
-                    <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-red-500 to-unige-blu bg-clip-text text-transparent">
+                    <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
                         Syrian Civil War
                     </h1>
 
