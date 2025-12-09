@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { useDarkMode } from './util/DarkMode.js';
+import { sections as defaultSections } from './data/sectionsData.js';
 
 import Navbar from './Navbar.jsx';
 import Footer from './Footer.jsx';
@@ -13,13 +14,7 @@ export default function SyrianWarDashboard() {
     const [showBackToTop, setShowBackToTop] = useState(false);
     const [activeSection, setActiveSection] = useState('');
 
-    const sections = [
-        { id: 'section1', title: 'Casualties Overview' },
-        { id: 'section2', title: 'Displacement Crisis' },
-        { id: 'section3', title: 'Regional Conflict' },
-        { id: 'section4', title: 'Economic Impact' },
-        { id: 'section5', title: 'Timeline Analysis' }
-    ];
+    const sections = defaultSections;
 
     useEffect(() => {
         const handleScroll = () => {
