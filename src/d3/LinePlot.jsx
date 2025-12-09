@@ -3,7 +3,7 @@ import { useRef, useEffect } from "react";
 
 function LinePlot({
     data,
-    width = 640,
+    width = 1000,
     height = 400,
     marginTop = 20,
     marginRight = 20,

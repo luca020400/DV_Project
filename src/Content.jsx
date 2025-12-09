@@ -21,12 +21,19 @@ function IntroductionSection({ isDark, section }) {
 function VisualizationSection({ isDark, section, idx }) {
     const [data, setData] = useState(() => d3.ticks(-2, 2, 200).map(Math.sin));
 
+    function onMouseMove(event) {
+        const [x, y] = d3.pointer(event);
+        setData(data.slice(-200).concat(Math.atan2(x, y)));
+    }
+
     return (
         <div className={`py-8 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
             <div className="w-full h-96 sm:h-[500px] lg:h-[600px] flex items-center justify-center">
                 <div className={`w-full mx-4 sm:mx-auto sm:max-w-7xl h-full rounded-lg border-2 border-dashed ${isDark ? 'border-gray-600 bg-gray-700' : 'border-gray-300 bg-gray-100'}`}>
                     <div className="h-full flex items-center justify-center">
-                        <LinePlot data={data} />
+                        <div onMouseMove={onMouseMove}>
+                            <LinePlot data={data} />
+                        </div>
                     </div>
                 </div>
             </div>
