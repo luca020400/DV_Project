@@ -49,19 +49,21 @@ function Navbar({ isDark, setIsDark, sections, onSectionClick, isMenuOpen, setIs
 
                 {/* Mobile Menu */}
                 {isMenuOpen && (
-                    <div className={`lg:hidden pb-4 ${isDark ? 'bg-gray-800' : 'bg-white'}`}>
-                        {sections.map((section) => (
-                            <button
-                                key={section.id}
-                                onClick={() => onSectionClick(section.id)}
-                                className={`block w-full text-left px-4 py-2 rounded-md text-sm font-medium transition-colors ${isDark
-                                    ? 'hover:bg-gray-700 text-gray-300'
-                                    : 'hover:bg-gray-100 text-gray-700'
-                                    }`}
-                            >
-                                {section.title}
-                            </button>
-                        ))}
+                    <div className={`lg:hidden absolute top-full left-0 w-full border-b shadow-lg ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
+                        <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-4">
+                            {sections.map((section) => (
+                                <button
+                                    key={section.id}
+                                    onClick={() => onSectionClick(section.id)}
+                                    className={`block w-full text-left px-4 py-2 rounded-md text-sm font-medium transition-colors ${isDark
+                                        ? 'hover:bg-gray-700 text-gray-300'
+                                        : 'hover:bg-gray-100 text-gray-700'
+                                        }`}
+                                >
+                                    {section.title}
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 )}
             </div>
