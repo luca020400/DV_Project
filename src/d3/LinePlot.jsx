@@ -8,7 +8,7 @@ function LinePlot({
     marginTop = 20,
     marginRight = 20,
     marginBottom = 20,
-    marginLeft = 20
+    marginLeft = 30
 }) {
     const gx = useRef();
     const gy = useRef();

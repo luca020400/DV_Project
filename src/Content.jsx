@@ -3,6 +3,7 @@ import * as d3 from "d3";
 import { useState, useEffect } from "react";
 
 import LinePlot from "./d3/LinePlot";
+import ZoomControls from "./ZoomControls";
 
 // Introduction Section
 function IntroductionSection({ isDark, section }) {
@@ -37,6 +38,10 @@ function MobileChartPlaceholder({ isDark, onOpen }) {
 }
 
 function FullscreenChartModal({ isOpen, onClose, data, isDark }) {
+    const defaultZoom = 1;
+
+    const [zoom, setZoom] = useState(defaultZoom);
+
     useEffect(() => {
         if (isOpen) {
             document.documentElement.style.overflow = 'hidden';
@@ -53,32 +58,57 @@ function FullscreenChartModal({ isOpen, onClose, data, isDark }) {
         e.stopPropagation();
     };
 
+    const handleZoomIn = () => {
+        setZoom(prev => Math.min(prev + 0.2, 2));
+    };
+
+    const handleZoomOut = () => {
+        setZoom(prev => Math.max(prev - 0.2, 0.5));
+    };
+
+    const handleResetZoom = () => {
+        setZoom(defaultZoom);
+    };
+
     return (
         <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4" onClick={handleModalClick} onWheel={handleModalClick} onTouchMove={handleModalClick}>
             <div className={`relative w-full h-full max-w-6xl max-h-screen rounded-lg ${isDark ? 'bg-gray-900' : 'bg-white'} flex flex-col`}>
-                {/* Header */}
-                <div className={`p-4 border-b ${isDark ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'} flex justify-between items-center flex-shrink-0`}>
-                    <h3 className={`text-lg font-semibold ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>
-                        Chart View
-                    </h3>
-                    <button
-                        onClick={onClose}
-                        className={`px-4 py-2 rounded-lg font-medium transition-colors ${isDark ? 'bg-gray-700 hover:bg-gray-600 text-gray-100' : 'bg-gray-200 hover:bg-gray-300 text-gray-900'}`}
-                    >
-                        Close
-                    </button>
-                </div>
-
                 {/* Chart container */}
-                <div className={`flex-1 overflow-auto p-4 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
-                    <div className="inline-block">
+                <div className={`flex-1 overflow-auto ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`} >
+                    <div style={{
+                        display: 'inline-block',
+                        transformOrigin: 'top left',
+                        transform: `scale(${zoom})`,
+                        transition: 'transform 0.2s ease-in-out'
+                    }}>
                         <LinePlot data={data} />
                     </div>
                 </div>
 
-                {/* Rotation hint for mobile */}
-                <div className={`p-4 text-center border-t ${isDark ? 'border-gray-700 bg-gray-800 text-gray-300' : 'border-gray-200 bg-gray-50 text-gray-600'} md:hidden flex-shrink-0`}>
-                    <p className="text-sm">💡 Tip: Rotate your phone to landscape for better viewing</p>
+                {/* Zoom Controls Bar */}
+                <div className={`p-4 border-t ${isDark ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'} flex-shrink-0`}>
+                    <div className="flex items-center justify-between gap-4">
+                        <ZoomControls
+                            zoom={zoom}
+                            defaultZoom={defaultZoom}
+                            onZoomIn={handleZoomIn}
+                            onZoomOut={handleZoomOut}
+                            onReset={handleResetZoom}
+                            isDark={isDark}
+                        />
+
+                        <button
+                            onClick={onClose}
+                            className={`px-4 py-2 rounded-lg font-medium transition-colors bg-red-600 hover:bg-red-700 text-white`}
+                        >
+                            × Close
+                        </button>
+                    </div>
+
+                    {/* Rotation hint for mobile */}
+                    <p className={`text-sm text-center mt-3 md:hidden ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                        💡 Tip: Rotate your phone to landscape for better viewing
+                    </p>
                 </div>
             </div>
         </div>
