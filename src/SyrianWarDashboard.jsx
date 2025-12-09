@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useDarkMode } from './useDarkMode';
 
 import Navbar from './Navbar.jsx';
 import Footer from './Footer.jsx';
@@ -6,7 +7,7 @@ import Content from './Content.jsx';
 import BackToTopButton from './BackToTopButton.jsx';
 
 export default function SyrianWarDashboard() {
-    const [isDark, setIsDark] = useState(true);
+    const [isDark, setIsDark] = useDarkMode();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [showBackToTop, setShowBackToTop] = useState(false);
 
