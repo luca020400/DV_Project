@@ -15,8 +15,8 @@ export default {
         'unige-gray': '#D9D9D6',
       },
       fontFamily: {
-        sans: ['"Fira Sans"', 'sans-serif'],
-        serif: ['"Roboto Slab"', 'serif'],
+        sans: ['Fira Sans', 'sans-serif'],
+        serif: ['Roboto Slab', 'serif'],
       },
     },
   },
