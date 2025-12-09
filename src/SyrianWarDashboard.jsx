@@ -11,6 +11,7 @@ export default function SyrianWarDashboard() {
     const [isDark, setIsDark] = useDarkMode();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [showBackToTop, setShowBackToTop] = useState(false);
+    const [activeSection, setActiveSection] = useState('');
 
     const sections = [
         { id: 'section1', title: 'Casualties Overview' },
@@ -29,6 +30,35 @@ export default function SyrianWarDashboard() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    useEffect(() => {
+        const observerOptions = {
+            root: null,
+            rootMargin: '-50% 0px -50% 0px',
+            threshold: 0
+        };
+
+        const observerCallback = (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActiveSection(entry.target.id);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        sections.forEach((section) => {
+            const element = document.getElementById(section.id);
+            if (element) {
+                observer.observe(element);
+            }
+        });
+
+        return () => {
+            observer.disconnect();
+        };
+    }, [sections]);
+
     const scrollToSection = (sectionId) => {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -44,6 +74,7 @@ export default function SyrianWarDashboard() {
                     isDark={isDark}
                     setIsDark={setIsDark}
                     sections={sections}
+                    activeSection={activeSection}
                     onSectionClick={scrollToSection}
                     isMenuOpen={isMenuOpen}
                     setIsMenuOpen={setIsMenuOpen}

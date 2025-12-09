@@ -1,6 +1,6 @@
 import { Menu, X, Moon, Sun } from 'lucide-react';
 
-function Navbar({ isDark, setIsDark, sections, onSectionClick, isMenuOpen, setIsMenuOpen }) {
+function Navbar({ isDark, setIsDark, sections, activeSection, onSectionClick, isMenuOpen, setIsMenuOpen }) {
     return (
         <nav className={`sticky top-0 z-50 ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border-b shadow-lg`}>
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,9 +15,11 @@ function Navbar({ isDark, setIsDark, sections, onSectionClick, isMenuOpen, setIs
                             <button
                                 key={section.id}
                                 onClick={() => onSectionClick(section.id)}
-                                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${isDark
-                                    ? 'hover:bg-gray-700 text-gray-300'
-                                    : 'hover:bg-gray-100 text-gray-700'
+                                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeSection === section.id
+                                    ? 'bg-red-500 text-white'
+                                    : isDark
+                                        ? 'hover:bg-gray-700 text-gray-300'
+                                        : 'hover:bg-gray-100 text-gray-700'
                                     }`}
                             >
                                 {section.title}
@@ -55,9 +57,11 @@ function Navbar({ isDark, setIsDark, sections, onSectionClick, isMenuOpen, setIs
                                 <button
                                     key={section.id}
                                     onClick={() => onSectionClick(section.id)}
-                                    className={`block w-full text-left px-4 py-2 rounded-md text-sm font-medium transition-colors ${isDark
-                                        ? 'hover:bg-gray-700 text-gray-300'
-                                        : 'hover:bg-gray-100 text-gray-700'
+                                    className={`block w-full text-left px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeSection === section.id
+                                        ? 'bg-red-500 text-white'
+                                        : isDark
+                                            ? 'hover:bg-gray-700 text-gray-300'
+                                            : 'hover:bg-gray-100 text-gray-700'
                                         }`}
                                 >
                                     {section.title}
