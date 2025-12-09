@@ -26,6 +26,8 @@ export default function SyrianWarDashboard() {
             setShowBackToTop(window.scrollY > 400);
         };
 
+        handleScroll();
+
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
