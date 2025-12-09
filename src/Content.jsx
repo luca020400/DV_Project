@@ -3,7 +3,6 @@ import * as d3 from "d3";
 import { useState, useEffect } from "react";
 
 import LinePlot from "./d3/LinePlot";
-import ZoomControls from "./ZoomControls";
 
 // Introduction Section
 function IntroductionSection({ isDark, section }) {
@@ -38,10 +37,6 @@ function MobileChartPlaceholder({ isDark, onOpen }) {
 }
 
 function FullscreenChartModal({ isOpen, onClose, data, isDark }) {
-    const defaultZoom = 1;
-
-    const [zoom, setZoom] = useState(defaultZoom);
-
     useEffect(() => {
         if (isOpen) {
             document.documentElement.style.overflow = 'hidden';
@@ -54,60 +49,34 @@ function FullscreenChartModal({ isOpen, onClose, data, isDark }) {
     if (!isOpen) return null;
 
     const handleModalClick = (e) => {
-        // Prevent scroll propagation
         e.stopPropagation();
     };
 
-    const handleZoomIn = () => {
-        setZoom(prev => Math.min(prev + 0.2, 2));
-    };
-
-    const handleZoomOut = () => {
-        setZoom(prev => Math.max(prev - 0.2, 0.5));
-    };
-
-    const handleResetZoom = () => {
-        setZoom(defaultZoom);
-    };
-
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4" onClick={handleModalClick} onWheel={handleModalClick} onTouchMove={handleModalClick}>
+        <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4" onClick={handleModalClick}>
             <div className={`relative w-full h-full max-w-6xl max-h-screen rounded-lg ${isDark ? 'bg-gray-900' : 'bg-white'} flex flex-col`}>
-                {/* Chart container */}
-                <div className={`flex-1 overflow-auto ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`} >
-                    <div style={{
-                        display: 'inline-block',
-                        transformOrigin: 'top left',
-                        transform: `scale(${zoom})`,
-                        transition: 'transform 0.2s ease-in-out'
-                    }}>
-                        <LinePlot data={data} />
-                    </div>
+                {/* Header */}
+                <div className={`p-4 border-b ${isDark ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'} flex-shrink-0 flex items-center justify-between`}>
+                    <h2 className={`text-lg font-semibold ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>
+                        Chart Visualization
+                    </h2>
+                    <button
+                        onClick={onClose}
+                        className={`px-4 py-2 rounded-lg font-medium transition-colors bg-red-600 hover:bg-red-700 text-white`}
+                    >
+                        × Close
+                    </button>
                 </div>
 
-                {/* Zoom Controls Bar */}
-                <div className={`p-4 border-t ${isDark ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'} flex-shrink-0`}>
-                    <div className="flex items-center justify-between gap-4">
-                        <ZoomControls
-                            zoom={zoom}
-                            defaultZoom={defaultZoom}
-                            onZoomIn={handleZoomIn}
-                            onZoomOut={handleZoomOut}
-                            onReset={handleResetZoom}
-                            isDark={isDark}
-                        />
+                {/* Chart container */}
+                <div className={`flex-1 overflow-hidden flex items-center justify-center ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
+                    <LinePlot data={data} />
+                </div>
 
-                        <button
-                            onClick={onClose}
-                            className={`px-4 py-2 rounded-lg font-medium transition-colors bg-red-600 hover:bg-red-700 text-white`}
-                        >
-                            × Close
-                        </button>
-                    </div>
-
-                    {/* Rotation hint for mobile */}
-                    <p className={`text-sm text-center mt-3 md:hidden ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
-                        💡 Tip: Rotate your phone to landscape for better viewing
+                {/* Rotation hint for mobile */}
+                <div className={`p-4 border-t ${isDark ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'} flex-shrink-0 md:hidden`}>
+                    <p className={`text-sm text-center ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                        💡 Tip: Scroll to zoom, drag to pan
                     </p>
                 </div>
             </div>
@@ -137,7 +106,7 @@ function VisualizationSection({ isDark }) {
                     <div className={`w-full mx-4 sm:mx-auto sm:max-w-7xl h-full rounded-lg border-2 border-dashed ${isDark ? 'border-gray-600 bg-gray-700' : 'border-gray-300 bg-gray-100'}`}>
                         <div className="h-full flex items-center justify-center">
                             <div onMouseMove={onMouseMove}>
-                                <LinePlot data={data} />
+                                <LinePlot data={data} disableZoom={true} />
                             </div>
                         </div>
                     </div>
