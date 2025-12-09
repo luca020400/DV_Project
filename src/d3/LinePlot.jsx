@@ -10,7 +10,7 @@ function LinePlot({
     marginBottom = 20,
     marginLeft = 30,
     onZoomChange,
-    disableZoom = false,
+    isMobile = false,
 }) {
     const svgRef = useRef();
     const gx = useRef();
@@ -41,15 +41,15 @@ function LinePlot({
                 }
             });
 
-        if (!disableZoom) {
+        if (isMobile) {
             svg.call(zoom);
         } else {
             svg.on('.zoom', null);
         }
-    }, [data, x, y, marginBottom, onZoomChange, disableZoom]);
+    }, [data, x, y, marginBottom, onZoomChange, isMobile]);
 
     return (
-        <svg ref={svgRef} width={width} height={height} style={{ cursor: disableZoom ? 'default' : 'grab' }}>
+        <svg ref={svgRef} width={width} height={height} style={{ cursor: isMobile ? 'grab' : 'default', touchAction: 'pinch-zoom' }}>
             <g ref={gChart}>
                 <g ref={gx} transform={`translate(0,${height - marginBottom})`} />
                 <g ref={gy} transform={`translate(${marginLeft},0)`} />

@@ -70,13 +70,13 @@ function FullscreenChartModal({ isOpen, onClose, data, isDark }) {
 
                 {/* Chart container */}
                 <div className={`flex-1 overflow-hidden flex items-center justify-center ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
-                    <LinePlot data={data} />
+                    <LinePlot data={data} isMobile={true} />
                 </div>
 
-                {/* Rotation hint for mobile */}
+                {/* Pinch-to-zoom hint for mobile */}
                 <div className={`p-4 border-t ${isDark ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'} flex-shrink-0 md:hidden`}>
                     <p className={`text-sm text-center ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
-                        💡 Tip: Scroll to zoom, drag to pan
+                        💡 Tip: Pinch to zoom, drag to pan
                     </p>
                 </div>
             </div>
@@ -106,7 +106,7 @@ function VisualizationSection({ isDark }) {
                     <div className={`w-full mx-4 sm:mx-auto sm:max-w-7xl h-full rounded-lg border-2 border-dashed ${isDark ? 'border-gray-600 bg-gray-700' : 'border-gray-300 bg-gray-100'}`}>
                         <div className="h-full flex items-center justify-center">
                             <div onMouseMove={onMouseMove}>
-                                <LinePlot data={data} disableZoom={true} />
+                                <LinePlot data={data} isMobile={false} />
                             </div>
                         </div>
                     </div>
