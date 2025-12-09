@@ -73,10 +73,13 @@ function FullscreenChartModal({ isOpen, onClose, data, isDark }) {
                     <LinePlot data={data} isMobile={true} />
                 </div>
 
-                {/* Pinch-to-zoom hint for mobile */}
-                <div className={`p-4 border-t ${isDark ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'} flex-shrink-0 md:hidden`}>
+                {/* Mobile hints */}
+                <div className={`p-4 border-t space-y-2 ${isDark ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'} flex-shrink-0 md:hidden`}>
                     <p className={`text-sm text-center ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
                         💡 Tip: Pinch to zoom, drag to pan
+                    </p>
+                    <p className={`text-sm text-center ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                        📱 For better viewing, rotate your device to landscape
                     </p>
                 </div>
             </div>
