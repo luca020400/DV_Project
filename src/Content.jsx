@@ -4,6 +4,58 @@ import { useState } from "react";
 
 import LinePlot from "./d3/LinePlot";
 
+// Fullscreen Modal Component
+function FullscreenChartModal({ isOpen, onClose, data, isDark }) {
+    if (!isOpen) return null;
+
+    return (
+        <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4">
+            <div className={`relative w-full h-full max-w-6xl max-h-screen rounded-lg ${isDark ? 'bg-gray-900' : 'bg-white'} flex flex-col`}>
+                {/* Header */}
+                <div className={`p-4 border-b ${isDark ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'} flex justify-between items-center`}>
+                    <h3 className={`text-lg font-semibold ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>
+                        Chart View
+                    </h3>
+                    <button
+                        onClick={onClose}
+                        className={`px-4 py-2 rounded-lg font-medium transition-colors ${isDark ? 'bg-gray-700 hover:bg-gray-600 text-gray-100' : 'bg-gray-200 hover:bg-gray-300 text-gray-900'}`}
+                    >
+                        Close
+                    </button>
+                </div>
+
+                {/* Chart container */}
+                <div className={`flex-1 flex items-center justify-center overflow-auto p-4 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
+                    <div className="flex items-center justify-center">
+                        <LinePlot data={data} width={900} height={500} />
+                    </div>
+                </div>
+
+                {/* Rotation hint for mobile */}
+                <div className={`p-4 text-center border-t ${isDark ? 'border-gray-700 bg-gray-800 text-gray-300' : 'border-gray-200 bg-gray-50 text-gray-600'} md:hidden`}>
+                    <p className="text-sm">💡 Tip: Rotate your phone to landscape for better viewing</p>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// Mobile placeholder component
+function MobileChartPlaceholder({ isDark, onOpen }) {
+    return (
+        <div className={`w-full h-48 rounded-lg border-2 border-dashed flex flex-col items-center justify-center cursor-pointer transition-all hover:border-opacity-75 ${isDark ? 'border-gray-600 bg-gray-700 hover:bg-gray-650' : 'border-gray-300 bg-gray-100 hover:bg-gray-150'}`}
+            onClick={onOpen}>
+            <p className={`text-lg font-semibold mb-2 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                📊 Interactive Chart
+            </p>
+            <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                Click here to view fullscreen
+            </p>
+        </div>
+    );
+}
+
+// Introduction Section
 function IntroductionSection({ isDark, section }) {
     return (
         <div className={`py-8 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
@@ -18,8 +70,10 @@ function IntroductionSection({ isDark, section }) {
     );
 }
 
+// Visualization Section
 function VisualizationSection({ isDark, section, idx }) {
     const [data, setData] = useState(() => d3.ticks(-2, 2, 200).map(Math.sin));
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     function onMouseMove(event) {
         const [x, y] = d3.pointer(event);
@@ -27,17 +81,33 @@ function VisualizationSection({ isDark, section, idx }) {
     }
 
     return (
-        <div className={`py-8 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
-            <div className="w-full h-96 sm:h-[500px] lg:h-[600px] flex items-center justify-center">
-                <div className={`w-full mx-4 sm:mx-auto sm:max-w-7xl h-full rounded-lg border-2 border-dashed ${isDark ? 'border-gray-600 bg-gray-700' : 'border-gray-300 bg-gray-100'}`}>
-                    <div className="h-full flex items-center justify-center">
-                        <div onMouseMove={onMouseMove}>
-                            <LinePlot data={data} />
+        <>
+            <div className={`py-8 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
+                {/* Mobile: Show placeholder */}
+                <div className="md:hidden w-full px-4 mx-auto">
+                    <MobileChartPlaceholder isDark={isDark} onOpen={() => setIsModalOpen(true)} />
+                </div>
+
+                {/* Desktop: Show full chart */}
+                <div className="hidden md:flex md:w-full md:h-96 lg:h-[600px] items-center justify-center">
+                    <div className={`w-full mx-4 sm:mx-auto sm:max-w-7xl h-full rounded-lg border-2 border-dashed ${isDark ? 'border-gray-600 bg-gray-700' : 'border-gray-300 bg-gray-100'}`}>
+                        <div className="h-full flex items-center justify-center">
+                            <div onMouseMove={onMouseMove}>
+                                <LinePlot data={data} />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            {/* Fullscreen Modal */}
+            <FullscreenChartModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                data={data}
+                isDark={isDark}
+            />
+        </>
     );
 }
 
