@@ -32,7 +32,7 @@ function Navbar({ isDark, setIsDark, sections, activeSection, onSectionClick, is
                     {/* Current section indicator - desktop only, centered */}
                     {activeTitle && (
                         <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center">
-                            <span className={`text-lg font-medium ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                            <span className={`text-xl font-medium ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
                                 {activeTitle}
                             </span>
                         </div>
