@@ -2,8 +2,9 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 
 import { useDarkMode } from './util/DarkMode';
 
-import { sections } from './data/sectionsData';
-import { dataSources } from "./data/dataSources";
+import { sections } from './sources/sectionsData.js';
+import { dataSources } from "./sources/dataSources.js";
+import dataRegistry from './data/DataRegistry.js';
 
 import Navbar from './Navbar.jsx';
 import Footer from './Footer.jsx';
@@ -69,6 +70,17 @@ export default function SyrianWarDashboard() {
         });
 
         return () => observer.disconnect();
+    }, []);
+
+    // Fetch all visualization data on component mount
+    useEffect(() => {
+        // TODO: Replace empty dict with actual API endpoint URLs
+        // Example: dataRegistry.fetchAllData({
+        //   casualtyTrendData: 'https://api.example.com/casualties',
+        //   displacementData: 'https://api.example.com/displacement',
+        //   ...
+        // })
+        dataRegistry.fetchAllData({});
     }, []);
 
     const scrollToSection = useCallback((sectionId) => {

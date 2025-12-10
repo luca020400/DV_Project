@@ -8,7 +8,8 @@ export const sections = [
             'Data comes from international humanitarian organizations and research institutions committed to documenting the impact of the conflict.'
         ],
         visualization: {
-            title: 'Casualty Trends Over Time'
+            title: 'Casualty Trends Over Time',
+            component: 'CasualtyTrendChart'
         },
         sourceData: ['ocha']
     },
@@ -21,7 +22,8 @@ export const sections = [
             'Understanding displacement patterns is crucial for humanitarian planning and international aid allocation.'
         ],
         visualization: {
-            title: 'Displacement by Region and Time'
+            title: 'Displacement by Region and Time',
+            component: 'DisplacementChart'
         },
         sourceData: ['ocha']
     },
@@ -34,7 +36,8 @@ export const sections = [
             'Understanding regional variations helps explain humanitarian needs and population movements across the country.'
         ],
         visualization: {
-            title: 'Regional Conflict Intensity Map'
+            title: 'Regional Conflict Intensity Map',
+            component: 'RegionalConflictMap'
         },
         sourceData: ['airwars', 'acled']
     },
@@ -47,7 +50,8 @@ export const sections = [
             'This section examines the long-term economic implications and recovery challenges facing the nation.'
         ],
         visualization: {
-            title: 'Economic Indicators and Projections'
+            title: 'Economic Indicators and Projections',
+            component: 'EconomicIndicators'
         },
         sourceData: ['worldbank', 'scpr']
     },
@@ -60,7 +64,8 @@ export const sections = [
             'This timeline helps contextualize the data presented in other sections and understand causal relationships.'
         ],
         visualization: {
-            title: 'Conflict Timeline and Key Events'
+            title: 'Conflict Timeline and Key Events',
+            component: 'TimelineChart'
         },
         sourceData: ['wikipedia_timeline']
     }

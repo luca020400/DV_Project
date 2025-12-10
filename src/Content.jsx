@@ -1,8 +1,8 @@
-import * as d3 from "d3";
-
 import { useState, useEffect, useMemo } from "react";
 
-import LinePlot from "./d3/LinePlot";
+import { getVisualizationComponent } from "./components/VisualizationRegistry";
+import { useVisualizationData } from "./hooks/useVisualizationData";
+import componentDataKeyMapper from "./util/ComponentDataKeyMapper";
 
 // Theme utilities
 const getBgClass = (isDark) => isDark ? 'bg-gray-800' : 'bg-gray-50';
@@ -41,7 +41,7 @@ function MobileChartPlaceholder({ isDark, onOpen }) {
     );
 }
 
-function FullscreenChartModal({ isOpen, onClose, data, isDark }) {
+function FullscreenChartModal({ isOpen, onClose, data, isDark, VisualizationComponent, isLoading }) {
     useEffect(() => {
         if (isOpen) {
             document.documentElement.style.overflow = 'hidden';
@@ -75,7 +75,11 @@ function FullscreenChartModal({ isOpen, onClose, data, isDark }) {
 
                 {/* Chart container */}
                 <div className={`flex-1 overflow-hidden flex items-center justify-center ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
-                    <LinePlot data={data} isMobile={true} />
+                    {isLoading ? (
+                        <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>Loading...</p>
+                    ) : (
+                        VisualizationComponent && <VisualizationComponent data={data} isMobile={true} />
+                    )}
                 </div>
 
                 {/* Mobile hints */}
@@ -92,13 +96,26 @@ function FullscreenChartModal({ isOpen, onClose, data, isDark }) {
     );
 }
 
-function VisualizationSection({ isDark }) {
-    const [data, setData] = useState(() => d3.ticks(-2, 2, 200).map(Math.sin));
+function VisualizationSection({ isDark, section }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const VisualizationComponent = useMemo(() => {
+        return getVisualizationComponent(section.visualization.component);
+    }, [section.visualization.component]);
 
-    function onMouseMove(event) {
-        const [x, y] = d3.pointer(event);
-        setData(data.slice(-200).concat(Math.atan2(x, y)));
+    // Determine data key
+    const dataKey = componentDataKeyMapper.getDataKey(section.visualization.component);
+    const { data, isLoading, error } = useVisualizationData(dataKey);
+
+    if (error) {
+        return (
+            <div className={`py-8 ${getBgClass(isDark)}`}>
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className={`p-4 rounded-lg ${isDark ? 'bg-red-900 text-red-100' : 'bg-red-100 text-red-900'}`}>
+                        Error loading visualization data: {error}
+                    </div>
+                </div>
+            </div>
+        );
     }
 
     return (
@@ -113,9 +130,11 @@ function VisualizationSection({ isDark }) {
                 <div className="hidden lg:flex lg:w-full lg:h-96 xl:h-[600px] items-center justify-center">
                     <div className={`w-full mx-4 sm:mx-auto sm:max-w-7xl h-full rounded-lg border-2 border-dashed ${isDark ? 'border-gray-600 bg-gray-700' : 'border-gray-300 bg-gray-100'}`}>
                         <div className="h-full flex items-center justify-center">
-                            <div onMouseMove={onMouseMove}>
-                                <LinePlot data={data} isMobile={false} />
-                            </div>
+                            {isLoading ? (
+                                <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>Loading...</p>
+                            ) : (
+                                <VisualizationComponent data={data} isMobile={false} />
+                            )}
                         </div>
                     </div>
                 </div>
@@ -127,6 +146,8 @@ function VisualizationSection({ isDark }) {
                 onClose={() => setIsModalOpen(false)}
                 data={data}
                 isDark={isDark}
+                VisualizationComponent={VisualizationComponent}
+                isLoading={isLoading}
             />
         </>
     );
