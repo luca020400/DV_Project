@@ -1,6 +1,22 @@
 import { Menu, X, Moon, Sun } from 'lucide-react';
 
 function Navbar({ isDark, setIsDark, sections, activeSection, onSectionClick, isMenuOpen, setIsMenuOpen }) {
+    const handleSectionClick = (sectionId) => {
+        onSectionClick(sectionId);
+        setIsMenuOpen(false);
+    };
+
+    const getButtonClass = (sectionId, isBlock = false) => {
+        const baseClass = `px-4 py-2 rounded-md text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 ${isBlock ? 'block w-full text-left' : ''}`;
+        const activeClass = activeSection === sectionId ? 'bg-red-500 text-white' : '';
+        const inactiveClass = activeSection !== sectionId
+            ? isDark
+                ? 'text-gray-300 hover:bg-gray-700'
+                : 'text-gray-700 hover:bg-gray-100'
+            : '';
+        return `${baseClass} ${activeClass} ${inactiveClass}`;
+    };
+
     return (
         <nav className={`sticky top-0 z-50 ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border-b shadow-lg`}>
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,12 +31,7 @@ function Navbar({ isDark, setIsDark, sections, activeSection, onSectionClick, is
                             <button
                                 key={section.id}
                                 onClick={() => onSectionClick(section.id)}
-                                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeSection === section.id
-                                    ? 'bg-red-500 text-white'
-                                    : isDark
-                                        ? 'hover:bg-gray-700 text-gray-300'
-                                        : 'hover:bg-gray-100 text-gray-700'
-                                    }`}
+                                className={getButtonClass(section.id)}
                             >
                                 {section.title}
                             </button>
@@ -31,8 +42,7 @@ function Navbar({ isDark, setIsDark, sections, activeSection, onSectionClick, is
                     <div className="flex items-center gap-4">
                         <button
                             onClick={() => setIsDark(!isDark)}
-                            className={`p-2 rounded-lg transition-colors ${isDark ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'
-                                }`}
+                            className={`p-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 ${isDark ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'}`}
                             aria-label="Toggle dark mode"
                         >
                             {isDark ? <Sun size={20} /> : <Moon size={20} />}
@@ -41,7 +51,7 @@ function Navbar({ isDark, setIsDark, sections, activeSection, onSectionClick, is
                         {/* Mobile Menu Button */}
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className="lg:hidden p-2"
+                            className="lg:hidden p-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1"
                             aria-label="Toggle menu"
                         >
                             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -56,13 +66,8 @@ function Navbar({ isDark, setIsDark, sections, activeSection, onSectionClick, is
                             {sections.map((section) => (
                                 <button
                                     key={section.id}
-                                    onClick={() => onSectionClick(section.id)}
-                                    className={`block w-full text-left px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeSection === section.id
-                                        ? 'bg-red-500 text-white'
-                                        : isDark
-                                            ? 'hover:bg-gray-700 text-gray-300'
-                                            : 'hover:bg-gray-100 text-gray-700'
-                                        }`}
+                                    onClick={() => handleSectionClick(section.id)}
+                                    className={getButtonClass(section.id, true)}
                                 >
                                     {section.title}
                                 </button>
