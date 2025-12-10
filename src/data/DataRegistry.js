@@ -4,7 +4,7 @@ class DataRegistry {
     constructor() {
         this.data = {
             casualtyTrendData: this.generateDefaultData(),
-            displacementData: this.generateDefaultData(),
+            displacementData: this.generateDisplacementData(),
             regionalConflictData: this.generateDefaultData(),
             economicIndicatorsData: this.generateDefaultData(),
             timelineData: this.generateDefaultData(),
@@ -31,6 +31,10 @@ class DataRegistry {
 
     generateDefaultData(length = 200) {
         return d3.ticks(-2, 2, length).map(Math.sin);
+    }
+
+    generateDisplacementData(length = 200) {
+        return d3.ticks(0, 1000000, length).map(d => Math.random() * d);
     }
 
     getData(key) {
@@ -78,7 +82,6 @@ class DataRegistry {
         } catch (error) {
             this.setError(key, error.message);
             console.error(`Error fetching ${key}:`, error);
-            return this.generateDefaultData();
         } finally {
             this.setLoading(key, false);
         }
@@ -90,11 +93,14 @@ class DataRegistry {
             ([key, url]) => this.fetchData(key, url)
         );
 
-        try {
-            await Promise.all(fetchPromises);
-        } catch (error) {
-            console.error('Error fetching all data:', error);
+        const results = await Promise.allSettled(fetchPromises);
+
+        const failedFetches = results.filter(result => result.status === 'rejected');
+        if (failedFetches.length > 0) {
+            console.error(`${failedFetches.length} fetch(es) failed`);
         }
+
+        return results;
     }
 }
 

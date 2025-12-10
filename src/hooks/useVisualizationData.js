@@ -13,7 +13,6 @@ export function useVisualizationData(dataKey) {
     const [error, setError] = useState(dataRegistry.getError(dataKey));
 
     useEffect(() => {
-        // Update state when data changes
         const currentData = dataRegistry.getData(dataKey);
         const currentLoading = dataRegistry.isLoading(dataKey);
         const currentError = dataRegistry.getError(dataKey);
@@ -23,17 +22,5 @@ export function useVisualizationData(dataKey) {
         setError(currentError);
     }, [dataKey]);
 
-    const refetch = useCallback(async (url) => {
-        if (!url) {
-            console.warn(`No URL provided for ${dataKey}`);
-            return;
-        }
-
-        const newData = await dataRegistry.fetchData(dataKey, url);
-        setData(newData);
-        setIsLoading(dataRegistry.isLoading(dataKey));
-        setError(dataRegistry.getError(dataKey));
-    }, [dataKey]);
-
-    return { data, isLoading, error, refetch };
+    return { data, isLoading, error };
 }
