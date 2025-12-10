@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 import { useDarkMode } from './util/DarkMode';
 
@@ -10,36 +10,53 @@ import Footer from './Footer.jsx';
 import Content from './Content.jsx';
 import BackToTopButton from './BackToTopButton.jsx';
 
+// Constants
+const SCROLL_TO_TOP_THRESHOLD = 400;
+const OBSERVER_ROOT_MARGIN = '-50% 0px -50% 0px';
+const SCROLL_THROTTLE_DELAY = 150;
+
 export default function SyrianWarDashboard() {
     const [isDark, setIsDark] = useDarkMode();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [showBackToTop, setShowBackToTop] = useState(false);
     const [activeSection, setActiveSection] = useState('');
+    const scrollThrottleRef = useRef(null);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowBackToTop(window.scrollY > 400);
-        };
-
-        handleScroll();
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+    // Throttled scroll handler
+    const handleScroll = useCallback(() => {
+        setShowBackToTop(window.scrollY > SCROLL_TO_TOP_THRESHOLD);
     }, []);
 
     useEffect(() => {
+        const throttledScroll = () => {
+            if (scrollThrottleRef.current) return;
+
+            scrollThrottleRef.current = true;
+            handleScroll();
+
+            setTimeout(() => {
+                scrollThrottleRef.current = false;
+            }, SCROLL_THROTTLE_DELAY);
+        };
+
+        handleScroll();
+        window.addEventListener('scroll', throttledScroll);
+        return () => window.removeEventListener('scroll', throttledScroll);
+    }, [handleScroll]);
+
+    // Intersection observer for active section tracking
+    useEffect(() => {
         const observerOptions = {
             root: null,
-            rootMargin: '-50% 0px -50% 0px',
+            rootMargin: OBSERVER_ROOT_MARGIN,
             threshold: 0
         };
 
         const observerCallback = (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    setActiveSection(entry.target.id);
-                }
-            });
+            const intersectingSection = entries.find(entry => entry.isIntersecting);
+            if (intersectingSection) {
+                setActiveSection(intersectingSection.target.id);
+            }
         };
 
         const observer = new IntersectionObserver(observerCallback, observerOptions);
@@ -51,18 +68,16 @@ export default function SyrianWarDashboard() {
             }
         });
 
-        return () => {
-            observer.disconnect();
-        };
-    }, [sections]);
+        return () => observer.disconnect();
+    }, []);
 
-    const scrollToSection = (sectionId) => {
+    const scrollToSection = useCallback((sectionId) => {
         const element = document.getElementById(sectionId);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
             setIsMenuOpen(false);
         }
-    };
+    }, []);
 
     return (
         <div className={isDark ? 'dark' : ''}>
