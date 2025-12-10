@@ -127,29 +127,38 @@ function VisualizationSection({ isDark }) {
     );
 }
 
-function SourceDataSection({ isDark, section }) {
+function SourceDataSection({ isDark, section, dataSources, onScrollToSource }) {
+    const getSourceById = (id) => {
+        return dataSources.find(source => source.id === id);
+    };
+
     return (
         <div className={`py-8 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h4 className="text-xl font-semibold mb-4">Data Sources for this Section</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {section.sourceData.map((source, idx) => (
-                        <div
-                            key={idx}
-                            className={`p-4 rounded-lg border ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-200'}`}
-                        >
-                            <p className={`font-medium ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>
-                                {source}
-                            </p>
-                        </div>
-                    ))}
+                <div className="flex flex-wrap gap-3">
+                    {section.sourceData.map((sourceId, idx) => {
+                        const source = getSourceById(sourceId);
+                        return source ? (
+                            <button
+                                key={idx}
+                                onClick={() => onScrollToSource(source.id)}
+                                className={`px-4 py-2 rounded-lg border transition-colors ${isDark
+                                    ? 'bg-gray-800 border-gray-700 text-blue-400 hover:bg-gray-700 hover:border-blue-500'
+                                    : 'bg-gray-50 border-gray-200 text-blue-600 hover:bg-blue-50 hover:border-blue-300'
+                                    }`}
+                            >
+                                {source.title}
+                            </button>
+                        ) : null;
+                    })}
                 </div>
             </div>
         </div>
     );
 }
 
-function DataSources({ isDark, dataSources }) {
+function DataSources({ isDark, dataSources, flashingId, onSetFlashingId }) {
     return (
         <section className="scroll-mt-20" id="data-sources">
             <div className={`py-12 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
@@ -163,12 +172,25 @@ function DataSources({ isDark, dataSources }) {
                         {dataSources.map((source, idx) => (
                             <div
                                 key={idx}
-                                className={`p-6 rounded-lg border ${isDark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-200'}`}
+                                id={`source-${source.id}`}
+                                className={`p-6 rounded-lg border scroll-mt-24 transition-all ${isDark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-200'
+                                    } ${flashingId === source.id ? 'flash-card' : ''}`}
                             >
                                 <h3 className="font-semibold text-lg mb-2">{source.title}</h3>
                                 <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>
                                     {source.description}
                                 </p>
+                                <a
+                                    href={source.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`inline-block mt-4 text-sm font-medium transition-colors ${isDark
+                                        ? 'text-blue-400 hover:text-blue-300'
+                                        : 'text-blue-600 hover:text-blue-700'
+                                        }`}
+                                >
+                                    Visit Source →
+                                </a>
                             </div>
                         ))}
                     </div>
@@ -179,6 +201,18 @@ function DataSources({ isDark, dataSources }) {
 }
 
 function Content({ isDark, sections, dataSources }) {
+    const [flashingId, setFlashingId] = useState(null);
+
+    const scrollToSource = (sourceId) => {
+        const element = document.getElementById(`source-${sourceId}`);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+            setFlashingId(sourceId);
+            const timer = setTimeout(() => setFlashingId(null), 1800);
+            return () => clearTimeout(timer);
+        }
+    };
+
     return (
         <>
             {/* Hero Section */}
@@ -217,12 +251,19 @@ function Content({ isDark, sections, dataSources }) {
                     {/* Conditional Rendering */}
                     {section.visualization && <VisualizationSection isDark={isDark} section={section} idx={idx} />}
                     {section.introduction && <IntroductionSection isDark={isDark} section={section} />}
-                    {section.sourceData && <SourceDataSection isDark={isDark} section={section} />}
+                    {section.sourceData && (
+                        <SourceDataSection
+                            isDark={isDark}
+                            section={section}
+                            dataSources={dataSources}
+                            onScrollToSource={scrollToSource}
+                        />
+                    )}
                 </section>
             ))}
 
             {/* Data Sources Section */}
-            <DataSources isDark={isDark} dataSources={dataSources} />
+            <DataSources isDark={isDark} dataSources={dataSources} flashingId={flashingId} onSetFlashingId={setFlashingId} />
         </>
     );
 }

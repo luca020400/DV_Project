@@ -10,7 +10,7 @@ export const sections = [
         visualization: {
             title: 'Casualty Trends Over Time'
         },
-        sourceData: ['SOHR (Syrian Observatory for Human Rights)', 'UN Office for the Coordination of Humanitarian Affairs']
+        sourceData: ['ocha']
     },
     {
         id: 'section2',
@@ -23,7 +23,7 @@ export const sections = [
         visualization: {
             title: 'Displacement by Region and Time'
         },
-        sourceData: ['UNHCR (UN Refugee Agency)', 'World Health Organization', 'International Organization for Migration']
+        sourceData: ['ocha']
     },
     {
         id: 'section3',
@@ -36,7 +36,7 @@ export const sections = [
         visualization: {
             title: 'Regional Conflict Intensity Map'
         },
-        sourceData: ['Airwars', 'UCDP (Uppsala Conflict Data Program)', 'Acled (Armed Conflict Location & Event Data)']
+        sourceData: ['airwars', 'acled']
     },
     {
         id: 'section4',
@@ -49,7 +49,7 @@ export const sections = [
         visualization: {
             title: 'Economic Indicators and Projections'
         },
-        sourceData: ['World Bank', 'Syrian Center for Policy Research', 'IMF (International Monetary Fund)']
+        sourceData: ['worldbank', 'scpr']
     },
     {
         id: 'section5',
@@ -62,6 +62,6 @@ export const sections = [
         visualization: {
             title: 'Conflict Timeline and Key Events'
         },
-        sourceData: ['Wikipedia conflict timeline', 'BBC News archives', 'International Crisis Group']
+        sourceData: ['wikipedia_timeline']
     }
 ];
