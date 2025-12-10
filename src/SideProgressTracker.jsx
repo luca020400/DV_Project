@@ -7,7 +7,7 @@ function SideProgressTracker({ isDark, sections, activeSection, onSectionClick }
             <div className="absolute top-3 bottom-3 left-1/2 -translate-x-1/2 w-1.5 pointer-events-none">
                 {/* Background line */}
                 <div
-                    className={`absolute inset-0 ${isDark ? 'bg-gray-700' : 'bg-gray-200'} rounded-full`}
+                    className={`absolute inset-0 ${isDark ? 'bg-gray-700' : 'bg-gray-300'} rounded-full`}
                 />
                 {/* Filled progress line */}
                 <div
