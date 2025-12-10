@@ -1,15 +1,20 @@
 import * as d3 from "d3";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 import LinePlot from "./d3/LinePlot";
+
+// Theme utilities
+const getBgClass = (isDark) => isDark ? 'bg-gray-800' : 'bg-gray-50';
+const getTextClass = (isDark) => isDark ? 'text-gray-300' : 'text-gray-700';
+const getCardBgClass = (isDark) => isDark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-200';
 
 // Introduction Section
 function IntroductionSection({ isDark, section }) {
     return (
-        <div className={`py-8 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
+        <div className={`py-8 ${getBgClass(isDark)}`}>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className={`space-y-4 text-base sm:text-lg leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                <div className={`space-y-4 text-base sm:text-lg leading-relaxed ${getTextClass(isDark)}`}>
                     {section.introduction.map((paragraph, idx) => (
                         <p key={idx}>{paragraph}</p>
                     ))}
@@ -98,7 +103,7 @@ function VisualizationSection({ isDark }) {
 
     return (
         <>
-            <div className={`py-8 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
+            <div className={`py-8 ${getBgClass(isDark)}`}>
                 {/* Mobile: Show placeholder only */}
                 <div className="lg:hidden w-full px-4 mx-auto">
                     <MobileChartPlaceholder isDark={isDark} onOpen={() => setIsModalOpen(true)} />
@@ -128,40 +133,39 @@ function VisualizationSection({ isDark }) {
 }
 
 function SourceDataSection({ isDark, section, dataSources, onScrollToSource }) {
-    const getSourceById = (id) => {
-        return dataSources.find(source => source.id === id);
-    };
+    const sourceButtons = useMemo(() => {
+        return section.sourceData.map((sourceId) => {
+            return dataSources.find(source => source.id === sourceId);
+        }).filter(Boolean);
+    }, [section.sourceData, dataSources]);
 
     return (
         <div className={`py-8 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h4 className="text-xl font-semibold mb-4">Data Sources for this Section</h4>
                 <div className="flex flex-wrap gap-3">
-                    {section.sourceData.map((sourceId, idx) => {
-                        const source = getSourceById(sourceId);
-                        return source ? (
-                            <button
-                                key={idx}
-                                onClick={() => onScrollToSource(source.id)}
-                                className={`px-4 py-2 rounded-lg border transition-colors ${isDark
-                                    ? 'bg-gray-800 border-gray-700 text-blue-400 hover:bg-gray-700 hover:border-blue-500'
-                                    : 'bg-gray-50 border-gray-200 text-blue-600 hover:bg-blue-50 hover:border-blue-300'
-                                    }`}
-                            >
-                                {source.title}
-                            </button>
-                        ) : null;
-                    })}
+                    {sourceButtons.map((source) => (
+                        <button
+                            key={source.id}
+                            onClick={() => onScrollToSource(source.id)}
+                            className={`px-4 py-2 rounded-lg border transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 ${isDark
+                                ? 'bg-gray-800 border-gray-700 text-blue-400 hover:bg-gray-700 hover:border-blue-500'
+                                : 'bg-gray-50 border-gray-200 text-blue-600 hover:bg-blue-50 hover:border-blue-300'
+                                }`}
+                        >
+                            {source.title}
+                        </button>
+                    ))}
                 </div>
             </div>
         </div>
     );
 }
 
-function DataSources({ isDark, dataSources, flashingId, onSetFlashingId }) {
+function DataSources({ isDark, dataSources, flashingId }) {
     return (
         <section className="scroll-mt-20" id="data-sources">
-            <div className={`py-12 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
+            <div className={`py-12 ${getBgClass(isDark)}`}>
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-3xl sm:text-4xl font-bold mb-4">Data Sources</h2>
                     <p className={`text-lg mb-8 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
@@ -173,8 +177,7 @@ function DataSources({ isDark, dataSources, flashingId, onSetFlashingId }) {
                             <div
                                 key={idx}
                                 id={`source-${source.id}`}
-                                className={`p-6 rounded-lg border scroll-mt-24 transition-all ${isDark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-200'
-                                    } ${flashingId === source.id ? 'flash-card' : ''}`}
+                                className={`p-6 rounded-lg border scroll-mt-24 transition-all ${getCardBgClass(isDark)} ${flashingId === source.id ? 'flash-card' : ''}`}
                             >
                                 <h3 className="font-semibold text-lg mb-2">{source.title}</h3>
                                 <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>
@@ -184,7 +187,7 @@ function DataSources({ isDark, dataSources, flashingId, onSetFlashingId }) {
                                     href={source.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className={`inline-block mt-4 text-sm font-medium transition-colors ${isDark
+                                    className={`inline-block mt-4 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 ${isDark
                                         ? 'text-blue-400 hover:text-blue-300'
                                         : 'text-blue-600 hover:text-blue-700'
                                         }`}
@@ -216,10 +219,10 @@ function Content({ isDark, sections, dataSources }) {
     return (
         <>
             {/* Hero Section */}
-            <div className={`mb-16 py-16 sm:py-24 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
+            <div className={`mb-16 py-16 sm:py-24 ${getBgClass(isDark)}`}>
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-4xl sm:text-5xl font-bold mb-4">Understanding the Syrian Crisis</h2>
-                    <p className={`text-lg ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                    <p className={`text-lg ${getTextClass(isDark)}`}>
                         A comprehensive data-driven analysis of the Syrian Civil War and its humanitarian impact
                     </p>
                 </div>
@@ -233,16 +236,16 @@ function Content({ isDark, sections, dataSources }) {
                     className="scroll-mt-20"
                 >
                     {/* Title */}
-                    <div className={`py-8 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
+                    <div className={`py-8 ${getBgClass(isDark)}`}>
                         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                             <h3 className="text-3xl sm:text-4xl font-bold">{section.title}</h3>
                         </div>
                     </div>
 
                     {/* Subtitle */}
-                    <div className={`py-4 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
+                    <div className={`py-4 ${getBgClass(isDark)}`}>
                         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <p className={`text-lg ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                            <p className={`text-lg ${getTextClass(isDark)}`}>
                                 {section.subtitle || `Key insights and data visualization for ${section.title.toLowerCase()}`}
                             </p>
                         </div>
@@ -263,7 +266,7 @@ function Content({ isDark, sections, dataSources }) {
             ))}
 
             {/* Data Sources Section */}
-            <DataSources isDark={isDark} dataSources={dataSources} flashingId={flashingId} onSetFlashingId={setFlashingId} />
+            <DataSources isDark={isDark} dataSources={dataSources} flashingId={flashingId} />
         </>
     );
 }
