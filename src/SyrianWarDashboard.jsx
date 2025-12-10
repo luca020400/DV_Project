@@ -10,6 +10,7 @@ import Navbar from './Navbar.jsx';
 import Footer from './Footer.jsx';
 import Content from './Content.jsx';
 import BackToTopButton from './BackToTopButton.jsx';
+import SideProgressTracker from './SideProgressTracker.jsx';
 
 // Constants
 const SCROLL_TO_TOP_THRESHOLD = 400;
@@ -105,6 +106,13 @@ export default function SyrianWarDashboard() {
                 />
 
                 <Content isDark={isDark} sections={sections} dataSources={dataSources} />
+
+                <SideProgressTracker
+                    isDark={isDark}
+                    sections={sections}
+                    activeSection={activeSection}
+                    onSectionClick={scrollToSection}
+                />
 
                 <BackToTopButton isDark={isDark} isVisible={showBackToTop} />
 

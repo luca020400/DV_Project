@@ -17,26 +17,26 @@ function Navbar({ isDark, setIsDark, sections, activeSection, onSectionClick, is
         return `${baseClass} ${activeClass} ${inactiveClass}`;
     };
 
+    const activeTitle = sections.find(s => s.id === activeSection)?.title;
+
     return (
         <nav className={`sticky top-0 z-50 ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border-b shadow-lg`}>
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
-                    <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
-                        Syrian Civil War
-                    </h1>
-
-                    {/* Desktop Menu */}
-                    <div className="hidden lg:flex gap-1">
-                        {sections.map((section) => (
-                            <button
-                                key={section.id}
-                                onClick={() => onSectionClick(section.id)}
-                                className={getButtonClass(section.id)}
-                            >
-                                {section.title}
-                            </button>
-                        ))}
+                    <div className="flex items-center gap-3">
+                        <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+                            Syrian Civil War
+                        </h1>
                     </div>
+
+                    {/* Current section indicator - desktop only, centered */}
+                    {activeTitle && (
+                        <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center">
+                            <span className={`text-lg font-medium ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                                {activeTitle}
+                            </span>
+                        </div>
+                    )}
 
                     {/* Controls */}
                     <div className="flex items-center gap-4">
