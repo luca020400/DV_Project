@@ -9,7 +9,7 @@ class DataRegistry {
 
         // URLs for fetching data
         this.urls = {
-            casualtyTrendData: undefined,
+            casualtyTrendData: '/test.json',
             displacementData: undefined,
             regionalConflictData: undefined,
             economicIndicatorsData: undefined,
