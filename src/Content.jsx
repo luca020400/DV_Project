@@ -224,7 +224,7 @@ function DataSources({ isDark, dataSources, flashingId }) {
     );
 }
 
-function Content({ isDark, sections, dataSources, heroData }) {
+function Content({ isDark, sections, sources, hero }) {
     const [flashingId, setFlashingId] = useState(null);
 
     const scrollToSource = (sourceId) => {
@@ -242,9 +242,9 @@ function Content({ isDark, sections, dataSources, heroData }) {
             {/* Hero Section */}
             <div className={`mb-16 py-16 sm:py-24 ${getBgClass(isDark)}`}>
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-4xl sm:text-5xl font-bold mb-4">{heroData.title}</h2>
+                    <h2 className="text-4xl sm:text-5xl font-bold mb-4">{hero.title}</h2>
                     <p className={`text-lg ${getTextClass(isDark)}`}>
-                        {heroData.subtitle}
+                        {hero.subtitle}
                     </p>
                 </div>
             </div>
@@ -279,7 +279,7 @@ function Content({ isDark, sections, dataSources, heroData }) {
                         <SourceDataSection
                             isDark={isDark}
                             section={section}
-                            dataSources={dataSources}
+                            dataSources={sources}
                             onScrollToSource={scrollToSource}
                         />
                     )}
@@ -287,7 +287,7 @@ function Content({ isDark, sections, dataSources, heroData }) {
             ))}
 
             {/* Data Sources Section */}
-            <DataSources isDark={isDark} dataSources={dataSources} flashingId={flashingId} />
+            <DataSources isDark={isDark} dataSources={sources} flashingId={flashingId} />
         </>
     );
 }

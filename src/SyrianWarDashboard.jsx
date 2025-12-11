@@ -2,9 +2,9 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 
 import { useDarkMode } from './util/DarkMode';
 
-import { sections } from './sources/sectionsData.js';
-import { dataSources } from "./sources/dataSources.js";
-import { heroData } from './sources/hero.js';
+import { sections } from './text/sections.js';
+import { sources } from "./text/sources.js";
+import { hero } from './text/hero.js';
 import dataRegistry from './data/DataRegistry.js';
 
 import Navbar from './Navbar.jsx';
@@ -106,7 +106,7 @@ export default function SyrianWarDashboard() {
                     setIsMenuOpen={setIsMenuOpen}
                 />
 
-                <Content isDark={isDark} sections={sections} dataSources={dataSources} heroData={heroData} />
+                <Content isDark={isDark} sections={sections} sources={sources} hero={hero} />
 
                 <SideProgressTracker
                     isDark={isDark}

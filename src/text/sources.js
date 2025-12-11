@@ -1,4 +1,4 @@
-export const dataSources = [
+export const sources = [
     {
         id: 'ocha',
         title: 'UN Office for the Coordination of Humanitarian Affairs (OCHA)',
