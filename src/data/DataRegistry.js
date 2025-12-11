@@ -1,7 +1,5 @@
 import * as d3 from 'd3';
 
-console.log('DataRegistry module loaded.');
-
 class DataRegistry {
     constructor() {
         // Listeners for state changes

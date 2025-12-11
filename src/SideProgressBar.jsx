@@ -1,6 +1,6 @@
 import { useTheme } from './contexts/ThemeContext';
 
-function SideProgressTracker({ sections, activeSection, onSectionClick }) {
+function SideProgressBar({ sections, activeSection, onSectionClick }) {
     const { isDark } = useTheme();
 
     const activeIndex = sections.findIndex(s => s.id === activeSection);
@@ -86,4 +86,4 @@ function SideProgressTracker({ sections, activeSection, onSectionClick }) {
     );
 }
 
-export default SideProgressTracker;
+export default SideProgressBar;
