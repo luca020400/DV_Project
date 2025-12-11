@@ -40,6 +40,7 @@ export default function SyrianWarDashboard() {
 
             setTimeout(() => {
                 scrollThrottleRef.current = false;
+                handleScroll();
             }, SCROLL_THROTTLE_DELAY);
         };
 
@@ -73,6 +74,33 @@ export default function SyrianWarDashboard() {
         });
 
         return () => observer.disconnect();
+    }, []);
+
+    // Handle edge cases: scrolled above first or below last section
+    useEffect(() => {
+        const handleEdgeCases = () => {
+            const firstElement = document.getElementById(sections[0]?.id);
+            const lastElement = document.getElementById(sections[sections.length - 1]?.id);
+
+            const firstRect = firstElement.getBoundingClientRect();
+            const lastRect = lastElement.getBoundingClientRect();
+            const viewportCenter = window.innerHeight / 2;
+
+            // If first section is below viewport center, we're above all sections
+            if (firstRect.top > viewportCenter) {
+                setActiveSection(sections[0].id);
+            }
+
+            // If last section is above viewport center, we're below all sections
+            else if (lastRect.bottom < viewportCenter) {
+                setActiveSection(sections[sections.length - 1].id);
+            }
+        };
+
+        handleEdgeCases();
+
+        window.addEventListener('scroll', handleEdgeCases);
+        return () => window.removeEventListener('scroll', handleEdgeCases);
     }, []);
 
     // Fetch all visualization data on component mount
