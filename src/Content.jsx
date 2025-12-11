@@ -224,6 +224,27 @@ function DataSources({ isDark, dataSources, flashingId }) {
     );
 }
 
+// Hero Section
+function Hero({ isDark, hero }) {
+    return (
+        <div className={`mb-16 py-16 sm:py-24 ${getBgClass(isDark)}`}>
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 className="text-4xl sm:text-5xl font-bold mb-4">{hero.title}</h2>
+                <p className={`text-lg mb-8 ${getTextClass(isDark)}`}>
+                    {hero.subtitle}
+                </p>
+                {hero.content && hero.content.length > 0 && (
+                    <div className={`space-y-4 text-base sm:text-lg leading-relaxed text-left ${getTextClass(isDark)}`}>
+                        {hero.content.map((paragraph, idx) => (
+                            <p key={idx}>{paragraph}</p>
+                        ))}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
+
 function Content({ isDark, sections, sources, hero }) {
     const [flashingId, setFlashingId] = useState(null);
 
@@ -240,14 +261,7 @@ function Content({ isDark, sections, sources, hero }) {
     return (
         <>
             {/* Hero Section */}
-            <div className={`mb-16 py-16 sm:py-24 ${getBgClass(isDark)}`}>
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-4xl sm:text-5xl font-bold mb-4">{hero.title}</h2>
-                    <p className={`text-lg ${getTextClass(isDark)}`}>
-                        {hero.subtitle}
-                    </p>
-                </div>
-            </div>
+            <Hero isDark={isDark} hero={hero} />
 
             {/* Content Sections */}
             {sections.map((section, idx) => (
