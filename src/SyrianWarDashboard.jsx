@@ -4,6 +4,7 @@ import { useDarkMode } from './util/DarkMode';
 
 import { sections } from './sources/sectionsData.js';
 import { dataSources } from "./sources/dataSources.js";
+import { heroData } from './sources/hero.js';
 import dataRegistry from './data/DataRegistry.js';
 
 import Navbar from './Navbar.jsx';
@@ -105,7 +106,7 @@ export default function SyrianWarDashboard() {
                     setIsMenuOpen={setIsMenuOpen}
                 />
 
-                <Content isDark={isDark} sections={sections} dataSources={dataSources} />
+                <Content isDark={isDark} sections={sections} dataSources={dataSources} heroData={heroData} />
 
                 <SideProgressTracker
                     isDark={isDark}

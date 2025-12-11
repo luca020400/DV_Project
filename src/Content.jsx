@@ -224,7 +224,7 @@ function DataSources({ isDark, dataSources, flashingId }) {
     );
 }
 
-function Content({ isDark, sections, dataSources }) {
+function Content({ isDark, sections, dataSources, heroData }) {
     const [flashingId, setFlashingId] = useState(null);
 
     const scrollToSource = (sourceId) => {
@@ -242,9 +242,9 @@ function Content({ isDark, sections, dataSources }) {
             {/* Hero Section */}
             <div className={`mb-16 py-16 sm:py-24 ${getBgClass(isDark)}`}>
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-4xl sm:text-5xl font-bold mb-4">Understanding the Syrian Crisis</h2>
+                    <h2 className="text-4xl sm:text-5xl font-bold mb-4">{heroData.title}</h2>
                     <p className={`text-lg ${getTextClass(isDark)}`}>
-                        A comprehensive data-driven analysis of the Syrian Civil War and its humanitarian impact
+                        {heroData.subtitle}
                     </p>
                 </div>
             </div>
