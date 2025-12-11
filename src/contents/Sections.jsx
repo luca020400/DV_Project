@@ -3,10 +3,7 @@ import { useState, useEffect, useMemo } from "react";
 import { getVisualizationComponent } from "../components/VisualizationRegistry";
 import { useVisualizationData } from "../hooks/useVisualizationData";
 import componentDataKeyMapper from "../util/ComponentDataKeyMapper";
-
-// Theme utilities
-const getBgClass = (isDark) => isDark ? 'bg-gray-800' : 'bg-gray-50';
-const getTextClass = (isDark) => isDark ? 'text-gray-300' : 'text-gray-700';
+import { getBgClass, getTextClass } from './themeUtils';
 
 // Description Section
 function DescriptionSection({ isDark, section }) {
@@ -209,7 +206,7 @@ function Sections({ isDark, sections, sources, onScrollToSource }) {
                     </div>
 
                     {/* Conditional Rendering */}
-                    {section.visualization && <VisualizationSection isDark={isDark} section={section} idx={idx} />}
+                    {section.visualization && <VisualizationSection isDark={isDark} section={section} />}
                     {section.description && <DescriptionSection isDark={isDark} section={section} />}
                     {section.sourceData && (
                         <SourceDataSection

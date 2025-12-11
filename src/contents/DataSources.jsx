@@ -1,6 +1,4 @@
-// Theme utilities
-const getBgClass = (isDark) => isDark ? 'bg-gray-800' : 'bg-gray-50';
-const getCardBgClass = (isDark) => isDark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-200';
+import { getBgClass, getCardBgClass } from './themeUtils';
 
 function DataSources({ isDark, dataSources, flashingId }) {
     return (
@@ -13,9 +11,9 @@ function DataSources({ isDark, dataSources, flashingId }) {
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {dataSources.map((source, idx) => (
+                        {dataSources.map((source) => (
                             <div
-                                key={idx}
+                                key={source.id}
                                 id={`source-${source.id}`}
                                 className={`p-6 rounded-lg border scroll-mt-24 transition-all ${getCardBgClass(isDark)} ${flashingId === source.id ? 'flash-card' : ''}`}
                             >

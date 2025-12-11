@@ -12,8 +12,7 @@ function Content({ isDark, sections, sources, hero }) {
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
             setFlashingId(sourceId);
-            const timer = setTimeout(() => setFlashingId(null), 1800);
-            return () => clearTimeout(timer);
+            setTimeout(() => setFlashingId(null), 1800);
         }
     };
 

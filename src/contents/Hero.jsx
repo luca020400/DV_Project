@@ -1,6 +1,4 @@
-// Theme utilities
-const getBgClass = (isDark) => isDark ? 'bg-gray-800' : 'bg-gray-50';
-const getTextClass = (isDark) => isDark ? 'text-gray-300' : 'text-gray-700';
+import { getBgClass, getTextClass } from './themeUtils';
 
 // Hero Section
 function Hero({ isDark, hero }) {
