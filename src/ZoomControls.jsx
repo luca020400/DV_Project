@@ -1,4 +1,8 @@
-function ZoomControls({ zoom, defaultZoom, onZoomIn, onZoomOut, onReset, isDark }) {
+import { useTheme } from './contexts/ThemeContext';
+
+function ZoomControls({ zoom, defaultZoom, onZoomIn, onZoomOut, onReset }) {
+    const { isDark } = useTheme();
+
     return (
         <div className="flex items-center justify-center gap-3 flex-wrap">
             <button

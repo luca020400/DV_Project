@@ -1,6 +1,9 @@
 import { ChevronUp } from 'lucide-react';
+import { useTheme } from './contexts/ThemeContext';
 
-function BackToTopButton({ isDark, isVisible }) {
+function BackToTopButton({ isVisible }) {
+    const { isDark } = useTheme();
+
     if (!isVisible) return null;
 
     const scrollToTop = () => {

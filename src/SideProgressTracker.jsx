@@ -1,4 +1,8 @@
-function SideProgressTracker({ isDark, sections, activeSection, onSectionClick }) {
+import { useTheme } from './contexts/ThemeContext';
+
+function SideProgressTracker({ sections, activeSection, onSectionClick }) {
+    const { isDark } = useTheme();
+
     const activeIndex = sections.findIndex(s => s.id === activeSection);
 
     return (

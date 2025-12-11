@@ -4,7 +4,7 @@ import Hero from "./contents/Hero";
 import Sections from "./contents/Sections";
 import DataSources from "./contents/DataSources";
 
-function Content({ isDark, sections, sources, hero }) {
+function Content({ sections, sources, hero }) {
     const [flashingId, setFlashingId] = useState(null);
 
     const scrollToSource = (sourceId) => {
@@ -19,18 +19,17 @@ function Content({ isDark, sections, sources, hero }) {
     return (
         <>
             {/* Hero Section */}
-            <Hero isDark={isDark} hero={hero} />
+            <Hero hero={hero} />
 
             {/* Content Sections */}
             <Sections
-                isDark={isDark}
                 sections={sections}
                 sources={sources}
                 onScrollToSource={scrollToSource}
             />
 
             {/* Data Sources Section */}
-            <DataSources isDark={isDark} dataSources={sources} flashingId={flashingId} />
+            <DataSources dataSources={sources} flashingId={flashingId} />
         </>
     );
 }

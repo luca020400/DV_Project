@@ -1,6 +1,10 @@
+import { useTheme } from '../contexts/ThemeContext';
 import { getBgClass, getCardBgClass } from './themeUtils';
 
-function DataSources({ isDark, dataSources, flashingId }) {
+// Data Sources Section
+function DataSources({ dataSources, flashingId }) {
+    const { isDark } = useTheme();
+
     return (
         <section className="scroll-mt-20" id="data-sources">
             <div className={`py-12 ${getBgClass(isDark)}`}>

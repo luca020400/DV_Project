@@ -1,7 +1,10 @@
+import { useTheme } from '../contexts/ThemeContext';
 import { getBgClass, getTextClass } from './themeUtils';
 
 // Hero Section
-function Hero({ isDark, hero }) {
+function Hero({ hero }) {
+    const { isDark } = useTheme();
+
     return (
         <div className={`mb-16 py-16 sm:py-24 ${getBgClass(isDark)}`}>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

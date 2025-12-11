@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
 import { useDarkMode } from './util/DarkMode';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 import { sections } from './text/sections.js';
 import { sources } from "./text/sources.js";
@@ -94,31 +95,30 @@ export default function SyrianWarDashboard() {
     }, []);
 
     return (
-        <div className={isDark ? 'dark' : ''}>
-            <div className={`min-h-screen ${isDark ? 'bg-gray-900 text-gray-100' : 'bg-white text-gray-900'}`}>
-                <Navbar
-                    isDark={isDark}
-                    setIsDark={setIsDark}
-                    sections={sections}
-                    activeSection={activeSection}
-                    onSectionClick={scrollToSection}
-                    isMenuOpen={isMenuOpen}
-                    setIsMenuOpen={setIsMenuOpen}
-                />
+        <ThemeProvider isDark={isDark} setIsDark={setIsDark}>
+            <div className={isDark ? 'dark' : ''}>
+                <div className={`min-h-screen ${isDark ? 'bg-gray-900 text-gray-100' : 'bg-white text-gray-900'}`}>
+                    <Navbar
+                        sections={sections}
+                        activeSection={activeSection}
+                        onSectionClick={scrollToSection}
+                        isMenuOpen={isMenuOpen}
+                        setIsMenuOpen={setIsMenuOpen}
+                    />
 
-                <Content isDark={isDark} sections={sections} sources={sources} hero={hero} />
+                    <Content sections={sections} sources={sources} hero={hero} />
 
-                <SideProgressTracker
-                    isDark={isDark}
-                    sections={sections}
-                    activeSection={activeSection}
-                    onSectionClick={scrollToSection}
-                />
+                    <SideProgressTracker
+                        sections={sections}
+                        activeSection={activeSection}
+                        onSectionClick={scrollToSection}
+                    />
 
-                <BackToTopButton isDark={isDark} isVisible={showBackToTop} />
+                    <BackToTopButton isVisible={showBackToTop} />
 
-                <Footer isDark={isDark} />
+                    <Footer />
+                </div>
             </div>
-        </div>
+        </ThemeProvider>
     );
 }

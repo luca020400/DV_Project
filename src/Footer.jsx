@@ -1,4 +1,8 @@
-function Footer({ isDark }) {
+import { useTheme } from './contexts/ThemeContext';
+
+function Footer() {
+    const { isDark } = useTheme();
+
     return (
         <footer className={`py-12 border-t ${isDark ? 'border-gray-700 bg-gradient-to-r from-gray-800 to-gray-900' : 'border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100'}`}>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

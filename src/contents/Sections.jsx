@@ -1,12 +1,15 @@
 import { useState, useEffect, useMemo } from "react";
 
+import { useTheme } from '../contexts/ThemeContext';
 import { getVisualizationComponent } from "../components/VisualizationRegistry";
 import { useVisualizationData } from "../hooks/useVisualizationData";
 import componentDataKeyMapper from "../util/ComponentDataKeyMapper";
 import { getBgClass, getTextClass } from './themeUtils';
 
 // Description Section
-function DescriptionSection({ isDark, section }) {
+function DescriptionSection({ section }) {
+    const { isDark } = useTheme();
+
     return (
         <div className={`py-8 ${getBgClass(isDark)}`}>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,7 +24,9 @@ function DescriptionSection({ isDark, section }) {
 }
 
 // Mobile placeholder component
-function MobileChartPlaceholder({ isDark, onOpen }) {
+function MobileChartPlaceholder({ onOpen }) {
+    const { isDark } = useTheme();
+
     return (
         <div
             className={`w-full h-48 rounded-lg border-2 border-dashed flex flex-col items-center justify-center cursor-pointer transition-all hover:border-opacity-75 ${isDark ? 'border-gray-600 bg-gray-700 hover:bg-gray-650' : 'border-gray-300 bg-gray-100 hover:bg-gray-150'}`}
@@ -37,7 +42,9 @@ function MobileChartPlaceholder({ isDark, onOpen }) {
     );
 }
 
-function FullscreenChartModal({ isOpen, onClose, data, isDark, VisualizationComponent, isLoading }) {
+function FullscreenChartModal({ isOpen, onClose, data, VisualizationComponent, isLoading }) {
+    const { isDark } = useTheme();
+
     useEffect(() => {
         if (isOpen) {
             document.documentElement.style.overflow = 'hidden';
@@ -94,7 +101,9 @@ function FullscreenChartModal({ isOpen, onClose, data, isDark, VisualizationComp
     );
 }
 
-function VisualizationSection({ isDark, section }) {
+function VisualizationSection({ section }) {
+    const { isDark } = useTheme();
+
     const [isModalOpen, setIsModalOpen] = useState(false);
     const VisualizationComponent = useMemo(() => {
         return getVisualizationComponent(section.visualization.component);
@@ -121,7 +130,7 @@ function VisualizationSection({ isDark, section }) {
             <div className={`py-8 ${getBgClass(isDark)}`}>
                 {/* Mobile: Show placeholder only */}
                 <div className="lg:hidden w-full px-4 mx-auto">
-                    <MobileChartPlaceholder isDark={isDark} onOpen={() => setIsModalOpen(true)} />
+                    <MobileChartPlaceholder onOpen={() => setIsModalOpen(true)} />
                 </div>
 
                 {/* Desktop: Show full chart */}
@@ -143,7 +152,6 @@ function VisualizationSection({ isDark, section }) {
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 data={data}
-                isDark={isDark}
                 VisualizationComponent={VisualizationComponent}
                 isLoading={isLoading}
             />
@@ -151,7 +159,9 @@ function VisualizationSection({ isDark, section }) {
     );
 }
 
-function SourceDataSection({ isDark, section, dataSources, onScrollToSource }) {
+function SourceDataSection({ section, dataSources, onScrollToSource }) {
+    const { isDark } = useTheme();
+
     const sourceButtons = useMemo(() => {
         return section.sourceData.map((sourceId) => {
             return dataSources.find(source => source.id === sourceId);
@@ -182,10 +192,12 @@ function SourceDataSection({ isDark, section, dataSources, onScrollToSource }) {
 }
 
 // Main Sections Component
-function Sections({ isDark, sections, sources, onScrollToSource }) {
+function Sections({ sections, sources, onScrollToSource }) {
+    const { isDark } = useTheme();
+
     return (
         <>
-            {sections.map((section, idx) => (
+            {sections.map((section) => (
                 <section
                     key={section.id}
                     id={section.id}
@@ -208,11 +220,10 @@ function Sections({ isDark, sections, sources, onScrollToSource }) {
                     </div>
 
                     {/* Conditional Rendering */}
-                    {section.visualization && <VisualizationSection isDark={isDark} section={section} />}
-                    {section.description && <DescriptionSection isDark={isDark} section={section} />}
+                    {section.visualization && <VisualizationSection section={section} />}
+                    {section.description && <DescriptionSection section={section} />}
                     {section.sourceData && (
                         <SourceDataSection
-                            isDark={isDark}
                             section={section}
                             dataSources={sources}
                             onScrollToSource={onScrollToSource}
