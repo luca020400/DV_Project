@@ -1,4 +1,4 @@
 export const hero = {
-    title: "Understanding the Syrian Crisis",
-    subtitle: "A comprehensive data-driven analysis of the Syrian Civil War and its humanitarian impact"
+    title: "Understanding the Syrian Crisis: A Data-Driven Exploration",
+    subtitle: "Visualizing the human, social, and economic impact of one of the 21st century’s most consequential conflicts"
 };

@@ -9,13 +9,13 @@ const getBgClass = (isDark) => isDark ? 'bg-gray-800' : 'bg-gray-50';
 const getTextClass = (isDark) => isDark ? 'text-gray-300' : 'text-gray-700';
 const getCardBgClass = (isDark) => isDark ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-200';
 
-// Introduction Section
-function IntroductionSection({ isDark, section }) {
+// Description Section
+function DescriptionSection({ isDark, section }) {
     return (
         <div className={`py-8 ${getBgClass(isDark)}`}>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className={`space-y-4 text-base sm:text-lg leading-relaxed ${getTextClass(isDark)}`}>
-                    {section.introduction.map((paragraph, idx) => (
+                    {section.description.map((paragraph, idx) => (
                         <p key={idx}>{paragraph}</p>
                     ))}
                 </div>
@@ -274,7 +274,7 @@ function Content({ isDark, sections, sources, hero }) {
 
                     {/* Conditional Rendering */}
                     {section.visualization && <VisualizationSection isDark={isDark} section={section} idx={idx} />}
-                    {section.introduction && <IntroductionSection isDark={isDark} section={section} />}
+                    {section.description && <DescriptionSection isDark={isDark} section={section} />}
                     {section.sourceData && (
                         <SourceDataSection
                             isDark={isDark}
