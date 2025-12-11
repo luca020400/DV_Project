@@ -1,5 +1,7 @@
 import * as d3 from 'd3';
 
+import testDataUrl from './test.json?url';
+
 class DataRegistry {
     constructor() {
         // Listeners for state changes
@@ -7,7 +9,7 @@ class DataRegistry {
 
         // URLs for fetching data
         this.urls = {
-            casualtyTrendData: '/test.json',
+            casualtyTrendData: testDataUrl,
             displacementData: undefined,
             regionalConflictData: undefined,
             economicIndicatorsData: undefined,
