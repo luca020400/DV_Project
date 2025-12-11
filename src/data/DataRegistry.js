@@ -10,6 +10,15 @@ class DataRegistry {
             timelineData: this.generateDefaultData(),
         };
 
+        // URLs for fetching data
+        this.urls = {
+            casualtyTrendData: undefined,
+            displacementData: undefined,
+            regionalConflictData: undefined,
+            economicIndicatorsData: undefined,
+            timelineData: undefined,
+        };
+
         // Track loading states
         this.loading = {
             casualtyTrendData: false,
@@ -88,8 +97,10 @@ class DataRegistry {
     }
 
     // Fetch all data sets
-    async fetchAllData(urls = {}) {
-        const fetchPromises = Object.entries(urls).map(
+    async fetchAllData() {
+        const urls = Object.entries(this.urls).filter(([, url]) => url !== undefined);
+
+        const fetchPromises = urls.map(
             ([key, url]) => this.fetchData(key, url)
         );
 

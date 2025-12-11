@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { createContext, useContext, useState, useCallback, useEffect } from 'react';
 import dataRegistry from '../data/DataRegistry';
 
 const DataProviderContext = createContext(undefined);
@@ -19,43 +19,18 @@ export function DataProvider({ children }) {
         });
     }, []);
 
-    // Fetch data for a specific key
-    const fetchData = useCallback(async (key, url) => {
-        const result = await dataRegistry.fetchData(key, url);
-        syncState();
-        return result;
-    }, [syncState]);
-
     // Fetch all data
-    const fetchAllData = useCallback(async (urls = {}) => {
-        const result = await dataRegistry.fetchAllData(urls);
+    const fetchAllData = useCallback(async () => {
+        const result = await dataRegistry.fetchAllData();
         syncState();
         return result;
     }, [syncState]);
-
-    // Set data directly
-    const setData = useCallback((key, data) => {
-        dataRegistry.setData(key, data);
-        syncState();
-    }, [syncState]);
-
-    // Initialize and fetch data on mount
-    useEffect(() => {
-        // TODO: Replace empty dict with actual API endpoint URLs
-        // Example: fetchAllData({
-        //   casualtyTrendData: 'https://api.example.com/casualties',
-        //   displacementData: 'https://api.example.com/displacement',
-        // })
-        fetchAllData({});
-    }, [fetchAllData]);
 
     const value = {
         data: registryState.data,
         loading: registryState.loading,
         errors: registryState.errors,
-        fetchData,
         fetchAllData,
-        setData,
     };
 
     return (
