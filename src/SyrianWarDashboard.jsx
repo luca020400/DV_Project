@@ -22,7 +22,9 @@ const SCROLL_THROTTLE_DELAY = 150;
 export default function SyrianWarDashboard() {
     const [isDark, setIsDark] = useDarkMode();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [showBackToTop, setShowBackToTop] = useState(false);
+    const [showBackToTop, setShowBackToTop] = useState(() =>
+        window.scrollY > SCROLL_TO_TOP_THRESHOLD
+    );
     const [activeSection, setActiveSection] = useState('');
     const scrollThrottleRef = useRef(null);
 
@@ -44,7 +46,6 @@ export default function SyrianWarDashboard() {
             }, SCROLL_THROTTLE_DELAY);
         };
 
-        handleScroll();
         window.addEventListener('scroll', throttledScroll);
         return () => window.removeEventListener('scroll', throttledScroll);
     }, [handleScroll]);

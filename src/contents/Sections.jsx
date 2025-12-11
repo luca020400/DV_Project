@@ -1,10 +1,26 @@
 import { useState, useEffect, useMemo } from "react";
 
 import { useTheme } from '../contexts/ThemeContext';
-import { getVisualizationComponent } from "../components/VisualizationRegistry";
 import { useVisualizationData } from "../contexts/DataProviderContext";
 import componentDataKeyMapper from "../util/ComponentDataKeyMapper";
 import { getBgClass, getTextClass } from './themeUtils';
+import LinePlot from '../d3/LinePlot';
+import ScatterPlot from '../d3/ScatterPlot';
+
+// Render visualization based on component name
+function DynamicVisualization({ componentName, data, isMobile }) {
+    switch (componentName) {
+        case 'CasualtyTrendChart':
+        case 'RegionalConflictMap':
+        case 'EconomicIndicators':
+        case 'TimelineChart':
+            return <LinePlot data={data} isMobile={isMobile} />;
+        case 'DisplacementChart':
+            return <ScatterPlot data={data} isMobile={isMobile} />;
+        default:
+            return null;
+    }
+}
 
 // Description Section
 function DescriptionSection({ section }) {
@@ -42,7 +58,7 @@ function MobileChartPlaceholder({ onOpen }) {
     );
 }
 
-function FullscreenChartModal({ isOpen, onClose, data, VisualizationComponent, isLoading }) {
+function FullscreenChartModal({ isOpen, onClose, data, componentName, isLoading }) {
     const { isDark } = useTheme();
 
     useEffect(() => {
@@ -83,7 +99,7 @@ function FullscreenChartModal({ isOpen, onClose, data, VisualizationComponent, i
                     {isLoading ? (
                         <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>Loading...</p>
                     ) : (
-                        VisualizationComponent && <VisualizationComponent data={data} isMobile={true} />
+                        <DynamicVisualization componentName={componentName} data={data} isMobile={true} />
                     )}
                 </div>
 
@@ -105,9 +121,6 @@ function VisualizationSection({ section }) {
     const { isDark } = useTheme();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const VisualizationComponent = useMemo(() => {
-        return getVisualizationComponent(section.visualization.component);
-    }, [section.visualization.component]);
 
     // Determine data key
     const dataKey = componentDataKeyMapper.getDataKey(section.visualization.component);
@@ -140,7 +153,7 @@ function VisualizationSection({ section }) {
                             {isLoading ? (
                                 <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>Loading...</p>
                             ) : (
-                                <VisualizationComponent data={data} isMobile={false} />
+                                <DynamicVisualization componentName={section.visualization.component} data={data} isMobile={false} />
                             )}
                         </div>
                     </div>
@@ -152,7 +165,7 @@ function VisualizationSection({ section }) {
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 data={data}
-                VisualizationComponent={VisualizationComponent}
+                componentName={section.visualization.component}
                 isLoading={isLoading}
             />
         </>

@@ -50,19 +50,19 @@ class DataRegistry {
     }
 
     setData(key, data) {
-        if (this.data.hasOwnProperty(key)) {
+        if (Object.hasOwn(this.data, key)) {
             this.data[key] = data;
         }
     }
 
     setLoading(key, isLoading) {
-        if (this.loading.hasOwnProperty(key)) {
+        if (Object.hasOwn(this.loading, key)) {
             this.loading[key] = isLoading;
         }
     }
 
     setError(key, error) {
-        if (this.errors.hasOwnProperty(key)) {
+        if (Object.hasOwn(this.errors, key)) {
             this.errors[key] = error;
         }
     }
