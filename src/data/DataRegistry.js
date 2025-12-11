@@ -1,14 +1,11 @@
 import * as d3 from 'd3';
 
+console.log('DataRegistry module loaded.');
+
 class DataRegistry {
     constructor() {
-        this.data = {
-            casualtyTrendData: this.generateDefaultData(),
-            displacementData: this.generateDisplacementData(),
-            regionalConflictData: this.generateDefaultData(),
-            economicIndicatorsData: this.generateDefaultData(),
-            timelineData: this.generateDefaultData(),
-        };
+        // Listeners for state changes
+        this.listeners = [];
 
         // URLs for fetching data
         this.urls = {
@@ -19,13 +16,22 @@ class DataRegistry {
             timelineData: undefined,
         };
 
+        // Initialize data only with defaults for categories without URLs
+        this.data = {
+            casualtyTrendData: this.urls.casualtyTrendData ? null : this.generateDefaultData(),
+            displacementData: this.urls.displacementData ? null : this.generateDisplacementData(),
+            regionalConflictData: this.urls.regionalConflictData ? null : this.generateDefaultData(),
+            economicIndicatorsData: this.urls.economicIndicatorsData ? null : this.generateDefaultData(),
+            timelineData: this.urls.timelineData ? null : this.generateDefaultData(),
+        };
+
         // Track loading states
         this.loading = {
-            casualtyTrendData: false,
-            displacementData: false,
-            regionalConflictData: false,
-            economicIndicatorsData: false,
-            timelineData: false,
+            casualtyTrendData: this.urls.casualtyTrendData ? true : false,
+            displacementData: this.urls.displacementData ? true : false,
+            regionalConflictData: this.urls.regionalConflictData ? true : false,
+            economicIndicatorsData: this.urls.economicIndicatorsData ? true : false,
+            timelineData: this.urls.timelineData ? true : false,
         };
 
         // Track errors
@@ -36,6 +42,17 @@ class DataRegistry {
             economicIndicatorsData: null,
             timelineData: null,
         };
+    }
+
+    subscribe(listener) {
+        this.listeners.push(listener);
+        return () => {
+            this.listeners = this.listeners.filter(l => l !== listener);
+        };
+    }
+
+    notify() {
+        this.listeners.forEach(listener => listener());
     }
 
     generateDefaultData(length = 200) {
@@ -61,18 +78,24 @@ class DataRegistry {
     setData(key, data) {
         if (Object.hasOwn(this.data, key)) {
             this.data[key] = data;
+
+            this.notify();
         }
     }
 
     setLoading(key, isLoading) {
         if (Object.hasOwn(this.loading, key)) {
             this.loading[key] = isLoading;
+
+            this.notify();
         }
     }
 
     setError(key, error) {
         if (Object.hasOwn(this.errors, key)) {
             this.errors[key] = error;
+
+            this.notify();
         }
     }
 

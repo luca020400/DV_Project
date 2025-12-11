@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import dataRegistry from '../data/DataRegistry';
 
 const DataProviderContext = createContext(undefined);
@@ -10,27 +10,30 @@ export function DataProvider({ children }) {
         errors: { ...dataRegistry.errors },
     });
 
-    // Sync state from registry
-    const syncState = useCallback(() => {
-        setRegistryState({
-            data: { ...dataRegistry.data },
-            loading: { ...dataRegistry.loading },
-            errors: { ...dataRegistry.errors },
+    useEffect(() => {
+        const unsubscribe = dataRegistry.subscribe(() => {
+            setRegistryState({
+                data: { ...dataRegistry.data },
+                loading: { ...dataRegistry.loading },
+                errors: { ...dataRegistry.errors },
+            });
         });
+
+        return unsubscribe;
     }, []);
 
-    // Fetch all data
-    const fetchAllData = useCallback(async () => {
-        const result = await dataRegistry.fetchAllData();
-        syncState();
-        return result;
-    }, [syncState]);
+    useEffect(() => {
+        const loadData = async () => {
+            await dataRegistry.fetchAllData();
+        };
+
+        loadData();
+    }, []);
 
     const value = {
         data: registryState.data,
         loading: registryState.loading,
         errors: registryState.errors,
-        fetchAllData,
     };
 
     return (
