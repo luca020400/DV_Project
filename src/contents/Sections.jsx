@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 
 import { useTheme } from '../contexts/ThemeContext';
 import { getVisualizationComponent } from "../components/VisualizationRegistry";
-import { useVisualizationData } from "../hooks/useVisualizationData";
+import { useVisualizationData } from "../contexts/DataProviderContext";
 import componentDataKeyMapper from "../util/ComponentDataKeyMapper";
 import { getBgClass, getTextClass } from './themeUtils';
 

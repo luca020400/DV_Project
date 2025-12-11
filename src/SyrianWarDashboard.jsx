@@ -2,11 +2,11 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 
 import { useDarkMode } from './util/DarkMode';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { DataProvider } from './contexts/DataProviderContext';
 
 import { sections } from './text/sections.js';
 import { sources } from "./text/sources.js";
 import { hero } from './text/hero.js';
-import dataRegistry from './data/DataRegistry.js';
 
 import Navbar from './Navbar.jsx';
 import Footer from './Footer.jsx';
@@ -103,17 +103,6 @@ export default function SyrianWarDashboard() {
         return () => window.removeEventListener('scroll', handleEdgeCases);
     }, []);
 
-    // Fetch all visualization data on component mount
-    useEffect(() => {
-        // TODO: Replace empty dict with actual API endpoint URLs
-        // Example: dataRegistry.fetchAllData({
-        //   casualtyTrendData: 'https://api.example.com/casualties',
-        //   displacementData: 'https://api.example.com/displacement',
-        //   ...
-        // })
-        dataRegistry.fetchAllData({});
-    }, []);
-
     const scrollToSection = useCallback((sectionId) => {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -124,29 +113,31 @@ export default function SyrianWarDashboard() {
 
     return (
         <ThemeProvider isDark={isDark} setIsDark={setIsDark}>
-            <div className={isDark ? 'dark' : ''}>
-                <div className={`min-h-screen ${isDark ? 'bg-gray-900 text-gray-100' : 'bg-white text-gray-900'}`}>
-                    <Navbar
-                        sections={sections}
-                        activeSection={activeSection}
-                        onSectionClick={scrollToSection}
-                        isMenuOpen={isMenuOpen}
-                        setIsMenuOpen={setIsMenuOpen}
-                    />
+            <DataProvider>
+                <div className={isDark ? 'dark' : ''}>
+                    <div className={`min-h-screen ${isDark ? 'bg-gray-900 text-gray-100' : 'bg-white text-gray-900'}`}>
+                        <Navbar
+                            sections={sections}
+                            activeSection={activeSection}
+                            onSectionClick={scrollToSection}
+                            isMenuOpen={isMenuOpen}
+                            setIsMenuOpen={setIsMenuOpen}
+                        />
 
-                    <Content sections={sections} sources={sources} hero={hero} />
+                        <Content sections={sections} sources={sources} hero={hero} />
 
-                    <SideProgressTracker
-                        sections={sections}
-                        activeSection={activeSection}
-                        onSectionClick={scrollToSection}
-                    />
+                        <SideProgressTracker
+                            sections={sections}
+                            activeSection={activeSection}
+                            onSectionClick={scrollToSection}
+                        />
 
-                    <BackToTopButton isVisible={showBackToTop} />
+                        <BackToTopButton isVisible={showBackToTop} />
 
-                    <Footer />
+                        <Footer />
+                    </div>
                 </div>
-            </div>
+            </DataProvider>
         </ThemeProvider>
     );
 }
