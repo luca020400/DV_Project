@@ -49,7 +49,7 @@ function ScrollTracker() {
     return <BackToTopButton isVisible={showBackToTop} />;
 }
 
-function ProgressTracker({ isMenuOpen, setIsMenuOpen }) {
+function ProgressTracker() {
     const [activeSection, setActiveSection] = useState('');
 
     useEffect(() => {
@@ -109,7 +109,6 @@ function ProgressTracker({ isMenuOpen, setIsMenuOpen }) {
         const element = document.getElementById(sectionId);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
-            setIsMenuOpen(false);
         }
     }, []);
 
@@ -119,12 +118,9 @@ function ProgressTracker({ isMenuOpen, setIsMenuOpen }) {
                 sections={sections}
                 activeSection={activeSection}
                 onSectionClick={scrollToSection}
-                isMenuOpen={isMenuOpen}
-                setIsMenuOpen={setIsMenuOpen}
             />
 
             <SideProgressBar
-             MemoizedSideProgressBar
                 sections={sections}
                 activeSection={activeSection}
                 onSectionClick={scrollToSection}

@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { useTheme } from './contexts/ThemeContext';
 
-function Navbar({ sections, activeSection, onSectionClick, isMenuOpen, setIsMenuOpen }) {
+function Navbar({ sections, activeSection, onSectionClick }) {
     const { isDark, setIsDark } = useTheme();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const handleSectionClick = (sectionId) => {
         onSectionClick(sectionId);
