@@ -50,7 +50,9 @@ function FullscreenChartModal({ isOpen, onClose, data, isDark, VisualizationComp
     if (!isOpen) return null;
 
     const handleModalClick = (e) => {
-        e.stopPropagation();
+        if (e.target === e.currentTarget) {
+            onClose();
+        }
     };
 
     return (
