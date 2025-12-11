@@ -6,9 +6,9 @@ function SideProgressBar({ sections, activeSection, onSectionClick }) {
     const activeIndex = sections.findIndex(s => s.id === activeSection);
 
     return (
-        <div className="hidden lg:flex fixed right-8 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-5">
+        <div className="hidden lg:flex fixed left-8 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-5">
             {/* Progress line container - positioned to align with dot centers */}
-            <div className="absolute top-3 bottom-3 left-1/2 -translate-x-1/2 w-1.5 pointer-events-none">
+            <div className="absolute top-2 bottom-2 left-1/2 -translate-x-1/2 w-1.5 pointer-events-none">
                 {/* Background line */}
                 <div
                     className={`absolute inset-0 ${isDark ? 'bg-gray-700' : 'bg-gray-300'} rounded-full`}
@@ -35,12 +35,12 @@ function SideProgressBar({ sections, activeSection, onSectionClick }) {
                                 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2
                                 ${isDark ? 'focus-visible:ring-offset-gray-900' : 'focus-visible:ring-offset-white'}
                                 ${isActive
-                                    ? 'w-6 h-6 bg-gradient-to-r from-red-500 to-orange-500 shadow-lg shadow-red-500/30'
+                                    ? 'w-7 h-7 bg-gradient-to-r from-red-500 to-orange-500 shadow-lg shadow-red-500/30'
                                     : isPast
-                                        ? 'w-5 h-5 bg-gradient-to-r from-red-500 to-orange-500'
+                                        ? 'w-6 h-6 bg-gradient-to-r from-red-500 to-orange-500'
                                         : isDark
-                                            ? 'w-5 h-5 bg-gray-600 hover:bg-gray-500'
-                                            : 'w-5 h-5 bg-gray-300 hover:bg-gray-400'
+                                            ? 'w-6 h-6 bg-gray-600 hover:bg-gray-500'
+                                            : 'w-6 h-6 bg-gray-300 hover:bg-gray-400'
                                 }
                             `}
                             aria-label={`Go to ${section.title}`}
@@ -50,7 +50,7 @@ function SideProgressBar({ sections, activeSection, onSectionClick }) {
                         {/* Tooltip */}
                         <div
                             className={`
-                                absolute right-full mr-4
+                                absolute left-full ml-4
                                 px-4 py-2 rounded-lg text-base font-medium whitespace-nowrap
                                 opacity-0 group-hover:opacity-100 pointer-events-none
                                 transition-opacity duration-200
@@ -65,17 +65,17 @@ function SideProgressBar({ sections, activeSection, onSectionClick }) {
                             {/* Arrow */}
                             <div
                                 className={`
-                                    absolute left-full top-1/2 -translate-y-1/2
+                                    absolute right-full top-1/2 -translate-y-1/2
                                     border-8 border-transparent
-                                    ${isDark ? 'border-l-gray-600' : 'border-l-gray-200'}
+                                    ${isDark ? 'border-r-gray-600' : 'border-r-gray-200'}
                                 `}
                             />
                             {/* Inner arrow to match background */}
                             <div
                                 className={`
-                                    absolute left-full top-1/2 -translate-y-1/2 -ml-[1px]
+                                    absolute right-full top-1/2 -translate-y-1/2 ml-[1px]
                                     border-8 border-transparent
-                                    ${isDark ? 'border-l-gray-800' : 'border-l-white'}
+                                    ${isDark ? 'border-r-gray-800' : 'border-r-white'}
                                 `}
                             />
                         </div>
