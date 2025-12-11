@@ -80,7 +80,7 @@ function FullscreenChartModal({ isOpen, onClose, data, componentName, isLoading 
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4" onClick={handleModalClick}>
-            <div className={`relative w-full h-full max-w-6xl max-h-screen rounded-lg ${isDark ? 'bg-gray-900' : 'bg-white'} flex flex-col`}>
+            <div className={`relative w-full h-full max-w-6xl rounded-lg ${isDark ? 'bg-gray-900' : 'bg-white'} flex flex-col`}>
                 {/* Header */}
                 <div className={`p-4 border-b ${isDark ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'} flex-shrink-0 flex items-center justify-between`}>
                     <h2 className={`text-lg font-semibold ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>
@@ -95,11 +95,15 @@ function FullscreenChartModal({ isOpen, onClose, data, componentName, isLoading 
                 </div>
 
                 {/* Chart container */}
-                <div className={`flex-1 overflow-hidden flex items-center justify-center ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
+                <div className={`flex-1 overflow-hidden w-full ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
                     {isLoading ? (
-                        <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>Loading...</p>
+                        <div className="w-full h-full flex items-center justify-center">
+                            <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>Loading...</p>
+                        </div>
                     ) : (
-                        <DynamicVisualization componentName={componentName} data={data} isMobile={true} />
+                        <div className="w-full h-full">
+                            <DynamicVisualization componentName={componentName} data={data} isMobile={true} />
+                        </div>
                     )}
                 </div>
 
@@ -147,7 +151,7 @@ function VisualizationSection({ section }) {
                 </div>
 
                 {/* Desktop: Show full chart */}
-                <div className="hidden lg:flex lg:w-full lg:h-96 xl:h-[600px] items-center justify-center">
+                <div className="hidden lg:flex lg:w-full h-[600px] items-center justify-center">
                     <div className={`w-full mx-4 sm:mx-auto sm:max-w-7xl h-full rounded-lg border-2 border-dashed ${isDark ? 'border-gray-600 bg-gray-700' : 'border-gray-300 bg-gray-100'}`}>
                         <div className="h-full flex items-center justify-center">
                             {isLoading ? (
