@@ -51,7 +51,7 @@ function SideProgressBar({ sections, activeSection, onSectionClick }) {
                         <div
                             className={`
                                 absolute right-full mr-4
-                                px-4 py-2 rounded-lg text-base font-medium whitespace-nowrap
+                                px-4 py-3 rounded-lg whitespace-nowrap
                                 opacity-0 group-hover:opacity-100 pointer-events-none
                                 transition-opacity duration-200
                                 ${isDark
@@ -61,7 +61,10 @@ function SideProgressBar({ sections, activeSection, onSectionClick }) {
                                 ${isActive ? 'ring-2 ring-red-500/50' : ''}
                             `}
                         >
-                            {section.title}
+                            <div className="text-sm font-medium">{section.title}</div>
+                            <div className={`text-xs mt-1 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                                {section.subtitle}
+                            </div>
                             {/* Arrow */}
                             <div
                                 className={`

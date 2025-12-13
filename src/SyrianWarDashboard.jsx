@@ -5,14 +5,13 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import { DataProvider } from './contexts/DataProviderContext';
 
 import { sections } from './text/sections.js';
-import { sources } from "./text/sources.js";
-import { hero } from './text/hero.js';
 
 import NavBar from './NavBar.jsx';
 import Footer from './Footer.jsx';
 import Content from './Content.jsx';
 import BackToTopButton from './BackToTopButton.jsx';
 import SideProgressBar from './SideProgressBar.jsx';
+import GuidedTour from './GuidedTour.jsx';
 
 // Constants
 const SCROLL_TO_TOP_THRESHOLD = 400;
@@ -49,7 +48,7 @@ function ScrollTracker() {
     return <BackToTopButton isVisible={showBackToTop} />;
 }
 
-function ProgressTracker() {
+function ProgressTracker({ onTourClick }) {
     const [activeSection, setActiveSection] = useState('');
 
     useEffect(() => {
@@ -118,6 +117,7 @@ function ProgressTracker() {
                 sections={sections}
                 activeSection={activeSection}
                 onSectionClick={scrollToSection}
+                onTourClick={onTourClick}
             />
 
             <SideProgressBar
@@ -131,15 +131,18 @@ function ProgressTracker() {
 
 export default function SyrianWarDashboard() {
     const [isDark, setIsDark] = useDarkMode();
+    const [isTourOpen, setIsTourOpen] = useState(false);
 
     return (
         <ThemeProvider isDark={isDark} setIsDark={setIsDark}>
             <DataProvider>
                 <div className={isDark ? 'dark' : ''}>
-                    <div className={`min-h-screen ${isDark ? 'bg-gray-900 text-gray-100' : 'bg-white text-gray-900'}`}>
-                        <ProgressTracker />
+                    <GuidedTour isOpen={isTourOpen} onClose={() => setIsTourOpen(false)} />
 
-                        <Content sections={sections} sources={sources} hero={hero} />
+                    <div className={`min-h-screen ${isDark ? 'bg-gray-900 text-gray-100' : 'bg-white text-gray-900'}`}>
+                        <ProgressTracker onTourClick={() => setIsTourOpen(true)} />
+
+                        <Content sections={sections} />
 
                         <ScrollTracker />
 

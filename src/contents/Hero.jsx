@@ -1,8 +1,10 @@
 import { useTheme } from '../contexts/ThemeContext';
 import { getBgClass, getTextClass } from './themeUtils';
 
+import { hero } from '../text/hero.js';
+
 // Hero Section
-function Hero({ hero }) {
+function Hero() {
     const { isDark } = useTheme();
 
     return (

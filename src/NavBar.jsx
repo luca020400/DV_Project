@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import { Menu, X, Moon, Sun, HelpCircle } from 'lucide-react';
 import { useTheme } from './contexts/ThemeContext';
 
-function Navbar({ sections, activeSection, onSectionClick }) {
+function Navbar({ sections, activeSection, onSectionClick, onTourClick }) {
     const { isDark, setIsDark } = useTheme();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -44,7 +44,18 @@ function Navbar({ sections, activeSection, onSectionClick }) {
                     )}
 
                     {/* Controls */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2 sm:gap-4">
+                        {/* Guided Tour Button */}
+                        <button
+                            onClick={onTourClick}
+                            className={`p-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 ${isDark ? 'hover:bg-gray-700' : 'hover:bg-gray-200'}`}
+                            title="Start guided tour"
+                            aria-label="Start guided tour"
+                        >
+                            <HelpCircle size={20} />
+                        </button>
+
+                        {/* Dark Mode Toggle */}
                         <button
                             onClick={() => setIsDark(!isDark)}
                             className={`p-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 ${isDark ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'}`}

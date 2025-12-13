@@ -1,10 +1,13 @@
 import { useCallback, useState } from "react";
 
 import Hero from "./contents/Hero";
+import FeatureCards from "./contents/FeatureCards";
 import Sections from "./contents/Sections";
 import DataSources from "./contents/DataSources";
 
-function Content({ sections, sources, hero }) {
+import { sources } from "./text/sources.js";
+
+function Content({ sections }) {
     const [flashingId, setFlashingId] = useState(null);
 
     const scrollToSource = useCallback((sourceId) => {
@@ -19,7 +22,10 @@ function Content({ sections, sources, hero }) {
     return (
         <>
             {/* Hero Section */}
-            <Hero hero={hero} />
+            <Hero />
+
+            {/* Feature Cards Section */}
+            <FeatureCards />
 
             {/* Content Sections */}
             <Sections
