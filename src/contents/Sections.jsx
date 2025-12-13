@@ -150,9 +150,9 @@ function VisualizationSection({ section }) {
                     <MobileChartPlaceholder onOpen={() => setIsModalOpen(true)} />
                 </div>
 
-                {/* Desktop: Show full chart */}
+                {/* Desktop: Show full chart with subtle glow when active */}
                 <div className="hidden lg:flex lg:w-full h-[600px] items-center justify-center">
-                    <div className={`w-full mx-4 sm:mx-auto sm:max-w-7xl h-full rounded-lg border-2 border-dashed ${isDark ? 'border-gray-600 bg-gray-700' : 'border-gray-300 bg-gray-100'}`}>
+                    <div className={`w-full mx-4 sm:mx-auto sm:max-w-7xl h-full rounded-lg border-2 transition-all duration-300 ${isDark ? 'border-gray-600 bg-gray-700' : 'border-gray-300 bg-gray-100'} ${!isLoading ? `shadow-lg ${isDark ? 'shadow-red-900/20' : 'shadow-red-200/40'}` : ''}`}>
                         <div className="h-full flex items-center justify-center">
                             {isLoading ? (
                                 <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>Loading...</p>
@@ -185,18 +185,36 @@ function SourceDataSection({ section, dataSources, onScrollToSource }) {
         }).filter(Boolean);
     }, [section.sourceData, dataSources]);
 
+    const handleViewAllSources = () => {
+        const element = document.getElementById('data-sources');
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <div className={`py-8 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h4 className="text-xl font-semibold mb-4">Data Sources for this Section</h4>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+                    <h4 className="text-xl font-semibold">Data Sources for this Section</h4>
+                    <button
+                        onClick={handleViewAllSources}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 whitespace-nowrap ${isDark
+                            ? 'text-gray-300 hover:text-gray-100 hover:bg-gray-800'
+                            : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                            }`}
+                    >
+                        View all sources ↓
+                    </button>
+                </div>
                 <div className="flex flex-wrap gap-3">
                     {sourceButtons.map((source) => (
                         <button
                             key={source.id}
                             onClick={() => onScrollToSource(source.id)}
-                            className={`px-4 py-2 rounded-lg border transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 ${isDark
-                                ? 'bg-gray-800 border-gray-700 text-blue-400 hover:bg-gray-700 hover:border-blue-500'
-                                : 'bg-gray-50 border-gray-200 text-blue-600 hover:bg-blue-50 hover:border-blue-300'
+                            className={`px-4 py-2 rounded-lg border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1 ${isDark
+                                ? 'bg-gray-800 border-gray-700 text-blue-400 hover:bg-gray-700 hover:border-blue-500 hover:shadow-lg'
+                                : 'bg-gray-50 border-gray-200 text-blue-600 hover:bg-blue-50 hover:border-blue-300 hover:shadow-md'
                                 }`}
                         >
                             {source.title}
@@ -214,12 +232,17 @@ function Sections({ sections, sources, onScrollToSource }) {
 
     return (
         <>
-            {sections.map((section) => (
+            {sections.map((section, sectionIndex) => (
                 <section
                     key={section.id}
                     id={section.id}
                     className="scroll-mt-20"
                 >
+                    {/* Visual separator - only between sections */}
+                    {sectionIndex > 0 && (
+                        <div className={`h-1 bg-gradient-to-r ${isDark ? 'from-transparent via-gray-700 to-transparent' : 'from-transparent via-gray-200 to-transparent'}`} />
+                    )}
+
                     {/* Title */}
                     <div className={`py-8 ${getBgClass(isDark)}`}>
                         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
