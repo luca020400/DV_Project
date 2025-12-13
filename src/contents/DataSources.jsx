@@ -7,7 +7,6 @@ import { getBgClass, getCardBgClass } from './themeUtils';
 function DataSources({ dataSources, flashingId }) {
     const { isDark } = useTheme();
     const [searchQuery, setSearchQuery] = useState('');
-    const [expandedId, setExpandedId] = useState(null);
 
     const filteredSources = useMemo(() => {
         return dataSources.filter(source =>
@@ -18,10 +17,10 @@ function DataSources({ dataSources, flashingId }) {
 
     return (
         <section className="scroll-mt-20" id="data-sources">
-            <div className={`py-12 ${getBgClass(isDark)}`}>
+            <div className={`py-16 sm:py-24 ${getBgClass(isDark)}`}>
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl sm:text-4xl font-bold mb-4">Data Sources</h2>
-                    <p className={`text-lg mb-8 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                    <h2 className="text-4xl sm:text-5xl font-bold mb-6">Data Sources</h2>
+                    <p className={`text-lg sm:text-xl mb-12 max-w-2xl ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
                         Our analysis is built on reliable, publicly available data from international organizations and research institutions
                     </p>
 
@@ -46,36 +45,26 @@ function DataSources({ dataSources, flashingId }) {
                         </p>
                     )}
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {filteredSources.map((source) => (
                             <div
                                 key={source.id}
                                 id={`source-${source.id}`}
-                                className={`p-6 rounded-lg border scroll-mt-24 transition-all ${getCardBgClass(isDark)} ${flashingId === source.id ? 'flash-card ring-2 ring-red-500' : ''}`}
+                                className={`p-8 rounded-xl border-2 scroll-mt-24 transition-all duration-300 hover:shadow-lg hover:scale-102 ${getCardBgClass(isDark)} ${flashingId === source.id ? 'flash-card ring-2 ring-red-500 ring-offset-2' : isDark ? 'border-gray-700 hover:border-blue-500' : 'border-gray-200 hover:border-blue-400'}`}
                             >
-                                <div
-                                    className="cursor-pointer flex items-start justify-between"
-                                    onClick={() => setExpandedId(expandedId === source.id ? null : source.id)}
-                                >
-                                    <h3 className="font-semibold text-lg flex-1">{source.title}</h3>
-                                    <span className={`text-lg ml-2 transition-transform ${expandedId === source.id ? 'rotate-180' : ''}`}>
-                                        ⌄
-                                    </span>
-                                </div>
+                                <h3 className="font-bold text-lg">{source.title}</h3>
 
-                                {/* Description - always visible on mobile, toggleable on desktop */}
                                 <p className={`mt-2 text-sm sm:text-base ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
                                     {source.description}
                                 </p>
 
-                                {/* Link and expanded info */}
                                 <a
                                     href={source.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className={`inline-block mt-4 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 ${isDark
-                                        ? 'text-blue-400 hover:text-blue-300'
-                                        : 'text-blue-600 hover:text-blue-700'
+                                    className={`inline-block mt-4 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1 ${isDark
+                                        ? 'text-blue-400 bg-blue-500/10 hover:bg-blue-500/20 hover:text-blue-300'
+                                        : 'text-blue-600 bg-blue-50 hover:bg-blue-100 hover:text-blue-700'
                                         }`}
                                 >
                                     Visit Source →

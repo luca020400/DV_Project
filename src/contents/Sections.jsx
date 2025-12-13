@@ -27,11 +27,11 @@ function DescriptionSection({ section }) {
     const { isDark } = useTheme();
 
     return (
-        <div className={`py-8 ${getBgClass(isDark)}`}>
+        <div className={`py-12 ${getBgClass(isDark)}`}>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className={`space-y-4 text-base sm:text-lg leading-relaxed ${getTextClass(isDark)}`}>
+                <div className={`space-y-6 text-lg sm:text-xl leading-relaxed font-light ${getTextClass(isDark)}`}>
                     {section.description.map((paragraph, idx) => (
-                        <p key={idx}>{paragraph}</p>
+                        <p key={idx} className="text-base sm:text-lg">{paragraph}</p>
                     ))}
                 </div>
             </div>
@@ -45,13 +45,13 @@ function MobileChartPlaceholder({ onOpen }) {
 
     return (
         <div
-            className={`w-full h-48 rounded-lg border-2 border-dashed flex flex-col items-center justify-center cursor-pointer transition-all hover:border-opacity-75 ${isDark ? 'border-gray-600 bg-gray-700 hover:bg-gray-650' : 'border-gray-300 bg-gray-100 hover:bg-gray-150'}`}
+            className={`w-full h-56 rounded-xl border-3 border-dashed flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:border-opacity-100 hover:scale-102 hover:shadow-lg ${isDark ? 'border-gray-600 bg-gray-700/50 hover:bg-gray-650 hover:border-blue-500' : 'border-gray-300 bg-gradient-to-br from-gray-50 to-gray-100 hover:bg-gray-100 hover:border-blue-400'}`}
             onClick={onOpen}
         >
-            <p className={`text-lg font-semibold mb-2 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+            <p className={`text-2xl font-bold mb-3 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
                 📊 Interactive Chart
             </p>
-            <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+            <p className={`text-sm font-medium ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                 Click here to view fullscreen
             </p>
         </div>
@@ -151,8 +151,8 @@ function VisualizationSection({ section }) {
                 </div>
 
                 {/* Desktop: Show full chart with subtle glow when active */}
-                <div className="hidden lg:flex lg:w-full h-[600px] items-center justify-center">
-                    <div className={`w-full mx-4 sm:mx-auto sm:max-w-7xl h-full rounded-lg border-2 transition-all duration-300 ${isDark ? 'border-gray-600 bg-gray-700' : 'border-gray-300 bg-gray-100'} ${!isLoading ? `shadow-lg ${isDark ? 'shadow-red-900/20' : 'shadow-red-200/40'}` : ''}`}>
+                <div className="hidden lg:flex lg:w-full h-[650px] items-center justify-center">
+                    <div className={`w-full mx-4 sm:mx-auto sm:max-w-7xl h-full rounded-xl border-3 transition-all duration-300 shadow-lg ${isDark ? 'border-gray-600 bg-gray-700' : 'border-gray-300 bg-gray-200'}`}>
                         <div className="h-full flex items-center justify-center">
                             {isLoading ? (
                                 <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>Loading...</p>
@@ -193,28 +193,28 @@ function SourceDataSection({ section, dataSources, onScrollToSource }) {
     };
 
     return (
-        <div className={`py-8 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
+        <div className={`py-12 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
-                    <h4 className="text-xl font-semibold">Data Sources for this Section</h4>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+                    <h4 className="text-2xl font-bold">Data Sources for this Section</h4>
                     <button
                         onClick={handleViewAllSources}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 whitespace-nowrap ${isDark
-                            ? 'text-gray-300 hover:text-gray-100 hover:bg-gray-800'
-                            : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                        className={`px-6 py-2 rounded-lg text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1 whitespace-nowrap hover:shadow-md ${isDark
+                            ? 'text-gray-200 hover:text-gray-100 hover:bg-gray-800 border border-gray-700 hover:border-blue-500'
+                            : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100 border border-gray-200 hover:border-blue-400'
                             }`}
                     >
                         View all sources ↓
                     </button>
                 </div>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-4">
                     {sourceButtons.map((source) => (
                         <button
                             key={source.id}
                             onClick={() => onScrollToSource(source.id)}
-                            className={`px-4 py-2 rounded-lg border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1 ${isDark
-                                ? 'bg-gray-800 border-gray-700 text-blue-400 hover:bg-gray-700 hover:border-blue-500 hover:shadow-lg'
-                                : 'bg-gray-50 border-gray-200 text-blue-600 hover:bg-blue-50 hover:border-blue-300 hover:shadow-md'
+                            className={`px-5 py-2.5 rounded-lg border-2 font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1 hover:shadow-md ${isDark
+                                ? 'bg-gray-800 border-gray-700 text-blue-400 hover:bg-gray-700 hover:border-blue-500 hover:text-blue-300'
+                                : 'bg-white border-blue-200 text-blue-600 hover:bg-blue-50 hover:border-blue-400 hover:text-blue-700'
                                 }`}
                         >
                             {source.title}
@@ -244,16 +244,16 @@ function Sections({ sections, sources, onScrollToSource }) {
                     )}
 
                     {/* Title */}
-                    <div className={`py-8 ${getBgClass(isDark)}`}>
+                    <div className={`py-12 ${getBgClass(isDark)}`}>
                         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <h3 className="text-3xl sm:text-4xl font-bold">{section.title}</h3>
+                            <h3 className="text-4xl sm:text-5xl font-bold">{section.title}</h3>
                         </div>
                     </div>
 
                     {/* Subtitle */}
-                    <div className={`py-4 ${getBgClass(isDark)}`}>
+                    <div className={`py-6 ${getBgClass(isDark)}`}>
                         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <p className={`text-lg ${getTextClass(isDark)}`}>
+                            <p className={`text-lg sm:text-xl max-w-3xl ${getTextClass(isDark)}`}>
                                 {section.subtitle || `Key insights and data visualization for ${section.title.toLowerCase()}`}
                             </p>
                         </div>

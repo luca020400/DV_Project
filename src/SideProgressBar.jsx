@@ -3,7 +3,13 @@ import { useTheme } from './contexts/ThemeContext';
 function SideProgressBar({ sections, activeSection, onSectionClick }) {
     const { isDark } = useTheme();
 
-    const activeIndex = sections.findIndex(s => s.id === activeSection);
+    // Build complete item list: intro -> sections
+    const allItems = [
+        { id: 'intro', title: 'Intro', subtitle: 'Overview & Features', isCircle: true },
+        ...sections,
+    ];
+
+    const activeIndex = allItems.findIndex(item => item.id === activeSection);
 
     return (
         <div className="hidden lg:flex fixed right-8 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-5">
@@ -17,25 +23,28 @@ function SideProgressBar({ sections, activeSection, onSectionClick }) {
                 <div
                     className="absolute top-0 left-0 right-0 bg-gradient-to-b from-red-500 to-orange-500 rounded-full transition-all duration-300"
                     style={{
-                        height: `${sections.length > 1 ? (activeIndex / (sections.length - 1)) * 100 : 0}%`,
+                        height: `${allItems.length > 1 ? (activeIndex / (allItems.length - 1)) * 100 : 0}%`,
                     }}
                 />
             </div>
 
-            {sections.map((section, index) => {
-                const isActive = activeSection === section.id;
+            {allItems.map((item, index) => {
+                const isActive = activeSection === item.id;
                 const isPast = index < activeIndex;
+                const isCircle = item.isCircle;
 
                 return (
-                    <div key={section.id} className="relative group flex items-center">
+                    <div key={item.id} className="relative group flex items-center">
                         <button
-                            onClick={() => onSectionClick(section.id)}
+                            onClick={() => onSectionClick(item.id)}
                             className={`
                                 relative z-10 rounded-full transition-all duration-300
                                 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2
                                 ${isDark ? 'focus-visible:ring-offset-gray-900' : 'focus-visible:ring-offset-white'}
                                 ${isActive
-                                    ? 'w-6 h-6 bg-gradient-to-r from-red-500 to-orange-500 shadow-lg shadow-red-500/30'
+                                    ? isCircle
+                                        ? 'w-5 h-5 bg-gradient-to-r from-red-500 to-orange-500 rounded-full shadow-lg shadow-red-500/30'
+                                        : 'w-6 h-6 bg-gradient-to-r from-red-500 to-orange-500 shadow-lg shadow-red-500/30'
                                     : isPast
                                         ? 'w-5 h-5 bg-gradient-to-r from-red-500 to-orange-500'
                                         : isDark
@@ -43,7 +52,7 @@ function SideProgressBar({ sections, activeSection, onSectionClick }) {
                                             : 'w-5 h-5 bg-gray-300 hover:bg-gray-400'
                                 }
                             `}
-                            aria-label={`Go to ${section.title}`}
+                            aria-label={`Go to ${item.title}`}
                             aria-current={isActive ? 'true' : undefined}
                         />
 
@@ -61,9 +70,9 @@ function SideProgressBar({ sections, activeSection, onSectionClick }) {
                                 ${isActive ? 'ring-2 ring-red-500/50' : ''}
                             `}
                         >
-                            <div className="text-sm font-medium">{section.title}</div>
+                            <div className="text-sm font-medium">{item.title}</div>
                             <div className={`text-xs mt-1 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                                {section.subtitle}
+                                {item.subtitle}
                             </div>
                             {/* Arrow */}
                             <div

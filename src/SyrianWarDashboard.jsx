@@ -83,16 +83,18 @@ function ProgressTracker({ onTourClick }) {
             const firstElement = document.getElementById(sections[0]?.id);
             const lastElement = document.getElementById(sections[sections.length - 1]?.id);
 
+            if (!firstElement || !lastElement) return;
+
             const firstRect = firstElement.getBoundingClientRect();
             const lastRect = lastElement.getBoundingClientRect();
             const viewportCenter = window.innerHeight / 2;
 
-            // If first section is below viewport center, we're above all sections
+            // If first section is below viewport center, we're above all sections (show intro)
             if (firstRect.top > viewportCenter) {
-                setActiveSection(sections[0].id);
+                setActiveSection('intro');
             }
 
-            // If last section is above viewport center, we're below all sections
+            // If last section is above viewport center, we're below all sections (show last)
             else if (lastRect.bottom < viewportCenter) {
                 setActiveSection(sections[sections.length - 1].id);
             }
@@ -105,9 +107,13 @@ function ProgressTracker({ onTourClick }) {
     }, []);
 
     const scrollToSection = useCallback((sectionId) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+        if (sectionId === 'intro') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
         }
     }, []);
 
