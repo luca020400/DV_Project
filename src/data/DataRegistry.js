@@ -3,26 +3,30 @@ import * as d3 from 'd3';
 import casualties_data_url from './casualties_data.json?url';
 import displacement_data_url from './displacement_data.json?url';
 import conflict_data_url from './conflict_data.json?url';
+import geojson_url from './geo/syria.json?url';
 
 class DataRegistry {
     constructor() {
         // Listeners for state changes
         this.listeners = [];
 
-        // URLs for fetching data
+        // URLs for fetching data - now supports multiple named URLs per data type
         this.urls = {
             casualtyTrendData: casualties_data_url,
             displacementData: displacement_data_url,
-            regionalConflictData: conflict_data_url,
+            regionalConflictData: {
+                data: conflict_data_url,
+                geoJson: geojson_url,
+            },
             economicIndicatorsData: undefined,
             timelineData: undefined,
         };
 
         // Initialize data only with defaults for categories without URLs
         this.data = {
-            casualtyTrendData: this.urls.casualtyTrendData ? null : this.generateDefaultData(),
-            displacementData: this.urls.displacementData ? null : this.generateDisplacementData(),
-            regionalConflictData: this.urls.regionalConflictData ? null : this.generateDefaultData(),
+            casualtyTrendData: null,
+            displacementData: null,
+            regionalConflictData: null,
             economicIndicatorsData: this.urls.economicIndicatorsData ? null : this.generateDefaultData(),
             timelineData: this.urls.timelineData ? null : this.generateDefaultData(),
         };
@@ -101,18 +105,34 @@ class DataRegistry {
         }
     }
 
-    async fetchData(key, url) {
+    async fetchData(key, urlsObj) {
         this.setLoading(key, true);
         this.setError(key, null);
 
         try {
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+            if (typeof urlsObj === 'string') {
+                const response = await fetch(urlsObj);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                this.setData(key, data);
+                return data;
+            } else {
+                const fetchPromises = Object.entries(urlsObj).map(async ([name, url]) => {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const data = await response.json();
+                    return [name, data];
+                });
+
+                const fetchResults = await Promise.all(fetchPromises);
+                const results = Object.fromEntries(fetchResults);
+                this.setData(key, results);
+                return results;
             }
-            const data = await response.json();
-            this.setData(key, data);
-            return data;
         } catch (error) {
             this.setError(key, error.message);
             console.error(`Error fetching ${key}:`, error);
@@ -123,10 +143,10 @@ class DataRegistry {
 
     // Fetch all data sets
     async fetchAllData() {
-        const urls = Object.entries(this.urls).filter(([, url]) => url !== undefined);
+        const urls = Object.entries(this.urls).filter(([, urlsObj]) => urlsObj !== undefined);
 
         const fetchPromises = urls.map(
-            ([key, url]) => this.fetchData(key, url)
+            ([key, urlsObj]) => this.fetchData(key, urlsObj)
         );
 
         const results = await Promise.allSettled(fetchPromises);
