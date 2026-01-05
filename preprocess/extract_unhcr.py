@@ -35,11 +35,11 @@ def get_continent_key(iso3_code):
         # 3. Map to readable keys
         mapping = {
             "EU": "europe",
-            "AS": "asia",
-            "NA": "americas",  # North America
-            "SA": "americas",  # South America
+            "AS": "other",
+            "NA": "other",  # North America
+            "SA": "other",  # South America
             "AF": "africa",
-            "OC": "oceania",
+            "OC": "other",
             "AN": "other",  # Antarctica
         }
         return mapping.get(continent_code, "other")
@@ -83,17 +83,12 @@ def process_data():
             "year": int(year),
             "idp": 0,
             "totalRefugees": 0,
-            # Initialize Top 5 keys to 0
             **{
                 pycountry.countries.get(alpha_3=iso).name.lower().replace(" ", "_"): 0
                 for iso in top_5_isos
             },
-            # Initialize Continents to 0
             "europe": 0,
-            "asia": 0,
-            "americas": 0,
             "africa": 0,
-            "oceania": 0,
             "other": 0,
         }
 

@@ -10,11 +10,8 @@
         "germany": 14868,
         "iraq": 1714,
         "europe": 11917,
-        "asia": 728,
-        "americas": 1313,
         "africa": 120,
-        "oceania": 185,
-        "other": 0
+        "other": 2226
     },
     {
         "date": "2012-01-01",
@@ -27,11 +24,8 @@
         "germany": 24151,
         "iraq": 64771,
         "europe": 27448,
-        "asia": 2462,
-        "americas": 2926,
         "africa": 17808,
-        "oceania": 325,
-        "other": 0
+        "other": 5713
     },
     {
         "date": "2013-01-01",
@@ -44,11 +38,8 @@
         "germany": 31819,
         "iraq": 213973,
         "europe": 65546,
-        "asia": 16976,
-        "americas": 6864,
         "africa": 151080,
-        "oceania": 453,
-        "other": 0
+        "other": 24293
     },
     {
         "date": "2014-01-01",
@@ -61,11 +52,8 @@
         "germany": 70585,
         "iraq": 235421,
         "europe": 133641,
-        "asia": 23700,
-        "americas": 10221,
         "africa": 163865,
-        "oceania": 533,
-        "other": 0
+        "other": 34454
     },
     {
         "date": "2015-01-01",
@@ -78,11 +66,8 @@
         "germany": 197186,
         "iraq": 244642,
         "europe": 289594,
-        "asia": 27830,
-        "americas": 14668,
         "africa": 149896,
-        "oceania": 497,
-        "other": 5
+        "other": 43000
     },
     {
         "date": "2016-01-01",
@@ -95,11 +80,8 @@
         "germany": 475649,
         "iraq": 230836,
         "europe": 324470,
-        "asia": 27775,
-        "americas": 17579,
         "africa": 153440,
-        "oceania": 583,
-        "other": 0
+        "other": 45937
     },
     {
         "date": "2017-01-01",
@@ -112,11 +94,8 @@
         "germany": 567507,
         "iraq": 247057,
         "europe": 346588,
-        "asia": 31704,
-        "americas": 23130,
         "africa": 171449,
-        "oceania": 675,
-        "other": 0
+        "other": 55509
     },
     {
         "date": "2018-01-01",
@@ -129,11 +108,8 @@
         "germany": 584461,
         "iraq": 252526,
         "europe": 383593,
-        "asia": 41223,
-        "americas": 24422,
         "africa": 264024,
-        "oceania": 755,
-        "other": 0
+        "other": 66400
     },
     {
         "date": "2019-01-01",
@@ -146,11 +122,8 @@
         "germany": 614098,
         "iraq": 245810,
         "europe": 409942,
-        "asia": 45185,
-        "americas": 20705,
         "africa": 255540,
-        "oceania": 771,
-        "other": 0
+        "other": 66661
     },
     {
         "date": "2020-01-01",
@@ -163,11 +136,8 @@
         "germany": 642557,
         "iraq": 242163,
         "europe": 426064,
-        "asia": 53038,
-        "americas": 20897,
         "africa": 255036,
-        "oceania": 780,
-        "other": 0
+        "other": 74715
     },
     {
         "date": "2021-01-01",
@@ -180,11 +150,8 @@
         "germany": 675490,
         "iraq": 254561,
         "europe": 474477,
-        "asia": 48031,
-        "americas": 21929,
         "africa": 262111,
-        "oceania": 770,
-        "other": 0
+        "other": 70730
     },
     {
         "date": "2022-01-01",
@@ -197,11 +164,8 @@
         "germany": 576793,
         "iraq": 257439,
         "europe": 527916,
-        "asia": 45208,
-        "americas": 22188,
         "africa": 274631,
-        "oceania": 677,
-        "other": 0
+        "other": 68073
     },
     {
         "date": "2023-01-01",
@@ -214,11 +178,8 @@
         "germany": 778454,
         "iraq": 271997,
         "europe": 552883,
-        "asia": 50747,
-        "americas": 21331,
         "africa": 214248,
-        "oceania": 327,
-        "other": 0
+        "other": 72405
     },
     {
         "date": "2024-01-01",
@@ -231,11 +192,8 @@
         "germany": 788061,
         "iraq": 303611,
         "europe": 494413,
-        "asia": 52561,
-        "americas": 23262,
         "africa": 188849,
-        "oceania": 374,
-        "other": 0
+        "other": 76197
     },
     {
         "date": "2025-01-01",
@@ -248,10 +206,7 @@
         "germany": 760124,
         "iraq": 301670,
         "europe": 476280,
-        "asia": 45896,
-        "americas": 23492,
         "africa": 166409,
-        "oceania": 383,
-        "other": 0
+        "other": 69771
     }
 ]
