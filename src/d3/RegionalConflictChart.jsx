@@ -1,9 +1,8 @@
 import { useRef, useEffect, useState, useMemo, useCallback, memo } from 'react';
 import { ChevronRight, ChevronLeft, Play, Pause, RotateCcw } from 'lucide-react';
-import * as d3 from 'd3';
 import { useTheme } from '../contexts/ThemeContext';
 
-import geoJson from '../data/geo/syria.json' with { type: 'json' };
+import * as d3 from 'd3';
 
 // Map Layer
 const MapLayer = memo(({
@@ -110,7 +109,7 @@ const Controls = memo(({
 });
 
 function RegionalConflictChart({
-    data,
+    dataObj,
     width = 800,
     height = 600
 }) {
@@ -125,6 +124,7 @@ function RegionalConflictChart({
     const tooltipRef = useRef();
 
     // Data Processing
+    const { data, geoJson } = dataObj || {};
     const { timeSeriesData, maxVal } = useMemo(() => {
         if (!data || data.length === 0) return { timeSeriesData: [], maxVal: 0 };
 
