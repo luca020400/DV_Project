@@ -26,6 +26,7 @@ function CasualtiesChart({
     const [chartMode, setChartMode] = useState('area');
     const [selectedCasualtyTypes, setSelectedCasualtyTypes] = useState(['Civilian', 'Combatant']);
     const [hoveredPoint, setHoveredPoint] = useState(null);
+    const [hoveredRegion, setHoveredRegion] = useState(null);
 
     const chartWidth = containerSize.width;
     const chartHeight = containerSize.height;
@@ -154,7 +155,7 @@ function CasualtiesChart({
         const gChartEl = d3.select(gChart.current);
         gChartEl.selectAll('*').remove();
 
-        // 1. Event Markers with Staggering
+        // Event Markers with Staggering
         events.forEach((event, index) => {
             const xPos = xScale(event.date);
 
@@ -199,7 +200,60 @@ function CasualtiesChart({
             }
         });
 
-        // 2. Data Rendering (Lines or Areas)
+        const bisect = d3.bisector(d => d.date).left;
+        const verticalLine = gChartEl.append('line')
+            .attr('stroke', themeStyles.axisColor)
+            .attr('stroke-width', 1)
+            .attr('stroke-dasharray', '4,4')
+            .style('opacity', 0)
+            .style('pointer-events', 'none');
+
+        const handleMouseMove = (event) => {
+            const [x] = d3.pointer(event, svgRef.current);
+            const date = xScale.invert(x);
+            const i = bisect(filteredData, date);
+            const d0 = filteredData[i - 1];
+            const d1 = filteredData[i];
+            const d = d0 && d1 ? (date - d0.date > d1.date - date ? d1 : d0) : (d1 || d0);
+
+            if (d) {
+                verticalLine
+                    .attr('x1', xScale(d.date)).attr('x2', xScale(d.date))
+                    .attr('y1', marginTop).attr('y2', chartHeight - marginBottom)
+                    .style('opacity', 1);
+
+                setHoveredPoint({ data: d });
+
+                const bounds = containerRef.current.getBoundingClientRect();
+                const [relX] = d3.pointer(event, containerRef.current);
+
+                const tooltipX = bounds.left + relX;
+                const tooltipY = bounds.top + marginTop + 10;
+
+                d3.select(tooltipRef.current)
+                    .style('display', 'block')
+                    .style('left', tooltipX + 'px')
+                    .style('top', tooltipY + 'px');
+            }
+        };
+
+        const handleMouseLeave = () => {
+            verticalLine.style('opacity', 0);
+            setHoveredPoint(null);
+            d3.select(tooltipRef.current).style('display', 'none');
+        };
+
+        gChartEl.append('rect')
+            .attr('x', marginLeft).attr('y', marginTop)
+            .attr('width', innerWidth).attr('height', innerHeight)
+            .attr('fill', 'transparent')
+            .style('cursor', 'crosshair')
+            .on('click', () => {
+                setHoveredRegion(null);
+            })
+            .on('mousemove', handleMouseMove)
+            .on('mouseleave', handleMouseLeave);
+
         if (chartMode === 'line') {
             Object.entries(regionColors).forEach(([region, color]) => {
                 const line = d3.line().x(d => xScale(d.date)).y(d => yScale(d[region]));
@@ -209,7 +263,8 @@ function CasualtiesChart({
                     .attr('stroke', color)
                     .attr('stroke-width', 2.5)
                     .attr('opacity', 0.9)
-                    .attr('d', line);
+                    .attr('d', line)
+                    .style('pointer-events', 'none');
             });
         } else {
             const stackGenerator = d3.stack().keys(Object.keys(regionColors));
@@ -221,55 +276,23 @@ function CasualtiesChart({
 
             gChartEl.selectAll('.area')
                 .data(stackedData).enter().append('path')
+                .attr('class', 'area')
                 .attr('fill', d => regionColors[d.key])
                 .attr('opacity', isDark ? 0.8 : 0.7)
                 .attr('d', area)
-                .on('mouseover', function () { d3.select(this).attr('opacity', 1); })
-                .on('mouseleave', function () { d3.select(this).attr('opacity', isDark ? 0.8 : 0.7); });
+                .style('cursor', 'pointer')
+                .on('mousemove', handleMouseMove)
+                .on('mouseleave', handleMouseLeave)
+                .on('click', function (event, d) {
+                    event.stopPropagation();
+                    setHoveredRegion(hoveredRegion === d.key ? null : d.key);
+                });
+
+            if (hoveredRegion) {
+                gChartEl.selectAll('.area')
+                    .attr('opacity', d => hoveredRegion === d.key ? 1 : 0.2);
+            }
         }
-
-        // 3. Hover Interaction
-        const verticalLine = gChartEl.append('line')
-            .attr('stroke', themeStyles.axisColor)
-            .attr('stroke-width', 1)
-            .attr('stroke-dasharray', '4,4')
-            .style('opacity', 0).style('pointer-events', 'none');
-
-        const bisect = d3.bisector(d => d.date).left;
-
-        gChartEl.append('rect')
-            .attr('x', marginLeft).attr('y', marginTop)
-            .attr('width', innerWidth).attr('height', innerHeight)
-            .attr('fill', 'transparent')
-            .on('mousemove', (event) => {
-                const [x] = d3.pointer(event);
-                const date = xScale.invert(x);
-                const i = bisect(filteredData, date);
-                const d0 = filteredData[i - 1];
-                const d1 = filteredData[i];
-                const d = d0 && d1 ? (date - d0.date > d1.date - date ? d1 : d0) : (d1 || d0);
-                if (d) {
-                    verticalLine
-                        .attr('x1', xScale(d.date)).attr('x2', xScale(d.date))
-                        .attr('y1', marginTop).attr('y2', chartHeight - marginBottom)
-                        .style('opacity', 1);
-                    setHoveredPoint({ data: d });
-
-                    const bounds = containerRef.current.getBoundingClientRect();
-                    const tooltipX = bounds.left + marginLeft / 2 + x;
-                    const tooltipY = bounds.top + marginTop + 10;
-
-                    d3.select(tooltipRef.current)
-                        .style('display', 'block')
-                        .style('left', tooltipX + 'px')
-                        .style('top', tooltipY + 'px');
-                }
-            })
-            .on('mouseleave', () => {
-                verticalLine.style('opacity', 0);
-                setHoveredPoint(null);
-                d3.select(tooltipRef.current).style('display', 'none');
-            });
 
         const svg = d3.select(svgRef.current);
         svg.on('mouseleave', () => {
@@ -287,7 +310,7 @@ function CasualtiesChart({
 
         return () => svg.on('mouseleave', null);
 
-    }, [filteredData, chartMode, selectedCasualtyTypes, xScale, yScale, chartWidth, chartHeight, regionColors, themeStyles.axisColor, isDark, isMobile]);
+    }, [filteredData, chartMode, selectedCasualtyTypes, xScale, yScale, chartWidth, chartHeight, regionColors, themeStyles.axisColor, isDark, isMobile, hoveredRegion]);
 
     const toggleCasualtyType = (type) => {
         setSelectedCasualtyTypes(prev => prev.includes(type) && prev.length > 1
