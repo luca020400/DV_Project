@@ -157,12 +157,6 @@ function CasualtiesChart({
 
         // Tooltip Line
         const bisect = d3.bisector(d => d.date).left;
-        const verticalLine = gChartEl.append('line')
-            .attr('stroke', themeStyles.axisColor)
-            .attr('stroke-width', 1)
-            .attr('stroke-dasharray', '4,4')
-            .style('opacity', 0)
-            .style('pointer-events', 'none');
 
         const handleMouseMove = (event) => {
             const [x] = d3.pointer(event, svgRef.current);
@@ -335,6 +329,14 @@ function CasualtiesChart({
                     .attr('opacity', d => hoveredRegion === d.key ? 1 : 0.2);
             }
         }
+
+        // Vertical line
+        const verticalLine = gChartEl.append('line')
+            .attr('stroke', themeStyles.axisColor)
+            .attr('stroke-width', 1.5)
+            .attr('stroke-dasharray', '4,4')
+            .style('opacity', 0)
+            .style('pointer-events', 'none');
 
         const svg = d3.select(svgRef.current);
         svg.on('mouseleave', () => {
