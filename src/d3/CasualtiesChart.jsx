@@ -298,7 +298,7 @@ function CasualtiesChart({
         <div className={`w-full flex flex-col gap-6 p-6 ${isDark ? '' : 'bg-gray-50'}`}>
             {/* Controls */}
             <div className={`${themeStyles.background} rounded-xl shadow-lg border ${themeStyles.border} p-5 transition-colors duration-300`}>
-                <div className="flex flex-col md:flex-row gap-8 justify-between">
+                <div className="flex flex-col md:flex-row gap-8 justify-around">
                     <div>
                         <label className={`block text-xs font-semibold uppercase tracking-wider mb-3 ${themeStyles.textSub}`}>Chart Type</label>
                         <div className={`flex rounded-lg p-1 ${isDark ? 'bg-slate-700' : 'bg-gray-100'}`}>
