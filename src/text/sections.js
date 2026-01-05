@@ -25,7 +25,7 @@ export const sections = [
             title: 'Displacement by Region and Time',
             component: 'DisplacementChart'
         },
-        sourceData: ['ocha']
+        sourceData: ['unhcr']
     },
     {
         id: 'section3',

@@ -40,5 +40,11 @@ export const sources = [
         title: 'Uppsala Conflict Data Program (UCDP)',
         description: 'Data on conflict-related casualties and events',
         url: 'https://ucdp.uu.se/'
+    },
+    {
+        id: 'unhcr',
+        title: 'UN Refugee Agency (UNHCR)',
+        description: 'Data on refugees and internally displaced persons',
+        url: 'https://www.unhcr.org/'
     }
 ];

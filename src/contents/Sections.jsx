@@ -7,6 +7,7 @@ import { getBgClass, getTextClass } from './themeUtils';
 import LinePlot from '../d3/LinePlot';
 import ScatterPlot from '../d3/ScatterPlot';
 import CasualtiesChart from "../d3/CasualtiesChart";
+import DisplacementChart from "../d3/DisplacementChart";
 
 // Render visualization based on component name
 function DynamicVisualization({ componentName, data, isMobile }) {
@@ -15,10 +16,11 @@ function DynamicVisualization({ componentName, data, isMobile }) {
             return <CasualtiesChart data={data} isMobile={isMobile} />;
         case 'RegionalConflictMap':
         case 'EconomicIndicators':
+            return <ScatterPlot data={data} isMobile={isMobile} />;
         case 'TimelineChart':
             return <LinePlot data={data} isMobile={isMobile} />;
         case 'DisplacementChart':
-            return <ScatterPlot data={data} isMobile={isMobile} />;
+            return <DisplacementChart data={data} isMobile={isMobile} />;
         default:
             return null;
     }
