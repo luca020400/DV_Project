@@ -97,6 +97,27 @@ The project includes automated data processing scripts to transform raw datasets
 4. **Monthly Aggregation**: Groups daily event data into monthly summaries for trend analysis
 5. **JSON Export**: Outputs processed data as `casualties_data.json` for React consumption
 
+### Displacement Data Processing
+
+**Script**: `preprocess/extract_unhcr.py`
+
+**Input**: UNHCR CSV export with refugee and internally displaced person (IDP) statistics by country of origin and asylum
+
+**Processing Steps**:
+1. **Data Filtering**: Filters records by country of origin (Syria: SYR) to focus on Syrian displacement crisis
+2. **Refugee Counting**: Aggregates refugee and asylum-seeker populations as "Total_External" to distinguish from internally displaced persons
+3. **Top Host Country Identification**: Identifies the 5 largest host countries by cumulative refugee/asylum-seeker numbers across all years:
+   - Turkey, Lebanon, Jordan, Germany, and Iraq
+4. **Continental Aggregation**: Maps non-top-5 host countries to continental categories:
+   - Europe, Africa, and Other
+   - Uses ISO3 country codes and pycountry_convert library for accurate continent mapping
+5. **Annual Aggregation**: Groups displacement data by year, creating yearly snapshots from 2011-2025
+6. **JSON Export**: Outputs processed data as `displacement_data.json` containing:
+   - **idp**: Internally displaced persons (those displaced within Syria)
+   - **totalRefugees**: Total external refugees and asylum-seekers
+   - **Country-specific fields**: Individual counts for Turkey, Lebanon, Jordan, Germany, and Iraq
+   - **Continental fields**: Aggregated counts for Europe, Africa, and Other regions
+
 ## Data Quality & Limitations
 
 This project acknowledges the following limitations in conflict data:
