@@ -155,51 +155,7 @@ function CasualtiesChart({
         const gChartEl = d3.select(gChart.current);
         gChartEl.selectAll('*').remove();
 
-        // Event Markers with Staggering
-        events.forEach((event, index) => {
-            const xPos = xScale(event.date);
-
-            // Only render if within visible bounds
-            if (xPos >= marginLeft && xPos <= chartWidth - marginRight) {
-
-                // Stagger Logic: Alternate height based on index (even/odd)
-                // Even indices stay higher up (marginTop - 45), Odd indices sit lower (marginTop - 15)
-                // This creates two "lanes" for text to avoid overlap.
-                const isEven = index % 2 === 0;
-                const textY = isEven ? marginTop - 45 : marginTop - 15;
-                const dateY = textY + 14; // Date sits right below the label
-
-                // Vertical Dashed Line
-                gChartEl.append('line')
-                    .attr('x1', xPos).attr('x2', xPos)
-                    .attr('y1', dateY + 5) // Start line just below the text
-                    .attr('y2', chartHeight - marginBottom)
-                    .attr('stroke', themeStyles.axisColor)
-                    .attr('stroke-width', 1)
-                    .attr('stroke-dasharray', '3,3')
-                    .attr('opacity', 0.4);
-
-                // Event Label (Title)
-                gChartEl.append('text')
-                    .attr('x', xPos)
-                    .attr('y', textY)
-                    .attr('text-anchor', 'middle')
-                    .attr('font-size', '13px') // Increased font size
-                    .attr('font-weight', '600')
-                    .attr('fill', isDark ? '#e2e8f0' : '#1f2937') // Lighter text in dark mode
-                    .text(event.label);
-
-                // Event Date (Subtitle)
-                gChartEl.append('text')
-                    .attr('x', xPos)
-                    .attr('y', dateY)
-                    .attr('text-anchor', 'middle')
-                    .attr('font-size', '11px') // Smaller date font
-                    .attr('fill', themeStyles.axisColor) // Muted color
-                    .text(d3.timeFormat("%b %Y")(event.date)); // e.g. "Mar 2011"
-            }
-        });
-
+        // Tooltip Line
         const bisect = d3.bisector(d => d.date).left;
         const verticalLine = gChartEl.append('line')
             .attr('stroke', themeStyles.axisColor)
@@ -243,6 +199,7 @@ function CasualtiesChart({
             d3.select(tooltipRef.current).style('display', 'none');
         };
 
+        // Drawn first so lines/areas appear on top
         gChartEl.append('rect')
             .attr('x', marginLeft).attr('y', marginTop)
             .attr('width', innerWidth).attr('height', innerHeight)
@@ -254,15 +211,100 @@ function CasualtiesChart({
             .on('mousemove', handleMouseMove)
             .on('mouseleave', handleMouseLeave);
 
+        // Event Markers
+        events.forEach((event, index) => {
+            const xPos = xScale(event.date);
+            if (xPos >= marginLeft && xPos <= chartWidth - marginRight) {
+                const isEven = index % 2 === 0;
+                const textY = isEven ? marginTop - 45 : marginTop - 15;
+                const dateY = textY + 14;
+
+                gChartEl.append('line')
+                    .attr('x1', xPos).attr('x2', xPos)
+                    .attr('y1', dateY + 5)
+                    .attr('y2', chartHeight - marginBottom)
+                    .attr('stroke', themeStyles.axisColor)
+                    .attr('stroke-width', 1)
+                    .attr('stroke-dasharray', '3,3')
+                    .attr('opacity', 0.4);
+
+                gChartEl.append('text')
+                    .attr('x', xPos)
+                    .attr('y', textY)
+                    .attr('text-anchor', 'middle')
+                    .attr('font-size', '13px')
+                    .attr('font-weight', '600')
+                    .attr('fill', isDark ? '#e2e8f0' : '#1f2937')
+                    .text(event.label);
+
+                gChartEl.append('text')
+                    .attr('x', xPos)
+                    .attr('y', dateY)
+                    .attr('text-anchor', 'middle')
+                    .attr('font-size', '11px')
+                    .attr('fill', themeStyles.axisColor)
+                    .text(d3.timeFormat("%b %Y")(event.date));
+            }
+        });
+
         if (chartMode === 'line') {
             Object.entries(regionColors).forEach(([region, color]) => {
                 const line = d3.line().x(d => xScale(d.date)).y(d => yScale(d[region]));
+
+                // Visible Line
+                gChartEl.append('path')
+                    .datum(filteredData)
+                    .attr('class', 'line-path')
+                    .attr('fill', 'none')
+                    .attr('stroke', color)
+                    .attr('stroke-width', 3)
+                    .attr('opacity', 0.9)
+                    .attr('d', line)
+                    .style('cursor', 'pointer')
+                    .on('mousemove', handleMouseMove)
+                    .on('mouseleave', handleMouseLeave)
+                    .on('click', function (event) {
+                        event.stopPropagation();
+                        console.log('clicked on line:', region);
+                        setHoveredRegion(hoveredRegion === region ? null : region);
+                    });
+            });
+
+            // Opacity Filter for Lines
+            if (hoveredRegion) {
+                gChartEl.selectAll('.line-path')
+                    .attr('opacity', 1);
+                gChartEl.selectAll('.line-path')
+                    .attr('data-region', null);
+            }
+
+            gChartEl.selectAll('.line-path').remove();
+
+            Object.entries(regionColors).forEach(([region, color]) => {
+                const isDimmed = hoveredRegion && hoveredRegion !== region;
+                const line = d3.line().x(d => xScale(d.date)).y(d => yScale(d[region]));
+
                 gChartEl.append('path')
                     .datum(filteredData)
                     .attr('fill', 'none')
+                    .attr('stroke', 'transparent')
+                    .attr('stroke-width', 15)
+                    .attr('d', line)
+                    .style('cursor', 'pointer')
+                    .on('mousemove', handleMouseMove)
+                    .on('mouseleave', handleMouseLeave)
+                    .on('click', (event) => {
+                        event.stopPropagation();
+                        setHoveredRegion(hoveredRegion === region ? null : region);
+                    });
+
+                gChartEl.append('path')
+                    .datum(filteredData)
+                    .attr('class', 'line-path')
+                    .attr('fill', 'none')
                     .attr('stroke', color)
                     .attr('stroke-width', 2.5)
-                    .attr('opacity', 0.9)
+                    .attr('opacity', isDimmed ? 0.2 : 0.9)
                     .attr('d', line)
                     .style('pointer-events', 'none');
             });
