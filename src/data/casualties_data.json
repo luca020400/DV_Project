@@ -1,0 +1,3334 @@
+[
+  {
+    "date": "2011-03-01T00:00:00",
+    "month": "March 2011",
+    "Aleppo": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Damascus": {
+      "Civilian": 14,
+      "Combatant": 0
+    },
+    "Idlib": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Daraa": {
+      "Civilian": 50,
+      "Combatant": 0
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Other": {
+      "Civilian": 28,
+      "Combatant": 0
+    }
+  },
+  {
+    "date": "2011-04-01T00:00:00",
+    "month": "April 2011",
+    "Aleppo": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Damascus": {
+      "Civilian": 64,
+      "Combatant": 0
+    },
+    "Idlib": {
+      "Civilian": 1,
+      "Combatant": 0
+    },
+    "Daraa": {
+      "Civilian": 206,
+      "Combatant": 0
+    },
+    "Homs": {
+      "Civilian": 112,
+      "Combatant": 0
+    },
+    "Other": {
+      "Civilian": 56,
+      "Combatant": 0
+    }
+  },
+  {
+    "date": "2011-05-01T00:00:00",
+    "month": "May 2011",
+    "Aleppo": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Damascus": {
+      "Civilian": 9,
+      "Combatant": 0
+    },
+    "Idlib": {
+      "Civilian": 46,
+      "Combatant": 0
+    },
+    "Daraa": {
+      "Civilian": 78,
+      "Combatant": 0
+    },
+    "Homs": {
+      "Civilian": 112,
+      "Combatant": 0
+    },
+    "Other": {
+      "Civilian": 62,
+      "Combatant": 0
+    }
+  },
+  {
+    "date": "2011-06-01T00:00:00",
+    "month": "June 2011",
+    "Aleppo": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Damascus": {
+      "Civilian": 21,
+      "Combatant": 0
+    },
+    "Idlib": {
+      "Civilian": 139,
+      "Combatant": 0
+    },
+    "Daraa": {
+      "Civilian": 8,
+      "Combatant": 0
+    },
+    "Homs": {
+      "Civilian": 39,
+      "Combatant": 0
+    },
+    "Other": {
+      "Civilian": 93,
+      "Combatant": 0
+    }
+  },
+  {
+    "date": "2011-07-01T00:00:00",
+    "month": "July 2011",
+    "Aleppo": {
+      "Civilian": 6,
+      "Combatant": 0
+    },
+    "Damascus": {
+      "Civilian": 68,
+      "Combatant": 0
+    },
+    "Idlib": {
+      "Civilian": 33,
+      "Combatant": 0
+    },
+    "Daraa": {
+      "Civilian": 12,
+      "Combatant": 0
+    },
+    "Homs": {
+      "Civilian": 64,
+      "Combatant": 0
+    },
+    "Other": {
+      "Civilian": 105,
+      "Combatant": 4
+    }
+  },
+  {
+    "date": "2011-08-01T00:00:00",
+    "month": "August 2011",
+    "Aleppo": {
+      "Civilian": 0,
+      "Combatant": 1
+    },
+    "Damascus": {
+      "Civilian": 39,
+      "Combatant": 2
+    },
+    "Idlib": {
+      "Civilian": 22,
+      "Combatant": 7
+    },
+    "Daraa": {
+      "Civilian": 32,
+      "Combatant": 0
+    },
+    "Homs": {
+      "Civilian": 122,
+      "Combatant": 7
+    },
+    "Other": {
+      "Civilian": 150,
+      "Combatant": 2
+    }
+  },
+  {
+    "date": "2011-09-01T00:00:00",
+    "month": "September 2011",
+    "Aleppo": {
+      "Civilian": 1,
+      "Combatant": 3
+    },
+    "Damascus": {
+      "Civilian": 20,
+      "Combatant": 2
+    },
+    "Idlib": {
+      "Civilian": 30,
+      "Combatant": 7
+    },
+    "Daraa": {
+      "Civilian": 2,
+      "Combatant": 2
+    },
+    "Homs": {
+      "Civilian": 115,
+      "Combatant": 29
+    },
+    "Other": {
+      "Civilian": 51,
+      "Combatant": 10
+    }
+  },
+  {
+    "date": "2011-10-01T00:00:00",
+    "month": "October 2011",
+    "Aleppo": {
+      "Civilian": 1,
+      "Combatant": 0
+    },
+    "Damascus": {
+      "Civilian": 36,
+      "Combatant": 6
+    },
+    "Idlib": {
+      "Civilian": 21,
+      "Combatant": 65
+    },
+    "Daraa": {
+      "Civilian": 20,
+      "Combatant": 8
+    },
+    "Homs": {
+      "Civilian": 139,
+      "Combatant": 63
+    },
+    "Other": {
+      "Civilian": 37,
+      "Combatant": 16
+    }
+  },
+  {
+    "date": "2011-11-01T00:00:00",
+    "month": "November 2011",
+    "Aleppo": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Damascus": {
+      "Civilian": 37,
+      "Combatant": 8
+    },
+    "Idlib": {
+      "Civilian": 51,
+      "Combatant": 38
+    },
+    "Daraa": {
+      "Civilian": 48,
+      "Combatant": 65
+    },
+    "Homs": {
+      "Civilian": 165,
+      "Combatant": 51
+    },
+    "Other": {
+      "Civilian": 37,
+      "Combatant": 46
+    }
+  },
+  {
+    "date": "2011-12-01T00:00:00",
+    "month": "December 2011",
+    "Aleppo": {
+      "Civilian": 1,
+      "Combatant": 1
+    },
+    "Damascus": {
+      "Civilian": 50,
+      "Combatant": 1
+    },
+    "Idlib": {
+      "Civilian": 199,
+      "Combatant": 185
+    },
+    "Daraa": {
+      "Civilian": 33,
+      "Combatant": 86
+    },
+    "Homs": {
+      "Civilian": 216,
+      "Combatant": 30
+    },
+    "Other": {
+      "Civilian": 74,
+      "Combatant": 14
+    }
+  },
+  {
+    "date": "2012-01-01T00:00:00",
+    "month": "January 2012",
+    "Aleppo": {
+      "Civilian": 13,
+      "Combatant": 2
+    },
+    "Damascus": {
+      "Civilian": 59,
+      "Combatant": 72
+    },
+    "Idlib": {
+      "Civilian": 46,
+      "Combatant": 67
+    },
+    "Daraa": {
+      "Civilian": 38,
+      "Combatant": 52
+    },
+    "Homs": {
+      "Civilian": 170,
+      "Combatant": 98
+    },
+    "Other": {
+      "Civilian": 73,
+      "Combatant": 10
+    }
+  },
+  {
+    "date": "2012-02-01T00:00:00",
+    "month": "February 2012",
+    "Aleppo": {
+      "Civilian": 48,
+      "Combatant": 51
+    },
+    "Damascus": {
+      "Civilian": 90,
+      "Combatant": 52
+    },
+    "Idlib": {
+      "Civilian": 142,
+      "Combatant": 63
+    },
+    "Daraa": {
+      "Civilian": 48,
+      "Combatant": 65
+    },
+    "Homs": {
+      "Civilian": 700,
+      "Combatant": 127
+    },
+    "Other": {
+      "Civilian": 84,
+      "Combatant": 38
+    }
+  },
+  {
+    "date": "2012-03-01T00:00:00",
+    "month": "March 2012",
+    "Aleppo": {
+      "Civilian": 25,
+      "Combatant": 19
+    },
+    "Damascus": {
+      "Civilian": 28,
+      "Combatant": 53
+    },
+    "Idlib": {
+      "Civilian": 224,
+      "Combatant": 182
+    },
+    "Daraa": {
+      "Civilian": 39,
+      "Combatant": 115
+    },
+    "Homs": {
+      "Civilian": 321,
+      "Combatant": 86
+    },
+    "Other": {
+      "Civilian": 66,
+      "Combatant": 118
+    }
+  },
+  {
+    "date": "2012-04-01T00:00:00",
+    "month": "April 2012",
+    "Aleppo": {
+      "Civilian": 71,
+      "Combatant": 96
+    },
+    "Damascus": {
+      "Civilian": 81,
+      "Combatant": 72
+    },
+    "Idlib": {
+      "Civilian": 201,
+      "Combatant": 139
+    },
+    "Daraa": {
+      "Civilian": 29,
+      "Combatant": 58
+    },
+    "Homs": {
+      "Civilian": 484,
+      "Combatant": 99
+    },
+    "Other": {
+      "Civilian": 248,
+      "Combatant": 99
+    }
+  },
+  {
+    "date": "2012-05-01T00:00:00",
+    "month": "May 2012",
+    "Aleppo": {
+      "Civilian": 61,
+      "Combatant": 97
+    },
+    "Damascus": {
+      "Civilian": 125,
+      "Combatant": 112
+    },
+    "Idlib": {
+      "Civilian": 93,
+      "Combatant": 113
+    },
+    "Daraa": {
+      "Civilian": 36,
+      "Combatant": 46
+    },
+    "Homs": {
+      "Civilian": 274,
+      "Combatant": 88
+    },
+    "Other": {
+      "Civilian": 170,
+      "Combatant": 124
+    }
+  },
+  {
+    "date": "2012-06-01T00:00:00",
+    "month": "June 2012",
+    "Aleppo": {
+      "Civilian": 114,
+      "Combatant": 93
+    },
+    "Damascus": {
+      "Civilian": 442,
+      "Combatant": 149
+    },
+    "Idlib": {
+      "Civilian": 193,
+      "Combatant": 187
+    },
+    "Daraa": {
+      "Civilian": 169,
+      "Combatant": 136
+    },
+    "Homs": {
+      "Civilian": 315,
+      "Combatant": 199
+    },
+    "Other": {
+      "Civilian": 417,
+      "Combatant": 274
+    }
+  },
+  {
+    "date": "2012-07-01T00:00:00",
+    "month": "July 2012",
+    "Aleppo": {
+      "Civilian": 359,
+      "Combatant": 335
+    },
+    "Damascus": {
+      "Civilian": 956,
+      "Combatant": 397
+    },
+    "Idlib": {
+      "Civilian": 331,
+      "Combatant": 211
+    },
+    "Daraa": {
+      "Civilian": 210,
+      "Combatant": 175
+    },
+    "Homs": {
+      "Civilian": 290,
+      "Combatant": 315
+    },
+    "Other": {
+      "Civilian": 553,
+      "Combatant": 399
+    }
+  },
+  {
+    "date": "2012-08-01T00:00:00",
+    "month": "August 2012",
+    "Aleppo": {
+      "Civilian": 729,
+      "Combatant": 454
+    },
+    "Damascus": {
+      "Civilian": 1803,
+      "Combatant": 675
+    },
+    "Idlib": {
+      "Civilian": 525,
+      "Combatant": 349
+    },
+    "Daraa": {
+      "Civilian": 348,
+      "Combatant": 225
+    },
+    "Homs": {
+      "Civilian": 299,
+      "Combatant": 223
+    },
+    "Other": {
+      "Civilian": 497,
+      "Combatant": 386
+    }
+  },
+  {
+    "date": "2012-09-01T00:00:00",
+    "month": "September 2012",
+    "Aleppo": {
+      "Civilian": 863,
+      "Combatant": 398
+    },
+    "Damascus": {
+      "Civilian": 1259,
+      "Combatant": 421
+    },
+    "Idlib": {
+      "Civilian": 244,
+      "Combatant": 167
+    },
+    "Daraa": {
+      "Civilian": 151,
+      "Combatant": 122
+    },
+    "Homs": {
+      "Civilian": 167,
+      "Combatant": 231
+    },
+    "Other": {
+      "Civilian": 709,
+      "Combatant": 394
+    }
+  },
+  {
+    "date": "2012-10-01T00:00:00",
+    "month": "October 2012",
+    "Aleppo": {
+      "Civilian": 581,
+      "Combatant": 532
+    },
+    "Damascus": {
+      "Civilian": 1062,
+      "Combatant": 725
+    },
+    "Idlib": {
+      "Civilian": 473,
+      "Combatant": 686
+    },
+    "Daraa": {
+      "Civilian": 165,
+      "Combatant": 192
+    },
+    "Homs": {
+      "Civilian": 189,
+      "Combatant": 271
+    },
+    "Other": {
+      "Civilian": 293,
+      "Combatant": 464
+    }
+  },
+  {
+    "date": "2012-11-01T00:00:00",
+    "month": "November 2012",
+    "Aleppo": {
+      "Civilian": 326,
+      "Combatant": 524
+    },
+    "Damascus": {
+      "Civilian": 1023,
+      "Combatant": 760
+    },
+    "Idlib": {
+      "Civilian": 338,
+      "Combatant": 414
+    },
+    "Daraa": {
+      "Civilian": 112,
+      "Combatant": 183
+    },
+    "Homs": {
+      "Civilian": 113,
+      "Combatant": 165
+    },
+    "Other": {
+      "Civilian": 201,
+      "Combatant": 767
+    }
+  },
+  {
+    "date": "2012-12-01T00:00:00",
+    "month": "December 2012",
+    "Aleppo": {
+      "Civilian": 438,
+      "Combatant": 659
+    },
+    "Damascus": {
+      "Civilian": 1000,
+      "Combatant": 744
+    },
+    "Idlib": {
+      "Civilian": 167,
+      "Combatant": 361
+    },
+    "Daraa": {
+      "Civilian": 133,
+      "Combatant": 234
+    },
+    "Homs": {
+      "Civilian": 165,
+      "Combatant": 138
+    },
+    "Other": {
+      "Civilian": 382,
+      "Combatant": 686
+    }
+  },
+  {
+    "date": "2013-01-01T00:00:00",
+    "month": "January 2013",
+    "Aleppo": {
+      "Civilian": 767,
+      "Combatant": 293
+    },
+    "Damascus": {
+      "Civilian": 1069,
+      "Combatant": 674
+    },
+    "Idlib": {
+      "Civilian": 250,
+      "Combatant": 411
+    },
+    "Daraa": {
+      "Civilian": 137,
+      "Combatant": 266
+    },
+    "Homs": {
+      "Civilian": 387,
+      "Combatant": 318
+    },
+    "Other": {
+      "Civilian": 270,
+      "Combatant": 577
+    }
+  },
+  {
+    "date": "2013-02-01T00:00:00",
+    "month": "February 2013",
+    "Aleppo": {
+      "Civilian": 845,
+      "Combatant": 1148
+    },
+    "Damascus": {
+      "Civilian": 929,
+      "Combatant": 894
+    },
+    "Idlib": {
+      "Civilian": 184,
+      "Combatant": 236
+    },
+    "Daraa": {
+      "Civilian": 167,
+      "Combatant": 234
+    },
+    "Homs": {
+      "Civilian": 181,
+      "Combatant": 253
+    },
+    "Other": {
+      "Civilian": 326,
+      "Combatant": 710
+    }
+  },
+  {
+    "date": "2013-03-01T00:00:00",
+    "month": "March 2013",
+    "Aleppo": {
+      "Civilian": 456,
+      "Combatant": 652
+    },
+    "Damascus": {
+      "Civilian": 966,
+      "Combatant": 817
+    },
+    "Idlib": {
+      "Civilian": 182,
+      "Combatant": 225
+    },
+    "Daraa": {
+      "Civilian": 131,
+      "Combatant": 362
+    },
+    "Homs": {
+      "Civilian": 251,
+      "Combatant": 533
+    },
+    "Other": {
+      "Civilian": 317,
+      "Combatant": 892
+    }
+  },
+  {
+    "date": "2013-04-01T00:00:00",
+    "month": "April 2013",
+    "Aleppo": {
+      "Civilian": 377,
+      "Combatant": 607
+    },
+    "Damascus": {
+      "Civilian": 768,
+      "Combatant": 669
+    },
+    "Idlib": {
+      "Civilian": 230,
+      "Combatant": 197
+    },
+    "Daraa": {
+      "Civilian": 167,
+      "Combatant": 171
+    },
+    "Homs": {
+      "Civilian": 188,
+      "Combatant": 406
+    },
+    "Other": {
+      "Civilian": 255,
+      "Combatant": 495
+    }
+  },
+  {
+    "date": "2013-05-01T00:00:00",
+    "month": "May 2013",
+    "Aleppo": {
+      "Civilian": 211,
+      "Combatant": 465
+    },
+    "Damascus": {
+      "Civilian": 446,
+      "Combatant": 817
+    },
+    "Idlib": {
+      "Civilian": 135,
+      "Combatant": 206
+    },
+    "Daraa": {
+      "Civilian": 87,
+      "Combatant": 225
+    },
+    "Homs": {
+      "Civilian": 218,
+      "Combatant": 596
+    },
+    "Other": {
+      "Civilian": 676,
+      "Combatant": 546
+    }
+  },
+  {
+    "date": "2013-06-01T00:00:00",
+    "month": "June 2013",
+    "Aleppo": {
+      "Civilian": 413,
+      "Combatant": 435
+    },
+    "Damascus": {
+      "Civilian": 397,
+      "Combatant": 719
+    },
+    "Idlib": {
+      "Civilian": 120,
+      "Combatant": 148
+    },
+    "Daraa": {
+      "Civilian": 112,
+      "Combatant": 171
+    },
+    "Homs": {
+      "Civilian": 144,
+      "Combatant": 354
+    },
+    "Other": {
+      "Civilian": 212,
+      "Combatant": 442
+    }
+  },
+  {
+    "date": "2013-07-01T00:00:00",
+    "month": "July 2013",
+    "Aleppo": {
+      "Civilian": 265,
+      "Combatant": 636
+    },
+    "Damascus": {
+      "Civilian": 441,
+      "Combatant": 693
+    },
+    "Idlib": {
+      "Civilian": 270,
+      "Combatant": 197
+    },
+    "Daraa": {
+      "Civilian": 179,
+      "Combatant": 182
+    },
+    "Homs": {
+      "Civilian": 205,
+      "Combatant": 241
+    },
+    "Other": {
+      "Civilian": 174,
+      "Combatant": 358
+    }
+  },
+  {
+    "date": "2013-08-01T00:00:00",
+    "month": "August 2013",
+    "Aleppo": {
+      "Civilian": 352,
+      "Combatant": 418
+    },
+    "Damascus": {
+      "Civilian": 1286,
+      "Combatant": 753
+    },
+    "Idlib": {
+      "Civilian": 396,
+      "Combatant": 199
+    },
+    "Daraa": {
+      "Civilian": 125,
+      "Combatant": 188
+    },
+    "Homs": {
+      "Civilian": 161,
+      "Combatant": 123
+    },
+    "Other": {
+      "Civilian": 405,
+      "Combatant": 859
+    }
+  },
+  {
+    "date": "2013-09-01T00:00:00",
+    "month": "September 2013",
+    "Aleppo": {
+      "Civilian": 180,
+      "Combatant": 355
+    },
+    "Damascus": {
+      "Civilian": 356,
+      "Combatant": 914
+    },
+    "Idlib": {
+      "Civilian": 257,
+      "Combatant": 236
+    },
+    "Daraa": {
+      "Civilian": 123,
+      "Combatant": 354
+    },
+    "Homs": {
+      "Civilian": 104,
+      "Combatant": 200
+    },
+    "Other": {
+      "Civilian": 242,
+      "Combatant": 604
+    }
+  },
+  {
+    "date": "2013-10-01T00:00:00",
+    "month": "October 2013",
+    "Aleppo": {
+      "Civilian": 277,
+      "Combatant": 514
+    },
+    "Damascus": {
+      "Civilian": 507,
+      "Combatant": 632
+    },
+    "Idlib": {
+      "Civilian": 131,
+      "Combatant": 151
+    },
+    "Daraa": {
+      "Civilian": 130,
+      "Combatant": 221
+    },
+    "Homs": {
+      "Civilian": 180,
+      "Combatant": 566
+    },
+    "Other": {
+      "Civilian": 279,
+      "Combatant": 649
+    }
+  },
+  {
+    "date": "2013-11-01T00:00:00",
+    "month": "November 2013",
+    "Aleppo": {
+      "Civilian": 403,
+      "Combatant": 649
+    },
+    "Damascus": {
+      "Civilian": 513,
+      "Combatant": 1034
+    },
+    "Idlib": {
+      "Civilian": 45,
+      "Combatant": 114
+    },
+    "Daraa": {
+      "Civilian": 115,
+      "Combatant": 133
+    },
+    "Homs": {
+      "Civilian": 109,
+      "Combatant": 337
+    },
+    "Other": {
+      "Civilian": 168,
+      "Combatant": 421
+    }
+  },
+  {
+    "date": "2013-12-01T00:00:00",
+    "month": "December 2013",
+    "Aleppo": {
+      "Civilian": 1083,
+      "Combatant": 406
+    },
+    "Damascus": {
+      "Civilian": 622,
+      "Combatant": 816
+    },
+    "Idlib": {
+      "Civilian": 68,
+      "Combatant": 32
+    },
+    "Daraa": {
+      "Civilian": 149,
+      "Combatant": 186
+    },
+    "Homs": {
+      "Civilian": 106,
+      "Combatant": 85
+    },
+    "Other": {
+      "Civilian": 133,
+      "Combatant": 419
+    }
+  },
+  {
+    "date": "2014-01-01T00:00:00",
+    "month": "January 2014",
+    "Aleppo": {
+      "Civilian": 951,
+      "Combatant": 1290
+    },
+    "Damascus": {
+      "Civilian": 282,
+      "Combatant": 750
+    },
+    "Idlib": {
+      "Civilian": 66,
+      "Combatant": 297
+    },
+    "Daraa": {
+      "Civilian": 147,
+      "Combatant": 187
+    },
+    "Homs": {
+      "Civilian": 162,
+      "Combatant": 414
+    },
+    "Other": {
+      "Civilian": 161,
+      "Combatant": 718
+    }
+  },
+  {
+    "date": "2014-02-01T00:00:00",
+    "month": "February 2014",
+    "Aleppo": {
+      "Civilian": 1098,
+      "Combatant": 1074
+    },
+    "Damascus": {
+      "Civilian": 233,
+      "Combatant": 593
+    },
+    "Idlib": {
+      "Civilian": 113,
+      "Combatant": 158
+    },
+    "Daraa": {
+      "Civilian": 259,
+      "Combatant": 194
+    },
+    "Homs": {
+      "Civilian": 67,
+      "Combatant": 351
+    },
+    "Other": {
+      "Civilian": 274,
+      "Combatant": 1189
+    }
+  },
+  {
+    "date": "2014-03-01T00:00:00",
+    "month": "March 2014",
+    "Aleppo": {
+      "Civilian": 430,
+      "Combatant": 1044
+    },
+    "Damascus": {
+      "Civilian": 277,
+      "Combatant": 813
+    },
+    "Idlib": {
+      "Civilian": 119,
+      "Combatant": 233
+    },
+    "Daraa": {
+      "Civilian": 81,
+      "Combatant": 204
+    },
+    "Homs": {
+      "Civilian": 161,
+      "Combatant": 252
+    },
+    "Other": {
+      "Civilian": 135,
+      "Combatant": 1359
+    }
+  },
+  {
+    "date": "2014-04-01T00:00:00",
+    "month": "April 2014",
+    "Aleppo": {
+      "Civilian": 732,
+      "Combatant": 924
+    },
+    "Damascus": {
+      "Civilian": 361,
+      "Combatant": 1063
+    },
+    "Idlib": {
+      "Civilian": 147,
+      "Combatant": 344
+    },
+    "Daraa": {
+      "Civilian": 73,
+      "Combatant": 237
+    },
+    "Homs": {
+      "Civilian": 324,
+      "Combatant": 241
+    },
+    "Other": {
+      "Civilian": 95,
+      "Combatant": 1436
+    }
+  },
+  {
+    "date": "2014-05-01T00:00:00",
+    "month": "May 2014",
+    "Aleppo": {
+      "Civilian": 744,
+      "Combatant": 871
+    },
+    "Damascus": {
+      "Civilian": 195,
+      "Combatant": 673
+    },
+    "Idlib": {
+      "Civilian": 148,
+      "Combatant": 333
+    },
+    "Daraa": {
+      "Civilian": 183,
+      "Combatant": 278
+    },
+    "Homs": {
+      "Civilian": 48,
+      "Combatant": 94
+    },
+    "Other": {
+      "Civilian": 194,
+      "Combatant": 1183
+    }
+  },
+  {
+    "date": "2014-06-01T00:00:00",
+    "month": "June 2014",
+    "Aleppo": {
+      "Civilian": 570,
+      "Combatant": 588
+    },
+    "Damascus": {
+      "Civilian": 342,
+      "Combatant": 638
+    },
+    "Idlib": {
+      "Civilian": 183,
+      "Combatant": 79
+    },
+    "Daraa": {
+      "Civilian": 107,
+      "Combatant": 172
+    },
+    "Homs": {
+      "Civilian": 116,
+      "Combatant": 227
+    },
+    "Other": {
+      "Civilian": 271,
+      "Combatant": 663
+    }
+  },
+  {
+    "date": "2014-07-01T00:00:00",
+    "month": "July 2014",
+    "Aleppo": {
+      "Civilian": 508,
+      "Combatant": 672
+    },
+    "Damascus": {
+      "Civilian": 220,
+      "Combatant": 679
+    },
+    "Idlib": {
+      "Civilian": 123,
+      "Combatant": 251
+    },
+    "Daraa": {
+      "Civilian": 126,
+      "Combatant": 243
+    },
+    "Homs": {
+      "Civilian": 74,
+      "Combatant": 565
+    },
+    "Other": {
+      "Civilian": 470,
+      "Combatant": 1055
+    }
+  },
+  {
+    "date": "2014-08-01T00:00:00",
+    "month": "August 2014",
+    "Aleppo": {
+      "Civilian": 397,
+      "Combatant": 499
+    },
+    "Damascus": {
+      "Civilian": 320,
+      "Combatant": 727
+    },
+    "Idlib": {
+      "Civilian": 168,
+      "Combatant": 85
+    },
+    "Daraa": {
+      "Civilian": 116,
+      "Combatant": 138
+    },
+    "Homs": {
+      "Civilian": 74,
+      "Combatant": 135
+    },
+    "Other": {
+      "Civilian": 879,
+      "Combatant": 1436
+    }
+  },
+  {
+    "date": "2014-09-01T00:00:00",
+    "month": "September 2014",
+    "Aleppo": {
+      "Civilian": 401,
+      "Combatant": 668
+    },
+    "Damascus": {
+      "Civilian": 425,
+      "Combatant": 985
+    },
+    "Idlib": {
+      "Civilian": 251,
+      "Combatant": 180
+    },
+    "Daraa": {
+      "Civilian": 57,
+      "Combatant": 105
+    },
+    "Homs": {
+      "Civilian": 120,
+      "Combatant": 114
+    },
+    "Other": {
+      "Civilian": 494,
+      "Combatant": 1013
+    }
+  },
+  {
+    "date": "2014-10-01T00:00:00",
+    "month": "October 2014",
+    "Aleppo": {
+      "Civilian": 164,
+      "Combatant": 1602
+    },
+    "Damascus": {
+      "Civilian": 253,
+      "Combatant": 782
+    },
+    "Idlib": {
+      "Civilian": 172,
+      "Combatant": 209
+    },
+    "Daraa": {
+      "Civilian": 141,
+      "Combatant": 328
+    },
+    "Homs": {
+      "Civilian": 206,
+      "Combatant": 73
+    },
+    "Other": {
+      "Civilian": 114,
+      "Combatant": 812
+    }
+  },
+  {
+    "date": "2014-11-01T00:00:00",
+    "month": "November 2014",
+    "Aleppo": {
+      "Civilian": 164,
+      "Combatant": 925
+    },
+    "Damascus": {
+      "Civilian": 166,
+      "Combatant": 420
+    },
+    "Idlib": {
+      "Civilian": 80,
+      "Combatant": 43
+    },
+    "Daraa": {
+      "Civilian": 164,
+      "Combatant": 302
+    },
+    "Homs": {
+      "Civilian": 57,
+      "Combatant": 143
+    },
+    "Other": {
+      "Civilian": 371,
+      "Combatant": 387
+    }
+  },
+  {
+    "date": "2014-12-01T00:00:00",
+    "month": "December 2014",
+    "Aleppo": {
+      "Civilian": 268,
+      "Combatant": 870
+    },
+    "Damascus": {
+      "Civilian": 143,
+      "Combatant": 357
+    },
+    "Idlib": {
+      "Civilian": 116,
+      "Combatant": 262
+    },
+    "Daraa": {
+      "Civilian": 120,
+      "Combatant": 179
+    },
+    "Homs": {
+      "Civilian": 64,
+      "Combatant": 61
+    },
+    "Other": {
+      "Civilian": 218,
+      "Combatant": 846
+    }
+  },
+  {
+    "date": "2015-01-01T00:00:00",
+    "month": "January 2015",
+    "Aleppo": {
+      "Civilian": 175,
+      "Combatant": 653
+    },
+    "Damascus": {
+      "Civilian": 241,
+      "Combatant": 307
+    },
+    "Idlib": {
+      "Civilian": 85,
+      "Combatant": 84
+    },
+    "Daraa": {
+      "Civilian": 71,
+      "Combatant": 141
+    },
+    "Homs": {
+      "Civilian": 58,
+      "Combatant": 48
+    },
+    "Other": {
+      "Civilian": 157,
+      "Combatant": 279
+    }
+  },
+  {
+    "date": "2015-02-01T00:00:00",
+    "month": "February 2015",
+    "Aleppo": {
+      "Civilian": 214,
+      "Combatant": 598
+    },
+    "Damascus": {
+      "Civilian": 372,
+      "Combatant": 324
+    },
+    "Idlib": {
+      "Civilian": 99,
+      "Combatant": 98
+    },
+    "Daraa": {
+      "Civilian": 77,
+      "Combatant": 222
+    },
+    "Homs": {
+      "Civilian": 26,
+      "Combatant": 92
+    },
+    "Other": {
+      "Civilian": 137,
+      "Combatant": 763
+    }
+  },
+  {
+    "date": "2015-03-01T00:00:00",
+    "month": "March 2015",
+    "Aleppo": {
+      "Civilian": 136,
+      "Combatant": 306
+    },
+    "Damascus": {
+      "Civilian": 224,
+      "Combatant": 208
+    },
+    "Idlib": {
+      "Civilian": 207,
+      "Combatant": 190
+    },
+    "Daraa": {
+      "Civilian": 103,
+      "Combatant": 130
+    },
+    "Homs": {
+      "Civilian": 50,
+      "Combatant": 186
+    },
+    "Other": {
+      "Civilian": 238,
+      "Combatant": 689
+    }
+  },
+  {
+    "date": "2015-04-01T00:00:00",
+    "month": "April 2015",
+    "Aleppo": {
+      "Civilian": 315,
+      "Combatant": 349
+    },
+    "Damascus": {
+      "Civilian": 134,
+      "Combatant": 336
+    },
+    "Idlib": {
+      "Civilian": 376,
+      "Combatant": 363
+    },
+    "Daraa": {
+      "Civilian": 171,
+      "Combatant": 282
+    },
+    "Homs": {
+      "Civilian": 57,
+      "Combatant": 127
+    },
+    "Other": {
+      "Civilian": 100,
+      "Combatant": 555
+    }
+  },
+  {
+    "date": "2015-05-01T00:00:00",
+    "month": "May 2015",
+    "Aleppo": {
+      "Civilian": 737,
+      "Combatant": 463
+    },
+    "Damascus": {
+      "Civilian": 137,
+      "Combatant": 472
+    },
+    "Idlib": {
+      "Civilian": 288,
+      "Combatant": 522
+    },
+    "Daraa": {
+      "Civilian": 69,
+      "Combatant": 96
+    },
+    "Homs": {
+      "Civilian": 132,
+      "Combatant": 659
+    },
+    "Other": {
+      "Civilian": 372,
+      "Combatant": 1035
+    }
+  },
+  {
+    "date": "2015-06-01T00:00:00",
+    "month": "June 2015",
+    "Aleppo": {
+      "Civilian": 701,
+      "Combatant": 665
+    },
+    "Damascus": {
+      "Civilian": 132,
+      "Combatant": 278
+    },
+    "Idlib": {
+      "Civilian": 315,
+      "Combatant": 97
+    },
+    "Daraa": {
+      "Civilian": 154,
+      "Combatant": 311
+    },
+    "Homs": {
+      "Civilian": 173,
+      "Combatant": 193
+    },
+    "Other": {
+      "Civilian": 281,
+      "Combatant": 1202
+    }
+  },
+  {
+    "date": "2015-07-01T00:00:00",
+    "month": "July 2015",
+    "Aleppo": {
+      "Civilian": 396,
+      "Combatant": 448
+    },
+    "Damascus": {
+      "Civilian": 121,
+      "Combatant": 455
+    },
+    "Idlib": {
+      "Civilian": 195,
+      "Combatant": 120
+    },
+    "Daraa": {
+      "Civilian": 212,
+      "Combatant": 189
+    },
+    "Homs": {
+      "Civilian": 69,
+      "Combatant": 217
+    },
+    "Other": {
+      "Civilian": 219,
+      "Combatant": 690
+    }
+  },
+  {
+    "date": "2015-08-01T00:00:00",
+    "month": "August 2015",
+    "Aleppo": {
+      "Civilian": 200,
+      "Combatant": 614
+    },
+    "Damascus": {
+      "Civilian": 619,
+      "Combatant": 516
+    },
+    "Idlib": {
+      "Civilian": 305,
+      "Combatant": 125
+    },
+    "Daraa": {
+      "Civilian": 69,
+      "Combatant": 116
+    },
+    "Homs": {
+      "Civilian": 69,
+      "Combatant": 269
+    },
+    "Other": {
+      "Civilian": 162,
+      "Combatant": 547
+    }
+  },
+  {
+    "date": "2015-09-01T00:00:00",
+    "month": "September 2015",
+    "Aleppo": {
+      "Civilian": 246,
+      "Combatant": 278
+    },
+    "Damascus": {
+      "Civilian": 211,
+      "Combatant": 490
+    },
+    "Idlib": {
+      "Civilian": 112,
+      "Combatant": 266
+    },
+    "Daraa": {
+      "Civilian": 49,
+      "Combatant": 66
+    },
+    "Homs": {
+      "Civilian": 166,
+      "Combatant": 260
+    },
+    "Other": {
+      "Civilian": 256,
+      "Combatant": 392
+    }
+  },
+  {
+    "date": "2015-10-01T00:00:00",
+    "month": "October 2015",
+    "Aleppo": {
+      "Civilian": 382,
+      "Combatant": 567
+    },
+    "Damascus": {
+      "Civilian": 298,
+      "Combatant": 288
+    },
+    "Idlib": {
+      "Civilian": 166,
+      "Combatant": 51
+    },
+    "Daraa": {
+      "Civilian": 46,
+      "Combatant": 88
+    },
+    "Homs": {
+      "Civilian": 197,
+      "Combatant": 194
+    },
+    "Other": {
+      "Civilian": 174,
+      "Combatant": 944
+    }
+  },
+  {
+    "date": "2015-11-01T00:00:00",
+    "month": "November 2015",
+    "Aleppo": {
+      "Civilian": 293,
+      "Combatant": 531
+    },
+    "Damascus": {
+      "Civilian": 219,
+      "Combatant": 313
+    },
+    "Idlib": {
+      "Civilian": 163,
+      "Combatant": 16
+    },
+    "Daraa": {
+      "Civilian": 89,
+      "Combatant": 151
+    },
+    "Homs": {
+      "Civilian": 98,
+      "Combatant": 295
+    },
+    "Other": {
+      "Civilian": 369,
+      "Combatant": 712
+    }
+  },
+  {
+    "date": "2015-12-01T00:00:00",
+    "month": "December 2015",
+    "Aleppo": {
+      "Civilian": 464,
+      "Combatant": 538
+    },
+    "Damascus": {
+      "Civilian": 404,
+      "Combatant": 231
+    },
+    "Idlib": {
+      "Civilian": 173,
+      "Combatant": 23
+    },
+    "Daraa": {
+      "Civilian": 60,
+      "Combatant": 139
+    },
+    "Homs": {
+      "Civilian": 142,
+      "Combatant": 165
+    },
+    "Other": {
+      "Civilian": 301,
+      "Combatant": 521
+    }
+  },
+  {
+    "date": "2016-01-01T00:00:00",
+    "month": "January 2016",
+    "Aleppo": {
+      "Civilian": 350,
+      "Combatant": 354
+    },
+    "Damascus": {
+      "Civilian": 190,
+      "Combatant": 298
+    },
+    "Idlib": {
+      "Civilian": 190,
+      "Combatant": 55
+    },
+    "Daraa": {
+      "Civilian": 28,
+      "Combatant": 181
+    },
+    "Homs": {
+      "Civilian": 57,
+      "Combatant": 161
+    },
+    "Other": {
+      "Civilian": 527,
+      "Combatant": 992
+    }
+  },
+  {
+    "date": "2016-02-01T00:00:00",
+    "month": "February 2016",
+    "Aleppo": {
+      "Civilian": 397,
+      "Combatant": 1072
+    },
+    "Damascus": {
+      "Civilian": 229,
+      "Combatant": 496
+    },
+    "Idlib": {
+      "Civilian": 124,
+      "Combatant": 10
+    },
+    "Daraa": {
+      "Civilian": 64,
+      "Combatant": 107
+    },
+    "Homs": {
+      "Civilian": 116,
+      "Combatant": 207
+    },
+    "Other": {
+      "Civilian": 184,
+      "Combatant": 1014
+    }
+  },
+  {
+    "date": "2016-03-01T00:00:00",
+    "month": "March 2016",
+    "Aleppo": {
+      "Civilian": 100,
+      "Combatant": 312
+    },
+    "Damascus": {
+      "Civilian": 63,
+      "Combatant": 227
+    },
+    "Idlib": {
+      "Civilian": 54,
+      "Combatant": 7
+    },
+    "Daraa": {
+      "Civilian": 41,
+      "Combatant": 115
+    },
+    "Homs": {
+      "Civilian": 74,
+      "Combatant": 481
+    },
+    "Other": {
+      "Civilian": 177,
+      "Combatant": 582
+    }
+  },
+  {
+    "date": "2016-04-01T00:00:00",
+    "month": "April 2016",
+    "Aleppo": {
+      "Civilian": 484,
+      "Combatant": 653
+    },
+    "Damascus": {
+      "Civilian": 79,
+      "Combatant": 334
+    },
+    "Idlib": {
+      "Civilian": 103,
+      "Combatant": 44
+    },
+    "Daraa": {
+      "Civilian": 27,
+      "Combatant": 105
+    },
+    "Homs": {
+      "Civilian": 57,
+      "Combatant": 109
+    },
+    "Other": {
+      "Civilian": 211,
+      "Combatant": 441
+    }
+  },
+  {
+    "date": "2016-05-01T00:00:00",
+    "month": "May 2016",
+    "Aleppo": {
+      "Civilian": 409,
+      "Combatant": 870
+    },
+    "Damascus": {
+      "Civilian": 41,
+      "Combatant": 234
+    },
+    "Idlib": {
+      "Civilian": 165,
+      "Combatant": 41
+    },
+    "Daraa": {
+      "Civilian": 12,
+      "Combatant": 67
+    },
+    "Homs": {
+      "Civilian": 95,
+      "Combatant": 174
+    },
+    "Other": {
+      "Civilian": 349,
+      "Combatant": 391
+    }
+  },
+  {
+    "date": "2016-06-01T00:00:00",
+    "month": "June 2016",
+    "Aleppo": {
+      "Civilian": 635,
+      "Combatant": 1266
+    },
+    "Damascus": {
+      "Civilian": 101,
+      "Combatant": 274
+    },
+    "Idlib": {
+      "Civilian": 177,
+      "Combatant": 42
+    },
+    "Daraa": {
+      "Civilian": 4,
+      "Combatant": 42
+    },
+    "Homs": {
+      "Civilian": 54,
+      "Combatant": 95
+    },
+    "Other": {
+      "Civilian": 359,
+      "Combatant": 587
+    }
+  },
+  {
+    "date": "2016-07-01T00:00:00",
+    "month": "July 2016",
+    "Aleppo": {
+      "Civilian": 969,
+      "Combatant": 546
+    },
+    "Damascus": {
+      "Civilian": 200,
+      "Combatant": 175
+    },
+    "Idlib": {
+      "Civilian": 232,
+      "Combatant": 18
+    },
+    "Daraa": {
+      "Civilian": 34,
+      "Combatant": 84
+    },
+    "Homs": {
+      "Civilian": 113,
+      "Combatant": 123
+    },
+    "Other": {
+      "Civilian": 222,
+      "Combatant": 368
+    }
+  },
+  {
+    "date": "2016-08-01T00:00:00",
+    "month": "August 2016",
+    "Aleppo": {
+      "Civilian": 736,
+      "Combatant": 498
+    },
+    "Damascus": {
+      "Civilian": 120,
+      "Combatant": 147
+    },
+    "Idlib": {
+      "Civilian": 275,
+      "Combatant": 71
+    },
+    "Daraa": {
+      "Civilian": 27,
+      "Combatant": 44
+    },
+    "Homs": {
+      "Civilian": 113,
+      "Combatant": 68
+    },
+    "Other": {
+      "Civilian": 159,
+      "Combatant": 310
+    }
+  },
+  {
+    "date": "2016-09-01T00:00:00",
+    "month": "September 2016",
+    "Aleppo": {
+      "Civilian": 730,
+      "Combatant": 292
+    },
+    "Damascus": {
+      "Civilian": 85,
+      "Combatant": 205
+    },
+    "Idlib": {
+      "Civilian": 178,
+      "Combatant": 20
+    },
+    "Daraa": {
+      "Civilian": 34,
+      "Combatant": 52
+    },
+    "Homs": {
+      "Civilian": 56,
+      "Combatant": 71
+    },
+    "Other": {
+      "Civilian": 310,
+      "Combatant": 385
+    }
+  },
+  {
+    "date": "2016-10-01T00:00:00",
+    "month": "October 2016",
+    "Aleppo": {
+      "Civilian": 629,
+      "Combatant": 803
+    },
+    "Damascus": {
+      "Civilian": 78,
+      "Combatant": 239
+    },
+    "Idlib": {
+      "Civilian": 184,
+      "Combatant": 89
+    },
+    "Daraa": {
+      "Civilian": 42,
+      "Combatant": 93
+    },
+    "Homs": {
+      "Civilian": 48,
+      "Combatant": 74
+    },
+    "Other": {
+      "Civilian": 122,
+      "Combatant": 278
+    }
+  },
+  {
+    "date": "2016-11-01T00:00:00",
+    "month": "November 2016",
+    "Aleppo": {
+      "Civilian": 685,
+      "Combatant": 951
+    },
+    "Damascus": {
+      "Civilian": 152,
+      "Combatant": 123
+    },
+    "Idlib": {
+      "Civilian": 194,
+      "Combatant": 18
+    },
+    "Daraa": {
+      "Civilian": 11,
+      "Combatant": 37
+    },
+    "Homs": {
+      "Civilian": 79,
+      "Combatant": 68
+    },
+    "Other": {
+      "Civilian": 159,
+      "Combatant": 341
+    }
+  },
+  {
+    "date": "2016-12-01T00:00:00",
+    "month": "December 2016",
+    "Aleppo": {
+      "Civilian": 432,
+      "Combatant": 528
+    },
+    "Damascus": {
+      "Civilian": 120,
+      "Combatant": 143
+    },
+    "Idlib": {
+      "Civilian": 164,
+      "Combatant": 21
+    },
+    "Daraa": {
+      "Civilian": 37,
+      "Combatant": 25
+    },
+    "Homs": {
+      "Civilian": 31,
+      "Combatant": 345
+    },
+    "Other": {
+      "Civilian": 174,
+      "Combatant": 248
+    }
+  },
+  {
+    "date": "2017-01-01T00:00:00",
+    "month": "January 2017",
+    "Aleppo": {
+      "Civilian": 318,
+      "Combatant": 248
+    },
+    "Damascus": {
+      "Civilian": 66,
+      "Combatant": 220
+    },
+    "Idlib": {
+      "Civilian": 88,
+      "Combatant": 37
+    },
+    "Daraa": {
+      "Civilian": 8,
+      "Combatant": 91
+    },
+    "Homs": {
+      "Civilian": 55,
+      "Combatant": 392
+    },
+    "Other": {
+      "Civilian": 308,
+      "Combatant": 535
+    }
+  },
+  {
+    "date": "2017-02-01T00:00:00",
+    "month": "February 2017",
+    "Aleppo": {
+      "Civilian": 376,
+      "Combatant": 516
+    },
+    "Damascus": {
+      "Civilian": 85,
+      "Combatant": 173
+    },
+    "Idlib": {
+      "Civilian": 126,
+      "Combatant": 352
+    },
+    "Daraa": {
+      "Civilian": 128,
+      "Combatant": 385
+    },
+    "Homs": {
+      "Civilian": 74,
+      "Combatant": 164
+    },
+    "Other": {
+      "Civilian": 228,
+      "Combatant": 338
+    }
+  },
+  {
+    "date": "2017-03-01T00:00:00",
+    "month": "March 2017",
+    "Aleppo": {
+      "Civilian": 212,
+      "Combatant": 184
+    },
+    "Damascus": {
+      "Civilian": 208,
+      "Combatant": 371
+    },
+    "Idlib": {
+      "Civilian": 280,
+      "Combatant": 26
+    },
+    "Daraa": {
+      "Civilian": 36,
+      "Combatant": 98
+    },
+    "Homs": {
+      "Civilian": 37,
+      "Combatant": 69
+    },
+    "Other": {
+      "Civilian": 604,
+      "Combatant": 297
+    }
+  },
+  {
+    "date": "2017-04-01T00:00:00",
+    "month": "April 2017",
+    "Aleppo": {
+      "Civilian": 82,
+      "Combatant": 136
+    },
+    "Damascus": {
+      "Civilian": 153,
+      "Combatant": 196
+    },
+    "Idlib": {
+      "Civilian": 329,
+      "Combatant": 11
+    },
+    "Daraa": {
+      "Civilian": 62,
+      "Combatant": 135
+    },
+    "Homs": {
+      "Civilian": 31,
+      "Combatant": 79
+    },
+    "Other": {
+      "Civilian": 441,
+      "Combatant": 610
+    }
+  },
+  {
+    "date": "2017-05-01T00:00:00",
+    "month": "May 2017",
+    "Aleppo": {
+      "Civilian": 76,
+      "Combatant": 189
+    },
+    "Damascus": {
+      "Civilian": 39,
+      "Combatant": 156
+    },
+    "Idlib": {
+      "Civilian": 7,
+      "Combatant": 4
+    },
+    "Daraa": {
+      "Civilian": 33,
+      "Combatant": 66
+    },
+    "Homs": {
+      "Civilian": 42,
+      "Combatant": 189
+    },
+    "Other": {
+      "Civilian": 920,
+      "Combatant": 604
+    }
+  },
+  {
+    "date": "2017-06-01T00:00:00",
+    "month": "June 2017",
+    "Aleppo": {
+      "Civilian": 39,
+      "Combatant": 96
+    },
+    "Damascus": {
+      "Civilian": 29,
+      "Combatant": 113
+    },
+    "Idlib": {
+      "Civilian": 21,
+      "Combatant": 28
+    },
+    "Daraa": {
+      "Civilian": 93,
+      "Combatant": 269
+    },
+    "Homs": {
+      "Civilian": 31,
+      "Combatant": 118
+    },
+    "Other": {
+      "Civilian": 1053,
+      "Combatant": 1410
+    }
+  },
+  {
+    "date": "2017-07-01T00:00:00",
+    "month": "July 2017",
+    "Aleppo": {
+      "Civilian": 30,
+      "Combatant": 76
+    },
+    "Damascus": {
+      "Civilian": 100,
+      "Combatant": 270
+    },
+    "Idlib": {
+      "Civilian": 34,
+      "Combatant": 86
+    },
+    "Daraa": {
+      "Civilian": 26,
+      "Combatant": 22
+    },
+    "Homs": {
+      "Civilian": 34,
+      "Combatant": 279
+    },
+    "Other": {
+      "Civilian": 848,
+      "Combatant": 897
+    }
+  },
+  {
+    "date": "2017-08-01T00:00:00",
+    "month": "August 2017",
+    "Aleppo": {
+      "Civilian": 31,
+      "Combatant": 53
+    },
+    "Damascus": {
+      "Civilian": 79,
+      "Combatant": 174
+    },
+    "Idlib": {
+      "Civilian": 8,
+      "Combatant": 17
+    },
+    "Daraa": {
+      "Civilian": 7,
+      "Combatant": 107
+    },
+    "Homs": {
+      "Civilian": 32,
+      "Combatant": 206
+    },
+    "Other": {
+      "Civilian": 853,
+      "Combatant": 1057
+    }
+  },
+  {
+    "date": "2017-09-01T00:00:00",
+    "month": "September 2017",
+    "Aleppo": {
+      "Civilian": 35,
+      "Combatant": 39
+    },
+    "Damascus": {
+      "Civilian": 54,
+      "Combatant": 148
+    },
+    "Idlib": {
+      "Civilian": 205,
+      "Combatant": 187
+    },
+    "Daraa": {
+      "Civilian": 9,
+      "Combatant": 51
+    },
+    "Homs": {
+      "Civilian": 39,
+      "Combatant": 655
+    },
+    "Other": {
+      "Civilian": 1012,
+      "Combatant": 1706
+    }
+  },
+  {
+    "date": "2017-10-01T00:00:00",
+    "month": "October 2017",
+    "Aleppo": {
+      "Civilian": 7,
+      "Combatant": 30
+    },
+    "Damascus": {
+      "Civilian": 79,
+      "Combatant": 144
+    },
+    "Idlib": {
+      "Civilian": 43,
+      "Combatant": 61
+    },
+    "Daraa": {
+      "Civilian": 14,
+      "Combatant": 64
+    },
+    "Homs": {
+      "Civilian": 165,
+      "Combatant": 158
+    },
+    "Other": {
+      "Civilian": 1059,
+      "Combatant": 1274
+    }
+  },
+  {
+    "date": "2017-11-01T00:00:00",
+    "month": "November 2017",
+    "Aleppo": {
+      "Civilian": 70,
+      "Combatant": 117
+    },
+    "Damascus": {
+      "Civilian": 290,
+      "Combatant": 207
+    },
+    "Idlib": {
+      "Civilian": 26,
+      "Combatant": 31
+    },
+    "Daraa": {
+      "Civilian": 5,
+      "Combatant": 17
+    },
+    "Homs": {
+      "Civilian": 17,
+      "Combatant": 48
+    },
+    "Other": {
+      "Civilian": 590,
+      "Combatant": 986
+    }
+  },
+  {
+    "date": "2017-12-01T00:00:00",
+    "month": "December 2017",
+    "Aleppo": {
+      "Civilian": 16,
+      "Combatant": 51
+    },
+    "Damascus": {
+      "Civilian": 127,
+      "Combatant": 163
+    },
+    "Idlib": {
+      "Civilian": 121,
+      "Combatant": 88
+    },
+    "Daraa": {
+      "Civilian": 11,
+      "Combatant": 12
+    },
+    "Homs": {
+      "Civilian": 17,
+      "Combatant": 87
+    },
+    "Other": {
+      "Civilian": 247,
+      "Combatant": 596
+    }
+  },
+  {
+    "date": "2018-01-01T00:00:00",
+    "month": "January 2018",
+    "Aleppo": {
+      "Civilian": 114,
+      "Combatant": 867
+    },
+    "Damascus": {
+      "Civilian": 203,
+      "Combatant": 269
+    },
+    "Idlib": {
+      "Civilian": 237,
+      "Combatant": 543
+    },
+    "Daraa": {
+      "Civilian": 12,
+      "Combatant": 38
+    },
+    "Homs": {
+      "Civilian": 11,
+      "Combatant": 21
+    },
+    "Other": {
+      "Civilian": 63,
+      "Combatant": 273
+    }
+  },
+  {
+    "date": "2018-02-01T00:00:00",
+    "month": "February 2018",
+    "Aleppo": {
+      "Civilian": 86,
+      "Combatant": 706
+    },
+    "Damascus": {
+      "Civilian": 655,
+      "Combatant": 138
+    },
+    "Idlib": {
+      "Civilian": 123,
+      "Combatant": 130
+    },
+    "Daraa": {
+      "Civilian": 7,
+      "Combatant": 49
+    },
+    "Homs": {
+      "Civilian": 10,
+      "Combatant": 23
+    },
+    "Other": {
+      "Civilian": 156,
+      "Combatant": 78
+    }
+  },
+  {
+    "date": "2018-03-01T00:00:00",
+    "month": "March 2018",
+    "Aleppo": {
+      "Civilian": 163,
+      "Combatant": 623
+    },
+    "Damascus": {
+      "Civilian": 1407,
+      "Combatant": 1088
+    },
+    "Idlib": {
+      "Civilian": 134,
+      "Combatant": 47
+    },
+    "Daraa": {
+      "Civilian": 6,
+      "Combatant": 20
+    },
+    "Homs": {
+      "Civilian": 6,
+      "Combatant": 22
+    },
+    "Other": {
+      "Civilian": 26,
+      "Combatant": 197
+    }
+  },
+  {
+    "date": "2018-04-01T00:00:00",
+    "month": "April 2018",
+    "Aleppo": {
+      "Civilian": 17,
+      "Combatant": 186
+    },
+    "Damascus": {
+      "Civilian": 165,
+      "Combatant": 302
+    },
+    "Idlib": {
+      "Civilian": 35,
+      "Combatant": 100
+    },
+    "Daraa": {
+      "Civilian": 8,
+      "Combatant": 63
+    },
+    "Homs": {
+      "Civilian": 38,
+      "Combatant": 124
+    },
+    "Other": {
+      "Civilian": 35,
+      "Combatant": 254
+    }
+  },
+  {
+    "date": "2018-05-01T00:00:00",
+    "month": "May 2018",
+    "Aleppo": {
+      "Civilian": 16,
+      "Combatant": 10
+    },
+    "Damascus": {
+      "Civilian": 40,
+      "Combatant": 325
+    },
+    "Idlib": {
+      "Civilian": 31,
+      "Combatant": 16
+    },
+    "Daraa": {
+      "Civilian": 16,
+      "Combatant": 19
+    },
+    "Homs": {
+      "Civilian": 1,
+      "Combatant": 52
+    },
+    "Other": {
+      "Civilian": 134,
+      "Combatant": 276
+    }
+  },
+  {
+    "date": "2018-06-01T00:00:00",
+    "month": "June 2018",
+    "Aleppo": {
+      "Civilian": 20,
+      "Combatant": 18
+    },
+    "Damascus": {
+      "Civilian": 1,
+      "Combatant": 4
+    },
+    "Idlib": {
+      "Civilian": 79,
+      "Combatant": 101
+    },
+    "Daraa": {
+      "Civilian": 177,
+      "Combatant": 311
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 63
+    },
+    "Other": {
+      "Civilian": 117,
+      "Combatant": 574
+    }
+  },
+  {
+    "date": "2018-07-01T00:00:00",
+    "month": "July 2018",
+    "Aleppo": {
+      "Civilian": 7,
+      "Combatant": 21
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Idlib": {
+      "Civilian": 18,
+      "Combatant": 47
+    },
+    "Daraa": {
+      "Civilian": 116,
+      "Combatant": 511
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Other": {
+      "Civilian": 353,
+      "Combatant": 431
+    }
+  },
+  {
+    "date": "2018-08-01T00:00:00",
+    "month": "August 2018",
+    "Aleppo": {
+      "Civilian": 73,
+      "Combatant": 26
+    },
+    "Damascus": {
+      "Civilian": 2,
+      "Combatant": 157
+    },
+    "Idlib": {
+      "Civilian": 23,
+      "Combatant": 15
+    },
+    "Daraa": {
+      "Civilian": 3,
+      "Combatant": 10
+    },
+    "Homs": {
+      "Civilian": 1,
+      "Combatant": 0
+    },
+    "Other": {
+      "Civilian": 54,
+      "Combatant": 183
+    }
+  },
+  {
+    "date": "2018-09-01T00:00:00",
+    "month": "September 2018",
+    "Aleppo": {
+      "Civilian": 7,
+      "Combatant": 19
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 184
+    },
+    "Idlib": {
+      "Civilian": 26,
+      "Combatant": 15
+    },
+    "Daraa": {
+      "Civilian": 5,
+      "Combatant": 13
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 18
+    },
+    "Other": {
+      "Civilian": 30,
+      "Combatant": 410
+    }
+  },
+  {
+    "date": "2018-10-01T00:00:00",
+    "month": "October 2018",
+    "Aleppo": {
+      "Civilian": 11,
+      "Combatant": 44
+    },
+    "Damascus": {
+      "Civilian": 1,
+      "Combatant": 88
+    },
+    "Idlib": {
+      "Civilian": 18,
+      "Combatant": 17
+    },
+    "Daraa": {
+      "Civilian": 0,
+      "Combatant": 1
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Other": {
+      "Civilian": 231,
+      "Combatant": 567
+    }
+  },
+  {
+    "date": "2018-11-01T00:00:00",
+    "month": "November 2018",
+    "Aleppo": {
+      "Civilian": 7,
+      "Combatant": 58
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 106
+    },
+    "Idlib": {
+      "Civilian": 25,
+      "Combatant": 12
+    },
+    "Daraa": {
+      "Civilian": 0,
+      "Combatant": 1
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 13
+    },
+    "Other": {
+      "Civilian": 379,
+      "Combatant": 538
+    }
+  },
+  {
+    "date": "2018-12-01T00:00:00",
+    "month": "December 2018",
+    "Aleppo": {
+      "Civilian": 9,
+      "Combatant": 52
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 3
+    },
+    "Idlib": {
+      "Civilian": 6,
+      "Combatant": 10
+    },
+    "Daraa": {
+      "Civilian": 0,
+      "Combatant": 8
+    },
+    "Homs": {
+      "Civilian": 1,
+      "Combatant": 28
+    },
+    "Other": {
+      "Civilian": 719,
+      "Combatant": 560
+    }
+  },
+  {
+    "date": "2019-01-01T00:00:00",
+    "month": "January 2019",
+    "Aleppo": {
+      "Civilian": 36,
+      "Combatant": 157
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 12
+    },
+    "Idlib": {
+      "Civilian": 18,
+      "Combatant": 67
+    },
+    "Daraa": {
+      "Civilian": 0,
+      "Combatant": 3
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 1
+    },
+    "Other": {
+      "Civilian": 149,
+      "Combatant": 495
+    }
+  },
+  {
+    "date": "2019-02-01T00:00:00",
+    "month": "February 2019",
+    "Aleppo": {
+      "Civilian": 3,
+      "Combatant": 21
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 4
+    },
+    "Idlib": {
+      "Civilian": 74,
+      "Combatant": 26
+    },
+    "Daraa": {
+      "Civilian": 0,
+      "Combatant": 13
+    },
+    "Homs": {
+      "Civilian": 1,
+      "Combatant": 16
+    },
+    "Other": {
+      "Civilian": 73,
+      "Combatant": 225
+    }
+  },
+  {
+    "date": "2019-03-01T00:00:00",
+    "month": "March 2019",
+    "Aleppo": {
+      "Civilian": 6,
+      "Combatant": 41
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Idlib": {
+      "Civilian": 100,
+      "Combatant": 47
+    },
+    "Daraa": {
+      "Civilian": 0,
+      "Combatant": 2
+    },
+    "Homs": {
+      "Civilian": 1,
+      "Combatant": 0
+    },
+    "Other": {
+      "Civilian": 163,
+      "Combatant": 356
+    }
+  },
+  {
+    "date": "2019-04-01T00:00:00",
+    "month": "April 2019",
+    "Aleppo": {
+      "Civilian": 16,
+      "Combatant": 81
+    },
+    "Damascus": {
+      "Civilian": 1,
+      "Combatant": 2
+    },
+    "Idlib": {
+      "Civilian": 97,
+      "Combatant": 32
+    },
+    "Daraa": {
+      "Civilian": 1,
+      "Combatant": 2
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 36
+    },
+    "Other": {
+      "Civilian": 94,
+      "Combatant": 132
+    }
+  },
+  {
+    "date": "2019-05-01T00:00:00",
+    "month": "May 2019",
+    "Aleppo": {
+      "Civilian": 34,
+      "Combatant": 22
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Idlib": {
+      "Civilian": 263,
+      "Combatant": 6
+    },
+    "Daraa": {
+      "Civilian": 1,
+      "Combatant": 5
+    },
+    "Homs": {
+      "Civilian": 1,
+      "Combatant": 21
+    },
+    "Other": {
+      "Civilian": 80,
+      "Combatant": 715
+    }
+  },
+  {
+    "date": "2019-06-01T00:00:00",
+    "month": "June 2019",
+    "Aleppo": {
+      "Civilian": 28,
+      "Combatant": 9
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Idlib": {
+      "Civilian": 189,
+      "Combatant": 61
+    },
+    "Daraa": {
+      "Civilian": 3,
+      "Combatant": 10
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 41
+    },
+    "Other": {
+      "Civilian": 29,
+      "Combatant": 848
+    }
+  },
+  {
+    "date": "2019-07-01T00:00:00",
+    "month": "July 2019",
+    "Aleppo": {
+      "Civilian": 54,
+      "Combatant": 19
+    },
+    "Damascus": {
+      "Civilian": 4,
+      "Combatant": 1
+    },
+    "Idlib": {
+      "Civilian": 236,
+      "Combatant": 81
+    },
+    "Daraa": {
+      "Civilian": 2,
+      "Combatant": 25
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 7
+    },
+    "Other": {
+      "Civilian": 91,
+      "Combatant": 444
+    }
+  },
+  {
+    "date": "2019-08-01T00:00:00",
+    "month": "August 2019",
+    "Aleppo": {
+      "Civilian": 5,
+      "Combatant": 42
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 5
+    },
+    "Idlib": {
+      "Civilian": 181,
+      "Combatant": 767
+    },
+    "Daraa": {
+      "Civilian": 2,
+      "Combatant": 11
+    },
+    "Homs": {
+      "Civilian": 2,
+      "Combatant": 0
+    },
+    "Other": {
+      "Civilian": 20,
+      "Combatant": 404
+    }
+  },
+  {
+    "date": "2019-09-01T00:00:00",
+    "month": "September 2019",
+    "Aleppo": {
+      "Civilian": 18,
+      "Combatant": 16
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Idlib": {
+      "Civilian": 17,
+      "Combatant": 21
+    },
+    "Daraa": {
+      "Civilian": 0,
+      "Combatant": 7
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 11
+    },
+    "Other": {
+      "Civilian": 10,
+      "Combatant": 72
+    }
+  },
+  {
+    "date": "2019-10-01T00:00:00",
+    "month": "October 2019",
+    "Aleppo": {
+      "Civilian": 7,
+      "Combatant": 80
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Idlib": {
+      "Civilian": 38,
+      "Combatant": 22
+    },
+    "Daraa": {
+      "Civilian": 0,
+      "Combatant": 19
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 28
+    },
+    "Other": {
+      "Civilian": 138,
+      "Combatant": 542
+    }
+  },
+  {
+    "date": "2019-11-01T00:00:00",
+    "month": "November 2019",
+    "Aleppo": {
+      "Civilian": 30,
+      "Combatant": 46
+    },
+    "Damascus": {
+      "Civilian": 2,
+      "Combatant": 17
+    },
+    "Idlib": {
+      "Civilian": 94,
+      "Combatant": 191
+    },
+    "Daraa": {
+      "Civilian": 0,
+      "Combatant": 9
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Other": {
+      "Civilian": 35,
+      "Combatant": 331
+    }
+  },
+  {
+    "date": "2019-12-01T00:00:00",
+    "month": "December 2019",
+    "Aleppo": {
+      "Civilian": 17,
+      "Combatant": 22
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 3
+    },
+    "Idlib": {
+      "Civilian": 146,
+      "Combatant": 534
+    },
+    "Daraa": {
+      "Civilian": 0,
+      "Combatant": 17
+    },
+    "Homs": {
+      "Civilian": 4,
+      "Combatant": 14
+    },
+    "Other": {
+      "Civilian": 20,
+      "Combatant": 137
+    }
+  },
+  {
+    "date": "2020-01-01T00:00:00",
+    "month": "January 2020",
+    "Aleppo": {
+      "Civilian": 71,
+      "Combatant": 209
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 25
+    },
+    "Idlib": {
+      "Civilian": 138,
+      "Combatant": 588
+    },
+    "Daraa": {
+      "Civilian": 0,
+      "Combatant": 9
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 3
+    },
+    "Other": {
+      "Civilian": 17,
+      "Combatant": 118
+    }
+  },
+  {
+    "date": "2020-02-01T00:00:00",
+    "month": "February 2020",
+    "Aleppo": {
+      "Civilian": 105,
+      "Combatant": 557
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 15
+    },
+    "Idlib": {
+      "Civilian": 119,
+      "Combatant": 506
+    },
+    "Daraa": {
+      "Civilian": 4,
+      "Combatant": 15
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 2
+    },
+    "Other": {
+      "Civilian": 6,
+      "Combatant": 198
+    }
+  },
+  {
+    "date": "2020-03-01T00:00:00",
+    "month": "March 2020",
+    "Aleppo": {
+      "Civilian": 14,
+      "Combatant": 16
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Idlib": {
+      "Civilian": 39,
+      "Combatant": 262
+    },
+    "Daraa": {
+      "Civilian": 11,
+      "Combatant": 22
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 3
+    },
+    "Other": {
+      "Civilian": 11,
+      "Combatant": 58
+    }
+  },
+  {
+    "date": "2020-04-01T00:00:00",
+    "month": "April 2020",
+    "Aleppo": {
+      "Civilian": 2,
+      "Combatant": 5
+    },
+    "Damascus": {
+      "Civilian": 3,
+      "Combatant": 4
+    },
+    "Idlib": {
+      "Civilian": 7,
+      "Combatant": 13
+    },
+    "Daraa": {
+      "Civilian": 0,
+      "Combatant": 22
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 73
+    },
+    "Other": {
+      "Civilian": 11,
+      "Combatant": 74
+    }
+  },
+  {
+    "date": "2020-05-01T00:00:00",
+    "month": "May 2020",
+    "Aleppo": {
+      "Civilian": 1,
+      "Combatant": 2
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Idlib": {
+      "Civilian": 2,
+      "Combatant": 37
+    },
+    "Daraa": {
+      "Civilian": 2,
+      "Combatant": 28
+    },
+    "Homs": {
+      "Civilian": 4,
+      "Combatant": 4
+    },
+    "Other": {
+      "Civilian": 9,
+      "Combatant": 188
+    }
+  },
+  {
+    "date": "2020-06-01T00:00:00",
+    "month": "June 2020",
+    "Aleppo": {
+      "Civilian": 8,
+      "Combatant": 30
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Idlib": {
+      "Civilian": 7,
+      "Combatant": 57
+    },
+    "Daraa": {
+      "Civilian": 1,
+      "Combatant": 21
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 6
+    },
+    "Other": {
+      "Civilian": 11,
+      "Combatant": 149
+    }
+  },
+  {
+    "date": "2020-07-01T00:00:00",
+    "month": "July 2020",
+    "Aleppo": {
+      "Civilian": 20,
+      "Combatant": 4
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 5
+    },
+    "Idlib": {
+      "Civilian": 6,
+      "Combatant": 75
+    },
+    "Daraa": {
+      "Civilian": 0,
+      "Combatant": 5
+    },
+    "Homs": {
+      "Civilian": 3,
+      "Combatant": 9
+    },
+    "Other": {
+      "Civilian": 10,
+      "Combatant": 63
+    }
+  },
+  {
+    "date": "2020-08-01T00:00:00",
+    "month": "August 2020",
+    "Aleppo": {
+      "Civilian": 0,
+      "Combatant": 7
+    },
+    "Damascus": {
+      "Civilian": 1,
+      "Combatant": 8
+    },
+    "Idlib": {
+      "Civilian": 7,
+      "Combatant": 26
+    },
+    "Daraa": {
+      "Civilian": 0,
+      "Combatant": 6
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Other": {
+      "Civilian": 0,
+      "Combatant": 81
+    }
+  },
+  {
+    "date": "2020-09-01T00:00:00",
+    "month": "September 2020",
+    "Aleppo": {
+      "Civilian": 1,
+      "Combatant": 4
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Idlib": {
+      "Civilian": 12,
+      "Combatant": 16
+    },
+    "Daraa": {
+      "Civilian": 0,
+      "Combatant": 15
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Other": {
+      "Civilian": 7,
+      "Combatant": 109
+    }
+  },
+  {
+    "date": "2020-10-01T00:00:00",
+    "month": "October 2020",
+    "Aleppo": {
+      "Civilian": 8,
+      "Combatant": 15
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Idlib": {
+      "Civilian": 9,
+      "Combatant": 66
+    },
+    "Daraa": {
+      "Civilian": 0,
+      "Combatant": 9
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 10
+    },
+    "Other": {
+      "Civilian": 3,
+      "Combatant": 102
+    }
+  },
+  {
+    "date": "2020-11-01T00:00:00",
+    "month": "November 2020",
+    "Aleppo": {
+      "Civilian": 0,
+      "Combatant": 12
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 10
+    },
+    "Idlib": {
+      "Civilian": 8,
+      "Combatant": 26
+    },
+    "Daraa": {
+      "Civilian": 0,
+      "Combatant": 11
+    },
+    "Homs": {
+      "Civilian": 11,
+      "Combatant": 16
+    },
+    "Other": {
+      "Civilian": 7,
+      "Combatant": 161
+    }
+  },
+  {
+    "date": "2020-12-01T00:00:00",
+    "month": "December 2020",
+    "Aleppo": {
+      "Civilian": 1,
+      "Combatant": 6
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Idlib": {
+      "Civilian": 0,
+      "Combatant": 18
+    },
+    "Daraa": {
+      "Civilian": 0,
+      "Combatant": 10
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Other": {
+      "Civilian": 12,
+      "Combatant": 168
+    }
+  },
+  {
+    "date": "2021-01-01T00:00:00",
+    "month": "January 2021",
+    "Aleppo": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Damascus": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Idlib": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Daraa": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Homs": {
+      "Civilian": 0,
+      "Combatant": 0
+    },
+    "Other": {
+      "Civilian": 0,
+      "Combatant": 1
+    }
+  }
+]

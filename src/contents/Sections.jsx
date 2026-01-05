@@ -6,11 +6,13 @@ import componentDataKeyMapper from "../util/ComponentDataKeyMapper";
 import { getBgClass, getTextClass } from './themeUtils';
 import LinePlot from '../d3/LinePlot';
 import ScatterPlot from '../d3/ScatterPlot';
+import CasualtiesChart from "../d3/CasualtiesChart";
 
 // Render visualization based on component name
 function DynamicVisualization({ componentName, data, isMobile }) {
     switch (componentName) {
         case 'CasualtyTrendChart':
+            return <CasualtiesChart data={data} isMobile={isMobile} />;
         case 'RegionalConflictMap':
         case 'EconomicIndicators':
         case 'TimelineChart':
@@ -150,16 +152,16 @@ function VisualizationSection({ section }) {
                     <MobileChartPlaceholder onOpen={() => setIsModalOpen(true)} />
                 </div>
 
-                {/* Desktop: Show full chart with subtle glow when active */}
-                <div className="hidden lg:flex lg:w-full h-[650px] items-center justify-center">
-                    <div className={`w-full mx-4 sm:mx-auto sm:max-w-7xl h-full rounded-xl border-3 transition-all duration-300 shadow-lg ${isDark ? 'border-gray-600 bg-gray-700' : 'border-gray-300 bg-gray-200'}`}>
-                        <div className="h-full flex items-center justify-center">
-                            {isLoading ? (
+                {/* Desktop: Full width background strip */}
+                <div className={`hidden lg:flex lg:w-full h-full items-center justify-center ${isDark ? 'bg-gray-700' : 'bg-gray-200'}`}>
+                    <div className="w-full mx-4 sm:mx-auto sm:max-w-[95rem] h-full">
+                        {isLoading ? (
+                            <div className="flex items-center justify-center h-full">
                                 <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>Loading...</p>
-                            ) : (
-                                <DynamicVisualization componentName={section.visualization.component} data={data} isMobile={false} />
-                            )}
-                        </div>
+                            </div>
+                        ) : (
+                            <DynamicVisualization componentName={section.visualization.component} data={data} isMobile={false} />
+                        )}
                     </div>
                 </div>
             </div>
