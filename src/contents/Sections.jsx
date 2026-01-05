@@ -16,7 +16,7 @@ function DynamicVisualization({ componentName, data, isMobile }) {
         case 'CasualtyTrendChart':
             return <CasualtiesChart data={data} isMobile={isMobile} />;
         case 'RegionalConflictMap':
-            return <RegionalConflictChart dataObj={data} isMobile={isMobile} />;
+            return <RegionalConflictChart data={data} isMobile={isMobile} />;
         case 'EconomicIndicators':
             return <ScatterPlot data={data} isMobile={isMobile} />;
         case 'TimelineChart':
