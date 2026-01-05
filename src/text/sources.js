@@ -1,17 +1,5 @@
 export const sources = [
     {
-        id: 'ocha',
-        title: 'UN Office for the Coordination of Humanitarian Affairs (OCHA)',
-        description: 'Primary source for displacement and humanitarian crisis data',
-        url: 'https://www.unocha.org/'
-    },
-    {
-        id: 'airwars',
-        title: 'Airwars',
-        description: 'Comprehensive database of airstrikes and conflict incidents',
-        url: 'https://airwars.org/'
-    },
-    {
         id: 'scpr',
         title: 'Syrian Center for Policy Research',
         description: 'Economic impact assessments and socioeconomic data',
@@ -46,5 +34,11 @@ export const sources = [
         title: 'UN Refugee Agency (UNHCR)',
         description: 'Data on refugees and internally displaced persons',
         url: 'https://www.unhcr.org/'
+    },
+    {
+        id: 'gdelt',
+        title: 'Global Database of Events, Language, and Tone (GDELT)',
+        description: 'Global event data including conflict events',
+        url: 'https://www.gdeltproject.org/'
     }
 ];

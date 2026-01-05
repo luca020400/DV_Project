@@ -2,6 +2,7 @@ import * as d3 from 'd3';
 
 import casualties_data_url from './casualties_data.json?url';
 import displacement_data_url from './displacement_data.json?url';
+import conflict_data_url from './conflict_data.json?url';
 
 class DataRegistry {
     constructor() {
@@ -12,7 +13,7 @@ class DataRegistry {
         this.urls = {
             casualtyTrendData: casualties_data_url,
             displacementData: displacement_data_url,
-            regionalConflictData: undefined,
+            regionalConflictData: conflict_data_url,
             economicIndicatorsData: undefined,
             timelineData: undefined,
         };

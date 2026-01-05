@@ -8,6 +8,7 @@ import LinePlot from '../d3/LinePlot';
 import ScatterPlot from '../d3/ScatterPlot';
 import CasualtiesChart from "../d3/CasualtiesChart";
 import DisplacementChart from "../d3/DisplacementChart";
+import RegionalConflictChart from "../d3/RegionalConflictChart";
 
 // Render visualization based on component name
 function DynamicVisualization({ componentName, data, isMobile }) {
@@ -15,6 +16,7 @@ function DynamicVisualization({ componentName, data, isMobile }) {
         case 'CasualtyTrendChart':
             return <CasualtiesChart data={data} isMobile={isMobile} />;
         case 'RegionalConflictMap':
+            return <RegionalConflictChart data={data} isMobile={isMobile} />;
         case 'EconomicIndicators':
             return <ScatterPlot data={data} isMobile={isMobile} />;
         case 'TimelineChart':

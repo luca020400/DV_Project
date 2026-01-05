@@ -39,7 +39,7 @@ export const sections = [
             title: 'Regional Conflict Intensity Map',
             component: 'RegionalConflictMap'
         },
-        sourceData: ['airwars', 'acled']
+        sourceData: ['gdelt', 'acled']
     },
     {
         id: 'section4',
