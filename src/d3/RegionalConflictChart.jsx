@@ -152,7 +152,7 @@ function RegionalConflictChart({
 
     // Visual Memoization
     const colorScale = useMemo(() => {
-        const interpolator = isDark ? d3.interpolateYlOrRd : d3.interpolatePuRd;
+        const interpolator = isDark ? d3.interpolateYlOrRd : d3.interpolateOranges;
         return d3.scaleSequential(interpolator).domain([0, maxVal]);
     }, [maxVal, isDark]);
 
