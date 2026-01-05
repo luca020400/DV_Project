@@ -297,7 +297,7 @@ function CasualtiesChart({
     };
 
     return (
-        <div className={`w-full flex flex-col gap-6 p-6 ${isDark ? '' : 'bg-gray-50'}`}>
+        <div className={`w-full flex flex-col gap-6 p-6`}>
             {/* Controls */}
             <div className={`${themeStyles.background} rounded-xl shadow-lg border ${themeStyles.border} p-5 transition-colors duration-300`}>
                 <div className="flex flex-col md:flex-row gap-8 justify-evenly">
