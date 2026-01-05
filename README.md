@@ -79,17 +79,32 @@ All data presented in this dashboard comes from publicly available, verified sou
 
 ## Data Processing Pipeline
 
-1. **Data Collection**: Download datasets from the above sources in CSV/JSON formats.
+The project includes automated data processing scripts to transform raw datasets into visualization-ready formats.
 
-## Methodological Limitations
+### Casualty Data Processing
 
-Document known limitations and biases in the data:
+**Script**: `preprocess/extract_ucdp.py`
 
-- [ ] **Data Gaps**: Identify time periods or geographic areas with incomplete coverage
-- [ ] **Attribution Uncertainty**: Document how uncertain causality is handled
-- [ ] **Reporting Bias**: Note potential biases in different sources
-- [ ] **Temporal Lag**: Explain delays in data reporting
-- [ ] **Scope Limitations**: Define what is and isn't included
+**Input**: UCDP (Uppsala Conflict Data Program) CSV export with conflict events data
+
+**Processing Steps**:
+1. **Temporal Filtering**: Filters data from July 2010 to January 2021 to match the conflict timeline
+2. **Regional Normalization**: Maps raw administrative region names to standardized regions:
+   - Aleppo, Damascus, Idlib, Daraa, Homs, and Other
+3. **Casualty Categorization**: Separates casualties into two types:
+   - **Civilian Deaths**: Direct civilian casualties
+   - **Combatant Deaths**: Combatants from both sides (deaths_a + deaths_b)
+4. **Monthly Aggregation**: Groups daily event data into monthly summaries for trend analysis
+5. **JSON Export**: Outputs processed data as `casualties_data.json` for React consumption
+
+## Data Quality & Limitations
+
+This project acknowledges the following limitations in conflict data:
+
+- **Data Gaps**: UCDP data focuses on one-sided violence and organized conflict events. Some casualties from unorganized violence or undocumented incidents may not be captured
+- **Attribution Uncertainty**: Casualty attribution in conflict zones is inherently challenging; figures represent reported counts and may have margins of error
+- **Scope Limitations**: This dashboard focuses on quantifiable casualties and does not capture displacement
+- **Regional Aggregation**: Some deaths occurring in disputed or transitional areas are classified as "Other"
 
 ## Project Structure
 
