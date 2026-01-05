@@ -34,5 +34,11 @@ export const sources = [
         title: 'Wikipedia - Timeline of the Syrian Civil War',
         description: 'Chronological data on key events in the conflict',
         url: 'https://en.wikipedia.org/wiki/Timeline_of_the_Syrian_civil_war'
+    },
+    {
+        id: 'ucdp',
+        title: 'Uppsala Conflict Data Program (UCDP)',
+        description: 'Data on conflict-related casualties and events',
+        url: 'https://ucdp.uu.se/'
     }
 ];

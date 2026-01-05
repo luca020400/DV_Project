@@ -11,7 +11,7 @@ export const sections = [
             title: 'Casualty Trends Over Time',
             component: 'CasualtyTrendChart'
         },
-        sourceData: ['ocha']
+        sourceData: ['ucdp', 'wikipedia_timeline']
     },
     {
         id: 'section2',
