@@ -296,7 +296,7 @@ function DisplacementChart({
                     {hoveredData && (
                         <div>
                             <div className="font-bold border-b pb-2 mb-2 border-gray-500/30 text-center">
-                                {d3.timeFormat('%b %Y')(hoveredData.date)}
+                                {d3.timeFormat('%Y')(hoveredData.date)}
                             </div>
 
                             {/* IDP Section */}
