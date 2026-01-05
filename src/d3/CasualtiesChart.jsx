@@ -245,7 +245,9 @@ function CasualtiesChart({
                 const [x] = d3.pointer(event);
                 const date = xScale.invert(x);
                 const i = bisect(filteredData, date);
-                const d = filteredData[i];
+                const d0 = filteredData[i - 1];
+                const d1 = filteredData[i];
+                const d = d0 && d1 ? (date - d0.date > d1.date - date ? d1 : d0) : (d1 || d0);
                 if (d) {
                     verticalLine
                         .attr('x1', xScale(d.date)).attr('x2', xScale(d.date))
@@ -254,7 +256,7 @@ function CasualtiesChart({
                     setHoveredPoint({ data: d });
 
                     const bounds = containerRef.current.getBoundingClientRect();
-                    const tooltipX = bounds.left + marginLeft + x + 10;
+                    const tooltipX = bounds.left + marginLeft / 2 + x;
                     const tooltipY = bounds.top + marginTop + 10;
 
                     d3.select(tooltipRef.current)
@@ -298,7 +300,7 @@ function CasualtiesChart({
         <div className={`w-full flex flex-col gap-6 p-6 ${isDark ? '' : 'bg-gray-50'}`}>
             {/* Controls */}
             <div className={`${themeStyles.background} rounded-xl shadow-lg border ${themeStyles.border} p-5 transition-colors duration-300`}>
-                <div className="flex flex-col md:flex-row gap-8 justify-around">
+                <div className="flex flex-col md:flex-row gap-8 justify-evenly">
                     <div>
                         <label className={`block text-xs font-semibold uppercase tracking-wider mb-3 ${themeStyles.textSub}`}>Chart Type</label>
                         <div className={`flex rounded-lg p-1 ${isDark ? 'bg-slate-700' : 'bg-gray-100'}`}>
