@@ -56,7 +56,7 @@ export function useVisualizationData(dataKey) {
 
     return {
         data: data[dataKey],
-        isLoading: loading[dataKey] || false,
-        error: errors[dataKey] || null,
+        isLoading: loading[dataKey],
+        error: errors[dataKey],
     };
 }

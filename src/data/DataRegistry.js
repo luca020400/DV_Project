@@ -7,10 +7,8 @@ import geojson_url from './geo/syria.json?url';
 
 class DataRegistry {
     constructor() {
-        // Listeners for state changes
         this.listeners = [];
 
-        // URLs for fetching data - now supports multiple named URLs per data type
         this.urls = {
             casualtyTrendData: casualties_data_url,
             displacementData: displacement_data_url,
@@ -22,7 +20,6 @@ class DataRegistry {
             timelineData: undefined,
         };
 
-        // Initialize data only with defaults for categories without URLs
         this.data = {
             casualtyTrendData: null,
             displacementData: null,
@@ -31,16 +28,14 @@ class DataRegistry {
             timelineData: this.urls.timelineData ? null : this.generateDefaultData(),
         };
 
-        // Track loading states
         this.loading = {
-            casualtyTrendData: this.urls.casualtyTrendData ? true : false,
-            displacementData: this.urls.displacementData ? true : false,
-            regionalConflictData: this.urls.regionalConflictData ? true : false,
+            casualtyTrendData: true,
+            displacementData: true,
+            regionalConflictData: true,
             economicIndicatorsData: this.urls.economicIndicatorsData ? true : false,
             timelineData: this.urls.timelineData ? true : false,
         };
 
-        // Track errors
         this.errors = {
             casualtyTrendData: null,
             displacementData: null,
@@ -69,40 +64,19 @@ class DataRegistry {
         return d3.ticks(0, 1000000, length).map(d => Math.random() * d);
     }
 
-    getData(key) {
-        return this.data[key];
-    }
-
-    isLoading(key) {
-        return this.loading[key] || false;
-    }
-
-    getError(key) {
-        return this.errors[key] || null;
-    }
-
     setData(key, data) {
-        if (Object.hasOwn(this.data, key)) {
-            this.data[key] = data;
-
-            this.notify();
-        }
+        this.data[key] = data;
+        this.notify();
     }
 
     setLoading(key, isLoading) {
-        if (Object.hasOwn(this.loading, key)) {
-            this.loading[key] = isLoading;
-
-            this.notify();
-        }
+        this.loading[key] = isLoading;
+        this.notify();
     }
 
     setError(key, error) {
-        if (Object.hasOwn(this.errors, key)) {
-            this.errors[key] = error;
-
-            this.notify();
-        }
+        this.errors[key] = error;
+        this.notify();
     }
 
     async fetchData(key, urlsObj) {
