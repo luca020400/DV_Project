@@ -1,0 +1,92 @@
+[
+  {
+    "year": "2011-01-01",
+    "gdp": 67.54,
+    "inflation": 11.5740778155847,
+    "currency": 48.3366666666667,
+    "waterAccess": 92,
+    "electricity": 21,
+    "foodInsecurity": 15
+  },
+  {
+    "year": "2012-01-01",
+    "gdp": 43.19,
+    "inflation": 26.2462552485551,
+    "currency": 64.5808333333333,
+    "waterAccess": 80,
+    "electricity": 14,
+    "foodInsecurity": 28
+  },
+  {
+    "year": "2013-01-01",
+    "gdp": 21.36,
+    "inflation": 31.7701939095293,
+    "currency": 108.733333333333,
+    "waterAccess": 65,
+    "electricity": 8,
+    "foodInsecurity": 40
+  },
+  {
+    "year": "2014-01-01",
+    "gdp": 21.50,
+    "inflation": 37.0945840345087,
+    "currency": 154.13,
+    "waterAccess": 58,
+    "electricity": 6,
+    "foodInsecurity": 45
+  },
+  {
+    "year": "2015-01-01",
+    "gdp": 16.47,
+    "inflation": 38.2145477487644,
+    "currency": 237.029166666667,
+    "waterAccess": 50,
+    "electricity": 4,
+    "foodInsecurity": 52
+  },
+  {
+    "year": "2016-01-01",
+    "gdp": 12.60,
+    "inflation": 36.8710415587113,
+    "currency": 460.275833333333,
+    "waterAccess": 48,
+    "electricity": 4,
+    "foodInsecurity": 55
+  },
+  {
+    "year": "2017-01-01",
+    "gdp": 16.37,
+    "inflation": 37.2209382232321,
+    "currency": 492.610833333333,
+    "waterAccess": 52,
+    "electricity": 6,
+    "foodInsecurity": 48
+  },
+  {
+    "year": "2018-01-01",
+    "gdp": 21.50,
+    "inflation": 13.1879402830296,
+    "currency": 436.5,
+    "waterAccess": 54,
+    "electricity": 8,
+    "foodInsecurity": 42
+  },
+  {
+    "year": "2019-01-01",
+    "gdp": 22.58,
+    "inflation": 19.8313540100224,
+    "currency": 436.5,
+    "waterAccess": 52,
+    "electricity": 6,
+    "foodInsecurity": 50
+  },
+  {
+    "year": "2020-01-01",
+    "gdp": 12.05,
+    "inflation": 61.5864142890263,
+    "currency": 877.945250896057,
+    "waterAccess": 50,
+    "electricity": 3,
+    "foodInsecurity": 60
+  }
+]

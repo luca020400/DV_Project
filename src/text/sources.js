@@ -40,5 +40,23 @@ export const sources = [
         title: 'Global Database of Events, Language, and Tone (GDELT)',
         description: 'Global event data including conflict events',
         url: 'https://www.gdeltproject.org/'
+    },
+    {
+        id: 'imf',
+        title: 'International Monetary Fund (IMF)',
+        description: 'Economic data and forecasts',
+        url: 'https://www.imf.org/'
+    },
+    {
+        id: 'icrc',
+        title: 'International Committee of the Red Cross (ICRC)',
+        description: 'Humanitarian impact reports and data',
+        url: 'https://www.icrc.org/'
+    },
+    {
+        id: 'undp',
+        title: 'United Nations Development Programme (UNDP)',
+        description: 'Development indicators and impact assessments',
+        url: 'https://www.undp.org/'
     }
 ];

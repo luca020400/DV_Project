@@ -3,6 +3,8 @@ import * as d3 from 'd3';
 import casualties_data_url from './casualties_data.json?url';
 import displacement_data_url from './displacement_data.json?url';
 import conflict_data_url from './conflict_data.json?url';
+import economic_data_url from './economic_data.json?url';
+
 import geojson_url from './geo/syria.json?url';
 
 class DataRegistry {
@@ -16,7 +18,7 @@ class DataRegistry {
                 data: conflict_data_url,
                 geoJson: geojson_url,
             },
-            economicIndicatorsData: undefined,
+            economicIndicatorsData: economic_data_url,
             timelineData: undefined,
         };
 
@@ -24,7 +26,7 @@ class DataRegistry {
             casualtyTrendData: null,
             displacementData: null,
             regionalConflictData: null,
-            economicIndicatorsData: this.urls.economicIndicatorsData ? null : this.generateDefaultData(),
+            economicIndicatorsData: null,
             timelineData: this.urls.timelineData ? null : this.generateDefaultData(),
         };
 
@@ -32,7 +34,7 @@ class DataRegistry {
             casualtyTrendData: true,
             displacementData: true,
             regionalConflictData: true,
-            economicIndicatorsData: this.urls.economicIndicatorsData ? true : false,
+            economicIndicatorsData: true,
             timelineData: this.urls.timelineData ? true : false,
         };
 

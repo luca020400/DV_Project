@@ -1,0 +1,112 @@
+[
+    {
+        "year": "2011-01-01",
+        "waterAccess": 90,
+        "electricity": 20,
+        "foodInsecurity": 15,
+        "sources": {
+            "waterAccess": "pre-war baseline, approximated higher access before major conflict",
+            "electricity": "pre-war system operational",
+            "foodInsecurity": "assumed low pre-conflict"
+        }
+    },
+    {
+        "year": "2012-01-01",
+        "waterAccess": 80,
+        "electricity": 15,
+        "foodInsecurity": 25,
+        "sources": {
+            "waterAccess": "general deterioration from conflict onset",
+            "electricity": "conflict impacts",
+            "foodInsecurity": "conflict and economy shock"
+        }
+    },
+    {
+        "year": "2013-01-01",
+        "waterAccess": 75,
+        "electricity": 12,
+        "foodInsecurity": 35,
+        "sources": {
+            "waterAccess": "ongoing infrastructure damage",
+            "electricity": "continued disruption",
+            "foodInsecurity": "war-related supply issues"
+        }
+    },
+    {
+        "year": "2014-01-01",
+        "waterAccess": 70,
+        "electricity": 10,
+        "foodInsecurity": 40,
+        "sources": {
+            "waterAccess": "general decline",
+            "electricity": "grid damage and outages",
+            "foodInsecurity": "expansion of food insecurity"
+        }
+    },
+    {
+        "year": "2015-01-01",
+        "waterAccess": 65,
+        "electricity": 8,
+        "foodInsecurity": 45,
+        "sources": {
+            "waterAccess": "infrastructure depreciation",
+            "electricity": "ongoing failures",
+            "foodInsecurity": "mid-war insecurity"
+        }
+    },
+    {
+        "year": "2016-01-01",
+        "waterAccess": 60,
+        "electricity": 7,
+        "foodInsecurity": 50,
+        "sources": {
+            "waterAccess": "deterioration continues",
+            "electricity": "reduced grid capacity",
+            "foodInsecurity": "increasing proportion food insecure"
+        }
+    },
+    {
+        "year": "2017-01-01",
+        "waterAccess": 58,
+        "electricity": 6,
+        "foodInsecurity": 52,
+        "sources": {
+            "waterAccess": "continuing infrastructure challenges",
+            "electricity": "local variation (1-6 hrs)",
+            "foodInsecurity": "majority population needs assistance"
+        }
+    },
+    {
+        "year": "2018-01-01",
+        "waterAccess": 55,
+        "electricity": 6,
+        "foodInsecurity": 55,
+        "sources": {
+            "waterAccess": "long-term decline",
+            "electricity": "persistent outages",
+            "foodInsecurity": "high insecurity"
+        }
+    },
+    {
+        "year": "2019-01-01",
+        "waterAccess": 53,
+        "electricity": 5,
+        "foodInsecurity": 58,
+        "sources": {
+            "waterAccess": "below half without reliable access",
+            "electricity": "very low supply",
+            "foodInsecurity": "wfp & un estimates rising"
+        }
+    },
+    {
+        "year": "2020-01-01",
+        "waterAccess": 50,
+        "electricity": 4,
+        "foodInsecurity": 60,
+        "sources": {
+            "waterAccess": "UNICEF & crisis data",
+            "electricity": "ongoing limited supply",
+            "foodInsecurity": "majority needs food aid"
+        }
+    }
+]

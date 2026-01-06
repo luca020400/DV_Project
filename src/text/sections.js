@@ -53,7 +53,7 @@ export const sections = [
             title: 'Economic Indicators and Projections',
             component: 'EconomicIndicators'
         },
-        sourceData: ['worldbank', 'scpr']
+        sourceData: ['worldbank', 'imf', 'icrc', 'undp']
     },
     {
         id: 'section5',
