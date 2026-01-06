@@ -15,67 +15,57 @@ This project presents a consolidated, evidence-driven account of the Syrian conf
 
 ## Data Sources
 
-All data presented in this dashboard comes from publicly available, verified sources:
+The data presented in this dashboard comes from publicly available, verified sources:
 
-### 1. UN Office for the Coordination of Humanitarian Affairs (OCHA)
-**URL**: https://www.unocha.org/
-
-**Purpose**: Primary source for displacement and humanitarian crisis data
-
-**Data Points Used**:
-- Displacement figures and trends
-- Humanitarian needs assessments
-- Refugee and internally displaced person (IDP) statistics
-
-### 2. Airwars
-**URL**: https://airwars.org/
-
-**Purpose**: Comprehensive database of airstrikes and conflict incidents
-
-**Data Points Used**:
-- Airstrike frequency and locations
-- Incident classifications and severity
-- Temporal distribution of events
-
-### 3. Syrian Center for Policy Research (SCPR)
+### 1. Syrian Center for Policy Research (SCPR)
 **URL**: https://scpr-syria.org/
 
 **Purpose**: Economic impact assessments and socioeconomic data
 
-**Data Points Used**:
-- Economic loss estimates
-- Infrastructure damage assessments
-- Socioeconomic impact metrics
-
-### 4. World Bank
+### 2. World Bank
 **URL**: https://www.worldbank.org/
 
 **Purpose**: Regional economic and development indicators
 
-**Data Points Used**:
-- GDP and economic growth estimates
-- Development indicators
-- Regional comparative analysis
-
-### 5. Armed Conflict Location & Event Data Project (ACLED)
+### 3. Armed Conflict Location & Event Data Project (ACLED)
 **URL**: https://acleddata.com/
 
 **Purpose**: Detailed event data on conflict incidents
 
-**Data Points Used**:
-- Event locations and classifications
-- Fatality estimates
-- Actor involvement and conflict dynamics
-
-### 6. Wikipedia - Timeline of the Syrian Civil War
+### 4. Wikipedia - Timeline of the Syrian Civil War
 **URL**: https://en.wikipedia.org/wiki/Timeline_of_the_Syrian_civil_war
 
 **Purpose**: Chronological data on key events in the conflict
 
-**Data Points Used**:
-- Major event dates and descriptions
-- Political and military turning points
-- Humanitarian crisis milestones
+### 5. Uppsala Conflict Data Program (UCDP)
+**URL**: https://ucdp.uu.se/
+
+**Purpose**: Data on conflict-related casualties and events
+
+### 6. UN Refugee Agency (UNHCR)
+**URL**: https://www.unhcr.org/
+
+**Purpose**: Data on refugees and internally displaced persons
+
+### 7. Global Database of Events, Language, and Tone (GDELT)
+**URL**: https://www.gdeltproject.org/
+
+**Purpose**: Global event data including conflict events
+
+### 8. International Monetary Fund (IMF)
+**URL**: https://www.imf.org/
+
+**Purpose**: Economic data and forecasts
+
+### 9. International Committee of the Red Cross (ICRC)
+**URL**: https://www.icrc.org/
+
+**Purpose**: Humanitarian impact reports and data
+
+### 10. United Nations Development Programme (UNDP)
+**URL**: https://www.undp.org/
+
+**Purpose**: Development indicators and impact assessments
 
 ## Data Processing Pipeline
 
@@ -118,14 +108,85 @@ The project includes automated data processing scripts to transform raw datasets
    - **Country-specific fields**: Individual counts for Turkey, Lebanon, Jordan, Germany, and Iraq
    - **Continental fields**: Aggregated counts for Europe, Africa, and Other regions
 
+### Economic Indicators Data Processing
+
+**Scripts**: 
+- `preprocess/extract_gdp.py` - Extracts World Bank GDP data
+- `preprocess/extract_inflation.py` - Extracts World Bank inflation data
+- `preprocess/extract_exchange.py` - Extracts World Bank exchange rate data
+
+**Inputs**: World Bank API CSV exports with country-level economic indicators
+
+**Processing Steps**:
+1. **GDP Processing** (`extract_gdp.py`):
+   - Filters for "GDP (current US$)" indicator for Syrian Arab Republic
+   - Extracts year-value pairs from 1960-2022
+   - Outputs as `preprocess/gdp.json`
+
+2. **Inflation Processing** (`extract_inflation.py`):
+   - Filters for "Inflation, GDP deflator (annual %)" indicator for Syrian Arab Republic
+   - Extracts year-value pairs from 1961-2022
+   - Outputs as `preprocess/inflation.json`
+
+3. **Exchange Rate Processing** (`extract_exchange.py`):
+   - Filters for "Official exchange rate (LCU per US$, period average)" indicator
+   - Extracts historical Syrian Pound to USD conversion rates
+   - Outputs as `preprocess/exchange.json`
+
+4. **Humanitarian Indicators** (`human.json`):
+   - **IMPORTANT**: Water access, electricity availability, and food insecurity data are **NOT from official datasets**
+   - These metrics have been **researched and interpolated from humanitarian organization reports, and OCHA crisis assessments**
+   - Data points include:
+     - **Water Access**: Percentage of population with reliable access to clean water and sanitation (International Red Cross and UNICEF reports)
+     - **Electricity**: Average daily hours of grid access per household (Conflict reports and news articles)
+     - **Food Insecurity**: Percentage of population lacking reliable access to food (WFP assessments and humanitarian situation reports)
+   - Missing values have been interpolated from events documented in conflict literature and organizational assessments
+
+5. **Merged Economic Data** (`src/data/economic_data.json`):
+   - Combines GDP (billions USD), inflation (%), exchange rate (SYP/USD), and humanitarian indicators
+   - Filters to 2011-2020 period matching the conflict timeline
+
+**Chart Component**: `src/d3/EconomicIndicatorsChart.jsx`
+- Displays 6 metrics in interactive, zoomable grid layout
+- Supports dark/light theme switching
+- Includes comparative analysis and trend visualization
+
+### Regional Conflict Chart Data Processing
+
+**Source Data**: 
+- Pre-processed casualty data from `src/data/conflict_data.json`
+- Conflict events aggregated by region and time period
+
+**Processing Steps**:
+1. **Temporal Aggregation**: Groups conflict events into time slices (typically monthly or quarterly)
+2. **Regional Distribution**: Aggregates casualty counts by Syrian administrative region
+3. **Intensity Scaling**: Normalizes casualty counts to create color-intensity mapping for geographical visualization
+4. **Geographic Mapping**: Links regional data to GeoJSON features for map visualization
+
+**Chart Component**: `src/d3/RegionalConflictChart.jsx`
+- Interactive animated map showing conflict intensity over time
+- Playback controls for temporal progression
+- Regional hover tooltips with casualty statistics
+- Color gradient represents conflict intensity by region
+
 ## Data Quality & Limitations
 
 This project acknowledges the following limitations in conflict data:
 
 - **Data Gaps**: UCDP data focuses on one-sided violence and organized conflict events. Some casualties from unorganized violence or undocumented incidents may not be captured
 - **Attribution Uncertainty**: Casualty attribution in conflict zones is inherently challenging; figures represent reported counts and may have margins of error
-- **Scope Limitations**: This dashboard focuses on quantifiable casualties and does not capture displacement
+- **Scope Limitations**: This dashboard focuses on quantifiable casualties and does not capture all humanitarian impacts
 - **Regional Aggregation**: Some deaths occurring in disputed or transitional areas are classified as "Other"
+
+### Humanitarian Indicators Limitations
+
+The following metrics **do not derive from official datasets**:
+
+- **Water Access, Electricity Availability, and Food Insecurity** are estimated from:
+  - Academic articles on Syrian infrastructure during conflict
+  - Humanitarian organization reports (OCHA, WFP, UNHCR, UNICEF)
+  - Crisis assessments and situation reports
+  - Infrastructure damage documentation from news articles
 
 ## Project Structure
 
@@ -143,8 +204,8 @@ This project acknowledges the following limitations in conflict data:
 
 ### Prerequisites
 
-- Node.js
-- npm (Node Package Manager)
+- node.js
+- npm
 
 ### Installation
 
@@ -168,9 +229,9 @@ npm run dev
 
 ## Technologies Used
 
-- **React 19**: UI framework
+- **React**: UI framework
 - **Vite**: Build tool and dev server
-- **D3.js v7**: Data visualization library
+- **D3.js**: Data visualization library
 - **Tailwind CSS**: Utility-first CSS framework
 - **Lucide React**: Icon library
 
