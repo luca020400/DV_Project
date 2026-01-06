@@ -358,8 +358,10 @@ function ConflictEventsChart({
 
     // Map Configuration
     const projection = useMemo(() => {
-        const proj = d3.geoMercator();
-        proj.fitExtent([[0, 0], [boundedWidth, boundedHeight]], dataObj.syriaGeoJson);
+        const proj = d3.geoMercator()
+            .center([38, 35])
+            .translate([boundedWidth / 2, boundedHeight / 2])
+            .scale(5500);
         return proj;
     }, [dataObj, boundedWidth, boundedHeight]);
 
