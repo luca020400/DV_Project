@@ -85,7 +85,7 @@ The project includes automated data processing scripts to transform raw datasets
    - **Civilian Deaths**: Direct civilian casualties
    - **Combatant Deaths**: Combatants from both sides (deaths_a + deaths_b)
 4. **Monthly Aggregation**: Groups daily event data into monthly summaries for trend analysis
-5. **JSON Export**: Outputs processed data as `casualties_data.json` for React consumption
+5. **JSON Export**: Output saved to `src/data/casualties_data.json`
 
 ### Displacement Data Processing
 
@@ -102,7 +102,7 @@ The project includes automated data processing scripts to transform raw datasets
    - Europe, Africa, and Other
    - Uses ISO3 country codes and pycountry_convert library for accurate continent mapping
 5. **Annual Aggregation**: Groups displacement data by year, creating yearly snapshots from 2011-2025
-6. **JSON Export**: Outputs processed data as `displacement_data.json` containing:
+6. **JSON Export**: Output saved to `src/data/displacement_data.json` containing:
    - **idp**: Internally displaced persons (those displaced within Syria)
    - **totalRefugees**: Total external refugees and asylum-seekers
    - **Country-specific fields**: Individual counts for Turkey, Lebanon, Jordan, Germany, and Iraq
@@ -121,17 +121,17 @@ The project includes automated data processing scripts to transform raw datasets
 1. **GDP Processing** (`extract_gdp.py`):
    - Filters for "GDP (current US$)" indicator for Syrian Arab Republic
    - Extracts year-value pairs from 1960-2022
-   - Outputs as `src/data/pieces/gdp.json`
+   - Output saved to `src/data/pieces/gdp.json`
 
 2. **Inflation Processing** (`extract_inflation.py`):
    - Filters for "Inflation, GDP deflator (annual %)" indicator for Syrian Arab Republic
    - Extracts year-value pairs from 1961-2022
-   - Outputs as `src/data/pieces/inflation.json`
+   - Output saved to `src/data/pieces/inflation.json`
 
 3. **Exchange Rate Processing** (`extract_exchange.py`):
    - Filters for "Official exchange rate (LCU per US$, period average)" indicator
    - Extracts historical Syrian Pound to USD conversion rates
-   - Outputs as `src/data/pieces/exchange.json`
+   - Output saved to `src/data/pieces/exchange.json`
 
 4. **Humanitarian Indicators** (`human.json`):
    - **IMPORTANT**: Water access, electricity availability, and food insecurity data are **NOT from official datasets**
@@ -147,7 +147,7 @@ The project includes automated data processing scripts to transform raw datasets
    - Filters to 2011-2020 period matching the conflict timeline
 
 **Chart Component**: `src/d3/EconomicIndicatorsChart.jsx`
-- Displays 6 metrics in interactive, zoomable grid layout
+- Displays 6 metrics in interactive, focusable grid layout
 - Supports dark/light theme switching
 - Includes comparative analysis and trend visualization
 
