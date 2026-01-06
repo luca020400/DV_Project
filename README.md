@@ -148,7 +148,6 @@ The project includes automated data processing scripts to transform raw datasets
 
 **Chart Component**: `src/d3/EconomicIndicatorsChart.jsx`
 - Displays 6 metrics in interactive, focusable grid layout
-- Supports dark/light theme switching
 - Includes comparative analysis and trend visualization
 
 ### Regional Conflict Chart Data Processing
@@ -168,6 +167,41 @@ The project includes automated data processing scripts to transform raw datasets
 - Playback controls for temporal progression
 - Regional hover tooltips with casualty statistics
 - Color gradient represents conflict intensity by region
+
+### Conflict Events Timeline Data Processing
+
+**Source**: Wikipedia - Timeline of the Syrian Civil War
+
+**Input**: Manual curation of 75 significant events from the Syrian conflict timeline (2011-2020)
+
+**Processing Steps**:
+1. **Event Selection**: Extracted 75 key events spanning from the initial protests in March 2011 through major conflict milestones
+2. **Temporal Organization**: Organized events chronologically by date for sequential playback
+3. **Spatial Mapping**: Added geographic coordinates (latitude/longitude) for each event location within Syria and neighboring regions
+4. **Event Classification**: Categorized events by type for visual differentiation:
+   - **uprising**: Initial civil unrest and protest movements
+   - **conflict**: Military clashes and combat operations
+   - **political**: Diplomatic events, sanctions, international interventions
+   - **attack**: Bombings, terrorist attacks, suicide attacks
+   - **massacre**: Mass casualty civilian killings
+   - **chemical**: Chemical weapons deployments
+   - **isis**: ISIS-related events and territorial control changes
+   - **intervention**: International military interventions
+   - **kurdish**: Kurdish YPG/PKK military operations
+5. **Data Structure**: Output saved to `src/data/events.json` containing event objects with:
+   - **date**: ISO date format (YYYY-MM-DD)
+   - **title**: Event headline
+   - **description**: Detailed context and impact
+   - **lat/lng**: Geographic coordinates for map visualization
+   - **type**: Event category for filtering and styling
+
+**Chart Component**: `src/d3/ConflictEventsChart.jsx`
+- Interactive animated timeline with playback controls
+- Map visualization showing event locations with city labels
+- Sidebar event log with synchronization
+- Tooltip information on event hover
+- Play/pause/reset controls for exploration
+- Progress slider for manual timeline navigation
 
 ## Data Quality & Limitations
 
