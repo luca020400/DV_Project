@@ -121,17 +121,17 @@ The project includes automated data processing scripts to transform raw datasets
 1. **GDP Processing** (`extract_gdp.py`):
    - Filters for "GDP (current US$)" indicator for Syrian Arab Republic
    - Extracts year-value pairs from 1960-2022
-   - Outputs as `preprocess/gdp.json`
+   - Outputs as `src/data/pieces/gdp.json`
 
 2. **Inflation Processing** (`extract_inflation.py`):
    - Filters for "Inflation, GDP deflator (annual %)" indicator for Syrian Arab Republic
    - Extracts year-value pairs from 1961-2022
-   - Outputs as `preprocess/inflation.json`
+   - Outputs as `src/data/pieces/inflation.json`
 
 3. **Exchange Rate Processing** (`extract_exchange.py`):
    - Filters for "Official exchange rate (LCU per US$, period average)" indicator
    - Extracts historical Syrian Pound to USD conversion rates
-   - Outputs as `preprocess/exchange.json`
+   - Outputs as `src/data/pieces/exchange.json`
 
 4. **Humanitarian Indicators** (`human.json`):
    - **IMPORTANT**: Water access, electricity availability, and food insecurity data are **NOT from official datasets**
