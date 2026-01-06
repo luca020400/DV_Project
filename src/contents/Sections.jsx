@@ -4,11 +4,11 @@ import { useTheme } from '../contexts/ThemeContext';
 import { useVisualizationData } from "../contexts/DataProviderContext";
 import componentDataKeyMapper from "../util/ComponentDataKeyMapper";
 import { getBgClass, getTextClass } from './themeUtils';
-import LinePlot from '../d3/LinePlot';
 import CasualtiesChart from "../d3/CasualtiesChart";
 import DisplacementChart from "../d3/DisplacementChart";
 import RegionalConflictChart from "../d3/RegionalConflictChart";
 import EconomicIndicatorsCharts from "../d3/EconomicIndicatorsChart";
+import ConflictEventsChart from "../d3/ConflictEventsChart";
 
 // Render visualization based on component name
 function DynamicVisualization({ componentName, data, isMobile }) {
@@ -20,7 +20,7 @@ function DynamicVisualization({ componentName, data, isMobile }) {
         case 'EconomicIndicators':
             return <EconomicIndicatorsCharts data={data} isMobile={isMobile} />;
         case 'TimelineChart':
-            return <LinePlot data={data} isMobile={isMobile} />;
+            return <ConflictEventsChart dataObj={data} isMobile={isMobile} />;
         case 'DisplacementChart':
             return <DisplacementChart data={data} isMobile={isMobile} />;
         default:

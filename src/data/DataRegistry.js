@@ -4,8 +4,10 @@ import casualties_data_url from './casualties_data.json?url';
 import displacement_data_url from './displacement_data.json?url';
 import conflict_data_url from './conflict_data.json?url';
 import economic_data_url from './economic_data.json?url';
+import events_data_url from './events.json?url';
 
 import geojson_url from './geo/syria.json?url';
+import neighbors_geojson_url from './geo/neighbors.json?url';
 
 class DataRegistry {
     constructor() {
@@ -19,7 +21,11 @@ class DataRegistry {
                 geoJson: geojson_url,
             },
             economicIndicatorsData: economic_data_url,
-            timelineData: undefined,
+            timelineData: {
+                events: events_data_url,
+                syriaGeoJson: geojson_url,
+                neighborsGeoJson: neighbors_geojson_url,
+            }
         };
 
         this.data = {
@@ -27,7 +33,7 @@ class DataRegistry {
             displacementData: null,
             regionalConflictData: null,
             economicIndicatorsData: null,
-            timelineData: this.urls.timelineData ? null : this.generateDefaultData(),
+            timelineData: null,
         };
 
         this.loading = {
@@ -35,7 +41,7 @@ class DataRegistry {
             displacementData: true,
             regionalConflictData: true,
             economicIndicatorsData: true,
-            timelineData: this.urls.timelineData ? true : false,
+            timelineData: true,
         };
 
         this.errors = {

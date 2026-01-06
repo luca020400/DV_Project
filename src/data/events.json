@@ -1,0 +1,570 @@
+[
+    {
+        "date": "2011-03-15",
+        "title": "Protests Begin in Daraa",
+        "description": "Major unrest begins triggered by the arrest of teenagers for anti-government graffiti; security forces open fire on protesters.",
+        "lat": 32.6189,
+        "lng": 36.1014,
+        "type": "uprising"
+    },
+    {
+        "date": "2011-04-25",
+        "title": "Siege of Daraa",
+        "description": "The Syrian Army initiates a large-scale military attack on Daraa with tanks, marking the start of military crackdowns.",
+        "lat": 32.6189,
+        "lng": 36.1014,
+        "type": "conflict"
+    },
+    {
+        "date": "2011-06-06",
+        "title": "Fighting in Jisr al-Shughur",
+        "description": "Heavy fighting breaks out; unverified reports claim security forces defected after refusing to fire on civilians.",
+        "lat": 35.8136,
+        "lng": 36.3219,
+        "type": "conflict"
+    },
+    {
+        "date": "2011-07-29",
+        "title": "Formation of FSA",
+        "description": "Defected officers announce the formation of the Free Syrian Army (FSA) to protect protesters and remove the government.",
+        "lat": 34.9667,
+        "lng": 36.6167,
+        "type": "political"
+    },
+    {
+        "date": "2011-11-12",
+        "title": "Arab League Suspension",
+        "description": "The Arab League suspends Syria's membership due to the government's crackdown on protesters.",
+        "lat": 30.0444,
+        "lng": 31.2357,
+        "type": "political"
+    },
+    {
+        "date": "2011-12-23",
+        "title": "Damascus Bombings",
+        "description": "Two coordinated suicide car bombs in Damascus kill 44 people, marking an escalation in insurgent tactics.",
+        "lat": 33.5138,
+        "lng": 36.2765,
+        "type": "attack"
+    },
+    {
+        "date": "2012-02-04",
+        "title": "UN Resolution Vetoed",
+        "description": "Russia and China veto a UN Security Council draft resolution supporting the Arab League peace plan.",
+        "lat": 40.7489,
+        "lng": -73.9680,
+        "type": "political"
+    },
+    {
+        "date": "2012-04-12",
+        "title": "UN-Mediated Ceasefire",
+        "description": "A UN-mediated ceasefire begins but quickly fails as violence continues on both sides.",
+        "lat": 33.5138,
+        "lng": 36.2765,
+        "type": "political"
+    },
+    {
+        "date": "2012-05-25",
+        "title": "Houla Massacre",
+        "description": "108 people are summarily executed in Houla, leading to the collapse of the UN ceasefire attempts.",
+        "lat": 34.8833,
+        "lng": 36.5167,
+        "type": "massacre"
+    },
+    {
+        "date": "2012-06-06",
+        "title": "Al-Qubeir Massacre",
+        "description": "78 civilians are killed in Al-Qubeir; UN observers are blocked from investigating the site immediately.",
+        "lat": 35.1500,
+        "lng": 36.5500,
+        "type": "massacre"
+    },
+    {
+        "date": "2012-06-22",
+        "title": "Turkish Jet Shot Down",
+        "description": "Syrian forces shoot down a Turkish F-4 fighter jet, increasing tensions between the two nations.",
+        "lat": 35.8500,
+        "lng": 35.6000,
+        "type": "conflict"
+    },
+    {
+        "date": "2012-07-15",
+        "title": "ICRC Declares Civil War",
+        "description": "The International Committee of the Red Cross officially declares the Syrian conflict a civil war.",
+        "lat": 46.2286,
+        "lng": 6.1364,
+        "type": "political"
+    },
+    {
+        "date": "2012-07-18",
+        "title": "Damascus Bombing",
+        "description": "A suicide bomb hits the National Security HQ in Damascus, killing the Defense Minister and other top officials.",
+        "lat": 33.5138,
+        "lng": 36.2765,
+        "type": "attack"
+    },
+    {
+        "date": "2012-07-19",
+        "title": "Battle of Aleppo Begins",
+        "description": "Rebels launch a major offensive to capture Aleppo, shifting focus to the country's commercial hub.",
+        "lat": 36.2021,
+        "lng": 37.1343,
+        "type": "conflict"
+    },
+    {
+        "date": "2012-11-19",
+        "title": "Rebels Seize Base 46",
+        "description": "Rebels capture a major army base in Aleppo province, seizing tanks and heavy weapons.",
+        "lat": 36.1500,
+        "lng": 36.9000,
+        "type": "victory"
+    },
+    {
+        "date": "2013-01-11",
+        "title": "Capture of Taftanaz Airbase",
+        "description": "Islamist groups, including al-Nusra, take control of the strategic Taftanaz airbase in Idlib.",
+        "lat": 35.9722,
+        "lng": 36.7833,
+        "type": "victory"
+    },
+    {
+        "date": "2013-02-11",
+        "title": "Rebels Capture Tabqa Dam",
+        "description": "Islamist rebels capture the town of Al-Thawrah and the nearby Tabqa Dam, Syria's largest.",
+        "lat": 35.8361,
+        "lng": 38.5472,
+        "type": "victory"
+    },
+    {
+        "date": "2013-03-06",
+        "title": "Fall of Raqqa",
+        "description": "Rebels capture Raqqa, making it the first provincial capital to fall entirely out of government control.",
+        "lat": 35.9524,
+        "lng": 39.0142,
+        "type": "victory"
+    },
+    {
+        "date": "2013-05-02",
+        "title": "Bayda and Baniyas Massacres",
+        "description": "Reports emerge of massacres by government forces in Bayda and Baniyas, killing over 100 people.",
+        "lat": 35.1833,
+        "lng": 35.9500,
+        "type": "massacre"
+    },
+    {
+        "date": "2013-06-05",
+        "title": "Battle of al-Qusayr",
+        "description": "Government forces and Hezbollah retake the strategic town of al-Qusayr near the Lebanese border.",
+        "lat": 34.5092,
+        "lng": 36.5798,
+        "type": "defeat"
+    },
+    {
+        "date": "2013-08-21",
+        "title": "Ghouta Chemical Attack",
+        "description": "Sarin gas attack in the Ghouta suburbs of Damascus kills hundreds; brings threat of US intervention.",
+        "lat": 33.5333,
+        "lng": 36.3667,
+        "type": "chemical"
+    },
+    {
+        "date": "2013-09-18",
+        "title": "ISIS Overruns Azaz",
+        "description": "ISIS seizes the border town of Azaz from FSA forces, marking increased infighting among rebels.",
+        "lat": 36.5833,
+        "lng": 37.0500,
+        "type": "isis"
+    },
+    {
+        "date": "2014-01-03",
+        "title": "Rebel Offensive Against ISIS",
+        "description": "A coalition of rebel groups launches an offensive to expel ISIS from Aleppo and Idlib.",
+        "lat": 36.2021,
+        "lng": 37.1343,
+        "type": "conflict"
+    },
+    {
+        "date": "2014-01-14",
+        "title": "ISIS Takes Raqqa",
+        "description": "ISIS retakes Raqqa from other rebel groups, establishing it as their stronghold.",
+        "lat": 35.9524,
+        "lng": 39.0142,
+        "type": "isis"
+    },
+    {
+        "date": "2014-02-14",
+        "title": "Nusra Captures Shadadeh",
+        "description": "Al-Nusra Front fighters seize the town of Shadadeh in Al-Hasakah near the Iraqi border.",
+        "lat": 36.0564,
+        "lng": 40.7258,
+        "type": "victory"
+    },
+    {
+        "date": "2014-03-16",
+        "title": "Fall of Yabrud",
+        "description": "Government forces and Hezbollah capture the rebel stronghold of Yabrud near Lebanon.",
+        "lat": 33.9667,
+        "lng": 36.6500,
+        "type": "defeat"
+    },
+    {
+        "date": "2014-06-03",
+        "title": "Presidential Election",
+        "description": "Syria holds presidential elections in government areas; Assad wins 88.7% amidst international criticism.",
+        "lat": 33.5138,
+        "lng": 36.2765,
+        "type": "political"
+    },
+    {
+        "date": "2014-06-29",
+        "title": "Caliphate Declared",
+        "description": "ISIS announces the establishment of a caliphate and changes its name to the 'Islamic State'.",
+        "lat": 36.0000,
+        "lng": 39.5000,
+        "type": "isis"
+    },
+    {
+        "date": "2014-08-19",
+        "title": "Execution of James Foley",
+        "description": "ISIS executes American journalist James Foley in retaliation for US operations.",
+        "lat": 36.0000,
+        "lng": 39.0000,
+        "type": "isis"
+    },
+    {
+        "date": "2014-08-24",
+        "title": "Fall of Tabqa Airbase",
+        "description": "ISIS seizes Tabqa airbase, the government's last foothold in Raqqa province.",
+        "lat": 35.7556,
+        "lng": 38.5667,
+        "type": "isis"
+    },
+    {
+        "date": "2014-09-23",
+        "title": "US Coalition Intervention",
+        "description": "The US and Arab allies begin airstrikes against ISIS targets in Raqqa and elsewhere.",
+        "lat": 35.9500,
+        "lng": 39.0000,
+        "type": "intervention"
+    },
+    {
+        "date": "2015-01-26",
+        "title": "Liberation of Kobani",
+        "description": "Kurdish YPG forces, backed by US airstrikes, drive ISIS out of Kobani after a long siege.",
+        "lat": 36.8906,
+        "lng": 38.3533,
+        "type": "kurdish"
+    },
+    {
+        "date": "2015-03-28",
+        "title": "Rebels Capture Idlib",
+        "description": "The Army of Conquest coalition captures Idlib city, cementing opposition control in the northwest.",
+        "lat": 35.9306,
+        "lng": 36.6339,
+        "type": "victory"
+    },
+    {
+        "date": "2015-04-25",
+        "title": "Capture of Jisr al-Shughur",
+        "description": "The Army of Conquest captures the strategic city of Jisr al-Shughur.",
+        "lat": 35.8136,
+        "lng": 36.3219,
+        "type": "victory"
+    },
+    {
+        "date": "2015-05-21",
+        "title": "ISIS Captures Palmyra",
+        "description": "ISIS takes control of the ancient city of Palmyra after days of fighting.",
+        "lat": 34.5600,
+        "lng": 38.2672,
+        "type": "isis"
+    },
+    {
+        "date": "2015-09-30",
+        "title": "Russian Intervention",
+        "description": "Russia begins air strikes in support of the Assad government, shifting the war's balance.",
+        "lat": 35.4056,
+        "lng": 35.9467,
+        "type": "intervention"
+    },
+    {
+        "date": "2015-11-24",
+        "title": "Turkey Shoots Down Russian Jet",
+        "description": "Turkey shoots down a Russian warplane near the Syrian border, causing a diplomatic crisis.",
+        "lat": 35.8000,
+        "lng": 36.1000,
+        "type": "conflict"
+    },
+    {
+        "date": "2015-12-18",
+        "title": "UN Resolution 2254",
+        "description": "The UN Security Council adopts a resolution endorsing a road map for a peace process.",
+        "lat": 40.7489,
+        "lng": -73.9680,
+        "type": "political"
+    },
+    {
+        "date": "2016-02-27",
+        "title": "Cessation of Hostilities",
+        "description": "A US-Russia brokered partial ceasefire comes into effect.",
+        "lat": 33.5138,
+        "lng": 36.2765,
+        "type": "political"
+    },
+    {
+        "date": "2016-03-27",
+        "title": "Recapture of Palmyra",
+        "description": "Government forces, with Russian support, retake Palmyra from ISIS.",
+        "lat": 34.5600,
+        "lng": 38.2672,
+        "type": "victory"
+    },
+    {
+        "date": "2016-08-12",
+        "title": "SDF Captures Manbij",
+        "description": "The Syrian Democratic Forces (SDF) fully capture the city of Manbij from ISIS.",
+        "lat": 36.5281,
+        "lng": 37.9549,
+        "type": "kurdish"
+    },
+    {
+        "date": "2016-08-24",
+        "title": "Operation Euphrates Shield",
+        "description": "Turkey launches a military incursion into northern Syria to push back ISIS and Kurdish forces.",
+        "lat": 36.8167,
+        "lng": 38.0000,
+        "type": "intervention"
+    },
+    {
+        "date": "2016-12-14",
+        "title": "Fall of Aleppo",
+        "description": "Government forces recapture all rebel-held parts of Aleppo, ending a 4-year battle.",
+        "lat": 36.2021,
+        "lng": 37.1343,
+        "type": "defeat"
+    },
+    {
+        "date": "2017-01-29",
+        "title": "Capture of Wadi Barada",
+        "description": "Government forces capture the Wadi Barada valley, restoring Damascus water supplies.",
+        "lat": 33.5500,
+        "lng": 36.0333,
+        "type": "victory"
+    },
+    {
+        "date": "2017-04-04",
+        "title": "Khan Shaykhun Chemical Attack",
+        "description": "A chemical attack on Khan Shaykhun kills dozens, prompting US missile strikes.",
+        "lat": 35.4392,
+        "lng": 36.6483,
+        "type": "chemical"
+    },
+    {
+        "date": "2017-04-07",
+        "title": "Shayrat Missile Strike",
+        "description": "The US launches Tomahawk missiles at Shayrat Airbase in response to the chemical attack.",
+        "lat": 34.4944,
+        "lng": 36.9036,
+        "type": "intervention"
+    },
+    {
+        "date": "2017-05-04",
+        "title": "De-escalation Zones Agreement",
+        "description": "Russia, Iran, and Turkey sign an agreement to create four 'de-escalation zones'.",
+        "lat": 51.1605,
+        "lng": 71.4704,
+        "type": "political"
+    },
+    {
+        "date": "2017-09-05",
+        "title": "Deir ez-Zor Siege Broken",
+        "description": "Government forces break the three-year ISIS siege of Deir ez-Zor city.",
+        "lat": 35.3403,
+        "lng": 40.1477,
+        "type": "victory"
+    },
+    {
+        "date": "2017-10-17",
+        "title": "Liberation of Raqqa",
+        "description": "SDF forces announce full control of Raqqa after months of fighting ISIS.",
+        "lat": 35.9524,
+        "lng": 39.0142,
+        "type": "kurdish"
+    },
+    {
+        "date": "2017-11-19",
+        "title": "Capture of Abu Kamal",
+        "description": "Government forces and allies capture Abu Kamal, ending ISIS's hold on major urban areas.",
+        "lat": 34.4500,
+        "lng": 40.9167,
+        "type": "victory"
+    },
+    {
+        "date": "2017-12-06",
+        "title": "Russia Declares ISIS Defeated",
+        "description": "Russia declares Syria 'completely liberated' from ISIS; Putin orders partial withdrawal.",
+        "lat": 35.4056,
+        "lng": 35.9467,
+        "type": "political"
+    },
+    {
+        "date": "2018-01-20",
+        "title": "Operation Olive Branch",
+        "description": "Turkey begins a cross-border operation against Kurdish forces in Afrin.",
+        "lat": 36.5114,
+        "lng": 36.8686,
+        "type": "intervention"
+    },
+    {
+        "date": "2018-02-10",
+        "title": "Israel-Iran Aerial Clash",
+        "description": "Syria shoots down an Israeli F-16 after Israel strikes Iranian targets; major escalation.",
+        "lat": 33.0000,
+        "lng": 36.0000,
+        "type": "conflict"
+    },
+    {
+        "date": "2018-03-18",
+        "title": "Fall of Afrin",
+        "description": "Turkish forces and allies capture Afrin city from Kurdish YPG forces.",
+        "lat": 36.5114,
+        "lng": 36.8686,
+        "type": "defeat"
+    },
+    {
+        "date": "2018-04-07",
+        "title": "Douma Chemical Attack",
+        "description": "A chemical attack in Douma kills 70 people; triggers Western missile strikes.",
+        "lat": 33.5714,
+        "lng": 36.4014,
+        "type": "chemical"
+    },
+    {
+        "date": "2018-04-14",
+        "title": "Western Missile Strikes",
+        "description": "US, UK, and France launch strikes on government targets in response to the Douma attack.",
+        "lat": 33.5138,
+        "lng": 36.2765,
+        "type": "intervention"
+    },
+    {
+        "date": "2018-07-06",
+        "title": "Capture of Nasib Crossing",
+        "description": "Government forces capture the Nasib Border Crossing with Jordan during the Southern Syria offensive.",
+        "lat": 32.5333,
+        "lng": 36.2000,
+        "type": "victory"
+    },
+    {
+        "date": "2018-07-12",
+        "title": "Government Retakes Daraa",
+        "description": "Government forces fully retake Daraa and Quneitra provinces, ending the rebellion in the south.",
+        "lat": 32.6189,
+        "lng": 36.1014,
+        "type": "victory"
+    },
+    {
+        "date": "2018-09-17",
+        "title": "Idlib Buffer Zone Agreement",
+        "description": "Russia and Turkey agree to create a demilitarized buffer zone in Idlib to avert a government offensive.",
+        "lat": 35.9306,
+        "lng": 36.6339,
+        "type": "political"
+    },
+    {
+        "date": "2018-12-19",
+        "title": "US Troop Withdrawal Announcement",
+        "description": "President Trump announces the withdrawal of all US troops from Syria.",
+        "lat": 38.8977,
+        "lng": -77.0365,
+        "type": "political"
+    },
+    {
+        "date": "2019-01-16",
+        "title": "Manbij Bombing",
+        "description": "An ISIS suicide bomber kills US service personnel and others in Manbij.",
+        "lat": 36.5281,
+        "lng": 37.9549,
+        "type": "isis"
+    },
+    {
+        "date": "2019-03-23",
+        "title": "Battle of Baghuz Fawqani",
+        "description": "SDF declares the final territorial defeat of ISIS in Syria after capturing Baghuz.",
+        "lat": 34.4550,
+        "lng": 40.9536,
+        "type": "kurdish"
+    },
+    {
+        "date": "2019-10-09",
+        "title": "Operation Peace Spring",
+        "description": "Turkey launches an offensive into NE Syria following US troop pullback.",
+        "lat": 36.6667,
+        "lng": 39.0667,
+        "type": "intervention"
+    },
+    {
+        "date": "2019-10-13",
+        "title": "SDF-Government Deal",
+        "description": "Kurdish-led SDF reaches a deal with the Syrian government to deter the Turkish offensive.",
+        "lat": 36.5000,
+        "lng": 38.0000,
+        "type": "political"
+    },
+    {
+        "date": "2019-10-22",
+        "title": "Sochi Agreement (2019)",
+        "description": "Russia and Turkey agree to a new buffer zone, pushing YPG forces back from the border.",
+        "lat": 43.5853,
+        "lng": 39.7203,
+        "type": "political"
+    },
+    {
+        "date": "2019-10-27",
+        "title": "Death of Baghdadi",
+        "description": "ISIS leader Abu Bakr al-Baghdadi dies during a US raid in Idlib province.",
+        "lat": 36.1661,
+        "lng": 36.6186,
+        "type": "victory"
+    },
+    {
+        "date": "2020-01-28",
+        "title": "Capture of Ma'arrat al-Nu'man",
+        "description": "Syrian Army captures the strategic city of Ma'arrat al-Nu'man in Idlib.",
+        "lat": 35.6461,
+        "lng": 36.6775,
+        "type": "victory"
+    },
+    {
+        "date": "2020-02-27",
+        "title": "Balyun Airstrikes",
+        "description": "Airstrikes kill 34 Turkish soldiers in Idlib, triggering Operation Spring Shield.",
+        "lat": 35.7000,
+        "lng": 36.4333,
+        "type": "conflict"
+    },
+    {
+        "date": "2020-03-05",
+        "title": "Idlib Ceasefire",
+        "description": "Russia and Turkey sign a ceasefire deal, halting the government offensive in Idlib.",
+        "lat": 35.9306,
+        "lng": 36.6339,
+        "type": "political"
+    },
+    {
+        "date": "2020-06-11",
+        "title": "PM Khamis Dismissed",
+        "description": "President Assad dismisses Prime Minister Imad Khamis amid economic crisis and protests.",
+        "lat": 33.5138,
+        "lng": 36.2765,
+        "type": "political"
+    },
+    {
+        "date": "2020-06-17",
+        "title": "Caesar Act Sanctions",
+        "description": "US Caesar Act sanctions come into effect, deepening Syria's economic crisis.",
+        "lat": 33.5138,
+        "lng": 36.2765,
+        "type": "political"
+    }
+]
