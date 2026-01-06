@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState, useMemo, useCallback, memo } from 'react';
 import { Play, Pause, RotateCcw, Calendar } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 import * as d3 from 'd3';
 
 // Event Types
@@ -17,7 +18,7 @@ const TYPES = {
 };
 
 // City Labels
-const CityLayer = memo(({ projection, isMobile }) => {
+const CityLayer = memo(({ projection, isMobile, isDark }) => {
     const cities = [
         { name: 'Damascus', lat: 33.5131, lng: 36.2919 },
         { name: 'Aleppo', lat: 36.2000, lng: 37.1600 },
@@ -43,12 +44,12 @@ const CityLayer = memo(({ projection, isMobile }) => {
                 const [x, y] = projection([city.lng, city.lat]) || [0, 0];
                 return (
                     <g key={city.name} transform={`translate(${x},${y})`}>
-                        <circle r={radius} className="fill-slate-800 dark:fill-slate-200" opacity={0.8} />
+                        <circle r={radius} className={isDark ? 'fill-slate-200' : 'fill-slate-800'} opacity={0.8} />
                         <text
                             y={-6}
                             textAnchor="middle"
                             style={{ fontSize, fontFamily: 'monospace' }}
-                            className="fill-slate-700 dark:fill-slate-400 font-bold uppercase tracking-wider shadow-sm"
+                            className={`${isDark ? 'fill-slate-400' : 'fill-slate-700'} font-bold uppercase tracking-wider shadow-sm`}
                         >
                             {city.name}
                         </text>
@@ -71,7 +72,8 @@ const MapLayer = memo(({
     onEventEnter,
     onEventLeave,
     onMouseMove,
-    isMobile
+    isMobile,
+    isDark
 }) => {
     return (
         <svg
@@ -96,7 +98,7 @@ const MapLayer = memo(({
                     <path
                         key={`neighbor-${i}`}
                         d={pathGenerator(feature)}
-                        className="fill-slate-200 dark:fill-slate-800 stroke-white dark:stroke-slate-700"
+                        className={`${isDark ? 'fill-slate-800 stroke-slate-700' : 'fill-slate-200 stroke-white'}`}
                         strokeWidth={0.5}
                     />
                 ))}
@@ -108,14 +110,14 @@ const MapLayer = memo(({
                     <path
                         key={`syria-${i}`}
                         d={pathGenerator(feature)}
-                        className="fill-white dark:fill-slate-700 stroke-slate-300 dark:stroke-slate-500"
+                        className={`${isDark ? 'fill-slate-700 stroke-slate-500' : 'fill-white stroke-slate-300'}`}
                         strokeWidth={1}
                     />
                 ))}
             </g>
 
             {/* Cities */}
-            <CityLayer projection={projection} isMobile={isMobile} />
+            <CityLayer projection={projection} isMobile={isMobile} isDark={isDark} />
 
             {/* Events */}
             <g>
@@ -163,7 +165,9 @@ const Sidebar = memo(({
     timelineData,
     currentIndex,
     onEventClick,
-    shouldAutoScroll
+    shouldAutoScroll,
+    themeStyles,
+    isDark
 }) => {
     const listRef = useRef(null);
     const itemRefs = useRef([]);
@@ -186,10 +190,10 @@ const Sidebar = memo(({
     }, [currentIndex, shouldAutoScroll]);
 
     return (
-        <div className="flex flex-col h-full bg-slate-50 dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800">
+        <div className={`flex flex-col h-full ${themeStyles.sidebarBg}`}>
             {/* Header */}
-            <div className="p-4 shrink-0 bg-slate-50/95 dark:bg-slate-900/95 backdrop-blur z-10 border-b border-slate-200 dark:border-slate-800 shadow-sm">
-                <h3 className="font-bold text-lg text-slate-800 dark:text-slate-100 flex items-center gap-2">
+            <div className={`p-4 shrink-0 ${themeStyles.sidebarHeader} backdrop-blur z-10 border-b ${themeStyles.borderColor} shadow-sm`}>
+                <h3 className={`font-bold text-lg ${themeStyles.textMain} flex items-center gap-2`}>
                     <Calendar size={18} /> Event Log
                 </h3>
             </div>
@@ -211,21 +215,21 @@ const Sidebar = memo(({
                             className={`
                                 w-full text-left p-3 mb-2 rounded-lg transition-all duration-300 border
                                 ${isActive
-                                    ? 'bg-white dark:bg-slate-800 border-blue-500 shadow-md ring-1 ring-blue-500/20 translate-x-1'
-                                    : 'bg-transparent border-transparent hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 opacity-70 hover:opacity-100'
+                                    ? themeStyles.entryActive + ' translate-x-1'
+                                    : themeStyles.entryInactive + ' opacity-70 hover:opacity-100'
                                 }
                             `}
                         >
                             <div className="flex justify-between items-start mb-1">
-                                <span className={`text-[10px] font-bold uppercase tracking-wider ${isActive ? 'text-blue-600 dark:text-blue-400' : 'text-slate-400'}`}>
+                                <span className={`text-[10px] font-bold uppercase tracking-wider ${isActive ? 'text-blue-600' : (isDark ? 'text-slate-400' : 'text-gray-400')}`}>
                                     {item.fullDate}
                                 </span>
                             </div>
-                            <div className={`font-semibold text-sm mb-1 line-clamp-2 ${isActive ? 'text-slate-900 dark:text-white' : 'text-slate-700 dark:text-slate-300'}`}>
+                            <div className={`font-semibold text-sm mb-1 line-clamp-2 ${isActive ? (isDark ? 'text-white' : 'text-slate-900') : (isDark ? 'text-slate-300' : 'text-slate-700')}`}>
                                 {eventDetail.title}
                             </div>
                             {isActive && (
-                                <div className="text-xs text-slate-600 dark:text-slate-400 leading-snug animate-in fade-in slide-in-from-top-1 duration-300 mt-2 pl-2 border-l-2 border-slate-200 dark:border-slate-700">
+                                <div className={`text-xs leading-snug animate-in fade-in slide-in-from-top-1 duration-300 mt-2 pl-2 border-l-2 ${isDark ? 'text-slate-400 border-slate-700' : 'text-slate-600 border-gray-300'}`}>
                                     {eventDetail.description}
                                 </div>
                             )}
@@ -247,12 +251,14 @@ const Controls = memo(({
     onReset,
     onPlayPause,
     onSliderChange,
-    isMobile
+    isMobile,
+    themeStyles,
+    isDark
 }) => {
     return (
         <div className={`
             flex flex-col gap-3 rounded-xl shadow-xl border backdrop-blur-md transition-colors
-            bg-white/90 dark:bg-slate-900/90 border-slate-200 dark:border-slate-700
+            ${themeStyles.background} ${themeStyles.borderColor}
             ${isMobile ? 'p-3 w-full' : 'p-4 min-w-[320px] max-w-[420px]'}
         `}>
             {/* Buttons & Date */}
@@ -260,7 +266,7 @@ const Controls = memo(({
                 <div className="flex items-center gap-2">
                     <button
                         onClick={onReset}
-                        className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors"
+                        className={`p-2 rounded-full ${themeStyles.resetButtonHover} ${themeStyles.resetButton} transition-colors`}
                         title="Reset"
                     >
                         <RotateCcw size={16} />
@@ -278,10 +284,10 @@ const Controls = memo(({
                 </div>
 
                 <div className="flex flex-col items-end text-right min-w-[100px]">
-                    <span className="text-[10px] font-bold tracking-widest uppercase text-slate-400 dark:text-slate-500">
+                    <span className={`text-[10px] font-bold tracking-widest uppercase ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
                         Date
                     </span>
-                    <span className={`font-mono font-bold text-slate-800 dark:text-white ${isMobile ? 'text-lg' : 'text-2xl'}`}>
+                    <span className={`font-mono font-bold ${themeStyles.textMain} ${isMobile ? 'text-lg' : 'text-2xl'}`}>
                         {currentEvent?.label || "2011"}
                     </span>
                 </div>
@@ -289,7 +295,7 @@ const Controls = memo(({
 
             {/* Slider */}
             <div className="relative w-full h-6 flex items-center group pt-1">
-                <div className="absolute w-full h-1.5 rounded-full overflow-hidden bg-slate-200 dark:bg-slate-800">
+                <div className={`absolute w-full h-1.5 rounded-full overflow-hidden ${themeStyles.sliderTrack}`}>
                     <div
                         className="h-full bg-blue-500 transition-all duration-100 ease-out"
                         style={{ width: `${progressPercent}%` }}
@@ -304,13 +310,13 @@ const Controls = memo(({
                     className="absolute w-full h-full opacity-0 cursor-pointer z-20"
                 />
                 <div
-                    className="absolute h-4 w-4 bg-white dark:bg-slate-200 rounded-full shadow border-2 border-blue-500 pointer-events-none transition-all duration-100 ease-out z-10 group-hover:scale-110"
+                    className={`absolute h-4 w-4 ${isDark ? 'bg-slate-200' : 'bg-white'} rounded-full shadow border-2 border-blue-500 pointer-events-none transition-all duration-100 ease-out z-10 group-hover:scale-110`}
                     style={{ left: `calc(${progressPercent}% - 8px)` }}
                 />
             </div>
 
             {/* Title Preview */}
-            <div className="text-xs text-center text-slate-500 dark:text-slate-400 font-medium truncate h-4">
+            <div className={`text-xs text-center ${themeStyles.textSub} font-medium truncate h-4`}>
                 {currentEvent?.title}
             </div>
         </div>
@@ -327,6 +333,27 @@ function ConflictEventsChart({
     marginLeft = 20,
     isMobile = false,
 }) {
+    const { isDark } = useTheme();
+
+    // Theme Styles
+    const themeStyles = useMemo(() => ({
+        background: isDark ? 'bg-slate-900/90' : 'bg-white/90',
+        borderColor: isDark ? 'border-slate-700' : 'border-gray-300',
+        textMain: isDark ? 'text-white' : 'text-slate-800',
+        textSub: isDark ? 'text-slate-400' : 'text-slate-600',
+        tooltipBg: isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-300',
+        sidebarBg: isDark ? 'bg-slate-900 border-r border-slate-800' : 'bg-white border-r border-gray-300',
+        sidebarHeader: isDark ? 'bg-slate-900/95' : 'bg-gray-100',
+        mapBg: isDark ? 'bg-slate-900' : 'bg-gray-50',
+        legendBg: isDark ? 'bg-slate-900/80' : 'bg-white/80',
+        legendText: isDark ? 'text-slate-300' : 'text-slate-700',
+        entryActive: isDark ? 'bg-slate-800 border-blue-500 shadow-md ring-1 ring-blue-500/20 text-white' : 'bg-blue-50 border-blue-500 shadow-md ring-1 ring-blue-500/20 text-slate-900',
+        entryInactive: isDark ? 'bg-transparent hover:bg-slate-800 text-slate-400' : 'bg-transparent hover:bg-gray-100 text-gray-600',
+        sliderTrack: isDark ? 'bg-slate-800' : 'bg-gray-300',
+        resetButton: isDark ? 'text-slate-600 dark:text-slate-300' : 'text-slate-700',
+        resetButtonHover: isDark ? 'hover:bg-slate-800' : 'hover:bg-gray-50',
+    }), [isDark]);
+
     // Dimensions
     const boundedWidth = Math.max(0, width - marginLeft - marginRight);
     const boundedHeight = Math.max(0, height - marginTop - marginBottom);
@@ -453,7 +480,7 @@ function ConflictEventsChart({
     const progressPercent = timelineData.length > 1 ? (currentIndex / (timelineData.length - 1)) * 100 : 0;
 
     return (
-        <div className="flex flex-col lg:flex-row h-[850px] lg:h-[700px] border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden shadow-xl bg-white dark:bg-slate-900 font-sans mt-6 mb-6">
+        <div className={`flex flex-col lg:flex-row h-[850px] lg:h-[700px] border rounded-2xl overflow-hidden shadow-xl font-sans mt-8 mb-8 bg-white dark:bg-slate-900 ${themeStyles.borderColor}`}>
 
             {/* Event List */}
             <div className="w-full lg:w-80 h-1/3 lg:h-full shrink-0 order-2 lg:order-1 relative">
@@ -462,11 +489,13 @@ function ConflictEventsChart({
                     currentIndex={currentIndex}
                     onEventClick={handleEventClick}
                     shouldAutoScroll={lastChangeSource.current === 'auto'}
+                    themeStyles={themeStyles}
+                    isDark={isDark}
                 />
             </div>
 
             {/* Map Visualization */}
-            <div className="relative flex-1 h-2/3 lg:h-full bg-slate-50 dark:bg-slate-900 overflow-hidden order-1 lg:order-2 group">
+            <div className={`relative flex-1 h-2/3 lg:h-full overflow-hidden order-1 lg:order-2 group ${themeStyles.mapBg}`}>
                 <div className="w-full h-full relative">
                     <div style={{
                         transform: `translate(${marginLeft}px, ${marginTop}px)`,
@@ -485,23 +514,24 @@ function ConflictEventsChart({
                             onEventLeave={handleEventLeave}
                             onMouseMove={handleMouseMove}
                             isMobile={isMobile}
+                            isDark={isDark}
                         />
                     </div>
 
                     {/* Floating Tooltip */}
                     <div
                         ref={tooltipRef}
-                        className={`absolute top-0 left-0 pointer-events-none px-4 py-3 rounded-lg shadow-2xl max-w-xs z-50 border bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 transition-opacity duration-200 ${tooltipContent ? 'opacity-100' : 'opacity-0'}`}
+                        className={`absolute top-0 left-0 pointer-events-none px-4 py-3 rounded-lg shadow-2xl max-w-xs z-50 border transition-opacity duration-200 ${themeStyles.tooltipBg} ${tooltipContent ? 'opacity-100' : 'opacity-0'}`}
                     >
                         {tooltipContent && (
                             <div>
                                 <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
                                     {tooltipContent.fullDate}
                                 </div>
-                                <div className="font-bold text-lg leading-tight text-slate-900 dark:text-white mb-2">
+                                <div className={`font-bold text-lg leading-tight ${themeStyles.textMain} mb-2`}>
                                     {tooltipContent.title}
                                 </div>
-                                <div className="text-sm text-slate-600 dark:text-slate-300 leading-snug">
+                                <div className={`text-sm text-slate-600 dark:text-slate-300 leading-snug`}>
                                     {tooltipContent.description}
                                 </div>
                             </div>
@@ -509,7 +539,7 @@ function ConflictEventsChart({
                     </div>
 
                     {/* Legend */}
-                    <div className={`absolute left-4 top-4 flex flex-col gap-2 p-3 rounded-lg bg-white/80 dark:bg-slate-900/80 backdrop-blur border border-slate-200 dark:border-slate-700 text-xs shadow-sm pointer-events-none z-10 transition-opacity duration-300 ${isMobile ? 'opacity-0' : 'opacity-100'}`}>
+                    <div className={`absolute left-4 top-4 flex flex-col gap-2 p-3 rounded-lg ${themeStyles.legendBg} backdrop-blur border ${themeStyles.borderColor} text-xs shadow-sm pointer-events-none z-10 transition-opacity duration-300 ${isMobile ? 'opacity-0' : 'opacity-100'}`}>
                         <div className="font-bold text-slate-500 uppercase tracking-wider mb-1">Event Types</div>
                         {Object.entries(TYPES).map(([id, type]) => (
                             <div key={id} className="flex items-center gap-2">
@@ -517,7 +547,7 @@ function ConflictEventsChart({
                                     className="w-2 h-2 rounded-full"
                                     style={{ backgroundColor: type.color }}
                                 ></span>
-                                <span className="text-slate-700 dark:text-slate-300">{type.label}</span>
+                                <span className={themeStyles.legendText}>{type.label}</span>
                             </div>
                         ))}
                     </div>
@@ -534,6 +564,8 @@ function ConflictEventsChart({
                             onPlayPause={handlePlayPause}
                             onSliderChange={handleSliderChange}
                             isMobile={isMobile}
+                            themeStyles={themeStyles}
+                            isDark={isDark}
                         />
                     </div>
                 </div>
