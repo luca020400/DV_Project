@@ -173,7 +173,6 @@ const Sidebar = memo(({
             const container = listRef.current;
             const item = itemRefs.current[currentIndex];
 
-            // Calculate exact position to center the item in the container
             const itemTop = item.offsetTop;
             const itemHeight = item.offsetHeight;
             const containerHeight = container.offsetHeight;
