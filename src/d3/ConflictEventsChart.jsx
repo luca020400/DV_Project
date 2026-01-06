@@ -453,7 +453,7 @@ function ConflictEventsChart({
     const progressPercent = timelineData.length > 1 ? (currentIndex / (timelineData.length - 1)) * 100 : 0;
 
     return (
-        <div className="flex flex-col lg:flex-row h-[850px] lg:h-[700px] border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden shadow-xl bg-white dark:bg-slate-900 font-sans">
+        <div className="flex flex-col lg:flex-row h-[850px] lg:h-[700px] border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden shadow-xl bg-white dark:bg-slate-900 font-sans mt-6 mb-6">
 
             {/* Event List */}
             <div className="w-full lg:w-80 h-1/3 lg:h-full shrink-0 order-2 lg:order-1 relative">
