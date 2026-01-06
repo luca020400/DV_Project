@@ -2,6 +2,20 @@ import { useRef, useEffect, useState, useMemo, useCallback, memo } from 'react';
 import { Play, Pause, RotateCcw, Calendar } from 'lucide-react';
 import * as d3 from 'd3';
 
+// Event Types
+const TYPES = {
+    uprising: { color: '#f97316', label: 'Uprising' },
+    conflict: { color: '#ef4444', label: 'Conflict' },
+    political: { color: '#8b5cf6', label: 'Political' },
+    attack: { color: '#dc2626', label: 'Attack' },
+    massacre: { color: '#7c3aed', label: 'Massacre' },
+    chemical: { color: '#16a34a', label: 'Chemical' },
+    isis: { color: '#991b1b', label: 'ISIS Activity' },
+    intervention: { color: '#06b6d4', label: 'Intervention' },
+    kurdish: { color: '#f59e0b', label: 'Kurdish / SDF' },
+    other: { color: '#64748b', label: 'Other' }
+};
+
 // City Labels
 const CityLayer = memo(({ projection, isMobile }) => {
     const cities = [
@@ -113,12 +127,9 @@ const MapLayer = memo(({
                     // Sizes
                     const pulseSize = isMobile ? 12 : 24;
                     const markerSize = isNew ? (isMobile ? 5 : 8) : (isMobile ? 3 : 4);
-
                     // Colors
-                    let color = "#ef4444";
-                    if (event.type === 'isis') color = "#111827";
-                    if (event.type === 'chemical') color = "#16a34a";
-                    if (event.type === 'kurdish') color = "#f59e0b";
+                    const typeInfo = TYPES[event.type] || TYPES.other;
+                    const color = typeInfo.color;
 
                     return (
                         <g
@@ -501,10 +512,15 @@ function ConflictEventsChart({
                     {/* Legend */}
                     <div className={`absolute left-4 top-4 flex flex-col gap-2 p-3 rounded-lg bg-white/80 dark:bg-slate-900/80 backdrop-blur border border-slate-200 dark:border-slate-700 text-xs shadow-sm pointer-events-none z-10 transition-opacity duration-300 ${isMobile ? 'opacity-0' : 'opacity-100'}`}>
                         <div className="font-bold text-slate-500 uppercase tracking-wider mb-1">Event Types</div>
-                        <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-red-500"></span><span className="text-slate-700 dark:text-slate-300">Conflict / Attack</span></div>
-                        <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-green-600"></span><span className="text-slate-700 dark:text-slate-300">Chemical</span></div>
-                        <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-900 dark:bg-black border border-slate-500"></span><span className="text-slate-700 dark:text-slate-300">ISIS Activity</span></div>
-                        <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-amber-500"></span><span className="text-slate-700 dark:text-slate-300">Kurdish / SDF</span></div>
+                        {Object.entries(TYPES).map(([id, type]) => (
+                            <div key={id} className="flex items-center gap-2">
+                                <span
+                                    className="w-2 h-2 rounded-full"
+                                    style={{ backgroundColor: type.color }}
+                                ></span>
+                                <span className="text-slate-700 dark:text-slate-300">{type.label}</span>
+                            </div>
+                        ))}
                     </div>
 
                     {/* Controls */}
