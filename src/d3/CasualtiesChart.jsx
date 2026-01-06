@@ -159,7 +159,7 @@ function CasualtiesChart({
         const bisect = d3.bisector(d => d.date).left;
 
         const handleMouseMove = (event) => {
-            const [x] = d3.pointer(event, svgRef.current);
+            const [x, y] = d3.pointer(event, svgRef.current);
             const date = xScale.invert(x);
             const i = bisect(filteredData, date);
             const d0 = filteredData[i - 1];
@@ -175,10 +175,29 @@ function CasualtiesChart({
                 setHoveredPoint({ data: d });
 
                 const bounds = containerRef.current.getBoundingClientRect();
-                const [relX] = d3.pointer(event, containerRef.current);
+                const [relX, relY] = d3.pointer(event, containerRef.current);
 
-                const tooltipX = bounds.left + relX;
-                const tooltipY = bounds.top + marginTop + 10;
+                const tooltip = tooltipRef.current;
+                const tooltipWidth = tooltip.offsetWidth || 250;
+                const tooltipHeight = tooltip.offsetHeight || 150;
+
+                let tooltipX = bounds.left + relX + 15;
+                let tooltipY = bounds.top + relY;
+
+                if (tooltipX + tooltipWidth > window.innerWidth - 10) {
+                    tooltipX = bounds.left + relX - tooltipWidth - 15;
+                }
+
+                const spaceAbove = relY - marginTop;
+                const spaceBelow = (chartHeight - marginBottom) - relY;
+
+                if (spaceAbove > tooltipHeight + 20) {
+                    tooltipY = bounds.top + relY - tooltipHeight;
+                } else if (spaceBelow > tooltipHeight + 20) {
+                    tooltipY = bounds.top + relY + 15;
+                } else {
+                    tooltipY = bounds.top + relY - tooltipHeight;
+                }
 
                 d3.select(tooltipRef.current)
                     .style('display', 'block')
@@ -202,8 +221,7 @@ function CasualtiesChart({
             .on('click', () => {
                 setHoveredRegion(null);
             })
-            .on('mousemove', handleMouseMove)
-            .on('mouseleave', handleMouseLeave);
+            .on('mousemove', handleMouseMove);
 
         // Event Markers
         events.forEach((event, index) => {
@@ -256,7 +274,6 @@ function CasualtiesChart({
                     .attr('d', line)
                     .style('cursor', 'pointer')
                     .on('mousemove', handleMouseMove)
-                    .on('mouseleave', handleMouseLeave)
                     .on('click', function (event) {
                         event.stopPropagation();
                         console.log('clicked on line:', region);
@@ -286,7 +303,6 @@ function CasualtiesChart({
                     .attr('d', line)
                     .style('cursor', 'pointer')
                     .on('mousemove', handleMouseMove)
-                    .on('mouseleave', handleMouseLeave)
                     .on('click', (event) => {
                         event.stopPropagation();
                         setHoveredRegion(hoveredRegion === region ? null : region);
@@ -318,7 +334,6 @@ function CasualtiesChart({
                 .attr('d', area)
                 .style('cursor', 'pointer')
                 .on('mousemove', handleMouseMove)
-                .on('mouseleave', handleMouseLeave)
                 .on('click', function (event, d) {
                     event.stopPropagation();
                     setHoveredRegion(hoveredRegion === d.key ? null : d.key);
@@ -352,7 +367,18 @@ function CasualtiesChart({
             svg.on('.zoom', null);
         }
 
-        return () => svg.on('mouseleave', null);
+        // Hide tooltip on scroll
+        const handleScroll = () => {
+            verticalLine.style('opacity', 0);
+            setHoveredPoint(null);
+            d3.select(tooltipRef.current).style('display', 'none');
+        };
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            svg.on('mouseleave', null);
+            window.removeEventListener('scroll', handleScroll);
+        };
 
     }, [filteredData, chartMode, selectedCasualtyTypes, xScale, yScale, chartWidth, chartHeight, regionColors, themeStyles.axisColor, isDark, isMobile, hoveredRegion]);
 
@@ -449,6 +475,7 @@ function CasualtiesChart({
                 <div
                     ref={tooltipRef}
                     className={`fixed border px-4 py-3 rounded-lg shadow-2xl text-sm pointer-events-none z-50 ${themeStyles.tooltipBg} hidden`}
+                    style={{ width: '180px' }}
                 >
                     {hoveredPoint && (
                         <div>

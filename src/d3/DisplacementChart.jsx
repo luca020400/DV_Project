@@ -245,7 +245,17 @@ function DisplacementChart({
         gyEl.selectAll('line').remove();
 
         svg.on('mouseleave', handleMouseLeave);
-        return () => svg.on('mouseleave', null);
+
+        // Hide tooltip on scroll
+        const handleScroll = () => {
+            handleMouseLeave();
+        };
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            svg.on('mouseleave', null);
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, [chartData, xScale, yScale, themeStyles, isDark, chartWidth, chartHeight, width, hoveredRegion]);
 
     return (
