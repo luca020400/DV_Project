@@ -43,7 +43,7 @@ function DataSources({ dataSources, flashingId }) {
                             <div
                                 key={source.id}
                                 id={`source-${source.id}`}
-                                className={`p-8 rounded-xl border-2 scroll-mt-24 transition-all duration-300 hover:shadow-lg hover:scale-102 bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 ${flashingId === source.id ? 'flash-card ring-2 ring-red-500 ring-offset-2' : ''}`}
+                                className={`p-8 rounded-xl border-2 scroll-mt-24 transition-all duration-300 hover:shadow-lg hover:scale-102 bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 hover:border-blue-400 dark:hover:border-blue-500 ${flashingId === source.id ? 'flash-card ring-2 ring-red-500 ring-offset-2' : ''}`}
                             >
                                 <h3 className="font-bold text-lg">{source.title}</h3>
 

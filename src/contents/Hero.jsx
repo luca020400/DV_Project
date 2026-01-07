@@ -5,7 +5,7 @@ import { hero } from '../text/hero.js';
 // Hero Section
 function Hero() {
     return (
-        <div className="relative mb-20 py-20 sm:py-32 bg-gradient-to-b from-blue-50 dark:from-gray-900 via-white dark:via-gray-800 to-gray-50 dark:to-gray-900">
+        <div className="relative py-20 bg-gradient-to-b from-blue-50 dark:from-gray-900 via-white dark:via-gray-800 to-gray-50 dark:to-gray-900">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-400">{hero.title}</h1>
                 <p className="text-lg sm:text-xl mb-12 text-gray-700 dark:text-gray-300">

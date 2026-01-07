@@ -29,7 +29,7 @@ function DynamicVisualization({ componentName, data, isMobile }) {
 // Description Section
 function DescriptionSection({ section }) {
     return (
-        <div className="py-12 bg-gray-50 dark:bg-gray-800">
+        <div className="py-8 bg-gray-50 dark:bg-gray-800">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="space-y-6 text-lg sm:text-xl leading-relaxed font-light text-gray-700 dark:text-gray-300">
                     {section.description.map((paragraph, idx) => (
