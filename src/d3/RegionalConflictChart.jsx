@@ -23,17 +23,15 @@ const MapLayer = memo(({
         <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
             {/* Neighbors */}
             {neighborsGeoJson && neighborsGeoJson.features && (
-                <g className="opacity-40">
+                <g className="opacity-60">
                     {neighborsGeoJson.features.map((feature, i) => {
                         const pathData = pathGenerator(feature);
                         return pathData ? (
                             <path
                                 key={`neighbor-${i}`}
                                 d={pathData}
-                                fill={isDark ? '#1e293b' : '#f1f5f9'}
-                                stroke={isDark ? '#334155' : '#cbd5e1'}
+                                className="fill-slate-300 dark:fill-slate-800 stroke-slate-400 dark:stroke-slate-700 transition-colors duration-300"
                                 strokeWidth={0.5}
-                                className="transition-colors duration-300"
                             />
                         ) : null;
                     })}

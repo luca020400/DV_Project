@@ -91,12 +91,12 @@ const MapLayer = memo(({
             </defs>
 
             {/* Neighbors */}
-            <g className="opacity-40">
+            <g className="opacity-60">
                 {neighborsGeoJson?.features.map((feature, i) => (
                     <path
                         key={`neighbor-${i}`}
                         d={pathGenerator(feature)}
-                        className="fill-slate-200 dark:fill-slate-800 stroke-white dark:stroke-slate-700"
+                        className="fill-slate-300 dark:fill-slate-800 stroke-slate-400 dark:stroke-slate-700"
                         strokeWidth={0.5}
                     />
                 ))}
