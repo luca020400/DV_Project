@@ -1,7 +1,4 @@
-import { useTheme } from './contexts/ThemeContext';
-
 function SideProgressBar({ sections, activeSection, onSectionClick }) {
-    const { isDark } = useTheme();
 
     // Build complete item list: intro -> sections
     const allItems = [
@@ -17,7 +14,7 @@ function SideProgressBar({ sections, activeSection, onSectionClick }) {
             <div className="absolute top-3 bottom-3 left-1/2 -translate-x-1/2 w-1.5 pointer-events-none">
                 {/* Background line */}
                 <div
-                    className={`absolute inset-0 ${isDark ? 'bg-gray-700' : 'bg-gray-300'} rounded-full`}
+                    className="absolute inset-0 bg-gray-300 dark:bg-gray-700 rounded-full"
                 />
                 {/* Filled progress line */}
                 <div
@@ -40,16 +37,14 @@ function SideProgressBar({ sections, activeSection, onSectionClick }) {
                             className={`
                                 relative z-10 rounded-full transition-all duration-300
                                 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2
-                                ${isDark ? 'focus-visible:ring-offset-gray-900' : 'focus-visible:ring-offset-white'}
+                                focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900
                                 ${isActive
                                     ? isCircle
                                         ? 'w-5 h-5 bg-gradient-to-r from-red-500 to-orange-500 rounded-full shadow-lg shadow-red-500/30'
                                         : 'w-6 h-6 bg-gradient-to-r from-red-500 to-orange-500 shadow-lg shadow-red-500/30'
                                     : isPast
                                         ? 'w-5 h-5 bg-gradient-to-r from-red-500 to-orange-500'
-                                        : isDark
-                                            ? 'w-5 h-5 bg-gray-600 hover:bg-gray-500'
-                                            : 'w-5 h-5 bg-gray-300 hover:bg-gray-400'
+                                        : 'w-5 h-5 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
                                 }
                             `}
                             aria-label={`Go to ${item.title}`}
@@ -63,32 +58,31 @@ function SideProgressBar({ sections, activeSection, onSectionClick }) {
                                 px-4 py-3 rounded-lg whitespace-nowrap
                                 opacity-0 group-hover:opacity-100 pointer-events-none
                                 transition-opacity duration-200
-                                ${isDark
-                                    ? 'bg-gray-800 text-gray-100 shadow-xl shadow-black/30 border border-gray-600'
-                                    : 'bg-white text-gray-900 shadow-xl shadow-gray-300/50 border border-gray-200'
-                                }
+                                bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
+                                shadow-xl shadow-gray-300/50 dark:shadow-black/30
+                                border border-gray-200 dark:border-gray-600
                                 ${isActive ? 'ring-2 ring-red-500/50' : ''}
                             `}
                         >
                             <div className="text-sm font-medium">{item.title}</div>
-                            <div className={`text-xs mt-1 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                            <div className="text-xs mt-1 text-gray-500 dark:text-gray-400">
                                 {item.subtitle}
                             </div>
                             {/* Arrow */}
                             <div
-                                className={`
+                                className="
                                     absolute left-full top-1/2 -translate-y-1/2
                                     border-8 border-transparent
-                                    ${isDark ? 'border-l-gray-600' : 'border-l-gray-200'}
-                                `}
+                                    border-l-gray-200 dark:border-l-gray-600
+                                "
                             />
                             {/* Inner arrow to match background */}
                             <div
-                                className={`
+                                className="
                                     absolute left-full top-1/2 -translate-y-1/2 -ml-[1px]
                                     border-8 border-transparent
-                                    ${isDark ? 'border-l-gray-800' : 'border-l-white'}
-                                `}
+                                    border-l-white dark:border-l-gray-800
+                                "
                             />
                         </div>
                     </div>

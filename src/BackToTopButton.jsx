@@ -1,9 +1,6 @@
 import { ChevronUp } from 'lucide-react';
-import { useTheme } from './contexts/ThemeContext';
 
 function BackToTopButton({ isVisible }) {
-    const { isDark } = useTheme();
-
     if (!isVisible) return null;
 
     const scrollToTop = () => {
@@ -13,10 +10,7 @@ function BackToTopButton({ isVisible }) {
     return (
         <button
             onClick={scrollToTop}
-            className={`fixed bottom-8 right-8 p-3 rounded-full shadow-lg transition-all hover:scale-110 ${isDark
-                ? 'bg-red-600 hover:bg-red-700 text-white'
-                : 'bg-red-500 hover:bg-red-600 text-white'
-                }`}
+            className="fixed bottom-8 right-8 p-3 rounded-full shadow-lg transition-all hover:scale-110 bg-red-500 dark:bg-red-600 hover:bg-red-600 dark:hover:bg-red-700 text-white"
             aria-label="Back to top"
         >
             <ChevronUp size={24} />

@@ -70,17 +70,6 @@ function DisplacementChart({
         }));
     }, [data]);
 
-    const themeStyles = {
-        background: isDark ? 'bg-slate-800' : 'bg-white',
-        textMain: isDark ? 'text-gray-100' : 'text-gray-900',
-        textSub: isDark ? 'text-gray-400' : 'text-gray-600',
-        border: isDark ? 'border-slate-700' : 'border-transparent',
-        axisColor: isDark ? '#9ca3af' : '#374151',
-        gridColor: isDark ? '#334155' : '#e2e8f0',
-        tooltipBg: isDark ? 'bg-slate-900 border-slate-600 text-white' : 'bg-gray-900 text-white',
-        zeroLine: isDark ? '#fff' : '#000',
-    };
-
     // Resize Observer
     useEffect(() => {
         const container = containerRef.current;
@@ -130,14 +119,14 @@ function DisplacementChart({
             .enter().append('line')
             .attr('x1', marginLeft).attr('x2', chartWidth - marginRight)
             .attr('y1', d => yScale(d)).attr('y2', d => yScale(d))
-            .attr('stroke', themeStyles.gridColor)
+            .attr('stroke', isDark ? '#334155' : '#e2e8f0')
             .attr('stroke-dasharray', '3,3')
             .attr('opacity', 0.5);
 
         gChartEl.append('line')
             .attr('x1', marginLeft).attr('x2', chartWidth - marginRight)
             .attr('y1', zeroY).attr('y2', zeroY)
-            .attr('stroke', themeStyles.zeroLine)
+            .attr('stroke', isDark ? '#fff' : '#000')
             .attr('stroke-width', 1.5)
             .attr('opacity', 0.8);
 
@@ -230,7 +219,7 @@ function DisplacementChart({
 
         // Cursor line
         const cursorLine = gChartEl.append('line')
-            .attr('stroke', themeStyles.axisColor)
+            .attr('stroke', isDark ? '#9ca3af' : '#374151')
             .attr('stroke-width', 1.5)
             .attr('stroke-dasharray', '4,4')
             .style('pointer-events', 'none');
@@ -239,7 +228,7 @@ function DisplacementChart({
         gyEl.call(
             d3.axisLeft(yScale).ticks(12).tickFormat(d => Math.abs(d / 1000000) + 'M')
         )
-            .selectAll('text').attr('fill', themeStyles.axisColor).style('font-size', '12px');
+            .selectAll('text').attr('fill', isDark ? '#9ca3af' : '#374151').style('font-size', '12px');
 
         gyEl.select('.domain').remove();
         gyEl.selectAll('line').remove();
@@ -256,13 +245,13 @@ function DisplacementChart({
             svg.on('mouseleave', null);
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [chartData, xScale, yScale, themeStyles, isDark, chartWidth, chartHeight, width, hoveredRegion]);
+    }, [chartData, xScale, yScale, isDark, chartWidth, chartHeight, width, hoveredRegion]);
 
     return (
         <div className="w-full flex flex-col gap-6 p-6">
             <div
                 ref={containerRef}
-                className={`relative w-full ${themeStyles.background} rounded-xl shadow-lg border ${themeStyles.border} overflow-hidden`}
+                className="relative w-full bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-transparent dark:border-slate-700 overflow-hidden"
                 style={{ height: height }}
             >
                 <svg
@@ -300,7 +289,7 @@ function DisplacementChart({
                 {/* Tooltip */}
                 <div
                     ref={tooltipRef}
-                    className={`fixed z-50 px-4 py-3 rounded-lg shadow-xl border text-sm pointer-events-none hidden ${themeStyles.tooltipBg} ${themeStyles.border}`}
+                    className="fixed z-50 px-4 py-3 rounded-lg shadow-xl border text-sm pointer-events-none hidden bg-gray-900 dark:bg-slate-900 border-slate-600 text-white"
                     style={{ minWidth: '180px', transform: 'translateY(-50%)' }}
                 >
                     {hoveredData && (
@@ -359,7 +348,7 @@ function DisplacementChart({
                     onMouseLeave={() => setHoveredRegion(null)}
                 >
                     <span className="w-3 h-3 rounded-full" style={{ backgroundColor: colorPalette.idp }}></span>
-                    <span className={themeStyles.textSub}>Internally Displaced</span>
+                    <span className="text-gray-600 dark:text-gray-400">Internally Displaced</span>
                 </div>
                 {refugeeKeys.map(key => (
                     <div
@@ -369,7 +358,7 @@ function DisplacementChart({
                         onMouseLeave={() => setHoveredRegion(null)}
                     >
                         <span className="w-3 h-3 rounded-full" style={{ backgroundColor: colorPalette[key] }}></span>
-                        <span className={themeStyles.textSub}>{labels[key]}</span>
+                        <span className="text-gray-600 dark:text-gray-400">{labels[key]}</span>
                     </div>
                 ))}
             </div>

@@ -34,33 +34,13 @@ function CasualtiesChart({
     const innerHeight = chartHeight - marginTop - marginBottom;
 
     // --- Dynamic Styles ---
-    const regionColors = useMemo(() => isDark ? {
+    const regionColors = {
         Aleppo: '#fbbf24',
         Damascus: '#f43f5e',
         Idlib: '#a78bfa',
         Daraa: '#34d399',
         Homs: '#f472b6',
         Other: '#38bdf8',
-    } : {
-        Aleppo: '#fbbf24',
-        Damascus: '#f87171',
-        Idlib: '#a78bfa',
-        Daraa: '#34d399',
-        Homs: '#f472b6',
-        Other: '#60a5fa',
-    }, [isDark]);
-
-    const themeStyles = {
-        background: isDark ? 'bg-slate-800' : 'bg-white',
-        textMain: isDark ? 'text-gray-100' : 'text-gray-900',
-        textSub: isDark ? 'text-gray-400' : 'text-gray-600',
-        border: isDark ? 'border-slate-700' : 'border-transparent',
-        inputBg: isDark ? 'bg-slate-700' : 'bg-white',
-        inputBorder: isDark ? 'border-gray-600' : 'border-gray-300',
-        accentColor: isDark ? 'bg-orange-500' : 'bg-blue-600',
-        axisColor: isDark ? '#9ca3af' : '#374151',
-        gridColor: isDark ? '#cbd5e1' : '#e5e7eb',
-        tooltipBg: isDark ? 'bg-slate-900 border-slate-600 text-white' : 'bg-gray-900 text-white',
     };
 
     // Data Processing
@@ -133,7 +113,7 @@ function CasualtiesChart({
 
     // Axis Rendering Effect
     useEffect(() => {
-        const color = themeStyles.axisColor;
+        const color = isDark ? '#9ca3af' : '#374151';
         const gxElement = d3.select(gx.current);
         gxElement.call(d3.axisBottom(xScale).ticks(12));
         gxElement.selectAll('text').attr('fill', color).attr('font-size', '12px');
@@ -145,7 +125,7 @@ function CasualtiesChart({
         gyElement.selectAll('text').attr('fill', color).attr('font-size', '12px');
         gyElement.selectAll('line').attr('stroke', color).attr('opacity', 0.3);
         gyElement.selectAll('path').attr('stroke', color).attr('opacity', 0.3);
-    }, [gx, gy, xScale, yScale, themeStyles.axisColor]);
+    }, [gx, gy, xScale, yScale, isDark]);
 
     // Main Chart Rendering Effect
     useEffect(() => {
@@ -235,7 +215,7 @@ function CasualtiesChart({
                     .attr('x1', xPos).attr('x2', xPos)
                     .attr('y1', dateY + 5)
                     .attr('y2', chartHeight - marginBottom)
-                    .attr('stroke', themeStyles.axisColor)
+                    .attr('stroke', isDark ? '#9ca3af' : '#374151')
                     .attr('stroke-width', 1)
                     .attr('stroke-dasharray', '3,3')
                     .attr('opacity', 0.4);
@@ -254,7 +234,7 @@ function CasualtiesChart({
                     .attr('y', dateY)
                     .attr('text-anchor', 'middle')
                     .attr('font-size', '11px')
-                    .attr('fill', themeStyles.axisColor)
+                    .attr('fill', isDark ? '#9ca3af' : '#374151')
                     .text(d3.timeFormat("%b %Y")(event.date));
             }
         });
@@ -347,7 +327,7 @@ function CasualtiesChart({
 
         // Vertical line
         const verticalLine = gChartEl.append('line')
-            .attr('stroke', themeStyles.axisColor)
+            .attr('stroke', isDark ? '#9ca3af' : '#374151')
             .attr('stroke-width', 1.5)
             .attr('stroke-dasharray', '4,4')
             .style('opacity', 0)
@@ -380,7 +360,7 @@ function CasualtiesChart({
             window.removeEventListener('scroll', handleScroll);
         };
 
-    }, [filteredData, chartMode, selectedCasualtyTypes, xScale, yScale, chartWidth, chartHeight, regionColors, themeStyles.axisColor, isDark, isMobile, hoveredRegion]);
+    }, [filteredData, chartMode, selectedCasualtyTypes, xScale, yScale, chartWidth, chartHeight, regionColors, isDark, isMobile, hoveredRegion]);
 
     const toggleCasualtyType = (type) => {
         setSelectedCasualtyTypes(prev => prev.includes(type) && prev.length > 1
@@ -392,18 +372,18 @@ function CasualtiesChart({
     return (
         <div className={`w-full flex flex-col gap-6 p-6`}>
             {/* Controls */}
-            <div className={`${themeStyles.background} rounded-xl shadow-lg border ${themeStyles.border} p-5 transition-colors duration-300`}>
+            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-transparent dark:border-slate-700 p-5 transition-colors duration-300">
                 <div className="flex flex-col md:flex-row gap-8 justify-evenly">
                     <div>
-                        <label className={`block text-xs font-semibold uppercase tracking-wider mb-3 ${themeStyles.textSub}`}>Chart Type</label>
-                        <div className={`flex rounded-lg p-1 ${isDark ? 'bg-slate-700' : 'bg-gray-100'}`}>
+                        <label className="block text-xs font-semibold uppercase tracking-wider mb-3 text-gray-600 dark:text-gray-400">Chart Type</label>
+                        <div className="flex rounded-lg p-1 bg-gray-100 dark:bg-slate-700">
                             {['line', 'area'].map(mode => (
                                 <button
                                     key={mode}
                                     onClick={() => setChartMode(mode)}
                                     className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${chartMode === mode
-                                        ? `${themeStyles.accentColor} text-white shadow`
-                                        : `${themeStyles.textSub} hover:${themeStyles.textMain}`
+                                        ? `bg-blue-600 dark:bg-orange-500 text-white shadow`
+                                        : `text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100`
                                         }`}
                                 >
                                     {mode === 'line' ? 'Line Chart' : 'Stacked Area'}
@@ -413,13 +393,13 @@ function CasualtiesChart({
                     </div>
 
                     <div>
-                        <label className={`block text-xs font-semibold uppercase tracking-wider mb-3 ${themeStyles.textSub}`}>Casualty Type</label>
+                        <label className="block text-xs font-semibold uppercase tracking-wider mb-3 text-gray-600 dark:text-gray-400">Casualty Type</label>
                         <div className="flex gap-4">
                             {['Civilian', 'Combatant'].map(type => (
                                 <label key={type} className="flex items-center gap-2 cursor-pointer group">
                                     <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${selectedCasualtyTypes.includes(type)
-                                        ? `${themeStyles.accentColor} border-transparent`
-                                        : `${themeStyles.inputBorder} ${themeStyles.inputBg}`
+                                        ? `bg-blue-600 dark:bg-orange-500 border-transparent`
+                                        : `border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-700`
                                         }`}>
                                         {selectedCasualtyTypes.includes(type) && (
                                             <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -433,7 +413,7 @@ function CasualtiesChart({
                                         checked={selectedCasualtyTypes.includes(type)}
                                         onChange={() => toggleCasualtyType(type)}
                                     />
-                                    <span className={`text-sm transition-colors ${themeStyles.textSub} group-hover:${themeStyles.textMain}`}>{type}</span>
+                                    <span className="text-sm transition-colors text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-100">{type}</span>
                                 </label>
                             ))}
                         </div>
@@ -444,7 +424,7 @@ function CasualtiesChart({
             {/* Chart Area */}
             <div
                 ref={containerRef}
-                className={`flex-1 ${themeStyles.background} rounded-xl shadow-lg border ${themeStyles.border} overflow-hidden relative transition-colors duration-300`}
+                className="flex-1 bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-transparent dark:border-slate-700 overflow-hidden relative transition-colors duration-300"
                 style={{ width: '100%', height: '500px' }}
             >
                 <svg
@@ -461,7 +441,7 @@ function CasualtiesChart({
                                 key={i}
                                 x1={marginLeft} x2={chartWidth - marginRight}
                                 y1={yScale(tick)} y2={yScale(tick)}
-                                stroke={themeStyles.gridColor}
+                                stroke={isDark ? '#cbd5e1' : '#e5e7eb'}
                             />
                         ))}
                     </g>
@@ -474,12 +454,12 @@ function CasualtiesChart({
 
                 <div
                     ref={tooltipRef}
-                    className={`fixed border px-4 py-3 rounded-lg shadow-2xl text-sm pointer-events-none z-50 ${themeStyles.tooltipBg} hidden`}
+                    className={`fixed border px-4 py-3 rounded-lg shadow-2xl text-sm pointer-events-none z-50 ${isDark ? 'bg-slate-900 border-slate-600 text-white' : 'bg-gray-900 text-white'} hidden`}
                     style={{ width: '180px' }}
                 >
                     {hoveredPoint && (
                         <div>
-                            <div className={`font-bold mb-2 border-b pb-1 ${isDark ? 'border-gray-700' : 'border-gray-600'}`}>{hoveredPoint.data.month}</div>
+                            <div className="font-bold mb-2 border-b pb-1 border-gray-600 dark:border-gray-700">{hoveredPoint.data.month}</div>
                             {Object.entries(regionColors).map(([region, color]) => (
                                 <div key={region} className="flex items-center gap-2 mb-1">
                                     <span className="w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
@@ -497,7 +477,7 @@ function CasualtiesChart({
                 {Object.entries(regionColors).map(([region, color]) => (
                     <div key={region} className="flex items-center gap-2">
                         <span className="w-3 h-3 rounded-full" style={{ backgroundColor: color }} />
-                        <span className={`text-sm ${themeStyles.textSub}`}>{region}</span>
+                        <span className="text-sm text-gray-600 dark:text-gray-400">{region}</span>
                     </div>
                 ))}
             </div>

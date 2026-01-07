@@ -15,9 +15,7 @@ function Navbar({ sections, activeSection, onSectionClick, onTourClick }) {
         const baseClass = `px-4 py-2 rounded-md text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 ${isBlock ? 'block w-full text-left' : ''}`;
         const activeClass = activeSection === sectionId ? 'bg-red-500 text-white' : '';
         const inactiveClass = activeSection !== sectionId
-            ? isDark
-                ? 'text-gray-300 hover:bg-gray-700'
-                : 'text-gray-700 hover:bg-gray-100'
+            ? 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
             : '';
         return `${baseClass} ${activeClass} ${inactiveClass}`;
     };
@@ -25,7 +23,7 @@ function Navbar({ sections, activeSection, onSectionClick, onTourClick }) {
     const activeTitle = sections.find(s => s.id === activeSection)?.title;
 
     return (
-        <nav className={`sticky top-0 z-50 ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border-b shadow-lg`}>
+        <nav className="sticky top-0 z-50 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 border-b shadow-lg">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     <div className="flex items-center gap-3">
@@ -37,7 +35,7 @@ function Navbar({ sections, activeSection, onSectionClick, onTourClick }) {
                     {/* Current section indicator - desktop only, centered */}
                     {activeTitle && (
                         <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center">
-                            <span className={`text-xl font-medium ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                            <span className="text-xl font-medium text-gray-600 dark:text-gray-300">
                                 {activeTitle}
                             </span>
                         </div>
@@ -48,7 +46,7 @@ function Navbar({ sections, activeSection, onSectionClick, onTourClick }) {
                         {/* Guided Tour Button */}
                         <button
                             onClick={onTourClick}
-                            className={`p-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 ${isDark ? 'hover:bg-gray-700' : 'hover:bg-gray-200'}`}
+                            className="p-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 hover:bg-gray-200 dark:hover:bg-gray-700"
                             title="Start guided tour"
                             aria-label="Start guided tour"
                         >
@@ -58,7 +56,7 @@ function Navbar({ sections, activeSection, onSectionClick, onTourClick }) {
                         {/* Dark Mode Toggle */}
                         <button
                             onClick={() => setIsDark(!isDark)}
-                            className={`p-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 ${isDark ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'}`}
+                            className="p-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
                             aria-label="Toggle dark mode"
                         >
                             {isDark ? <Sun size={20} /> : <Moon size={20} />}
@@ -77,7 +75,7 @@ function Navbar({ sections, activeSection, onSectionClick, onTourClick }) {
 
                 {/* Mobile Menu */}
                 {isMenuOpen && (
-                    <div className={`lg:hidden absolute top-full left-0 w-full border-b shadow-lg ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
+                    <div className="lg:hidden absolute top-full left-0 w-full border-b shadow-lg bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
                         <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-4">
                             {sections.map((section) => (
                                 <button

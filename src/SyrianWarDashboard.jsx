@@ -142,18 +142,16 @@ export default function SyrianWarDashboard() {
     return (
         <ThemeProvider isDark={isDark} setIsDark={setIsDark}>
             <DataProvider>
-                <div className={isDark ? 'dark' : ''}>
-                    <GuidedTour isOpen={isTourOpen} onClose={() => setIsTourOpen(false)} />
+                <GuidedTour isOpen={isTourOpen} onClose={() => setIsTourOpen(false)} />
 
-                    <div className={`min-h-screen ${isDark ? 'bg-gray-900 text-gray-100' : 'bg-white text-gray-900'}`}>
-                        <ProgressTracker onTourClick={() => setIsTourOpen(true)} />
+                <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+                    <ProgressTracker onTourClick={() => setIsTourOpen(true)} />
 
-                        <Content sections={sections} />
+                    <Content sections={sections} />
 
-                        <ScrollTracker />
+                    <ScrollTracker />
 
-                        <Footer />
-                    </div>
+                    <Footer />
                 </div>
             </DataProvider>
         </ThemeProvider>

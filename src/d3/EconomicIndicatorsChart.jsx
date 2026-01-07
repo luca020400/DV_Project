@@ -72,7 +72,6 @@ const SingleChart = ({
     width,
     height,
     isDark,
-    themeStyles,
     isFocused,
     onClick
 }) => {
@@ -181,11 +180,11 @@ const SingleChart = ({
         >
             <div className={`flex items-center justify-between mb-2 flex-shrink-0 ${isFocused ? 'h-auto' : 'h-[48px]'}`}>
                 <div className="pr-4 min-w-0 flex-1">
-                    <div className={`font-bold ${themeStyles.textMain} uppercase tracking-wider truncate ${isFocused ? 'text-2xl mb-2' : 'text-sm mb-1'}`}>
+                    <div className={`font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider truncate ${isFocused ? 'text-2xl mb-2' : 'text-sm mb-1'}`}>
                         {metric.title}
                     </div>
 
-                    <div className={`font-mono transition-colors duration-200 ${themeStyles.textSub} ${isFocused ? 'text-lg' : 'text-xs'} flex flex-wrap items-baseline gap-2 min-h-[16px]`}>
+                    <div className={`font-mono transition-colors duration-200 text-gray-600 dark:text-gray-400 ${isFocused ? 'text-lg' : 'text-xs'} flex flex-wrap items-baseline gap-2 min-h-[16px]`}>
                         <span className="truncate">
                             {metric.subtitle}
                         </span>
@@ -199,13 +198,13 @@ const SingleChart = ({
                 </div>
 
                 <div className="flex items-center gap-3 flex-shrink-0">
-                    {!isFocused && <Maximize2 size={16} className={`${themeStyles.textSub} opacity-0 group-hover:opacity-50 transition-opacity`} />}
+                    {!isFocused && <Maximize2 size={16} className="text-gray-600 dark:text-gray-400 opacity-0 group-hover:opacity-50 transition-opacity" />}
 
                     <div className="group/info relative">
-                        <Info size={isFocused ? 20 : 16} className={`${themeStyles.textSub} cursor-help opacity-60 hover:opacity-100 transition-opacity`} />
-                        <div className={`absolute right-0 top-8 w-64 p-4 rounded text-sm z-20 opacity-0 group-hover/info:opacity-100 pointer-events-none transition-opacity shadow-xl border ${isDark ? 'bg-slate-800 border-slate-600 text-slate-200' : 'bg-white border-slate-200 text-slate-700'}`}>
+                        <Info size={isFocused ? 20 : 16} className="text-gray-600 dark:text-gray-400 cursor-help opacity-60 hover:opacity-100 transition-opacity" />
+                        <div className="absolute right-0 top-8 w-64 p-4 rounded text-sm z-20 opacity-0 group-hover/info:opacity-100 pointer-events-none transition-opacity shadow-xl border bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200">
                             <p className="mb-2">{metric.description}</p>
-                            {metric.note && <p className={`text-xs ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>{metric.note}</p>}
+                            {metric.note && <p className="text-xs text-slate-600 dark:text-slate-300">{metric.note}</p>}
                         </div>
                     </div>
                 </div>
@@ -308,7 +307,7 @@ const SingleChart = ({
                                     cx={activeData.x}
                                     cy={activeData.y}
                                     r={isFocused ? 6 : 5}
-                                    fill={themeStyles.bg}
+                                    fill={isDark ? '#1e293b' : '#ffffff'}
                                     stroke={metric.color}
                                     strokeWidth={2}
                                 />
@@ -372,13 +371,6 @@ function EconomicIndicatorsCharts({
     const focusedChartWidth = Math.min(boundedWidth, 1000);
     const focusedChartHeight = boundedHeight - 120;
 
-    const themeStyles = {
-        textMain: isDark ? 'text-gray-100' : 'text-gray-900',
-        textSub: isDark ? 'text-gray-400' : 'text-gray-600',
-        bg: isDark ? '#1e293b' : '#ffffff',
-        border: isDark ? 'border-slate-700' : 'border-gray-200'
-    };
-
     return (
         <div
             className="relative w-full flex flex-col overflow-hidden"
@@ -396,7 +388,7 @@ function EconomicIndicatorsCharts({
                     <div style={{ width: focusedChartWidth }} className="flex flex-col h-full">
                         <button
                             onClick={() => setFocusedKey(null)}
-                            className={`mb-4 flex-shrink-0 flex items-center gap-2 text-base font-bold ${themeStyles.textSub} hover:text-blue-500 transition-colors w-fit`}
+                            className="mb-4 flex-shrink-0 flex items-center gap-2 text-base font-bold text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors w-fit"
                         >
                             <ArrowLeft size={20} /> Back to Overview
                         </button>
@@ -420,8 +412,8 @@ function EconomicIndicatorsCharts({
 
                     {/* Economic Indicators */}
                     <div>
-                        <div className={`mb-6 pb-2 border-b ${isDark ? 'border-gray-600' : 'border-gray-300'}`}>
-                            <h2 className={`text-lg font-bold tracking-wider ${themeStyles.textMain} pl-1`}>
+                        <div className="mb-6 pb-2 border-b border-gray-300 dark:border-gray-600">
+                            <h2 className="text-lg font-bold tracking-wider text-gray-900 dark:text-gray-100 pl-1">
                                 ECONOMIC INDICATORS
                             </h2>
                         </div>
@@ -437,14 +429,13 @@ function EconomicIndicatorsCharts({
                             }}
                         >
                             {METRICS.slice(0, 3).map((metric) => (
-                                <div key={metric.key} className={`group rounded-xl -m-6 p-6 transition-colors duration-200 flex flex-col ${isDark ? 'hover:bg-white/5' : 'hover:bg-black/5'}`}>
+                                <div key={metric.key} className="group rounded-xl -m-6 p-6 transition-colors duration-200 flex flex-col hover:bg-black/5 dark:hover:bg-white/5">
                                     <SingleChart
                                         metric={metric}
                                         data={validData}
                                         width={gridCellWidth}
                                         height={gridCellHeight}
                                         isDark={isDark}
-                                        themeStyles={themeStyles}
                                         isFocused={false}
                                         onClick={() => setFocusedKey(metric.key)}
                                     />
@@ -455,11 +446,11 @@ function EconomicIndicatorsCharts({
 
                     {/* Humanitarian Indicators */}
                     <div>
-                        <div className={`mb-8 pb-4 border-b ${isDark ? 'border-gray-600' : 'border-gray-300'}`}>
-                            <h2 className={`text-lg font-bold tracking-wider ${themeStyles.textMain} pl-1 mb-2`}>
+                        <div className="mb-8 pb-4 border-b border-gray-300 dark:border-gray-600">
+                            <h2 className="text-lg font-bold tracking-wider text-gray-900 dark:text-gray-100 pl-1 mb-2">
                                 HUMANITARIAN INDICATORS
                             </h2>
-                            <p className={`text-base ${isDark ? 'text-slate-300' : 'text-slate-600'} leading-relaxed max-w-4xl`}>
+                            <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
                                 {SECTION_INFO.humanitarian.note}
                             </p>
                         </div>
@@ -475,14 +466,13 @@ function EconomicIndicatorsCharts({
                             }}
                         >
                             {METRICS.slice(3, 6).map((metric) => (
-                                <div key={metric.key} className={`group rounded-xl -m-6 p-6 transition-colors duration-200 flex flex-col ${isDark ? 'hover:bg-white/5' : 'hover:bg-black/5'}`}>
+                                <div key={metric.key} className="group rounded-xl -m-6 p-6 transition-colors duration-200 flex flex-col hover:bg-black/5 dark:hover:bg-white/5">
                                     <SingleChart
                                         metric={metric}
                                         data={validData}
                                         width={gridCellWidth}
                                         height={gridCellHeight}
                                         isDark={isDark}
-                                        themeStyles={themeStyles}
                                         isFocused={false}
                                         onClick={() => setFocusedKey(metric.key)}
                                     />

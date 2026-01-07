@@ -12,7 +12,7 @@ const MapLayer = memo(({
     pathGenerator,
     currentDataSlice,
     colorScale,
-    themeStyles,
+    isDark,
     onRegionEnter,
     onRegionLeave,
     onMouseMove
@@ -28,8 +28,8 @@ const MapLayer = memo(({
                         <path
                             key={`path-${i}`}
                             d={pathGenerator(feature)}
-                            fill={value > 0 ? colorScale(value) : themeStyles.emptyRegion}
-                            stroke={themeStyles.stroke}
+                            fill={value > 0 ? colorScale(value) : (isDark ? '#334155' : '#e2e8f0')}
+                            stroke={isDark ? '#1e293b' : '#fff'}
                             strokeWidth={1}
                             className="transition-colors duration-500 ease-in-out cursor-pointer hover:opacity-80"
                             onMouseEnter={() => onRegionEnter(regionName, value)}
@@ -51,7 +51,6 @@ const Controls = memo(({
     currentLabel,
     progressPercent,
     sliderLabels,
-    themeStyles,
     onReset,
     onPrev,
     onNext,
@@ -60,16 +59,16 @@ const Controls = memo(({
     isDark
 }) => {
     return (
-        <div className={`p-6 rounded-xl shadow-lg border ${themeStyles.border} ${themeStyles.background} transition-colors duration-300`}>
+        <div className="p-6 rounded-xl shadow-lg border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 transition-colors duration-300">
             <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                        <button onClick={onReset} className={`p-2 rounded-lg transition-colors ${themeStyles.controlsBg}`}>
-                            <RotateCcw size={18} className={themeStyles.textMain} />
+                        <button onClick={onReset} className="p-2 rounded-lg transition-colors bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600">
+                            <RotateCcw size={18} className="text-gray-900 dark:text-gray-100" />
                         </button>
                         <div className="w-px h-6 bg-slate-600 mx-1 opacity-50"></div>
-                        <button onClick={onPrev} disabled={currentIndex === 0} className={`p-2 rounded-lg transition-colors ${currentIndex === 0 ? 'opacity-30 cursor-not-allowed' : themeStyles.controlsBg}`}>
-                            <ChevronLeft size={20} className={themeStyles.textMain} />
+                        <button onClick={onPrev} disabled={currentIndex === 0} className={`p-2 rounded-lg transition-colors ${currentIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600'}`}>
+                            <ChevronLeft size={20} className="text-gray-900 dark:text-gray-100" />
                         </button>
                         <button
                             onClick={onPlayPause}
@@ -81,18 +80,18 @@ const Controls = memo(({
                         >
                             {isPlaying ? <Pause size={20} className="text-white" /> : <Play size={20} className="text-white" />}
                         </button>
-                        <button onClick={onNext} disabled={currentIndex === timeSeriesData.length - 1} className={`p-2 rounded-lg transition-colors ${currentIndex === timeSeriesData.length - 1 ? 'opacity-30 cursor-not-allowed' : themeStyles.controlsBg}`}>
-                            <ChevronRight size={20} className={themeStyles.textMain} />
+                        <button onClick={onNext} disabled={currentIndex === timeSeriesData.length - 1} className={`p-2 rounded-lg transition-colors ${currentIndex === timeSeriesData.length - 1 ? 'opacity-30 cursor-not-allowed' : 'bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600'}`}>
+                            <ChevronRight size={20} className="text-gray-900 dark:text-gray-100" />
                         </button>
                     </div>
 
-                    <div className={`text-2xl font-mono font-bold ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
+                    <div className="text-2xl font-mono font-bold text-slate-800 dark:text-slate-200">
                         {currentLabel}
                     </div>
                 </div>
 
                 <div className="relative w-full h-8 flex items-center group">
-                    <div className={`absolute w-full h-2 rounded-full overflow-hidden ${themeStyles.progressBarBg}`}>
+                    <div className="absolute w-full h-2 rounded-full overflow-hidden bg-gray-200 dark:bg-slate-700">
                         <div className="h-full bg-gradient-to-r from-blue-500 to-blue-400 transition-all duration-300 ease-out" style={{ width: `${progressPercent}%` }} />
                     </div>
                     <input type="range" min={0} max={Math.max(0, timeSeriesData.length - 1)} value={currentIndex} onChange={onSliderChange} className="absolute w-full h-full opacity-0 cursor-pointer z-10" />
@@ -175,17 +174,6 @@ function RegionalConflictChart({
         return d3.geoPath().projection(projection);
     }, [projection]);
 
-    const themeStyles = useMemo(() => ({
-        background: isDark ? 'bg-slate-800' : 'bg-white',
-        textMain: isDark ? 'text-gray-100' : 'text-gray-900',
-        textSub: isDark ? 'text-gray-400' : 'text-gray-600',
-        border: isDark ? 'border-slate-700' : 'border-gray-300',
-        tooltipBg: isDark ? 'bg-slate-900 border-slate-600 text-white' : 'bg-gray-900 text-white',
-        emptyRegion: isDark ? '#334155' : '#e2e8f0',
-        stroke: isDark ? '#1e293b' : '#fff',
-        controlsBg: isDark ? 'bg-slate-700 hover:bg-slate-600' : 'bg-gray-200 hover:bg-gray-300',
-        progressBarBg: isDark ? 'bg-slate-700' : 'bg-gray-200',
-    }), [isDark]);
 
     // Animation Logic
     useEffect(() => {
@@ -265,7 +253,7 @@ function RegionalConflictChart({
                     pathGenerator={pathGenerator}
                     currentDataSlice={currentDataSlice}
                     colorScale={colorScale}
-                    themeStyles={themeStyles}
+                    isDark={isDark}
                     onRegionEnter={handleRegionEnter}
                     onRegionLeave={handleRegionLeave}
                     onMouseMove={handleMouseMove}
@@ -274,7 +262,7 @@ function RegionalConflictChart({
                 {/* React Tooltip */}
                 <div
                     ref={tooltipRef}
-                    className={`absolute top-0 left-0 pointer-events-none px-4 py-3 rounded shadow-xl text-sm z-20 border ${themeStyles.tooltipBg} transition-opacity duration-150 ${tooltipContent ? 'opacity-100' : 'opacity-0'}`}
+                    className={`absolute top-0 left-0 pointer-events-none px-4 py-3 rounded shadow-xl text-sm z-20 border bg-gray-900 dark:bg-slate-900 border-slate-600 text-white transition-opacity duration-150 ${tooltipContent ? 'opacity-100' : 'opacity-0'}`}
                     style={{ willChange: 'transform' }}
                 >
                     {tooltipContent && (
@@ -288,22 +276,22 @@ function RegionalConflictChart({
                 </div>
 
                 {/* Legend */}
-                <div className={`absolute right-4 top-4 flex flex-col gap-4 p-5 rounded-lg border ${themeStyles.border} ${isDark ? 'bg-slate-900/95' : 'bg-white/95'} backdrop-blur-md shadow-xl min-w-[160px]`}>
-                    <div className={`text-sm font-bold uppercase tracking-wider ${themeStyles.textMain}`}>Events Scale</div>
+                <div className="absolute right-4 top-4 flex flex-col gap-4 p-5 rounded-lg border border-gray-300 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-xl min-w-[160px]">
+                    <div className="text-sm font-bold uppercase tracking-wider text-gray-900 dark:text-gray-100">Events Scale</div>
                     <div className="flex flex-col gap-3">
                         {legendSteps.map((step, idx) => (
                             <div key={idx} className="flex items-center gap-4">
                                 <div className="w-6 h-6 rounded border border-black/10 shadow-sm" style={{ backgroundColor: step.color }} />
-                                <span className={`text-sm font-mono font-medium ${themeStyles.textMain}`}>
+                                <span className="text-sm font-mono font-medium text-gray-900 dark:text-gray-100">
                                     {step.value >= 1000 ? `${(step.value / 1000).toFixed(1)}k` : step.value}
                                 </span>
                             </div>
                         ))}
                     </div>
-                    <div className={`text-sm border-t ${themeStyles.border} pt-3 mt-2`}>
+                    <div className="text-sm border-t border-gray-300 dark:border-slate-700 pt-3 mt-2">
                         <div className="flex items-center gap-4">
-                            <div className="w-6 h-6 rounded border border-black/10 shadow-sm" style={{ backgroundColor: themeStyles.emptyRegion }} />
-                            <span className={themeStyles.textSub}>No Data</span>
+                            <div className="w-6 h-6 rounded border border-black/10 shadow-sm" style={{ backgroundColor: isDark ? '#334155' : '#e2e8f0' }} />
+                            <span className="text-gray-600 dark:text-gray-400">No Data</span>
                         </div>
                     </div>
                 </div>
@@ -317,7 +305,6 @@ function RegionalConflictChart({
                 currentLabel={currentDataSlice.label}
                 progressPercent={progressPercent}
                 sliderLabels={sliderLabels}
-                themeStyles={themeStyles}
                 onReset={handleReset}
                 onPrev={handlePrev}
                 onNext={handleNext}
