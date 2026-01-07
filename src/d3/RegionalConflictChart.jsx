@@ -11,7 +11,6 @@ const MapLayer = memo(({
     geoJson,
     neighborsGeoJson,
     pathGenerator,
-    projection,
     currentDataSlice,
     colorScale,
     isDark,
@@ -68,7 +67,8 @@ const Controls = memo(({
     currentIndex,
     isPlaying,
     timeSeriesData,
-    currentLabel,
+    displayYear,
+    periodIndex,
     progressPercent,
     sliderLabels,
     onReset,
@@ -76,56 +76,141 @@ const Controls = memo(({
     onNext,
     onPlayPause,
     onSliderChange,
-    isDark
+    aggregation,
+    onAggregationChange,
 }) => {
     return (
-        <div className="p-6 rounded-xl shadow-lg border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 transition-colors duration-300">
-            <div className="flex flex-col gap-4">
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                        <button onClick={onReset} className="p-2 rounded-lg transition-colors bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600">
-                            <RotateCcw size={18} className="text-gray-900 dark:text-gray-100" />
-                        </button>
-                        <div className="w-px h-6 bg-slate-600 mx-1 opacity-50"></div>
-                        <button onClick={onPrev} disabled={currentIndex === 0} className={`p-2 rounded-lg transition-colors ${currentIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600'}`}>
-                            <ChevronLeft size={20} className="text-gray-900 dark:text-gray-100" />
-                        </button>
-                        <button
-                            onClick={onPlayPause}
-                            disabled={timeSeriesData.length === 0 || (currentIndex === timeSeriesData.length - 1 && !isPlaying)}
-                            className={`p-2 rounded-lg transition-colors border-2 ${timeSeriesData.length === 0 || (currentIndex === timeSeriesData.length - 1 && !isPlaying)
-                                ? 'opacity-50 cursor-not-allowed bg-slate-800 border-slate-600'
-                                : isPlaying ? 'bg-red-600 hover:bg-red-700 shadow-lg shadow-red-900/20 border-transparent' : 'bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-900/20 border-transparent'
-                                }`}
-                        >
-                            {isPlaying ? <Pause size={20} className="text-white" /> : <Play size={20} className="text-white" />}
-                        </button>
-                        <button onClick={onNext} disabled={currentIndex === timeSeriesData.length - 1} className={`p-2 rounded-lg transition-colors ${currentIndex === timeSeriesData.length - 1 ? 'opacity-30 cursor-not-allowed' : 'bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600'}`}>
-                            <ChevronRight size={20} className="text-gray-900 dark:text-gray-100" />
-                        </button>
-                    </div>
+        <div className="px-6 py-4 rounded-xl shadow-lg border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 transition-colors duration-300">
+            <div className="flex items-center gap-6">
 
-                    <div className="text-2xl font-mono font-bold text-slate-800 dark:text-slate-200">
-                        {currentLabel}
-                    </div>
+                {/* Playback Controls */}
+                <div className="flex items-center gap-2 shrink-0">
+                    <button onClick={onReset} className="p-2 rounded-lg transition-colors bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600 group" title="Reset">
+                        <RotateCcw size={18} className="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white" />
+                    </button>
+
+                    <button onClick={onPrev} disabled={currentIndex === 0} className={`p-2 rounded-lg transition-colors ${currentIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600'}`}>
+                        <ChevronLeft size={20} className="text-gray-900 dark:text-gray-100" />
+                    </button>
+
+                    <button
+                        onClick={onPlayPause}
+                        disabled={timeSeriesData.length === 0 || (currentIndex === timeSeriesData.length - 1 && !isPlaying)}
+                        className={`p-2 rounded-lg transition-colors border-2 ${timeSeriesData.length === 0 || (currentIndex === timeSeriesData.length - 1 && !isPlaying)
+                            ? 'opacity-50 cursor-not-allowed bg-slate-800 border-slate-600'
+                            : isPlaying
+                                ? 'bg-red-600 hover:bg-red-700 shadow-md shadow-red-900/20 border-transparent'
+                                : 'bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-900/20 border-transparent'
+                            }`}
+                    >
+                        <span className="text-white">
+                            {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+                        </span>
+                    </button>
+
+                    <button onClick={onNext} disabled={currentIndex === timeSeriesData.length - 1} className={`p-2 rounded-lg transition-colors ${currentIndex === timeSeriesData.length - 1 ? 'opacity-30 cursor-not-allowed' : 'bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600'}`}>
+                        <ChevronRight size={20} className="text-gray-900 dark:text-gray-100" />
+                    </button>
                 </div>
 
-                <div className="relative w-full h-8 flex items-center group">
+                {/* Timeline Slider */}
+                <div className="flex-1 relative h-12 flex items-center group">
                     <div className="absolute w-full h-2 rounded-full overflow-hidden bg-gray-200 dark:bg-slate-700">
                         <div className="h-full bg-gradient-to-r from-blue-500 to-blue-400 transition-all duration-300 ease-out" style={{ width: `${progressPercent}%` }} />
                     </div>
+
                     <input type="range" min={0} max={Math.max(0, timeSeriesData.length - 1)} value={currentIndex} onChange={onSliderChange} className="absolute w-full h-full opacity-0 cursor-pointer z-10" />
+
+                    {/* The Handle */}
                     <div className="absolute h-4 w-4 bg-white rounded-full shadow-md border-2 border-blue-500 pointer-events-none transition-all duration-300 ease-out z-0" style={{ left: `calc(${progressPercent}% - 8px)` }} />
-                    <div className="absolute top-6 w-full h-6 pointer-events-none">
+
+                    {/* The Labels Container */}
+                    <div className="absolute top-8 w-full h-6 pointer-events-none">
                         {sliderLabels.map((label, i) => (
-                            <span key={i} className="absolute text-xs font-mono opacity-40 whitespace-nowrap" style={{ left: label.left, transform: label.transform }}>{label.text}</span>
+                            <span
+                                key={i}
+                                className="absolute text-xs font-mono opacity-50 whitespace-nowrap text-slate-600 dark:text-slate-400 leading-none pt-2"
+                                style={{
+                                    left: label.left,
+                                    transform: 'translateX(-50%)'
+                                }}
+                            >
+                                {label.text}
+                            </span>
                         ))}
                     </div>
                 </div>
+
+                {/* The Context Area */}
+                <div className="flex flex-col items-end justify-center min-w-[160px] shrink-0 gap-3">
+
+                    {/* Year & Visualizer */}
+                    <div className="flex flex-col items-end w-full gap-1">
+                        <div className="text-2xl font-mono font-bold text-slate-800 dark:text-slate-200 leading-none">
+                            {displayYear}
+                        </div>
+
+                        <div className="w-full h-6 mt-1">
+                            {aggregation === 'yearly' ? (
+                                <div className="w-full h-full rounded bg-amber-200 border border-amber-300 flex items-center justify-center shadow-sm">
+                                    <span className="text-[10px] font-bold text-amber-900 tracking-wider">FULL YEAR</span>
+                                </div>
+                            ) : (
+                                <div className="w-full h-full flex gap-1">
+                                    <div className={`flex-1 flex items-center justify-center rounded border shadow-sm transition-all duration-300 ${periodIndex === 0
+                                        ? 'bg-amber-200 border-amber-300'
+                                        : 'bg-slate-100 dark:bg-slate-700 border-transparent'
+                                        }`}>
+                                        <span className={`text-[9px] font-bold uppercase tracking-wider ${periodIndex === 0 ? 'text-amber-900' : 'text-slate-400 dark:text-slate-500'
+                                            }`}>Jan - Jun</span>
+                                    </div>
+
+                                    <div className={`flex-1 flex items-center justify-center rounded border shadow-sm transition-all duration-300 ${periodIndex === 1
+                                        ? 'bg-amber-200 border-amber-300'
+                                        : 'bg-slate-100 dark:bg-slate-700 border-transparent'
+                                        }`}>
+                                        <span className={`text-[9px] font-bold uppercase tracking-wider ${periodIndex === 1 ? 'text-amber-900' : 'text-slate-400 dark:text-slate-500'
+                                            }`}>Jul - Dec</span>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Segmented Control */}
+                    <div className="grid grid-cols-2 p-1 w-full bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700">
+                        {AGGREGATION_OPTIONS.map((option) => {
+                            const isActive = aggregation === option.value;
+                            return (
+                                <button
+                                    key={option.value}
+                                    onClick={() => onAggregationChange(option.value)}
+                                    className={`
+                                        text-[10px] uppercase font-bold tracking-wider py-1.5 rounded-md transition-all duration-200
+                                        ${isActive
+                                            ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
+                                            : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'
+                                        }
+                                    `}
+                                >
+                                    {option.label}
+                                </button>
+                            );
+                        })}
+                    </div>
+
+                </div>
+
             </div>
         </div>
     );
 });
+
+// Aggregation Options
+const AGGREGATION_OPTIONS = [
+    { value: 'yearly', label: 'Yearly', months: 12 },
+    { value: '6months', label: 'Semesters', months: 6 },
+];
 
 function RegionalConflictChart({
     dataObj,
@@ -138,6 +223,7 @@ function RegionalConflictChart({
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
     const [tooltipContent, setTooltipContent] = useState(null);
+    const [aggregation, setAggregation] = useState('yearly');
 
     const animationRef = useRef();
     const tooltipRef = useRef();
@@ -147,29 +233,58 @@ function RegionalConflictChart({
     const { timeSeriesData, maxVal } = useMemo(() => {
         if (!data || data.length === 0) return { timeSeriesData: [], maxVal: 0 };
 
-        const groups = d3.group(data, d => d3.timeFormat('%Y')(new Date(d.date)));
-        const sortedYears = Array.from(groups.keys()).sort();
+        const aggOption = AGGREGATION_OPTIONS.find(o => o.value === aggregation);
+        const periodMonths = aggOption?.months || 12;
+
+        const getPeriodKey = (date) => {
+            const d = new Date(date);
+            const year = d.getFullYear();
+            const month = d.getMonth();
+            if (periodMonths === 12) return `${year}`;
+            const periodIndex = Math.floor(month / periodMonths);
+            return `${year}-P${periodIndex}`;
+        };
+
+        const groups = d3.group(data, d => getPeriodKey(d.date));
+        const years = data.map(d => new Date(d.date).getFullYear());
+        const minYear = d3.min(years);
+        const maxYear = d3.max(years);
+
+        const allPeriods = [];
+        for (let year = minYear; year <= maxYear; year++) {
+            const periodsPerYear = 12 / periodMonths;
+            for (let p = 0; p < periodsPerYear; p++) {
+                const key = periodMonths === 12 ? `${year}` : `${year}-P${p}`;
+                allPeriods.push({ key, year, periodIndex: p });
+            }
+        }
 
         let globalMax = 0;
-        const series = sortedYears.map(yearStr => {
-            const yearEvents = groups.get(yearStr);
-            const regionCounts = d3.rollups(yearEvents, v => v.length, d => d.region);
-            const regionMap = Object.fromEntries(regionCounts);
-            const yearlyMax = d3.max(regionCounts, d => d[1]);
+        const series = allPeriods.map(({ key, year, periodIndex }) => {
+            const periodEvents = groups.get(key) || [];
+            let regionMap = {};
 
-            if (yearlyMax > globalMax) globalMax = yearlyMax;
+            if (periodEvents.length > 0) {
+                const regionCounts = d3.rollups(periodEvents, v => v.length, d => d.region);
+                regionMap = Object.fromEntries(regionCounts);
+                const periodMax = d3.max(regionCounts, d => d[1]);
+                if (periodMax > globalMax) globalMax = periodMax;
+            }
+
+            const startMonth = periodIndex * periodMonths;
 
             return {
-                date: new Date(yearStr + '-01-01'),
-                label: yearStr,
+                date: new Date(year, startMonth, 1),
+                year: year,
+                periodIndex: periodIndex,
                 regions: regionMap
             };
         });
 
         return { timeSeriesData: series, maxVal: globalMax };
-    }, [data]);
+    }, [data, aggregation]);
 
-    // Visual Memoization
+    // Visual
     const colorScale = useMemo(() => {
         const interpolator = isDark ? d3.interpolateYlOrRd : d3.interpolateOranges;
         return d3.scaleSequential(interpolator).domain([0, maxVal]);
@@ -198,7 +313,6 @@ function RegionalConflictChart({
         return d3.geoPath().projection(projection);
     }, [projection]);
 
-
     // Animation Logic
     useEffect(() => {
         if (isPlaying) {
@@ -218,17 +332,14 @@ function RegionalConflictChart({
     }, [isPlaying, timeSeriesData.length]);
 
     useEffect(() => {
-        if (timeSeriesData.length > 0 && currentIndex === 0) {
-            const index2012 = timeSeriesData.findIndex(d => d.label === '2012');
-            if (index2012 !== -1) setCurrentIndex(index2012);
-        }
-    }, [timeSeriesData]);
+        setCurrentIndex(0);
+        setIsPlaying(false);
+    }, [aggregation]);
 
-    // Handlers
+    // Event Handlers
     const handleRegionEnter = useCallback((name, value) => setTooltipContent({ name, value }), []);
     const handleRegionLeave = useCallback(() => setTooltipContent(null), []);
 
-    // Optimized Mouse Move
     const handleMouseMove = useCallback((e) => {
         if (tooltipRef.current) {
             const x = e.nativeEvent.offsetX + 20;
@@ -237,7 +348,6 @@ function RegionalConflictChart({
         }
     }, []);
 
-    // Slider Handlers (Memoized for Controls component)
     const handleSliderChange = useCallback((e) => {
         const val = parseInt(e.target.value);
         setCurrentIndex(val);
@@ -248,20 +358,27 @@ function RegionalConflictChart({
     const handleNext = useCallback(() => setCurrentIndex(curr => Math.min(timeSeriesData.length - 1, curr + 1)), [timeSeriesData.length]);
     const handleReset = useCallback(() => { setIsPlaying(false); setCurrentIndex(0); }, []);
     const handlePlayPause = useCallback(() => setIsPlaying(p => !p), []);
+    const handleAggregationChange = useCallback((value) => setAggregation(value), []);
 
-    // Computed Values
     const currentDataSlice = timeSeriesData[currentIndex];
     const progressPercent = timeSeriesData.length > 1 ? (currentIndex / (timeSeriesData.length - 1)) * 100 : 0;
 
     const sliderLabels = useMemo(() => {
         const count = timeSeriesData.length;
         if (count === 0) return [];
-        return timeSeriesData.map((item, index) => {
-            const percent = (index / (count - 1)) * 100;
-            let transform = 'translateX(-50%)';
-            if (index === 0) transform = 'translateX(0%)';
-            if (index === count - 1) transform = 'translateX(-100%)';
-            return { text: item.label, left: `${percent}%`, transform };
+
+        const yearIndices = [];
+        let lastYear = null;
+        timeSeriesData.forEach((item, index) => {
+            if (item.year !== lastYear) {
+                yearIndices.push({ year: item.year, index });
+                lastYear = item.year;
+            }
+        });
+
+        return yearIndices.map(({ year, index }) => {
+            const percent = count > 1 ? (index / (count - 1)) * 100 : 0;
+            return { text: `${year}`, left: `${percent}%` };
         });
     }, [timeSeriesData]);
 
@@ -285,7 +402,7 @@ function RegionalConflictChart({
                     onMouseMove={handleMouseMove}
                 />
 
-                {/* React Tooltip */}
+                {/* Tooltip */}
                 <div
                     ref={tooltipRef}
                     className={`absolute top-0 left-0 pointer-events-none px-4 py-3 rounded-lg shadow-xl text-sm z-20 border bg-white dark:bg-slate-800 border-gray-300 dark:border-slate-700 transition-opacity duration-150 ${tooltipContent ? 'opacity-100' : 'opacity-0'}`}
@@ -323,12 +440,13 @@ function RegionalConflictChart({
                 </div>
             </div>
 
-            {/* Memoized Controls */}
+            {/* Controls */}
             <Controls
                 currentIndex={currentIndex}
                 isPlaying={isPlaying}
                 timeSeriesData={timeSeriesData}
-                currentLabel={currentDataSlice.label}
+                displayYear={currentDataSlice?.year || ''}
+                periodIndex={currentDataSlice?.periodIndex || 0}
                 progressPercent={progressPercent}
                 sliderLabels={sliderLabels}
                 onReset={handleReset}
@@ -336,6 +454,8 @@ function RegionalConflictChart({
                 onNext={handleNext}
                 onPlayPause={handlePlayPause}
                 onSliderChange={handleSliderChange}
+                aggregation={aggregation}
+                onAggregationChange={handleAggregationChange}
                 isDark={isDark}
             />
         </div>
