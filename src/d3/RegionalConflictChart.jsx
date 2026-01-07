@@ -9,7 +9,9 @@ const MapLayer = memo(({
     width,
     height,
     geoJson,
+    neighborsGeoJson,
     pathGenerator,
+    projection,
     currentDataSlice,
     colorScale,
     isDark,
@@ -19,10 +21,30 @@ const MapLayer = memo(({
 }) => {
     return (
         <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full">
+            {/* Neighbors */}
+            {neighborsGeoJson && neighborsGeoJson.features && (
+                <g className="opacity-40">
+                    {neighborsGeoJson.features.map((feature, i) => {
+                        const pathData = pathGenerator(feature);
+                        return pathData ? (
+                            <path
+                                key={`neighbor-${i}`}
+                                d={pathData}
+                                fill={isDark ? '#1e293b' : '#f1f5f9'}
+                                stroke={isDark ? '#334155' : '#cbd5e1'}
+                                strokeWidth={0.5}
+                                className="transition-colors duration-300"
+                            />
+                        ) : null;
+                    })}
+                </g>
+            )}
+
+            {/* Syria Regions */}
             <g>
                 {geoJson.features.map((feature, i) => {
                     const regionName = feature.properties.NAME_1 || feature.properties.name;
-                    const value = currentDataSlice.regions[regionName] || 0;
+                    const value = currentDataSlice?.regions?.[regionName] || 0;
 
                     return (
                         <path
@@ -166,7 +188,11 @@ function RegionalConflictChart({
 
     const projection = useMemo(() => {
         if (!geoJson) return null;
-        return d3.geoMercator().fitSize([width, height], geoJson);
+        const proj = d3.geoMercator()
+            .center([39, 34.85])
+            .translate([width / 2, height / 2])
+            .scale(5000);
+        return proj;
     }, [geoJson, width, height]);
 
     const pathGenerator = useMemo(() => {
@@ -242,15 +268,17 @@ function RegionalConflictChart({
     }, [timeSeriesData]);
 
     return (
-        <div className="w-full max-w-5xl mx-auto flex flex-col gap-6 py-8">
+        <div className="w-full max-w-7xl mx-auto flex flex-col gap-6 py-8">
 
             {/* Map Area */}
-            <div className="relative w-full aspect-video flex justify-center overflow-hidden">
+            <div className="relative w-full h-[650px] flex justify-center overflow-hidden rounded-2xl shadow-xl border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-900">
                 <MapLayer
                     width={width}
                     height={height}
                     geoJson={geoJson}
+                    neighborsGeoJson={dataObj?.neighborsGeoJson}
                     pathGenerator={pathGenerator}
+                    projection={projection}
                     currentDataSlice={currentDataSlice}
                     colorScale={colorScale}
                     isDark={isDark}
@@ -262,13 +290,13 @@ function RegionalConflictChart({
                 {/* React Tooltip */}
                 <div
                     ref={tooltipRef}
-                    className={`absolute top-0 left-0 pointer-events-none px-4 py-3 rounded shadow-xl text-sm z-20 border bg-gray-900 dark:bg-slate-900 border-slate-600 text-white transition-opacity duration-150 ${tooltipContent ? 'opacity-100' : 'opacity-0'}`}
+                    className={`absolute top-0 left-0 pointer-events-none px-4 py-3 rounded-lg shadow-xl text-sm z-20 border bg-white dark:bg-slate-800 border-gray-300 dark:border-slate-700 transition-opacity duration-150 ${tooltipContent ? 'opacity-100' : 'opacity-0'}`}
                     style={{ willChange: 'transform' }}
                 >
                     {tooltipContent && (
                         <>
-                            <div className="font-bold">{tooltipContent.name}</div>
-                            <div className="font-mono text-base">
+                            <div className="font-bold text-slate-900 dark:text-white">{tooltipContent.name}</div>
+                            <div className="font-mono text-base text-slate-700 dark:text-slate-300">
                                 {tooltipContent.value > 0 ? `${tooltipContent.value} Events` : 'No events'}
                             </div>
                         </>
@@ -276,22 +304,22 @@ function RegionalConflictChart({
                 </div>
 
                 {/* Legend */}
-                <div className="absolute right-4 top-4 flex flex-col gap-4 p-5 rounded-lg border border-gray-300 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-xl min-w-[160px]">
-                    <div className="text-sm font-bold uppercase tracking-wider text-gray-900 dark:text-gray-100">Events Scale</div>
-                    <div className="flex flex-col gap-3">
+                <div className="absolute right-4 top-4 flex flex-col gap-2 p-3 rounded-lg bg-white/80 dark:bg-slate-900/80 backdrop-blur border border-gray-300 dark:border-slate-700 text-xs shadow-sm pointer-events-none z-10">
+                    <div className="font-bold text-slate-500 uppercase tracking-wider mb-1">Events Scale</div>
+                    <div className="flex flex-col gap-2">
                         {legendSteps.map((step, idx) => (
-                            <div key={idx} className="flex items-center gap-4">
-                                <div className="w-6 h-6 rounded border border-black/10 shadow-sm" style={{ backgroundColor: step.color }} />
-                                <span className="text-sm font-mono font-medium text-gray-900 dark:text-gray-100">
+                            <div key={idx} className="flex items-center gap-3">
+                                <div className="w-4 h-4 rounded border border-black/10 shadow-sm" style={{ backgroundColor: step.color }} />
+                                <span className="text-slate-700 dark:text-slate-300 font-mono">
                                     {step.value >= 1000 ? `${(step.value / 1000).toFixed(1)}k` : step.value}
                                 </span>
                             </div>
                         ))}
                     </div>
-                    <div className="text-sm border-t border-gray-300 dark:border-slate-700 pt-3 mt-2">
-                        <div className="flex items-center gap-4">
-                            <div className="w-6 h-6 rounded border border-black/10 shadow-sm" style={{ backgroundColor: isDark ? '#334155' : '#e2e8f0' }} />
-                            <span className="text-gray-600 dark:text-gray-400">No Data</span>
+                    <div className="text-xs border-t border-gray-300 dark:border-slate-700 pt-2 mt-2">
+                        <div className="flex items-center gap-3">
+                            <div className="w-4 h-4 rounded border border-black/10 shadow-sm" style={{ backgroundColor: isDark ? '#334155' : '#e2e8f0' }} />
+                            <span className="text-slate-600 dark:text-slate-400">No Data</span>
                         </div>
                     </div>
                 </div>

@@ -19,6 +19,7 @@ class DataRegistry {
             regionalConflictData: {
                 data: conflict_data_url,
                 geoJson: geojson_url,
+                neighborsGeoJson: neighbors_geojson_url,
             },
             economicIndicatorsData: economic_data_url,
             timelineData: {
