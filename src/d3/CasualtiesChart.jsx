@@ -473,9 +473,14 @@ function CasualtiesChart({
             </div>
 
             {/* Legend */}
-            <div className="flex flex-wrap gap-6 justify-center mt-2">
+            <div className="flex flex-wrap gap-6 justify-center mt-2 select-none">
                 {Object.entries(REGION_COLORS).map(([region, color]) => (
-                    <div key={region} className="flex items-center gap-2">
+                    <div
+                        key={region}
+                        className={`flex items-center gap-2 cursor-pointer transition-opacity duration-200 ${hoveredRegion && hoveredRegion !== region ? 'opacity-30' : 'opacity-100'}`}
+                        onMouseEnter={() => setHoveredRegion(region)}
+                        onMouseLeave={() => setHoveredRegion(null)}
+                    >
                         <span className="w-3 h-3 rounded-full" style={{ backgroundColor: color }} />
                         <span className="text-sm text-gray-600 dark:text-gray-400">{region}</span>
                     </div>
