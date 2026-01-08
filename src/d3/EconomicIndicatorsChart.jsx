@@ -238,7 +238,7 @@ const SingleChart = ({
                     </defs>
 
                     <g transform={`translate(${margin.left}, ${margin.top})`}>
-                        {yTicks.map((tick, i) => {
+                        {yTicks.map((tick) => {
                             const isGrid = !isFocused;
 
                             return (
@@ -420,7 +420,7 @@ function EconomicIndicatorsCharts({
                             className="grid"
                             style={{
                                 display: 'grid',
-                                gridTemplateColumns: `repeat(3, ${gridCellWidth}px)`,
+                                gridTemplateColumns: `repeat(${cols}, ${gridCellWidth}px)`,
                                 columnGap: gapX,
                                 rowGap: gapY,
                                 justifyContent: 'center',
@@ -457,7 +457,7 @@ function EconomicIndicatorsCharts({
                             className="grid"
                             style={{
                                 display: 'grid',
-                                gridTemplateColumns: `repeat(3, ${gridCellWidth}px)`,
+                                gridTemplateColumns: `repeat(${cols}, ${gridCellWidth}px)`,
                                 columnGap: gapX,
                                 rowGap: gapY,
                                 justifyContent: 'center',
