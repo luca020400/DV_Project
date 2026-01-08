@@ -17,7 +17,7 @@ function FeatureCards() {
                     {features.map((feature, idx) => (
                         <div
                             key={idx}
-                            className="p-8 rounded-xl border-2 transition-all duration-300 hover:shadow-xl cursor-default bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-blue-100 dark:hover:bg-gray-750"
+                            className="p-8 rounded-xl border-2 transition-all duration-300 cursor-default bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-blue-100 dark:hover:bg-gray-750"
                         >
                             <div className="text-5xl mb-4 inline-block p-3 rounded-lg bg-gradient-to-br from-red-500/10 to-blue-500/10">{feature.icon}</div>
                             <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
