@@ -130,12 +130,12 @@ function VisualizationSection({ section }) {
         <>
             <div className="py-8 bg-gray-50 dark:bg-gray-800">
                 {/* Mobile: Show placeholder only */}
-                <div className="lg:hidden w-full px-4 mx-auto">
+                <div className="md:hidden w-full px-4 mx-auto">
                     <MobileChartPlaceholder onOpen={() => setIsModalOpen(true)} />
                 </div>
 
                 {/* Desktop: Full width background strip */}
-                <div className="hidden lg:flex lg:w-full h-full items-center justify-center bg-gray-50 dark:bg-gray-800">
+                <div className="hidden md:flex md:w-full h-full items-center justify-center bg-gray-50 dark:bg-gray-800">
                     <div className="w-full mx-4 sm:mx-auto sm:max-w-[95rem] h-full">
                         {isLoading ? (
                             <div className="flex items-center justify-center h-full">
