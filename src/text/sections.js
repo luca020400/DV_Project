@@ -4,10 +4,10 @@ export const sections = [
         title: 'A Decade of Loss',
         subtitle: 'A forensic accounting of the human cost across Syria (2011-2021)',
         description: [
-            'Ignited by peaceful protests in March 2011, the conflict metastasized into a defining humanitarian catastrophe. This chart visualizes the relentless pulse of violence, tracking monthly casualty counts that surged to tragic heights—surpassing 6,000 deaths per month—during the conflict\'s most kinetic phases in late 2012 and 2013.',
-            'The data is disaggregated by key governorates, revealing the shifting geography of the war. From the urban battlegrounds of Aleppo (yellow) and Damascus (red) to the rural fronts of Idlib, Daraa, and Homs, distinct regional patterns emerge. Notably, the "Other" category (blue) highlights how violence spread beyond major centers to areas like Raqqa and Deir ez-Zor as the war evolved.',
-            'Crucial turning points are annotated directly on the timeline, contextualizing the death toll against events such as the Battle of Aleppo (Jul 2012), the Ghouta Chemical Attack (Aug 2013), the rise of the ISIS Caliphate (Jun 2014), the Russian Intervention (Sep 2015), and the eventual Idlib Ceasefire (Mar 2020).',
-            'Use the dashboard controls to analyze the data: toggle between "Line Chart" and "Stacked Area" views to see cumulative vs. comparative trends, and filter by "Civilian" or "Combatant" status to understand the demographic impact. Hover over any peak to see the precise breakdown of lives lost during that month.'
+            'It began with teenagers spray-painting protest slogans on a school wall in Daraa. Within weeks, peaceful demonstrations had spread across the country. Within months, the government\'s brutal crackdown had ignited a civil war. Within years, that war would kill hundreds of thousands and draw in foreign powers from across the globe.',
+            'The violence did not fall evenly. Aleppo—once Syria\'s largest city and economic heart—became synonymous with urban warfare, its ancient souks reduced to rubble. Damascus saw car bombs pierce its historic quarters. Idlib, Homs, and Daraa each endured their own sieges and offensives. Even remote regions like Raqqa and Deir ez-Zor, initially far from the fighting, would become battlegrounds as ISIS carved out its caliphate.',
+            'The timeline reads like a catalog of horrors: the Battle of Aleppo in 2012, the Ghouta chemical attack that killed over 1,400 in a single night, the rise and fall of ISIS, Russian airstrikes that turned the tide for Assad. At the conflict\'s deadliest peaks, more than 6,000 people were dying every month—200 lives extinguished daily, every day, for months on end.',
+            'By the time the Idlib ceasefire brought an uneasy quiet in 2020, the war had claimed an estimated 500,000 lives. Behind that number are half a million individual stories that ended too soon—doctors and teachers, children and grandparents, revolutionaries and bystanders caught in the crossfire of history.'
         ],
         visualization: {
             title: 'Regional Casualty Trends by Governorate (2011-2021)',
@@ -20,9 +20,10 @@ export const sections = [
         title: 'A Nation Uprooted',
         subtitle: 'Inside the largest displacement crisis of the modern era',
         description: [
-            'This mirrored visualization lays bare the dual geography of Syrian displacement. The upper horizon (orange) represents the staggering scale of Internally Displaced Persons (IDPs)—a population that surged rapidly in the war\'s early years and remains tragically high, with over 6.47 million people still displaced within Syria\'s borders in 2025. This "mountain" of internal displacement consistently dwarfs the external figures below, highlighting that the majority of those who lost their homes never made it out of the country.',
-            'Below the axis, the chart descends into the complex stratification of the global refugee crisis. Turkey (light blue) serves as the primary sanctuary, hosting 2.65 million refugees—nearly half the external total. The visualization further breaks down the diaspora into distinct flows: referencing significant populations in Lebanon (0.72M), Germany (0.76M), and Jordan (0.51M), alongside communities in Iraq, the broader European continent, and Africa.',
-            'The "2025" data snapshot serves as a grim reminder of permanence: fourteen years after the first protests, the total external refugee count stands at 5.65 million, proving that for millions of Syrians, displacement has evolved from a temporary emergency into a generational reality.'
+            'Before the war, Syria was home to 21 million people. Today, more than half have been forced to flee their homes—a staggering exodus that represents the largest displacement crisis since World War II. The scale defies comprehension: if Syrian refugees formed their own country, it would be larger than Denmark or Finland.',
+            'The geography of exile tells a story of desperation and proximity. Turkey alone absorbed 2.65 million refugees, transforming border towns into sprawling camps almost overnight. Lebanon, a country of just 4 million, now hosts over 700,000 Syrians—imagine if Italy suddenly absorbed 10 million people. Jordan, Germany, and Iraq each shelter hundreds of thousands more.',
+            'Yet the largest displaced population never crossed a border at all. Over 6 million Syrians remain internally displaced—refugees in their own country, often moving multiple times as front lines shifted. Many fled Aleppo only to face bombing in Idlib. Others escaped rural violence for cities that would themselves become battlegrounds.',
+            'Fourteen years later, return remains a distant dream for most. The homes they fled are rubble. The communities they knew have scattered across continents. For an entire generation of Syrian children, "home" exists only in their parents\' memories.'
         ],
         visualization: {
             title: 'Internal vs. External Displacement Over Time',
@@ -35,8 +36,9 @@ export const sections = [
         title: 'Mapping the Conflict',
         subtitle: 'A geospatial archive of the war\'s intensity and spread',
         description: [
-            'This interactive visualization transforms abstract statistics into a geographic narrative, visualizing the density of conflict incidents across Syria\'s governorates. It reveals the unequal burden of the war, highlighting how specific regions became focal points of violence while others remained relatively insulated during different phases.',
-            'The true power of this data lies in its temporal depth. By animating the timeline from 2011 to 2020, you can witness the migration of the conflict\'s epicenter. Watch as the footprint of violence morphs from localized unrest into a nationwide conflagration, consuming distinct regions like Raqqa or Eastern Ghouta in different, deadly cycles.'
+            'The war did not rage uniformly across Syria. Some governorates became synonymous with destruction—Aleppo, Idlib, Rural Damascus—while others experienced relative calm, at least for a time. The geography of violence shifted constantly, following front lines, sieges, and military campaigns.',
+            'From 2011 to 2020, the conflict\'s epicenter migrated across the country. What began as localized unrest in Daraa spread into a nationwide conflagration, consuming distinct regions in different, deadly cycles. Raqqa fell silent under ISIS rule, then erupted again during liberation. Eastern Ghouta endured years of siege before a final, devastating offensive.',
+            'Explore the timeline to see how the map transforms year by year—watch the violence spread, intensify, and shift as the war evolved.'
         ],
         visualization: {
             title: 'Interactive Event Map & Timeline',
@@ -49,8 +51,10 @@ export const sections = [
         title: 'Economic Collapse',
         subtitle: 'The silent devastation of Syria\'s financial and social systems',
         description: [
-            'This dashboard exposes the catastrophic economic implosion that paralleled the violence. The top row illustrates a financial freefall: GDP Output (blue) collapsed from a pre-war peak of $76 billion in 2011 to just $12 billion by 2020. This ruin is mirrored in the currency markets, where the Exchange Rate (purple) spiked exponentially from 48 SYP to 878 SYP per dollar, while inflation (red) surged unpredictably, destabilizing basic commerce.',
-            'The bottom row translates these financial abstractions into human suffering. Infrastructure collapse is evident in the Power Supply (yellow) graph, which tracks a decline from 24-hour availability to near-zero reliable hours. Similarly, Water Access (teal) has been cut by half. The inevitable result is plotted in orange: a relentless rise in Food Insecurity, which now affects the majority of the population as systems of support disintegrate.'
+            'Wars are fought with weapons, but they are lost through economics. Syria\'s GDP collapsed from $67 billion in 2010 to barely $12 billion by 2020—an 82% freefall that erased decades of development in just a few years. For comparison, this is as if Italy\'s entire economy shrank to the size of Sardinia\'s alone.',
+            'The Syrian pound tells the story of a currency in freefall. Before the war, 48 pounds bought one dollar. By 2020, that figure had exploded past 800. Savings evaporated overnight. A lifetime of work became worthless paper. Inflation swung wildly, making it impossible for families to plan even a week ahead—the price of bread could double between morning and evening.',
+            'But the true measure of collapse isn\'t found in exchange rates. It\'s in the hours a family waits for electricity that may never come. It\'s in the walk to find clean water that used to flow from every tap. Before the war, Syrians had 21-hour power and near-universal water access. Today, blackouts last days, and half the population lacks reliable clean water.',
+            'The result is a hunger crisis in a land that once exported food. Over half of Syrians now face food insecurity—not because crops won\'t grow, but because the systems that moved food from farm to table have been shattered. The economy didn\'t just shrink; it collapsed into subsistence.'
         ],
         visualization: {
             title: 'Economic & Humanitarian Indicators Dashboard',
@@ -63,8 +67,9 @@ export const sections = [
         title: 'Timeline Analysis',
         subtitle: 'Deconstructing the chain of events',
         description: [
-            'This interactive archive anchors the conflict\'s chronology to its geography. The log on the left functions as a detailed historical ledger, scrolling through the war\'s defining moments—from the initial uprisings to the complex web of foreign interventions. It culminates in the economic strangulation of the Caesar Act, marking a shift from the battlefield to financial warfare.',
-            'By navigating to specific dates—such as the death of Baghdadi or the Idlib ceasefires—viewers can pinpoint exactly where history turned. The map reveals the fragmented reality of the country, illustrating how different regions faced distinct types of violence, from chemical attacks to conventional warfare, often simultaneously.'
+            'The Syrian war was not one conflict but many, layered atop each other. A popular uprising became a civil war, then a proxy war, then a battleground for global powers. The Arab Spring protests of 2011 gave way to foreign interventions, the rise and fall of ISIS, and ultimately the economic strangulation of the Caesar Act—a shift from battlefield to financial warfare.',
+            'Each turning point reshaped the country\'s fate: the chemical attacks that crossed red lines, the Russian intervention that saved Assad, the death of Baghdadi that marked ISIS\'s collapse. Different regions faced distinct horrors—chemical weapons in Ghouta, barrel bombs in Aleppo, siege warfare in Homs—often simultaneously, in a fragmented country fighting multiple wars at once.',
+            'Scroll through the event log to trace the war\'s arc, and watch how each moment left its mark on the map.'
         ],
         visualization: {
             title: 'Conflict Timeline and Key Events',
