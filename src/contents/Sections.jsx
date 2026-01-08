@@ -20,7 +20,7 @@ function DynamicVisualization({ componentName, data, isMobile }) {
         case 'TimelineChart':
             return <ConflictEventsChart dataObj={data} isMobile={isMobile} />;
         case 'DisplacementChart':
-            return <DisplacementChart data={data} isMobile={isMobile} />;
+            return <DisplacementChart dataObj={data} isMobile={isMobile} />;
         default:
             return null;
     }

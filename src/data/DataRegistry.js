@@ -8,6 +8,7 @@ import events_data_url from './events.json?url';
 
 import geojson_url from './geo/syria.json?url';
 import neighbors_geojson_url from './geo/neighbors.json?url';
+import world_geojson_url from './geo/world.json?url';
 
 class DataRegistry {
     constructor() {
@@ -15,7 +16,10 @@ class DataRegistry {
 
         this.urls = {
             casualtyTrendData: casualties_data_url,
-            displacementData: displacement_data_url,
+            displacementData: {
+                data: displacement_data_url,
+                worldGeoJson: world_geojson_url,
+            },
             regionalConflictData: {
                 data: conflict_data_url,
                 geoJson: geojson_url,
