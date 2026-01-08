@@ -400,7 +400,6 @@ function EconomicIndicatorsCharts({
                                 width={focusedChartWidth}
                                 height={focusedChartHeight}
                                 isDark={isDark}
-                                themeStyles={themeStyles}
                                 isFocused={true}
                             />
                         </div>
