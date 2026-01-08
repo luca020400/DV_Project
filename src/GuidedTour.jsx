@@ -8,17 +8,19 @@ import { steps } from './text/steps';
 function GuidedTour({ isOpen, onClose }) {
     const [currentStep, setCurrentStep] = useState(0);
 
+    // Handle body overflow and reset step
     useEffect(() => {
-        if (isOpen) {
-            setCurrentStep(0);
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
-
+        document.body.style.overflow = isOpen ? 'hidden' : 'unset';
         return () => {
             document.body.style.overflow = 'unset';
         };
+    }, [isOpen]);
+
+    // Reset to first step when modal opens
+    useEffect(() => {
+        if (isOpen) {
+            queueMicrotask(() => setCurrentStep(0));
+        }
     }, [isOpen]);
 
     if (!isOpen) return null;

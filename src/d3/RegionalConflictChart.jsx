@@ -331,9 +331,12 @@ function RegionalConflictChart({
         return () => clearInterval(animationRef.current);
     }, [isPlaying, timeSeriesData.length]);
 
+    // Reset animation state when aggregation mode changes
     useEffect(() => {
-        setCurrentIndex(0);
-        setIsPlaying(false);
+        queueMicrotask(() => {
+            setCurrentIndex(0);
+            setIsPlaying(false);
+        });
     }, [aggregation]);
 
     // Event Handlers

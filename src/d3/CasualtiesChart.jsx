@@ -3,6 +3,28 @@ import { useTheme } from '../contexts/ThemeContext';
 
 import * as d3 from 'd3';
 
+const REGION_COLORS = {
+    Aleppo: '#fbbf24',
+    Damascus: '#f43f5e',
+    Idlib: '#a78bfa',
+    Daraa: '#34d399',
+    Homs: '#f472b6',
+    Other: '#38bdf8',
+};
+
+const EVENTS = [
+    { date: new Date(2011, 2), label: 'Protests Begin' },
+    { date: new Date(2012, 6), label: 'Battle of Aleppo' },
+    { date: new Date(2013, 7), label: 'Ghouta Chem. Attack' },
+    { date: new Date(2014, 5), label: 'ISIS Caliphate' },
+    { date: new Date(2015, 8), label: 'Russian Intervention' },
+    { date: new Date(2016, 11), label: 'Fall of Aleppo' },
+    { date: new Date(2017, 9), label: 'Raqqa Liberated' },
+    { date: new Date(2018, 1), label: 'Eastern Ghouta Battle' },
+    { date: new Date(2019, 2), label: 'ISIS Defeat' },
+    { date: new Date(2020, 2), label: 'Idlib Ceasefire' },
+];
+
 function CasualtiesChart({
     data,
     width = 1200,
@@ -11,7 +33,6 @@ function CasualtiesChart({
     marginRight = 40,
     marginBottom = 60,
     marginLeft = 80,
-    onZoomChange,
     isMobile = false,
 }) {
     const { isDark } = useTheme();
@@ -33,16 +54,6 @@ function CasualtiesChart({
     const innerWidth = chartWidth - marginLeft - marginRight;
     const innerHeight = chartHeight - marginTop - marginBottom;
 
-    // --- Dynamic Styles ---
-    const regionColors = {
-        Aleppo: '#fbbf24',
-        Damascus: '#f43f5e',
-        Idlib: '#a78bfa',
-        Daraa: '#34d399',
-        Homs: '#f472b6',
-        Other: '#38bdf8',
-    };
-
     // Data Processing
     const processedData = useMemo(() => {
         if (data && data.length > 0) {
@@ -52,7 +63,7 @@ function CasualtiesChart({
     }, [data]);
 
     const filteredData = useMemo(() => {
-        const regions = Object.keys(regionColors);
+        const regions = Object.keys(REGION_COLORS);
         return processedData.map(d => {
             const point = { date: d.date, month: d.month };
             regions.forEach(region => {
@@ -62,7 +73,7 @@ function CasualtiesChart({
             });
             return point;
         });
-    }, [processedData, selectedCasualtyTypes, regionColors]);
+    }, [processedData, selectedCasualtyTypes]);
 
     // Resize Observer
     useEffect(() => {
@@ -89,27 +100,15 @@ function CasualtiesChart({
     const yScale = useMemo(() => {
         let yMax;
         if (chartMode === 'area') {
-            const stackGenerator = d3.stack().keys(Object.keys(regionColors));
+            const stackGenerator = d3.stack().keys(Object.keys(REGION_COLORS));
             const stackedData = stackGenerator(filteredData);
             yMax = stackedData.length ? d3.max(stackedData[stackedData.length - 1], d => d[1]) : 0;
         } else {
-            yMax = d3.max(filteredData, d => Object.keys(regionColors).reduce((sum, region) => sum + (d[region] || 0), 0));
+            yMax = d3.max(filteredData, d => Object.keys(REGION_COLORS).reduce((sum, region) => sum + (d[region] || 0), 0));
         }
         return d3.scaleLinear([0, yMax * 1.1], [chartHeight - marginBottom, marginTop]);
-    }, [filteredData, chartMode, regionColors, chartHeight, marginBottom, marginTop]);
+    }, [filteredData, chartMode, chartHeight, marginBottom, marginTop]);
 
-    const events = [
-        { date: new Date(2011, 2), label: 'Protests Begin' },
-        { date: new Date(2012, 6), label: 'Battle of Aleppo' },
-        { date: new Date(2013, 7), label: 'Ghouta Chem. Attack' },
-        { date: new Date(2014, 5), label: 'ISIS Caliphate' },
-        { date: new Date(2015, 8), label: 'Russian Intervention' },
-        { date: new Date(2016, 11), label: 'Fall of Aleppo' },
-        { date: new Date(2017, 9), label: 'Raqqa Liberated' },
-        { date: new Date(2018, 1), label: 'Eastern Ghouta Battle' },
-        { date: new Date(2019, 2), label: 'ISIS Defeat' },
-        { date: new Date(2020, 2), label: 'Idlib Ceasefire' },
-    ];
 
     // Axis Rendering Effect
     useEffect(() => {
@@ -139,7 +138,7 @@ function CasualtiesChart({
         const bisect = d3.bisector(d => d.date).left;
 
         const handleMouseMove = (event) => {
-            const [x, y] = d3.pointer(event, svgRef.current);
+            const [x] = d3.pointer(event, svgRef.current);
             const date = xScale.invert(x);
             const i = bisect(filteredData, date);
             const d0 = filteredData[i - 1];
@@ -201,10 +200,11 @@ function CasualtiesChart({
             .on('click', () => {
                 setHoveredRegion(null);
             })
-            .on('mousemove', handleMouseMove);
+            .on('mousemove', handleMouseMove)
+            .on('mouseleave', handleMouseLeave);
 
         // Event Markers
-        events.forEach((event, index) => {
+        EVENTS.forEach((event, index) => {
             const xPos = xScale(event.date);
             if (xPos >= marginLeft && xPos <= chartWidth - marginRight) {
                 const isEven = index % 2 === 0;
@@ -240,7 +240,7 @@ function CasualtiesChart({
         });
 
         if (chartMode === 'line') {
-            Object.entries(regionColors).forEach(([region, color]) => {
+            Object.entries(REGION_COLORS).forEach(([region, color]) => {
                 const line = d3.line().x(d => xScale(d.date)).y(d => yScale(d[region]));
 
                 // Visible Line
@@ -271,7 +271,7 @@ function CasualtiesChart({
 
             gChartEl.selectAll('.line-path').remove();
 
-            Object.entries(regionColors).forEach(([region, color]) => {
+            Object.entries(REGION_COLORS).forEach(([region, color]) => {
                 const isDimmed = hoveredRegion && hoveredRegion !== region;
                 const line = d3.line().x(d => xScale(d.date)).y(d => yScale(d[region]));
 
@@ -299,7 +299,7 @@ function CasualtiesChart({
                     .style('pointer-events', 'none');
             });
         } else {
-            const stackGenerator = d3.stack().keys(Object.keys(regionColors));
+            const stackGenerator = d3.stack().keys(Object.keys(REGION_COLORS));
             const stackedData = stackGenerator(filteredData);
             const area = d3.area()
                 .x(d => xScale(d.data.date))
@@ -309,7 +309,7 @@ function CasualtiesChart({
             gChartEl.selectAll('.area')
                 .data(stackedData).enter().append('path')
                 .attr('class', 'area')
-                .attr('fill', d => regionColors[d.key])
+                .attr('fill', d => REGION_COLORS[d.key])
                 .attr('opacity', isDark ? 0.8 : 0.7)
                 .attr('d', area)
                 .style('cursor', 'pointer')
@@ -360,7 +360,7 @@ function CasualtiesChart({
             window.removeEventListener('scroll', handleScroll);
         };
 
-    }, [filteredData, chartMode, selectedCasualtyTypes, xScale, yScale, chartWidth, chartHeight, regionColors, isDark, isMobile, hoveredRegion]);
+    }, [filteredData, chartMode, selectedCasualtyTypes, xScale, yScale, chartWidth, chartHeight, isDark, isMobile, hoveredRegion, innerWidth, innerHeight, marginTop, marginBottom, marginLeft, marginRight]);
 
     const toggleCasualtyType = (type) => {
         setSelectedCasualtyTypes(prev => prev.includes(type) && prev.length > 1
@@ -460,7 +460,7 @@ function CasualtiesChart({
                     {hoveredPoint && (
                         <div>
                             <div className="font-bold mb-2 border-b pb-1 border-gray-600 dark:border-gray-700">{hoveredPoint.data.month}</div>
-                            {Object.entries(regionColors).map(([region, color]) => (
+                            {Object.entries(REGION_COLORS).map(([region, color]) => (
                                 <div key={region} className="flex items-center gap-2 mb-1">
                                     <span className="w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
                                     <span className="opacity-80 flex-1">{region}</span>
@@ -474,7 +474,7 @@ function CasualtiesChart({
 
             {/* Legend */}
             <div className="flex flex-wrap gap-6 justify-center mt-2">
-                {Object.entries(regionColors).map(([region, color]) => (
+                {Object.entries(REGION_COLORS).map(([region, color]) => (
                     <div key={region} className="flex items-center gap-2">
                         <span className="w-3 h-3 rounded-full" style={{ backgroundColor: color }} />
                         <span className="text-sm text-gray-600 dark:text-gray-400">{region}</span>

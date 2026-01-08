@@ -2,6 +2,35 @@ import { useRef, useEffect, useState, useMemo } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 import * as d3 from 'd3';
 
+const REFUGEE_KEYS = [
+    'turkey', 'lebanon', 'jordan', 'germany', 'iraq',
+    'europe', 'africa', 'other'
+];
+
+const COLOR_PALETTE = {
+    idp: '#f97316',
+    turkey: '#3b82f6',
+    lebanon: '#0ea5e9',
+    jordan: '#6366f1',
+    germany: '#ec4899',
+    iraq: '#8b5cf6',
+    europe: '#10b981',
+    africa: '#eab308',
+    other: '#64748b',
+};
+
+const LABELS = {
+    idp: 'Internally Displaced',
+    turkey: 'Turkey',
+    lebanon: 'Lebanon',
+    jordan: 'Jordan',
+    germany: 'Germany',
+    iraq: 'Iraq',
+    europe: 'Europe',
+    africa: 'Africa',
+    other: 'Other'
+};
+
 function DisplacementChart({
     data,
     width = 1200,
@@ -10,7 +39,6 @@ function DisplacementChart({
     marginRight = 40,
     marginBottom = 50,
     marginLeft = 80,
-    isMobile = false,
 }) {
     const { isDark } = useTheme();
 
@@ -29,36 +57,6 @@ function DisplacementChart({
     const chartHeight = containerSize.height;
     const innerWidth = chartWidth - marginLeft - marginRight;
     const innerHeight = chartHeight - marginTop - marginBottom;
-
-    // Configuration
-    const refugeeKeys = [
-        'turkey', 'lebanon', 'jordan', 'germany', 'iraq',
-        'europe', 'africa', 'other'
-    ];
-
-    const colorPalette = {
-        idp: '#f97316',
-        turkey: '#3b82f6',
-        lebanon: '#0ea5e9',
-        jordan: '#6366f1',
-        germany: '#ec4899',
-        iraq: '#8b5cf6',
-        europe: '#10b981',
-        africa: '#eab308',
-        other: '#64748b',
-    };
-
-    const labels = {
-        idp: 'Internally Displaced',
-        turkey: 'Turkey',
-        lebanon: 'Lebanon',
-        jordan: 'Jordan',
-        germany: 'Germany',
-        iraq: 'Iraq',
-        europe: 'Europe',
-        africa: 'Africa',
-        other: 'Other'
-    };
 
     // Data Processing
     const chartData = useMemo(() => {
@@ -187,7 +185,7 @@ function DisplacementChart({
         gChartEl.append('path')
             .datum(chartData)
             .attr('class', 'chart-area')
-            .attr('fill', colorPalette.idp)
+            .attr('fill', COLOR_PALETTE.idp)
             .attr('d', areaIDP)
             .style('cursor', 'crosshair')
             .style('transition', 'opacity 0.2s ease')
@@ -196,7 +194,7 @@ function DisplacementChart({
             .on('mousemove', updateTooltip);
 
         // Refugees Areas (Bottom Stack)
-        const stack = d3.stack().keys(refugeeKeys);
+        const stack = d3.stack().keys(REFUGEE_KEYS);
         const series = stack(chartData);
 
         const areaRefugees = d3.area()
@@ -209,7 +207,7 @@ function DisplacementChart({
             .data(series)
             .enter().append('path')
             .attr('class', 'refugee-layer')
-            .attr('fill', d => colorPalette[d.key])
+            .attr('fill', d => COLOR_PALETTE[d.key])
             .attr('d', areaRefugees)
             .style('cursor', 'crosshair')
             .style('transition', 'opacity 0.2s ease')
@@ -245,7 +243,7 @@ function DisplacementChart({
             svg.on('mouseleave', null);
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [chartData, xScale, yScale, isDark, chartWidth, chartHeight, width, hoveredRegion]);
+    }, [chartData, xScale, yScale, isDark, chartWidth, chartHeight, hoveredRegion, innerWidth, innerHeight, marginTop, marginBottom, marginLeft, marginRight]);
 
     return (
         <div className="w-full flex flex-col gap-6 p-6">
@@ -268,7 +266,7 @@ function DisplacementChart({
                     {/* Static Labels */}
                     <text
                         x={marginLeft + 10} y={marginTop + 20}
-                        fill={colorPalette.idp}
+                        fill={COLOR_PALETTE.idp}
                         fontWeight="bold"
                         fontSize="12"
                         opacity={hoveredRegion && hoveredRegion !== 'idp' ? 0.3 : 1}
@@ -277,7 +275,7 @@ function DisplacementChart({
                     </text>
                     <text
                         x={marginLeft + 10} y={chartHeight - marginBottom - 20}
-                        fill={colorPalette.turkey}
+                        fill={COLOR_PALETTE.turkey}
                         fontWeight="bold"
                         fontSize="12"
                         opacity={hoveredRegion && hoveredRegion === 'idp' ? 0.3 : 1}
@@ -303,7 +301,7 @@ function DisplacementChart({
                                 <div className="text-xs uppercase tracking-wider opacity-60 mb-1">Internal</div>
                                 <div className="flex justify-between items-center gap-4">
                                     <div className="flex items-center gap-2">
-                                        <span className="w-2 h-2 rounded-full" style={{ backgroundColor: colorPalette.idp }} />
+                                        <span className="w-2 h-2 rounded-full" style={{ backgroundColor: COLOR_PALETTE.idp }} />
                                         <span className={hoveredRegion === 'idp' ? 'font-bold text-white' : ''}>IDPs</span>
                                     </div>
                                     <span className="font-mono font-bold">{(hoveredData.idp / 1000000).toFixed(2)}M</span>
@@ -313,7 +311,7 @@ function DisplacementChart({
                             {/* Refugee Section */}
                             <div>
                                 <div className="text-xs uppercase tracking-wider opacity-60 mb-1">External</div>
-                                {refugeeKeys.map(key => {
+                                {REFUGEE_KEYS.map(key => {
                                     const val = hoveredData[key];
                                     if (!val) return null;
 
@@ -323,8 +321,8 @@ function DisplacementChart({
                                     return (
                                         <div key={key} className={`flex justify-between items-center gap-4 text-xs mb-1 transition-opacity duration-200 ${isDimmed ? 'opacity-40' : 'opacity-100'}`}>
                                             <div className="flex items-center gap-2">
-                                                <span className="w-2 h-2 rounded-full" style={{ backgroundColor: colorPalette[key] }} />
-                                                <span className={`capitalize ${isActive ? 'font-bold text-white scale-105' : ''}`}>{labels[key]}</span>
+                                                <span className="w-2 h-2 rounded-full" style={{ backgroundColor: COLOR_PALETTE[key] }} />
+                                                <span className={`capitalize ${isActive ? 'font-bold text-white scale-105' : ''}`}>{LABELS[key]}</span>
                                             </div>
                                             <span className="font-mono">{(val / 1000000).toFixed(2)}M</span>
                                         </div>
@@ -347,18 +345,18 @@ function DisplacementChart({
                     onMouseEnter={() => setHoveredRegion('idp')}
                     onMouseLeave={() => setHoveredRegion(null)}
                 >
-                    <span className="w-3 h-3 rounded-full" style={{ backgroundColor: colorPalette.idp }}></span>
+                    <span className="w-3 h-3 rounded-full" style={{ backgroundColor: COLOR_PALETTE.idp }}></span>
                     <span className="text-gray-600 dark:text-gray-400">Internally Displaced</span>
                 </div>
-                {refugeeKeys.map(key => (
+                {REFUGEE_KEYS.map(key => (
                     <div
                         key={key}
                         className={`flex items-center gap-2 cursor-pointer transition-opacity duration-200 ${hoveredRegion && hoveredRegion !== key ? 'opacity-30' : 'opacity-100'}`}
                         onMouseEnter={() => setHoveredRegion(key)}
                         onMouseLeave={() => setHoveredRegion(null)}
                     >
-                        <span className="w-3 h-3 rounded-full" style={{ backgroundColor: colorPalette[key] }}></span>
-                        <span className="text-gray-600 dark:text-gray-400">{labels[key]}</span>
+                        <span className="w-3 h-3 rounded-full" style={{ backgroundColor: COLOR_PALETTE[key] }}></span>
+                        <span className="text-gray-600 dark:text-gray-400">{LABELS[key]}</span>
                     </div>
                 ))}
             </div>

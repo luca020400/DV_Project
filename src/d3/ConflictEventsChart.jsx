@@ -335,7 +335,7 @@ function ConflictEventsChart({
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
     const [tooltipContent, setTooltipContent] = useState(null);
-    const lastChangeSource = useRef('auto');
+    const [shouldAutoScroll, setShouldAutoScroll] = useState(true);
     const animationRef = useRef();
     const tooltipRef = useRef();
 
@@ -373,7 +373,7 @@ function ConflictEventsChart({
             .translate([boundedWidth / 2, boundedHeight / 2])
             .scale(5500);
         return proj;
-    }, [dataObj, boundedWidth, boundedHeight]);
+    }, [boundedWidth, boundedHeight]);
 
     const pathGenerator = useMemo(() => {
         if (!projection) return null;
@@ -384,7 +384,7 @@ function ConflictEventsChart({
     useEffect(() => {
         if (isPlaying) {
             animationRef.current = setInterval(() => {
-                lastChangeSource.current = 'auto';
+                setShouldAutoScroll(true);
                 setCurrentIndex(prev => {
                     if (prev >= timelineData.length - 1) {
                         setIsPlaying(false);
@@ -428,23 +428,23 @@ function ConflictEventsChart({
 
             tooltipRef.current.style.transform = `translate(${left}px, ${top}px)`;
         }
-    }, [boundedHeight, boundedWidth]);
+    }, [boundedHeight]);
 
     const handleSliderChange = (e) => {
-        lastChangeSource.current = 'auto';
+        setShouldAutoScroll(true);
         const val = parseInt(e.target.value);
         setCurrentIndex(val);
     };
 
     const handlePlayPause = () => setIsPlaying(p => !p);
     const handleReset = () => {
-        lastChangeSource.current = 'auto';
+        setShouldAutoScroll(true);
         setIsPlaying(false);
         setCurrentIndex(0);
     };
 
     const handleEventClick = (index) => {
-        lastChangeSource.current = 'manual';
+        setShouldAutoScroll(false);
         setCurrentIndex(index);
         setIsPlaying(false);
     };
@@ -461,7 +461,7 @@ function ConflictEventsChart({
                     timelineData={timelineData}
                     currentIndex={currentIndex}
                     onEventClick={handleEventClick}
-                    shouldAutoScroll={lastChangeSource.current === 'auto'}
+                    shouldAutoScroll={shouldAutoScroll}
                 />
             </div>
 
