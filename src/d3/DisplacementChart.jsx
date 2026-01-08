@@ -188,6 +188,8 @@ const GlobeMigrationView = memo(({ data, isDark, width = 800, height = 600, worl
 
     const currentYearLabel = new Date(currentYearData.date).getFullYear();
 
+    const syriaPoint = projection(SYRIA_COORDS);
+
     return (
         <div className="relative w-full h-full group">
             <svg
@@ -198,45 +200,30 @@ const GlobeMigrationView = memo(({ data, isDark, width = 800, height = 600, worl
                 className="transition-colors duration-500"
             >
                 {/* World */}
-                {worldGeoJson && worldGeoJson.features && (
-                    <g className="world-countries">
-                        {worldGeoJson.features.map((feature, i) => {
-                            const pathD = pathGenerator(feature);
-                            return pathD ? (
-                                <path
-                                    key={`country-${i}`}
-                                    d={pathD}
-                                    fill={isDark ? '#334155' : '#cbd5e1'}
-                                    stroke={isDark ? '#475569' : '#94a3b8'}
-                                    strokeWidth={0.5}
-                                    opacity={0.8}
-                                    className="transition-colors duration-500"
-                                />
-                            ) : null;
-                        })}
-                    </g>
-                )}
+                <g className="world-countries">
+                    {worldGeoJson.features.map((feature, i) => {
+                        return (
+                            <path
+                                key={`country-${i}`}
+                                d={pathGenerator(feature)}
+                                fill={isDark ? '#334155' : '#cbd5e1'}
+                                stroke={isDark ? '#475569' : '#94a3b8'}
+                                strokeWidth={0.5}
+                                opacity={0.8}
+                                className="transition-colors duration-500"
+                            />
+                        )
+                    })}
+                </g>
 
                 {/* Grid */}
                 <path
                     d={pathGenerator(graticule)}
                     fill="none"
-                    stroke={isDark ? '#334155' : '#cbd5e1'}
+                    stroke={isDark ? '#232d3b' : '#8e959d'}
                     strokeWidth={0.5}
                     opacity={0.5}
                 />
-
-                {/* Syria Marker */}
-                {(() => {
-                    const syriaPoint = projection(SYRIA_COORDS);
-                    const isVisible = d3.geoDistance(SYRIA_COORDS, projection.invert([width / 2, height / 2])) < Math.PI / 2;
-                    if (!isVisible || !syriaPoint) return null;
-                    return (
-                        <g>
-                            <circle cx={syriaPoint[0]} cy={syriaPoint[1]} r={6} fill="#ef4444" stroke={isDark ? '#1e293b' : 'white'} strokeWidth={1.5} />
-                        </g>
-                    );
-                })()}
 
                 {/* Connections & Flows */}
                 {migrationPaths.map(({ key, lineString, interpolator, end }) => {
@@ -335,6 +322,11 @@ const GlobeMigrationView = memo(({ data, isDark, width = 800, height = 600, worl
                         </g>
                     );
                 })}
+
+                {/* Syria Marker */}
+                <g>
+                    <circle cx={syriaPoint[0]} cy={syriaPoint[1]} r={6} fill="#ef4444" stroke={isDark ? '#1e293b' : 'white'} strokeWidth={1.5} />
+                </g>
             </svg>
 
             {/* Timeline Controls */}
