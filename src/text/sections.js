@@ -49,7 +49,7 @@ export const sections = [
         title: 'Economic Collapse',
         subtitle: 'The silent devastation of Syria\'s financial and social systems',
         description: [
-            'This dashboard exposes the catastrophic economic implosion that paralleled the violence. The top row illustrates a financial freefall: GDP Output (blue) collapsed from a pre-war peak of $74.3 billion in 2011 to just $10.8 billion by 2020. This ruin is mirrored in the currency markets, where the Exchange Rate (purple) spiked exponentially from 44 SYP to 966 SYP per dollar, while inflation (red) surged unpredictably, destabilizing basic commerce.',
+            'This dashboard exposes the catastrophic economic implosion that paralleled the violence. The top row illustrates a financial freefall: GDP Output (blue) collapsed from a pre-war peak of $76 billion in 2011 to just $12 billion by 2020. This ruin is mirrored in the currency markets, where the Exchange Rate (purple) spiked exponentially from 48 SYP to 878 SYP per dollar, while inflation (red) surged unpredictably, destabilizing basic commerce.',
             'The bottom row translates these financial abstractions into human suffering. Infrastructure collapse is evident in the Power Supply (yellow) graph, which tracks a decline from 24-hour availability to near-zero reliable hours. Similarly, Water Access (teal) has been cut by half. The inevitable result is plotted in orange: a relentless rise in Food Insecurity, which now affects the majority of the population as systems of support disintegrate.'
         ],
         visualization: {
