@@ -104,16 +104,6 @@ function FullscreenChartModal({ isOpen, onClose, data, componentName, isLoading 
                         </div>
                     )}
                 </div>
-
-                {/* Mobile hints */}
-                <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 flex-shrink-0 md:hidden space-y-2">
-                    <p className="text-sm text-center text-gray-600 dark:text-gray-300">
-                        💡 Tip: Pinch to zoom, drag to pan
-                    </p>
-                    <p className="text-sm text-center text-gray-600 dark:text-gray-300">
-                        📱 For better viewing, rotate your device to landscape
-                    </p>
-                </div>
             </div>
         </div>
     );
