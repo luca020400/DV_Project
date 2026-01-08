@@ -28,9 +28,33 @@ function FeatureCards() {
                     ))}
                 </div>
 
+                {
+                    /*
+                     * Mobile vertical -> sm: but not md: or larger
+                     * Mobile landscape -> md: but not lg: or larger
+                     * Desktop -> lg: or larger
+                     */
+                }
+
                 <div className="mt-16 p-8 rounded-xl border-2 border-dashed bg-gradient-to-r from-blue-50 to-blue-100 dark:from-gray-800 dark:to-gray-800 border-blue-300 dark:border-gray-700">
                     <p className="text-center text-base sm:text-lg text-gray-700 dark:text-gray-300">
-                        <strong>💡 Tip:</strong> Use the navigation bar at the top to toggle dark mode, and look for the progress bar on the right to see your position in the dashboard.
+                        <strong>💡 Tip: </strong>
+                        {/* Mobile vertical */}
+                        <span className="inline md:hidden">
+                            For the best experience, try rotating your device to landscape mode.
+                        </span>
+                        {/* Mobile landscape */}
+                        <span className="hidden md:inline lg:hidden">
+                            For the best experience, view this dashboard on a desktop or laptop.
+                        </span>
+                        {/* Desktop */}
+                        <span className="hidden lg:inline">
+                            Look for the progress bar on the right to see your position in the dashboard.
+                        </span>
+                    </p>
+                    {/* Shared tip */}
+                    <p className="mt-2 text-center text-base sm:text-lg text-gray-700 dark:text-gray-300">
+                        Use the navigation bar to toggle dark mode.
                     </p>
                 </div>
             </div>
