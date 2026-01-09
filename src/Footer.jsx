@@ -17,18 +17,35 @@ function Footer() {
         </svg>
     );
 
-    useEffect(() => {
-        if (!showTetris) return;
+    const inputBufferRef = useRef("");
 
+    useEffect(() => {
         const handleKeyDown = (e) => {
-            if (e.key === "Escape") {
+            if (showTetris && e.key === "Escape") {
                 setShowTetris(false);
+                return;
+            }
+
+            // Only listen for "tetris" input if grid is expanded and game not shown
+            if (!showTetris && showTree) {
+                inputBufferRef.current += e.key.toLowerCase();
+
+                // Keep only last 6 characters (length of "tetris")
+                if (inputBufferRef.current.length > 6) {
+                    inputBufferRef.current = inputBufferRef.current.slice(-6);
+                }
+
+                // Check if user typed "tetris"
+                if (inputBufferRef.current.endsWith("tetris")) {
+                    setShowTetris(true);
+                    inputBufferRef.current = "";
+                }
             }
         };
 
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [showTetris]);
+    }, [showTetris, showTree]);
 
     // Shamelessly copied from https://gist.github.com/straker/3c98304f8a6a9174efd8292800891ea1
     useEffect(() => {
@@ -331,12 +348,11 @@ function Footer() {
                                             🍃 Burraco
                                         </div>
                                         <div className="h-3 w-px border-l border-dashed border-gray-400 dark:border-gray-500"></div>
-                                        <button
-                                            onClick={() => setShowTetris(true)}
+                                        <span
                                             className="px-2 py-0.5 bg-gradient-to-r from-pink-500 from-0% via-purple-500 via-25% to-green-500 to-100% text-white text-[10px] uppercase tracking-wider font-bold rounded-full hover:opacity-80 transition-opacity group relative overflow-hidden"
                                         >
-                                            <span className="relative z-10">Luca</span>
-                                        </button>
+                                            Luca
+                                        </span>
                                     </div>
 
                                     {/* Child 2: Kevin (Macchiavelli) */}
