@@ -302,6 +302,7 @@ const Controls = memo(({
                     value={currentIndex}
                     onChange={onSliderChange}
                     className="absolute w-full h-full opacity-0 cursor-pointer z-20"
+                    aria-label="Event timeline slider"
                 />
                 <div
                     className={`absolute h-4 w-4 bg-white dark:bg-slate-200 rounded-full shadow border-2 border-blue-500 pointer-events-none transition-all duration-100 ease-out z-10 group-hover:scale-110`}

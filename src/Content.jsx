@@ -4,6 +4,7 @@ import Hero from "./contents/Hero";
 import FeatureCards from "./contents/FeatureCards";
 import Sections from "./contents/Sections";
 import DataSources from "./contents/DataSources";
+import Methodology from "./contents/Methodology";
 
 import { sources } from "./text/sources.js";
 
@@ -36,6 +37,9 @@ function Content({ sections }) {
 
             {/* Data Sources Section */}
             <DataSources dataSources={sources} flashingId={flashingId} />
+
+            {/* Methodology Section */}
+            <Methodology />
         </>
     );
 }

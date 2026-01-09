@@ -46,6 +46,7 @@ function CasualtiesChart({
     const [containerSize, setContainerSize] = useState({ width, height });
     const [chartMode, setChartMode] = useState('area');
     const [selectedCasualtyTypes, setSelectedCasualtyTypes] = useState(['Civilian', 'Combatant']);
+    const [casualtyMode, setCasualtyMode] = useState('Aggregate');
     const [hoveredPoint, setHoveredPoint] = useState(null);
     const [hoveredRegion, setHoveredRegion] = useState(null);
 
@@ -395,23 +396,22 @@ function CasualtiesChart({
                     <div>
                         <label className="block text-xs font-semibold uppercase tracking-wider mb-3 text-gray-600 dark:text-gray-400">Casualty Type</label>
                         <div className="flex gap-4">
-                            {['Civilian', 'Combatant'].map(type => (
+                            {['Aggregate', 'Civilian', 'Combatant'].map(type => (
                                 <label key={type} className="flex items-center gap-2 cursor-pointer group">
-                                    <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${selectedCasualtyTypes.includes(type)
-                                        ? `bg-blue-600 dark:bg-orange-500 border-transparent`
-                                        : `border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-700`
-                                        }`}>
-                                        {selectedCasualtyTypes.includes(type) && (
-                                            <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        )}
-                                    </div>
                                     <input
-                                        type="checkbox"
-                                        className="hidden"
-                                        checked={selectedCasualtyTypes.includes(type)}
-                                        onChange={() => toggleCasualtyType(type)}
+                                        type="radio"
+                                        name="casualtyType"
+                                        value={type}
+                                        checked={casualtyMode === type}
+                                        onChange={() => {
+                                            setCasualtyMode(type);
+                                            if (type === 'Aggregate') {
+                                                setSelectedCasualtyTypes(['Civilian', 'Combatant']);
+                                            } else {
+                                                setSelectedCasualtyTypes([type]);
+                                            }
+                                        }}
+                                        className="w-4 h-4"
                                     />
                                     <span className="text-sm transition-colors text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-100">{type}</span>
                                 </label>

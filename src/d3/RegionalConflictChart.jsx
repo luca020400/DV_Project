@@ -119,7 +119,7 @@ const Controls = memo(({
                         <div className="h-full bg-gradient-to-r from-blue-500 to-blue-400 transition-all duration-300 ease-out" style={{ width: `${progressPercent}%` }} />
                     </div>
 
-                    <input type="range" min={0} max={Math.max(0, timeSeriesData.length - 1)} value={currentIndex} onChange={onSliderChange} className="absolute w-full h-full opacity-0 cursor-pointer z-10" />
+                    <input type="range" min={0} max={Math.max(0, timeSeriesData.length - 1)} value={currentIndex} onChange={onSliderChange} className="absolute w-full h-full opacity-0 cursor-pointer z-10" aria-label="Timeline slider" />
 
                     {/* The Handle */}
                     <div className="absolute h-4 w-4 bg-white rounded-full shadow-md border-2 border-blue-500 pointer-events-none transition-all duration-300 ease-out z-0" style={{ left: `calc(${progressPercent}% - 8px)` }} />
@@ -286,7 +286,7 @@ function RegionalConflictChart({
 
     // Visual
     const colorScale = useMemo(() => {
-        const interpolator = isDark ? d3.interpolateYlOrRd : d3.interpolateOranges;
+        const interpolator = d3.interpolateReds;
         return d3.scaleSequential(interpolator).domain([0, maxVal]);
     }, [maxVal, isDark]);
 

@@ -13,15 +13,15 @@ const REFUGEE_KEYS = [
 const TOP_DESTINATIONS = ['turkey', 'lebanon', 'jordan', 'germany', 'iraq'];
 
 const COLOR_PALETTE = {
-    idp: '#ef4444',
-    turkey: '#3b82f6',
-    lebanon: '#06b6d4',
-    jordan: '#8b5cf6',
-    germany: '#ec4899',
-    iraq: '#f59e0b',
-    europe: '#10b981',
-    africa: '#eab308',
-    other: '#6b7280',
+    idp: '#f43f5e',
+    turkey: '#a78bfa',
+    lebanon: '#fbbf24',
+    jordan: '#34d399',
+    germany: '#f472b6',
+    iraq: '#38bdf8',
+    europe: '#fca5a5',
+    africa: '#fdba74',
+    other: '#c4b5fd',
 };
 
 const LABELS = {
@@ -377,6 +377,7 @@ const GlobeMigrationView = memo(({ data, isDark, width = 800, height = 600, worl
                             value={currentIndex}
                             onChange={handleScrub}
                             className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 accent-blue-600"
+                            aria-label="Timeline slider"
                         />
 
                         <button

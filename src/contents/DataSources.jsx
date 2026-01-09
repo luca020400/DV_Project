@@ -22,7 +22,9 @@ function DataSources({ dataSources, flashingId }) {
 
                     {/* Search Input */}
                     <div className="mb-8">
+                        <label htmlFor="source-search" className="sr-only">Search data sources</label>
                         <input
+                            id="source-search"
                             type="text"
                             placeholder="Search sources by name or description..."
                             value={searchQuery}

@@ -1,5 +1,3 @@
-
-
 function TableOfContents({ sections, activeSection, onSectionClick, onClose }) {
     return (
         <div className="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-xl max-h-[70vh] overflow-y-auto border-2 border-gray-200 dark:border-gray-700">
