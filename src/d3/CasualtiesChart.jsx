@@ -363,28 +363,25 @@ function CasualtiesChart({
 
     }, [filteredData, chartMode, selectedCasualtyTypes, xScale, yScale, chartWidth, chartHeight, isDark, isMobile, hoveredRegion, innerWidth, innerHeight, marginTop, marginBottom, marginLeft, marginRight]);
 
-    const toggleCasualtyType = (type) => {
-        setSelectedCasualtyTypes(prev => prev.includes(type) && prev.length > 1
-            ? prev.filter(t => t !== type)
-            : [...prev, type].filter((v, i, a) => a.indexOf(v) === i)
-        );
-    };
-
     return (
         <div className={`w-full flex flex-col gap-6 p-6`}>
             {/* Controls */}
             <div className="bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-transparent dark:border-slate-700 p-5 transition-colors duration-300">
                 <div className="flex flex-col md:flex-row gap-8 justify-evenly">
                     <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider mb-3 text-gray-700 dark:text-gray-300">Chart Type</label>
+                        <span className="block text-xs font-semibold uppercase tracking-wider mb-3 text-gray-700 dark:text-gray-300">Chart Type</span>
                         <div className="flex rounded-lg p-1 bg-gray-100 dark:bg-slate-700">
                             {['line', 'area'].map(mode => (
                                 <button
                                     key={mode}
                                     onClick={() => setChartMode(mode)}
                                     className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${chartMode === mode
-                                        ? `bg-blue-600 dark:bg-orange-500 text-white shadow`
-                                        : `text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white`
+                                        ? isDark
+                                            ? 'bg-blue-600 text-white shadow-lg'
+                                            : 'bg-white text-blue-700 shadow-md'
+                                        : isDark
+                                            ? 'text-gray-300 hover:text-white hover:bg-slate-600'
+                                            : 'text-gray-700 hover:text-gray-900 hover:bg-white/50'
                                         }`}
                                 >
                                     {mode === 'line' ? 'Line Chart' : 'Stacked Area'}
@@ -394,7 +391,7 @@ function CasualtiesChart({
                     </div>
 
                     <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider mb-3 text-gray-700 dark:text-gray-300">Casualty Type</label>
+                        <span className="block text-xs font-semibold uppercase tracking-wider mb-3 text-gray-700 dark:text-gray-300">Casualty Type</span>
                         <div className="flex gap-4">
                             {['Aggregate', 'Civilian', 'Combatant'].map(type => (
                                 <label key={type} className="flex items-center gap-2 cursor-pointer group">

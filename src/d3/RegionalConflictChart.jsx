@@ -189,7 +189,7 @@ const Controls = memo(({
                                         text-[10px] uppercase font-bold tracking-wider py-1.5 rounded-md transition-all duration-200
                                         ${isActive
                                             ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
-                                            : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'
+                                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
                                         }
                                     `}
                                 >
