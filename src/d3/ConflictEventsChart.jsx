@@ -195,7 +195,7 @@ const Sidebar = memo(({
             <div className="p-4 shrink-0 bg-gray-100 dark:bg-slate-900/95 backdrop-blur z-10 border-b border-gray-300 dark:border-slate-700 shadow-sm">
                 <div className="flex items-center justify-between">
                     <h3 className="font-bold text-lg text-slate-800 dark:text-white flex items-center gap-2">
-                        <Calendar size={18} /> Event Log
+                        <Calendar size={18} /> Timeline
                     </h3>
                     {isMobile && (
                         <div className="flex items-center gap-2">

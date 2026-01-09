@@ -1,7 +1,5 @@
-import { useState, useEffect } from 'react';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-
-
+import { useState, useEffect, useCallback } from 'react';
+import { X, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 
 import { steps } from './text/steps';
 
@@ -22,6 +20,18 @@ function GuidedTour({ isOpen, onClose }) {
             queueMicrotask(() => setCurrentStep(0));
         }
     }, [isOpen]);
+
+    // Must be defined before early return to maintain hook order
+    const handleScrollToSection = useCallback((sectionId) => {
+        onClose();
+        // Small delay to ensure modal is closed before scrolling
+        setTimeout(() => {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 100);
+    }, [onClose]);
 
     if (!isOpen) return null;
 
@@ -79,6 +89,15 @@ function GuidedTour({ isOpen, onClose }) {
                         <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
                             {step.description}
                         </p>
+                        {step.scrollTo && step.linkText && (
+                            <button
+                                onClick={() => handleScrollToSection(step.scrollTo)}
+                                className="mt-3 inline-flex items-center gap-1.5 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium text-sm transition-colors"
+                            >
+                                <ExternalLink size={14} />
+                                {step.linkText}
+                            </button>
+                        )}
                     </div>
 
                     {/* Footer - Controls */}

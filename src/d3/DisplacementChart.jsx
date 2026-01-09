@@ -505,7 +505,7 @@ function DisplacementChart({
     const [containerSize, setContainerSize] = useState({ width, height });
     const [hoveredData, setHoveredData] = useState(null);
     const [hoveredRegion, setHoveredRegion] = useState(null);
-    const [activeView, setActiveView] = useState('chart');
+    const [activeView, setActiveView] = useState('globe');
 
     const chartWidth = containerSize.width;
     const chartHeight = containerSize.height;
