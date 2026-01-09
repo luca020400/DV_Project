@@ -69,7 +69,7 @@ const getMaxRefugeeCount = (data) => {
     return max;
 };
 
-const GlobeMigrationView = memo(({ data, isDark, width = 800, height = 600, worldGeoJson }) => {
+const GlobeMigrationView = memo(({ data, isDark, width = 800, height = 600, worldGeoJson, isMobile = false }) => {
     const svgRef = useRef();
     const [hoveredPath, setHoveredPath] = useState(null);
     const [animationProgress, setAnimationProgress] = useState(0);
@@ -391,61 +391,63 @@ const GlobeMigrationView = memo(({ data, isDark, width = 800, height = 600, worl
                 </div>
             </div>
 
-            {/* Destination List (Stats) */}
-            <div className={`absolute right-4 top-4 p-4 rounded-xl shadow-lg border backdrop-blur-sm transition-colors duration-300 w-52 ${isDark ? 'bg-slate-900/80 border-slate-700' : 'bg-white/80 border-gray-200'
-                }`}>
-                <h3 className={`text-xs font-bold mb-3 uppercase tracking-wider ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                    Population Stock ({currentYearLabel})
-                </h3>
-                <div className="space-y-2">
-                    {TOP_DESTINATIONS.map(key => {
-                        const stats = destData[key];
-                        const total = stats ? stats.value : 0;
-                        const trend = stats ? stats.trend : 0;
-                        const isHovered = hoveredPath === key;
-                        const barWidth = (radiusScale(total) / 24) * 100;
+            {/* Destination List (Stats) - hidden on mobile */}
+            {!isMobile && (
+                <div className={`absolute right-4 top-4 p-4 rounded-xl shadow-lg border backdrop-blur-sm transition-colors duration-300 w-52 ${isDark ? 'bg-slate-900/80 border-slate-700' : 'bg-white/80 border-gray-200'
+                    }`}>
+                    <h3 className={`text-xs font-bold mb-3 uppercase tracking-wider ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                        Population Stock ({currentYearLabel})
+                    </h3>
+                    <div className="space-y-2">
+                        {TOP_DESTINATIONS.map(key => {
+                            const stats = destData[key];
+                            const total = stats ? stats.value : 0;
+                            const trend = stats ? stats.trend : 0;
+                            const isHovered = hoveredPath === key;
+                            const barWidth = (radiusScale(total) / 24) * 100;
 
-                        return (
-                            <div
-                                key={key}
-                                className={`group flex flex-col gap-1 p-1.5 rounded-lg cursor-pointer transition-colors duration-200 ${isHovered ? (isDark ? 'bg-slate-800' : 'bg-slate-100') : ''
-                                    }`}
-                                onMouseEnter={() => setHoveredPath(key)}
-                                onMouseLeave={() => setHoveredPath(null)}
-                            >
-                                <div className="flex justify-between items-center">
-                                    <div className="flex items-center gap-2">
-                                        <span className="w-2 h-2 rounded-full" style={{ backgroundColor: COLOR_PALETTE[key] }} />
-                                        <span className={`text-xs font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-                                            {LABELS[key]}
-                                        </span>
+                            return (
+                                <div
+                                    key={key}
+                                    className={`group flex flex-col gap-1 p-1.5 rounded-lg cursor-pointer transition-colors duration-200 ${isHovered ? (isDark ? 'bg-slate-800' : 'bg-slate-100') : ''
+                                        }`}
+                                    onMouseEnter={() => setHoveredPath(key)}
+                                    onMouseLeave={() => setHoveredPath(null)}
+                                >
+                                    <div className="flex justify-between items-center">
+                                        <div className="flex items-center gap-2">
+                                            <span className="w-2 h-2 rounded-full" style={{ backgroundColor: COLOR_PALETTE[key] }} />
+                                            <span className={`text-xs font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                                                {LABELS[key]}
+                                            </span>
+                                        </div>
+                                        <div className="flex items-center gap-1.5">
+                                            {trend === 1 && (
+                                                <span className="text-[10px] text-green-500 font-bold">↗</span>
+                                            )}
+                                            {trend === -1 && (
+                                                <span className="text-[10px] text-red-500 font-bold">↘</span>
+                                            )}
+                                            <span className={`text-xs font-mono font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                                                {formatCount(total)}
+                                            </span>
+                                        </div>
                                     </div>
-                                    <div className="flex items-center gap-1.5">
-                                        {trend === 1 && (
-                                            <span className="text-[10px] text-green-500 font-bold">↗</span>
-                                        )}
-                                        {trend === -1 && (
-                                            <span className="text-[10px] text-red-500 font-bold">↘</span>
-                                        )}
-                                        <span className={`text-xs font-mono font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>
-                                            {formatCount(total)}
-                                        </span>
+                                    <div className="w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                        <div
+                                            className="h-full rounded-full transition-all duration-500"
+                                            style={{
+                                                width: `${barWidth}%`,
+                                                backgroundColor: COLOR_PALETTE[key]
+                                            }}
+                                        />
                                     </div>
                                 </div>
-                                <div className="w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                                    <div
-                                        className="h-full rounded-full transition-all duration-500"
-                                        style={{
-                                            width: `${barWidth}%`,
-                                            backgroundColor: COLOR_PALETTE[key]
-                                        }}
-                                    />
-                                </div>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 });
@@ -488,6 +490,7 @@ function DisplacementChart({
     marginRight = 40,
     marginBottom = 50,
     marginLeft = 80,
+    isMobile = false,
 }) {
     const { data, worldGeoJson } = dataObj || {};
     const { isDark } = useTheme();
@@ -789,6 +792,7 @@ function DisplacementChart({
                         width={chartWidth}
                         height={chartHeight}
                         worldGeoJson={worldGeoJson}
+                        isMobile={isMobile}
                     />
                 )}
             </div>

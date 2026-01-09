@@ -204,41 +204,43 @@ function CasualtiesChart({
             .on('mousemove', handleMouseMove)
             .on('mouseleave', handleMouseLeave);
 
-        // Event Markers
-        EVENTS.forEach((event, index) => {
-            const xPos = xScale(event.date);
-            if (xPos >= marginLeft && xPos <= chartWidth - marginRight) {
-                const isEven = index % 2 === 0;
-                const textY = isEven ? marginTop - 45 : marginTop - 15;
-                const dateY = textY + 14;
+        // Event Markers (hidden on mobile)
+        if (!isMobile) {
+            EVENTS.forEach((event, index) => {
+                const xPos = xScale(event.date);
+                if (xPos >= marginLeft && xPos <= chartWidth - marginRight) {
+                    const isEven = index % 2 === 0;
+                    const textY = isEven ? marginTop - 45 : marginTop - 15;
+                    const dateY = textY + 14;
 
-                gChartEl.append('line')
-                    .attr('x1', xPos).attr('x2', xPos)
-                    .attr('y1', dateY + 5)
-                    .attr('y2', chartHeight - marginBottom)
-                    .attr('stroke', isDark ? '#9ca3af' : '#374151')
-                    .attr('stroke-width', 1)
-                    .attr('stroke-dasharray', '3,3')
-                    .attr('opacity', 0.4);
+                    gChartEl.append('line')
+                        .attr('x1', xPos).attr('x2', xPos)
+                        .attr('y1', dateY + 5)
+                        .attr('y2', chartHeight - marginBottom)
+                        .attr('stroke', isDark ? '#9ca3af' : '#374151')
+                        .attr('stroke-width', 1)
+                        .attr('stroke-dasharray', '3,3')
+                        .attr('opacity', 0.4);
 
-                gChartEl.append('text')
-                    .attr('x', xPos)
-                    .attr('y', textY)
-                    .attr('text-anchor', 'middle')
-                    .attr('font-size', '13px')
-                    .attr('font-weight', '600')
-                    .attr('fill', isDark ? '#e2e8f0' : '#1f2937')
-                    .text(event.label);
+                    gChartEl.append('text')
+                        .attr('x', xPos)
+                        .attr('y', textY)
+                        .attr('text-anchor', 'middle')
+                        .attr('font-size', '13px')
+                        .attr('font-weight', '600')
+                        .attr('fill', isDark ? '#e2e8f0' : '#1f2937')
+                        .text(event.label);
 
-                gChartEl.append('text')
-                    .attr('x', xPos)
-                    .attr('y', dateY)
-                    .attr('text-anchor', 'middle')
-                    .attr('font-size', '11px')
-                    .attr('fill', isDark ? '#9ca3af' : '#374151')
-                    .text(d3.timeFormat("%b %Y")(event.date));
-            }
-        });
+                    gChartEl.append('text')
+                        .attr('x', xPos)
+                        .attr('y', dateY)
+                        .attr('text-anchor', 'middle')
+                        .attr('font-size', '11px')
+                        .attr('fill', isDark ? '#9ca3af' : '#374151')
+                        .text(d3.timeFormat("%b %Y")(event.date));
+                }
+            });
+        }
 
         if (chartMode === 'line') {
             Object.entries(REGION_COLORS).forEach(([region, color]) => {

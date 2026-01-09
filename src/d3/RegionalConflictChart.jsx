@@ -78,13 +78,14 @@ const Controls = memo(({
     onSliderChange,
     aggregation,
     onAggregationChange,
+    isMobile = false,
 }) => {
     return (
-        <div className="px-6 py-4 rounded-xl shadow-lg border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 transition-colors duration-300">
-            <div className="flex items-center gap-6">
+        <div className="px-4 md:px-6 py-4 rounded-xl shadow-lg border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 transition-colors duration-300">
+            <div className={`flex ${isMobile ? 'flex-col gap-4' : 'flex-row items-center gap-6'}`}>
 
                 {/* Playback Controls */}
-                <div className="flex items-center gap-2 shrink-0">
+                <div className={`flex items-center gap-2 shrink-0 ${isMobile ? 'justify-center' : ''}`}>
                     <button onClick={onReset} className="p-2 rounded-lg transition-colors bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600 group" title="Reset" aria-label="Reset timeline">
                         <RotateCcw size={18} className="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white" />
                     </button>
@@ -126,7 +127,7 @@ const Controls = memo(({
                     <div className="absolute h-4 w-4 bg-white rounded-full shadow-md border-2 border-blue-500 pointer-events-none transition-all duration-300 ease-out z-0" style={{ left: `calc(${progressPercent}% - 8px)` }} />
 
                     {/* The Labels Container */}
-                    <div className="absolute top-8 w-full h-6 pointer-events-none">
+                    <div className={`absolute top-8 w-full h-6 pointer-events-none ${isMobile ? 'hidden' : ''}`}>
                         {sliderLabels.map((label, i) => (
                             <span
                                 key={i}
@@ -143,14 +144,14 @@ const Controls = memo(({
                 </div>
 
                 {/* The Context Area */}
-                <div className="flex flex-col items-end justify-center min-w-[160px] shrink-0 gap-3">
+                <div className={`flex ${isMobile ? 'flex-row justify-between w-full' : 'flex-col items-end'} justify-center min-w-[160px] shrink-0 gap-3`}>
                     { /* Year & Visualizer */}
-                    <div className="flex flex-col items-end w-full gap-1">
+                    <div className={`flex flex-col ${isMobile ? 'items-start' : 'items-end'} gap-1`}>
                         <div className="text-2xl font-mono font-bold text-slate-800 dark:text-slate-200 leading-none">
                             {displayYear}
                         </div>
 
-                        <div className="w-full h-6 mt-1">
+                        <div className={`${isMobile ? 'w-32' : 'w-full'} h-6 mt-1`}>
                             {aggregation === 'yearly' ? (
                                 <div className="w-full h-full rounded bg-amber-200 border border-amber-300 flex items-center justify-center shadow-sm">
                                     <span className="text-[10px] font-bold text-amber-900 tracking-wider">FULL YEAR</span>
@@ -178,7 +179,7 @@ const Controls = memo(({
                     </div>
 
                     {/* Segmented Control */}
-                    <div className="grid grid-cols-2 p-1 w-full bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700">
+                    <div className={`grid grid-cols-2 p-1 ${isMobile ? 'w-32' : 'w-full'} bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700`}>
                         {AGGREGATION_OPTIONS.map((option) => {
                             const isActive = aggregation === option.value;
                             return (
@@ -215,7 +216,8 @@ const AGGREGATION_OPTIONS = [
 function RegionalConflictChart({
     dataObj,
     width = 800,
-    height = 600
+    height = 600,
+    isMobile = false,
 }) {
     const { isDark } = useTheme();
 
@@ -386,13 +388,13 @@ function RegionalConflictChart({
     }, [timeSeriesData]);
 
     return (
-        <div className="w-full max-w-7xl mx-auto flex flex-col gap-6 py-8">
+        <div className="w-full max-w-7xl mx-auto flex flex-col gap-4 md:gap-6 py-4 md:py-8">
 
             {/* Map Area */}
-            <div className="relative w-full h-[650px] flex justify-center overflow-hidden rounded-2xl shadow-xl border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-900">
+            <div className={`relative w-full ${isMobile ? 'h-[550px]' : 'h-[650px]'} flex justify-center overflow-hidden rounded-2xl shadow-xl border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-900`}>
                 <MapLayer
                     width={width}
-                    height={height}
+                    height={isMobile ? 550 : height}
                     geoJson={geoJson}
                     neighborsGeoJson={dataObj?.neighborsGeoJson}
                     pathGenerator={pathGenerator}
@@ -422,7 +424,7 @@ function RegionalConflictChart({
                 </div>
 
                 {/* Legend */}
-                <div className="absolute right-4 top-4 flex flex-col gap-2 p-3 rounded-lg bg-white/80 dark:bg-slate-900/80 backdrop-blur border border-gray-300 dark:border-slate-700 text-xs shadow-sm pointer-events-none z-10">
+                <div className={`absolute right-4 ${isMobile ? 'bottom-4' : 'top-4'} flex flex-col gap-2 p-3 rounded-lg bg-white/80 dark:bg-slate-900/80 backdrop-blur border border-gray-300 dark:border-slate-700 text-xs shadow-sm pointer-events-none z-10`}>
                     <div className="font-bold text-slate-500 uppercase tracking-wider mb-1">Events Scale</div>
                     <div className="flex flex-col gap-2">
                         {legendSteps.map((step, idx) => (
@@ -460,6 +462,7 @@ function RegionalConflictChart({
                 aggregation={aggregation}
                 onAggregationChange={handleAggregationChange}
                 isDark={isDark}
+                isMobile={isMobile}
             />
         </div>
     );

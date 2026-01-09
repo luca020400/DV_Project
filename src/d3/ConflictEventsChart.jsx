@@ -164,6 +164,10 @@ const Sidebar = memo(({
     currentIndex,
     onEventClick,
     shouldAutoScroll,
+    isMobile,
+    isPlaying,
+    onPlayPause,
+    onReset,
 }) => {
     const listRef = useRef(null);
     const itemRefs = useRef([]);
@@ -189,9 +193,32 @@ const Sidebar = memo(({
         <div className="flex flex-col h-full bg-white dark:bg-slate-900 border-r border-gray-300 dark:border-slate-800">
             {/* Header */}
             <div className="p-4 shrink-0 bg-gray-100 dark:bg-slate-900/95 backdrop-blur z-10 border-b border-gray-300 dark:border-slate-700 shadow-sm">
-                <h3 className="font-bold text-lg text-slate-800 dark:text-white flex items-center gap-2">
-                    <Calendar size={18} /> Event Log
-                </h3>
+                <div className="flex items-center justify-between">
+                    <h3 className="font-bold text-lg text-slate-800 dark:text-white flex items-center gap-2">
+                        <Calendar size={18} /> Event Log
+                    </h3>
+                    {isMobile && (
+                        <div className="flex items-center gap-2">
+                            <button
+                                onClick={onReset}
+                                className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors"
+                                title="Reset"
+                            >
+                                <RotateCcw size={16} />
+                            </button>
+                            <button
+                                onClick={onPlayPause}
+                                className={`p-2.5 rounded-full transition-all shadow-md flex items-center justify-center ${isPlaying
+                                    ? 'bg-red-500 hover:bg-red-600 text-white shadow-red-500/30'
+                                    : 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-600/30'
+                                    }`}
+                                title={isPlaying ? "Pause" : "Play"}
+                            >
+                                {isPlaying ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" className="ml-0.5" />}
+                            </button>
+                        </div>
+                    )}
+                </div>
             </div>
 
             {/* Scrollable List */}
@@ -369,12 +396,16 @@ function ConflictEventsChart({
 
     // Map Configuration
     const projection = useMemo(() => {
+        const mapScale = isMobile ? 2500 : 5500;
+        const mapCenter = isMobile ? [46, 33] : [38, 35];
+
         const proj = d3.geoMercator()
-            .center([38, 35])
+            .center(mapCenter)
             .translate([boundedWidth / 2, boundedHeight / 2])
-            .scale(5500);
+            .scale(mapScale);
+
         return proj;
-    }, [boundedWidth, boundedHeight]);
+    }, [boundedWidth, boundedHeight, isMobile]);
 
     const pathGenerator = useMemo(() => {
         if (!projection) return null;
@@ -457,17 +488,21 @@ function ConflictEventsChart({
         <div className="flex flex-col lg:flex-row h-[850px] lg:h-[700px] border rounded-2xl overflow-hidden shadow-xl font-sans mt-8 mb-8 bg-white dark:bg-slate-900 border-gray-300 dark:border-slate-700">
 
             {/* Event List */}
-            <div className="w-full lg:w-80 h-1/3 lg:h-full shrink-0 order-2 lg:order-1 relative">
+            <div className="w-full lg:w-80 h-3/6 lg:h-full shrink-0 order-2 lg:order-1 relative">
                 <Sidebar
                     timelineData={timelineData}
                     currentIndex={currentIndex}
                     onEventClick={handleEventClick}
                     shouldAutoScroll={shouldAutoScroll}
+                    isMobile={isMobile}
+                    isPlaying={isPlaying}
+                    onPlayPause={handlePlayPause}
+                    onReset={handleReset}
                 />
             </div>
 
             {/* Map Visualization */}
-            <div className="relative flex-1 h-2/3 lg:h-full overflow-hidden order-1 lg:order-2 group bg-gray-50 dark:bg-slate-900">
+            <div className="relative flex-1 h-3/5 lg:h-full overflow-hidden order-1 lg:order-2 group bg-gray-50 dark:bg-slate-900">
                 <div className="w-full h-full relative">
                     <div style={{
                         transform: `translate(${marginLeft}px, ${marginTop}px)`,
@@ -524,19 +559,21 @@ function ConflictEventsChart({
                     </div>
 
                     {/* Controls */}
-                    <div className={`absolute z-20 ${isMobile ? 'bottom-0 left-0 right-0 p-2' : 'bottom-6 right-6'}`}>
-                        <Controls
-                            currentIndex={currentIndex}
-                            isPlaying={isPlaying}
-                            timelineData={timelineData}
-                            currentEvent={currentSlice}
-                            progressPercent={progressPercent}
-                            onReset={handleReset}
-                            onPlayPause={handlePlayPause}
-                            onSliderChange={handleSliderChange}
-                            isMobile={isMobile}
-                        />
-                    </div>
+                    {!isMobile && (
+                        <div className="absolute z-20 bottom-6 right-6">
+                            <Controls
+                                currentIndex={currentIndex}
+                                isPlaying={isPlaying}
+                                timelineData={timelineData}
+                                currentEvent={currentSlice}
+                                progressPercent={progressPercent}
+                                onReset={handleReset}
+                                onPlayPause={handlePlayPause}
+                                onSliderChange={handleSliderChange}
+                                isMobile={isMobile}
+                            />
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
