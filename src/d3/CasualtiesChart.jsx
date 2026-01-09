@@ -376,7 +376,7 @@ function CasualtiesChart({
             <div className="bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-transparent dark:border-slate-700 p-5 transition-colors duration-300">
                 <div className="flex flex-col md:flex-row gap-8 justify-evenly">
                     <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider mb-3 text-gray-600 dark:text-gray-400">Chart Type</label>
+                        <label className="block text-xs font-semibold uppercase tracking-wider mb-3 text-gray-700 dark:text-gray-300">Chart Type</label>
                         <div className="flex rounded-lg p-1 bg-gray-100 dark:bg-slate-700">
                             {['line', 'area'].map(mode => (
                                 <button
@@ -384,7 +384,7 @@ function CasualtiesChart({
                                     onClick={() => setChartMode(mode)}
                                     className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${chartMode === mode
                                         ? `bg-blue-600 dark:bg-orange-500 text-white shadow`
-                                        : `text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100`
+                                        : `text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white`
                                         }`}
                                 >
                                     {mode === 'line' ? 'Line Chart' : 'Stacked Area'}
@@ -394,7 +394,7 @@ function CasualtiesChart({
                     </div>
 
                     <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider mb-3 text-gray-600 dark:text-gray-400">Casualty Type</label>
+                        <label className="block text-xs font-semibold uppercase tracking-wider mb-3 text-gray-700 dark:text-gray-300">Casualty Type</label>
                         <div className="flex gap-4">
                             {['Aggregate', 'Civilian', 'Combatant'].map(type => (
                                 <label key={type} className="flex items-center gap-2 cursor-pointer group">
@@ -413,7 +413,7 @@ function CasualtiesChart({
                                         }}
                                         className="w-4 h-4"
                                     />
-                                    <span className="text-sm transition-colors text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-100">{type}</span>
+                                    <span className="text-sm transition-colors text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white">{type}</span>
                                 </label>
                             ))}
                         </div>
@@ -482,7 +482,7 @@ function CasualtiesChart({
                         onMouseLeave={() => setHoveredRegion(null)}
                     >
                         <span className="w-3 h-3 rounded-full" style={{ backgroundColor: color }} />
-                        <span className="text-sm text-gray-600 dark:text-gray-400">{region}</span>
+                        <span className="text-sm text-gray-700 dark:text-gray-300">{region}</span>
                     </div>
                 ))}
             </div>

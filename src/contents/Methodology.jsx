@@ -7,7 +7,7 @@ function Methodology() {
             <div className="py-16 sm:py-24 bg-white dark:bg-gray-900">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-4xl sm:text-5xl font-bold mb-6">Methodology</h2>
-                    <p className="text-lg sm:text-xl mb-12 max-w-2xl text-gray-600 dark:text-gray-300">
+                    <p className="text-lg sm:text-xl mb-12 max-w-2xl text-gray-700 dark:text-gray-300">
                         Transparency in our data processing approach and acknowledgment of limitations
                     </p>
 
@@ -23,10 +23,10 @@ function Methodology() {
                                     key={index}
                                     className="p-6 rounded-xl border-2 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700"
                                 >
-                                    <h4 className="font-bold text-blue-600 dark:text-blue-400 mb-2">
+                                    <h4 className="font-bold text-blue-700 dark:text-blue-400 mb-2">
                                         {item.source}
                                     </h4>
-                                    <p className="text-gray-600 dark:text-gray-300">
+                                    <p className="text-gray-700 dark:text-gray-300">
                                         {item.description}
                                     </p>
                                 </div>
@@ -49,10 +49,10 @@ function Methodology() {
                                         {/* Pipeline node */}
                                         <div className="absolute left-2 top-6 w-5 h-5 rounded-full bg-green-500 dark:bg-green-400 border-4 border-white dark:border-gray-900" />
                                         <div className="p-6 rounded-xl border-2 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700">
-                                            <h4 className="font-bold text-green-600 dark:text-green-400 mb-2">
+                                            <h4 className="font-bold text-green-700 dark:text-green-400 mb-2">
                                                 Step {index + 1}: {item.step}
                                             </h4>
-                                            <p className="text-gray-600 dark:text-gray-300">
+                                            <p className="text-gray-700 dark:text-gray-300">
                                                 {item.description}
                                             </p>
                                         </div>
@@ -74,10 +74,10 @@ function Methodology() {
                                     key={index}
                                     className="p-6 rounded-xl border-2 bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800"
                                 >
-                                    <h4 className="font-bold text-amber-700 dark:text-amber-400 mb-2">
+                                    <h4 className="font-bold text-amber-800 dark:text-amber-400 mb-2">
                                         {item.type}
                                     </h4>
-                                    <p className="text-gray-600 dark:text-gray-300 text-sm">
+                                    <p className="text-gray-700 dark:text-gray-300 text-sm">
                                         {item.description}
                                     </p>
                                 </div>
