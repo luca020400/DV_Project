@@ -48,7 +48,7 @@ function ScrollTracker() {
     return <BackToTopButton isVisible={showBackToTop} />;
 }
 
-function ProgressTracker({ onTourClick }) {
+function ProgressTracker({ onTourClick, highlightTour }) {
     const [activeSection, setActiveSection] = useState('');
 
     useEffect(() => {
@@ -124,6 +124,7 @@ function ProgressTracker({ onTourClick }) {
                 activeSection={activeSection}
                 onSectionClick={scrollToSection}
                 onTourClick={onTourClick}
+                highlightTour={highlightTour}
             />
 
             <SideProgressBar
@@ -138,6 +139,20 @@ function ProgressTracker({ onTourClick }) {
 export default function SyrianWarDashboard() {
     const [isDark, setIsDark] = useDarkMode();
     const [isTourOpen, setIsTourOpen] = useState(false);
+    const [hasSeenTour, setHasSeenTour] = useState(() => {
+        if (typeof window !== 'undefined') {
+            return localStorage.getItem('hasSeenTour') === 'true';
+        }
+        return false;
+    });
+
+    const handleTourOpen = () => {
+        setIsTourOpen(true);
+        if (!hasSeenTour) {
+            setHasSeenTour(true);
+            localStorage.setItem('hasSeenTour', 'true');
+        }
+    };
 
     return (
         <ThemeProvider isDark={isDark} setIsDark={setIsDark}>
@@ -145,7 +160,10 @@ export default function SyrianWarDashboard() {
                 <GuidedTour isOpen={isTourOpen} onClose={() => setIsTourOpen(false)} />
 
                 <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-                    <ProgressTracker onTourClick={() => setIsTourOpen(true)} />
+                    <ProgressTracker
+                        onTourClick={handleTourOpen}
+                        highlightTour={!hasSeenTour}
+                    />
 
                     <Content sections={sections} />
 

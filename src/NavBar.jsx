@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Menu, X, Moon, Sun, HelpCircle } from 'lucide-react';
 import { useTheme } from './contexts/ThemeContext';
 
-function Navbar({ sections, activeSection, onSectionClick, onTourClick }) {
+function Navbar({ sections, activeSection, onSectionClick, onTourClick, highlightTour }) {
     const { isDark, setIsDark } = useTheme();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -46,11 +46,19 @@ function Navbar({ sections, activeSection, onSectionClick, onTourClick }) {
                         {/* Guided Tour Button */}
                         <button
                             onClick={onTourClick}
-                            className="p-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            className={`relative p-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 hover:bg-gray-200 dark:hover:bg-gray-700 ${highlightTour ? 'ring-2 ring-orange-400 ring-offset-2 dark:ring-offset-gray-800' : ''}`}
                             title="Start guided tour"
                             aria-label="Start guided tour"
                         >
-                            <HelpCircle size={20} />
+                            <HelpCircle size={20} className={highlightTour ? 'text-orange-600 dark:text-orange-400' : ''} />
+
+                            {/* Notification Dot */}
+                            {highlightTour && (
+                                <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
+                                </span>
+                            )}
                         </button>
 
                         {/* Dark Mode Toggle */}
