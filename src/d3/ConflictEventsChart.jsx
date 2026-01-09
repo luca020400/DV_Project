@@ -545,12 +545,12 @@ function ConflictEventsChart({
                     </div>
 
                     {/* Legend */}
-                    <div className={`absolute left-4 top-4 flex flex-col gap-2 p-3 rounded-lg bg-white/80 dark:bg-slate-900/80 backdrop-blur border border-gray-300 dark:border-slate-700 text-xs shadow-sm pointer-events-none z-10 transition-opacity duration-300 ${isMobile ? 'opacity-0' : 'opacity-100'}`}>
-                        <div className="font-bold text-slate-500 uppercase tracking-wider mb-1">Event Types</div>
+                    <div className={`absolute flex flex-col rounded-lg bg-white/80 dark:bg-slate-900/80 backdrop-blur border border-gray-300 dark:border-slate-700 shadow-sm pointer-events-none z-10 transition-opacity duration-300 ${isMobile ? 'left-2 top-2 gap-1 p-2 text-[10px]' : 'left-4 top-4 gap-2 p-3 text-xs'}`}>
+                        <div className={`font-bold text-slate-500 uppercase tracking-wider ${isMobile ? 'mb-0.5' : 'mb-1'}`}>Event Types</div>
                         {Object.entries(TYPES).map(([id, type]) => (
-                            <div key={id} className="flex items-center gap-2">
+                            <div key={id} className={`flex items-center ${isMobile ? 'gap-1' : 'gap-2'}`}>
                                 <span
-                                    className="w-2 h-2 rounded-full"
+                                    className={`rounded-full ${isMobile ? 'w-1.5 h-1.5' : 'w-2 h-2'}`}
                                     style={{ backgroundColor: type.color }}
                                 ></span>
                                 <span className="text-slate-700 dark:text-slate-300">{type.label}</span>
