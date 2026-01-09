@@ -8,7 +8,7 @@ export const methodology = {
             },
             {
                 source: 'UNHCR Displacement Data',
-                description: 'Filtered by country of origin (Syria). Country codes mapped to continents using ISO3 standards via pycountry_convert library.'
+                description: 'Filtered by country of origin (Syria). Country codes mapped to continents using ISO3 standards.'
             },
             {
                 source: 'World Bank Economic Data',
@@ -66,7 +66,7 @@ export const methodology = {
             },
             {
                 type: 'Temporal Coverage',
-                description: 'Dashboard primarily covers 2011-2020. Events after 2020 are not included. Some data sources have different temporal resolutions and coverage periods.'
+                description: 'Dashboard primarily covers 2011-2020. Events after 2020 are not included (except for displacement data).'
             },
             {
                 type: 'Geographic Scope',
