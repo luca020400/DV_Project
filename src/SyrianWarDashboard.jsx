@@ -94,9 +94,9 @@ function ProgressTracker({ onTourClick, highlightTour }) {
                 setActiveSection('intro');
             }
 
-            // If last section is above viewport center, we're below all sections (show last)
+            // If last section is above viewport center, we're below all sections (show special)
             else if (lastRect.bottom < viewportCenter) {
-                setActiveSection(sections[sections.length - 1].id);
+                setActiveSection('data-sources');
             }
         };
 

@@ -1,9 +1,10 @@
 function SideProgressBar({ sections, activeSection, onSectionClick }) {
 
-    // Build complete item list: intro -> sections
+    // Build complete item list: intro -> sections -> data sources
     const allItems = [
         { id: 'intro', title: 'Intro', subtitle: 'Overview & Features', isCircle: true },
         ...sections,
+        { id: 'data-sources', title: 'Data Sources', subtitle: 'Sources & References', isSpecial: true },
     ];
 
     const activeIndex = allItems.findIndex(item => item.id === activeSection);
@@ -16,11 +17,20 @@ function SideProgressBar({ sections, activeSection, onSectionClick }) {
                 <div
                     className="absolute inset-0 bg-gray-300 dark:bg-gray-700 rounded-full"
                 />
-                {/* Filled progress line */}
+                {/* Regular sections progress line (red/orange) */}
                 <div
                     className="absolute top-0 left-0 right-0 bg-gradient-to-b from-red-500 to-orange-500 rounded-full transition-all duration-300"
                     style={{
-                        height: `${allItems.length > 1 ? (activeIndex / (allItems.length - 1)) * 100 : 0}%`,
+                        height: `${allItems.length > 1 ? Math.min(activeIndex / (allItems.length - 1), (allItems.length - 2) / (allItems.length - 1)) * 100 : 0}%`,
+                    }}
+                />
+
+                {/* Data sources progress line (gray) */}
+                <div
+                    className="absolute top-0 left-0 right-0 bg-gray-500 dark:bg-gray-400 rounded-full transition-all duration-300"
+                    style={{
+                        top: `${allItems.length > 1 ? ((allItems.length - 2) / (allItems.length - 1)) * 100 : 0}%`,
+                        height: `${allItems.length > 1 ? Math.max(0, (activeIndex / (allItems.length - 1)) * 100 - ((allItems.length - 2) / (allItems.length - 1)) * 100) : 0}%`,
                     }}
                 />
             </div>
@@ -29,6 +39,7 @@ function SideProgressBar({ sections, activeSection, onSectionClick }) {
                 const isActive = activeSection === item.id;
                 const isPast = index < activeIndex;
                 const isCircle = item.isCircle;
+                const isSpecial = item.isSpecial;
 
                 return (
                     <div key={item.id} className="relative group flex items-center">
@@ -39,9 +50,11 @@ function SideProgressBar({ sections, activeSection, onSectionClick }) {
                                 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2
                                 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900
                                 ${isActive
-                                    ? isCircle
-                                        ? 'w-5 h-5 bg-gradient-to-r from-red-500 to-orange-500 rounded-full shadow-lg shadow-red-500/30'
-                                        : 'w-6 h-6 bg-gradient-to-r from-red-500 to-orange-500 shadow-lg shadow-red-500/30'
+                                    ? isSpecial
+                                        ? 'w-6 h-6 bg-gray-500 dark:bg-gray-400 shadow-lg shadow-gray-500/20'
+                                        : isCircle
+                                            ? 'w-5 h-5 bg-gradient-to-r from-red-500 to-orange-500 rounded-full shadow-lg shadow-red-500/30'
+                                            : 'w-6 h-6 bg-gradient-to-r from-red-500 to-orange-500 shadow-lg shadow-red-500/30'
                                     : isPast
                                         ? 'w-5 h-5 bg-gradient-to-r from-red-500 to-orange-500'
                                         : 'w-5 h-5 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
