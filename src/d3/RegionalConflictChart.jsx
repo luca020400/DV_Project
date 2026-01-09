@@ -85,11 +85,11 @@ const Controls = memo(({
 
                 {/* Playback Controls */}
                 <div className="flex items-center gap-2 shrink-0">
-                    <button onClick={onReset} className="p-2 rounded-lg transition-colors bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600 group" title="Reset">
+                    <button onClick={onReset} className="p-2 rounded-lg transition-colors bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600 group" title="Reset" aria-label="Reset timeline">
                         <RotateCcw size={18} className="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white" />
                     </button>
 
-                    <button onClick={onPrev} disabled={currentIndex === 0} className={`p-2 rounded-lg transition-colors ${currentIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600'}`}>
+                    <button onClick={onPrev} disabled={currentIndex === 0} className={`p-2 rounded-lg transition-colors ${currentIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600'}`} aria-label="Previous time period">
                         <ChevronLeft size={20} className="text-gray-900 dark:text-gray-100" />
                     </button>
 
@@ -102,13 +102,14 @@ const Controls = memo(({
                                 ? 'bg-red-600 hover:bg-red-700 shadow-md shadow-red-900/20 border-transparent'
                                 : 'bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-900/20 border-transparent'
                             }`}
+                        aria-label={isPlaying ? 'Pause animation' : 'Play animation'}
                     >
                         <span className="text-white">
                             {isPlaying ? <Pause size={20} /> : <Play size={20} />}
                         </span>
                     </button>
 
-                    <button onClick={onNext} disabled={currentIndex === timeSeriesData.length - 1} className={`p-2 rounded-lg transition-colors ${currentIndex === timeSeriesData.length - 1 ? 'opacity-30 cursor-not-allowed' : 'bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600'}`}>
+                    <button onClick={onNext} disabled={currentIndex === timeSeriesData.length - 1} className={`p-2 rounded-lg transition-colors ${currentIndex === timeSeriesData.length - 1 ? 'opacity-30 cursor-not-allowed' : 'bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600'}`} aria-label="Next time period">
                         <ChevronRight size={20} className="text-gray-900 dark:text-gray-100" />
                     </button>
                 </div>
@@ -129,7 +130,7 @@ const Controls = memo(({
                         {sliderLabels.map((label, i) => (
                             <span
                                 key={i}
-                                className="absolute text-xs font-mono opacity-50 whitespace-nowrap text-slate-600 dark:text-slate-400 leading-none pt-2"
+                                className="absolute text-xs font-mono whitespace-nowrap text-slate-700 dark:text-slate-200 leading-none pt-2"
                                 style={{
                                     left: label.left,
                                     transform: 'translateX(-50%)'
@@ -143,8 +144,7 @@ const Controls = memo(({
 
                 {/* The Context Area */}
                 <div className="flex flex-col items-end justify-center min-w-[160px] shrink-0 gap-3">
-
-                    {/* Year & Visualizer */}
+                    { /* Year & Visualizer */}
                     <div className="flex flex-col items-end w-full gap-1">
                         <div className="text-2xl font-mono font-bold text-slate-800 dark:text-slate-200 leading-none">
                             {displayYear}
@@ -159,17 +159,17 @@ const Controls = memo(({
                                 <div className="w-full h-full flex gap-1">
                                     <div className={`flex-1 flex items-center justify-center rounded border shadow-sm transition-all duration-300 ${periodIndex === 0
                                         ? 'bg-amber-200 border-amber-300'
-                                        : 'bg-slate-100 dark:bg-slate-700 border-transparent'
+                                        : 'bg-slate-200 dark:bg-slate-600 border-slate-300 dark:border-slate-600'
                                         }`}>
-                                        <span className={`text-[9px] font-bold uppercase tracking-wider ${periodIndex === 0 ? 'text-amber-900' : 'text-slate-400 dark:text-slate-500'
+                                        <span className={`text-[9px] font-bold uppercase tracking-wider ${periodIndex === 0 ? 'text-amber-900' : 'text-slate-500 dark:text-slate-400'
                                             }`}>Jan - Jun</span>
                                     </div>
 
                                     <div className={`flex-1 flex items-center justify-center rounded border shadow-sm transition-all duration-300 ${periodIndex === 1
                                         ? 'bg-amber-200 border-amber-300'
-                                        : 'bg-slate-100 dark:bg-slate-700 border-transparent'
+                                        : 'bg-slate-200 dark:bg-slate-600 border-slate-300 dark:border-slate-600'
                                         }`}>
-                                        <span className={`text-[9px] font-bold uppercase tracking-wider ${periodIndex === 1 ? 'text-amber-900' : 'text-slate-400 dark:text-slate-500'
+                                        <span className={`text-[9px] font-bold uppercase tracking-wider ${periodIndex === 1 ? 'text-amber-900' : 'text-slate-500 dark:text-slate-400'
                                             }`}>Jul - Dec</span>
                                     </div>
                                 </div>

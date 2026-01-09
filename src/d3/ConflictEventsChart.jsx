@@ -209,7 +209,7 @@ const Sidebar = memo(({
                             ref={el => itemRefs.current[index] = el}
                             onClick={() => onEventClick(index)}
                             className={`
-                                w-full text-left p-3 mb-2 rounded-lg transition-all duration-300 border
+                                w-full text-left p-4 mb-3 rounded-lg transition-all duration-300 border
                                 ${isActive
                                     ? 'bg-blue-50 dark:bg-slate-800 border-blue-500 shadow-md ring-1 ring-blue-500/20 text-slate-900 dark:text-white translate-x-1'
                                     : 'bg-transparent text-gray-600 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-800 opacity-70 hover:opacity-100'
@@ -217,15 +217,15 @@ const Sidebar = memo(({
                             `}
                         >
                             <div className="flex justify-between items-start mb-1">
-                                <span className={`text-[10px] font-bold uppercase tracking-wider ${isActive ? 'text-blue-600' : 'text-gray-400 dark:text-slate-400'}`}>
+                                <span className={`text-xs font-bold uppercase tracking-wider ${isActive ? 'text-blue-700 dark:text-blue-400' : 'text-blue-600 dark:text-blue-500'}`}>
                                     {item.fullDate}
                                 </span>
                             </div>
-                            <div className={`font-semibold text-sm mb-1 line-clamp-2 ${isActive ? 'text-slate-900 dark:text-white' : 'text-slate-700 dark:text-slate-300'}`}>
+                            <div className={`font-semibold text-base mb-1 line-clamp-2 ${isActive ? 'text-slate-900 dark:text-white' : 'text-slate-700 dark:text-slate-300'}`}>
                                 {eventDetail.title}
                             </div>
                             {isActive && (
-                                <div className="text-xs leading-snug animate-in fade-in slide-in-from-top-1 duration-300 mt-2 pl-2 border-l-2 text-slate-600 dark:text-slate-400 border-gray-300 dark:border-slate-700">
+                                <div className="text-sm leading-snug animate-in fade-in slide-in-from-top-1 duration-300 mt-2 pl-2 border-l-2 text-slate-600 dark:text-slate-400 border-gray-300 dark:border-slate-700">
                                     {eventDetail.description}
                                 </div>
                             )}
