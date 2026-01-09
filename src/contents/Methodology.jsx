@@ -40,19 +40,20 @@ function Methodology() {
                             <Cog className="w-6 h-6 text-green-600 dark:text-green-400" />
                             <h3 className="text-2xl font-bold">{methodology.dataProcessingAnalysis.title}</h3>
                         </div>
+
                         <div className="relative">
-                            {/* Pipeline visualization */}
-                            <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-green-200 dark:bg-green-800" />
-                            <div className="space-y-6">
+                            <div className="absolute left-6 top-6 bottom-6 w-0.5 -translate-x-1/2 bg-green-200 dark:bg-green-800" />
+
+                            <div className="space-y-8">
                                 {methodology.dataProcessingAnalysis.items.map((item, index) => (
-                                    <div key={index} className="relative pl-12">
-                                        {/* Pipeline node */}
-                                        <div className="absolute left-2 top-6 w-5 h-5 rounded-full bg-green-500 dark:bg-green-400 border-4 border-white dark:border-gray-900" />
-                                        <div className="p-6 rounded-xl border-2 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+                                    <div key={index} className="relative pl-16">
+                                        <div className="absolute left-6 top-6 w-5 h-5 -translate-x-1/2 rounded-full bg-green-500 dark:bg-green-400 border-4 border-white dark:border-gray-900 z-10" />
+
+                                        <div className="p-6 rounded-xl border-2 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 shadow-sm">
                                             <h4 className="font-bold text-green-700 dark:text-green-400 mb-2">
                                                 Step {index + 1}: {item.step}
                                             </h4>
-                                            <p className="text-gray-700 dark:text-gray-300">
+                                            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                                                 {item.description}
                                             </p>
                                         </div>
