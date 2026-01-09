@@ -146,7 +146,7 @@ const Controls = memo(({
                 {/* The Context Area */}
                 <div className={`flex ${isMobile ? 'flex-row justify-between w-full' : 'flex-col items-end'} justify-center min-w-[160px] shrink-0 gap-3`}>
                     { /* Year & Visualizer */}
-                    <div className={`flex flex-col ${isMobile ? 'items-start' : 'items-end'} gap-1`}>
+                    <div className={`flex flex-col ${isMobile ? 'items-start' : 'items-end'} w-full gap-1`}>
                         <div className="text-2xl font-mono font-bold text-slate-800 dark:text-slate-200 leading-none">
                             {displayYear}
                         </div>
@@ -179,7 +179,7 @@ const Controls = memo(({
                     </div>
 
                     {/* Segmented Control */}
-                    <div className={`grid grid-cols-2 p-1 ${isMobile ? 'w-32' : 'w-full'} bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700`}>
+                    <div className={`grid grid-cols-2 p-1 ${isMobile ? 'w-64' : 'w-full'} bg-slate-100 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700`}>
                         {AGGREGATION_OPTIONS.map((option) => {
                             const isActive = aggregation === option.value;
                             return (
