@@ -178,7 +178,7 @@ function SourceDataSection({ section, dataSources, onScrollToSource }) {
         <div className="py-12 bg-white dark:bg-gray-900">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-                    <h4 className="text-2xl font-bold">Data Sources for this Section</h4>
+                    <h3 className="text-2xl font-bold">Data Sources for this Section</h3>
                     <button
                         onClick={handleViewAllSources}
                         className="px-6 py-2 rounded-lg text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1 whitespace-nowrap hover:shadow-md text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500"
