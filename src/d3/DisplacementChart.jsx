@@ -339,6 +339,7 @@ const GlobeMigrationView = memo(({ data, isDark, width = 800, height = 600, worl
                                 onClick={togglePlay}
                                 className={`p-2 rounded-full hover:scale-110 transition-transform ${isDark ? 'bg-blue-600 hover:bg-blue-500 text-white' : 'bg-blue-600 hover:bg-blue-700 text-white'
                                     }`}
+                                aria-label={isPlaying ? "Pause timeline" : "Play timeline"}
                             >
                                 {isPlaying ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" className="ml-0.5" />}
                             </button>
@@ -366,6 +367,7 @@ const GlobeMigrationView = memo(({ data, isDark, width = 800, height = 600, worl
                             onClick={() => setCurrentIndex(Math.max(0, currentIndex - 1))}
                             className={`p-1 rounded hover:bg-black/10 dark:hover:bg-white/10 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}
                             disabled={currentIndex === 0}
+                            aria-label="Go to previous year"
                         >
                             <SkipBack size={16} />
                         </button>
@@ -383,6 +385,7 @@ const GlobeMigrationView = memo(({ data, isDark, width = 800, height = 600, worl
                         <button
                             onClick={() => setCurrentIndex(Math.min(data.length - 1, currentIndex + 1))}
                             className={`p-1 rounded hover:bg-black/10 dark:hover:bg-white/10 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}
+                            aria-label="Go to next year"
                             disabled={currentIndex === data.length - 1}
                         >
                             <SkipForward size={16} />
