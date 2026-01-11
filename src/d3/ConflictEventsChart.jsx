@@ -243,18 +243,18 @@ const Sidebar = memo(({
                                 }
                             `}
                         >
-                            <div className="flex justify-between items-start mb-1">
+                            <span className="flex justify-between items-start mb-1">
                                 <span className={`text-xs font-bold uppercase tracking-wider ${isActive ? 'text-blue-700 dark:text-blue-400' : 'text-blue-600 dark:text-blue-500'}`}>
                                     {item.fullDate}
                                 </span>
-                            </div>
-                            <div className={`font-semibold text-base mb-1 line-clamp-2 ${isActive ? 'text-slate-900 dark:text-white' : 'text-slate-700 dark:text-slate-300'}`}>
+                            </span>
+                            <span className={`font-semibold text-base mb-1 line-clamp-2 ${isActive ? 'text-slate-900 dark:text-white' : 'text-slate-700 dark:text-slate-300'}`}>
                                 {eventDetail.title}
-                            </div>
+                            </span>
                             {isActive && (
-                                <div className="text-sm leading-snug animate-in fade-in slide-in-from-top-1 duration-300 mt-2 pl-2 border-l-2 text-slate-600 dark:text-slate-400 border-gray-300 dark:border-slate-700">
+                                <span className="text-sm leading-snug animate-in fade-in slide-in-from-top-1 duration-300 mt-2 pl-2 border-l-2 text-slate-600 dark:text-slate-400 border-gray-300 dark:border-slate-700">
                                     {eventDetail.description}
-                                </div>
+                                </span>
                             )}
                         </button>
                     );

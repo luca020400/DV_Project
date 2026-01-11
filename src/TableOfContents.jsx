@@ -18,20 +18,20 @@ function TableOfContents({ sections, activeSection, onSectionClick, onClose }) {
                                 : `hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300`
                             }`}
                     >
-                        <div className="flex items-start gap-3">
+                        <span className="flex items-start gap-3">
                             <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-sm font-semibold ${activeSection === section.id
                                     ? 'bg-white text-red-500'
                                     : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
                                 }`}>
                                 {idx + 1}
                             </span>
-                            <div className="flex-1 min-w-0">
+                            <span className="flex-1 min-w-0">
                                 <p className="font-semibold">{section.title}</p>
                                 <p className={`text-sm ${activeSection === section.id ? 'text-red-100' : 'text-gray-700 dark:text-gray-300'}`}>
                                     {section.subtitle}
                                 </p>
-                            </div>
-                        </div>
+                            </span>
+                        </span>
                     </button>
                 ))}
             </div>
