@@ -252,7 +252,7 @@ const Sidebar = memo(({
                                 {eventDetail.title}
                             </span>
                             {isActive && (
-                                <span className="text-sm leading-snug animate-in fade-in slide-in-from-top-1 duration-300 mt-2 pl-2 border-l-2 text-slate-600 dark:text-slate-400 border-gray-300 dark:border-slate-700">
+                                <span className="text-sm animate-in fade-in slide-in-from-top-1 duration-300 mt-2 text-slate-600 dark:text-slate-400 border-gray-300 dark:border-slate-700">
                                     {eventDetail.description}
                                 </span>
                             )}
