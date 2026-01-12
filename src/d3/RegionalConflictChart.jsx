@@ -425,7 +425,7 @@ function RegionalConflictChart({
 
                 {/* Legend */}
                 <div className={`absolute right-4 ${isMobile ? 'bottom-4' : 'top-4'} flex flex-col gap-2 p-3 rounded-lg bg-white/80 dark:bg-slate-900/80 backdrop-blur border border-gray-300 dark:border-slate-700 text-xs shadow-sm pointer-events-none z-10`}>
-                    <div className="font-bold text-slate-500 uppercase tracking-wider mb-1">Events Scale</div>
+                    <div className="font-bold text-slate-500 uppercase tracking-wider mb-1">Events count</div>
                     <div className="flex flex-col gap-2">
                         {legendSteps.map((step, idx) => (
                             <div key={idx} className="flex items-center gap-3">
