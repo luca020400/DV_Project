@@ -297,21 +297,21 @@ const GlobeMigrationView = memo(({ data, isDark, width = 800, height = 600, worl
                                     {isHovered && (
                                         <g transform={`translate(${endProjected[0]}, ${endProjected[1] - radius - 14})`}>
                                             <rect
-                                                x="-50" y="-24" width="100" height="24"
+                                                x="-50" y="-24" width="100" height="36"
                                                 rx="6" fill={isDark ? 'black' : 'white'}
                                                 opacity="0.9"
                                             />
                                             <text
                                                 textAnchor="middle"
                                                 dy="-7"
-                                                className={`text-xs font-bold ${isDark ? 'fill-white' : 'fill-slate-900'}`}
+                                                className={`text-sm font-bold ${isDark ? 'fill-white' : 'fill-slate-900'}`}
                                             >
                                                 {LABELS[key]}
                                             </text>
                                             <text
                                                 textAnchor="middle"
                                                 dy="8"
-                                                className={`text-[9px] uppercase tracking-wider ${isDark ? 'fill-gray-300' : 'fill-gray-600'}`}
+                                                className={`text-[12px] uppercase tracking-wider ${isDark ? 'fill-gray-300' : 'fill-gray-600'}`}
                                             >
                                                 {formatCount(value)}
                                             </text>
