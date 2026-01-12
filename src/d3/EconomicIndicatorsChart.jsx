@@ -62,7 +62,7 @@ const METRICS = [
 
 const SECTION_INFO = {
     humanitarian: {
-        note: 'Data gaps during conflict periods have been filled through careful interpolation and estimation based on available trends.'
+        note: 'Data compiled from multiple online articles and reports. Gaps during conflict periods have been filled by combining findings from various sources or interpolating missing values.'
     }
 };
 
